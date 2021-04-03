@@ -90,3 +90,7 @@ task run(type: Exec) {
     commandLine "$adb", 'shell', 'am', 'start', '-n', 'alex.iv.rect.destroy/alex.iv.rect.destroy.AndroidLauncher'
 }
 
+dependencies {
+    implementation 'com.google.android.gms:play-services-ads:11.8.0'
+}
+

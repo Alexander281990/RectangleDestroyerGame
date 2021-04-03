@@ -2,5 +2,6 @@
 <resources>
 
     <string name="app_name">RectangleDestroyer</string>
+    <string name="publisher_id">ca-app-pub-3940256099942544/6300978111</string>
 
 </resources>
