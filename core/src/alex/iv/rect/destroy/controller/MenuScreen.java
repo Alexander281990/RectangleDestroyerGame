@@ -16,6 +16,7 @@ import alex.iv.rect.destroy.LevelScreen_6;
 public class MenuScreen extends BaseScreen {
 
     public IActivityRequestHandler requestHandler;
+    public LevelScreenMain levelScreenMain;
 
     public MenuScreen() {
 
@@ -28,6 +29,7 @@ public class MenuScreen extends BaseScreen {
     @Override
     public void initialize() {
 
+        levelScreenMain = new LevelScreenMain(requestHandler);
 // инициализация кнопок Level
         TextButton level_1_Button = new TextButton("01", BaseGame.textButtonStyleLevel);
         level_1_Button.setColor(Color.GREEN);
@@ -107,7 +109,7 @@ public class MenuScreen extends BaseScreen {
                         if (!(e instanceof InputEvent) ||
                                 !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
                             return false;
-                        RectangleGame.setActiveScreen(new LevelScreen_1());
+                        RectangleGame.setActiveScreen(new LevelScreen_1(requestHandler));
                         return false;
                     }
                 }

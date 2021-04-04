@@ -12,9 +12,11 @@ public class LevelScreen_1 extends LevelScreenMain {
 //
 //    }
 //
-//    public LevelScreen_1(IActivityRequestHandler requestHandler) {
-//        super(requestHandler);
-//    }
+    // чтобы реклама появлялась, обязательно нужно использовать этод конструктор(с параметром requestHandler), в классе
+    // MenuScreen
+    public LevelScreen_1(IActivityRequestHandler requestHandler) {
+        super(requestHandler);
+    }
 
     public void initialize() {
         super.initialize();

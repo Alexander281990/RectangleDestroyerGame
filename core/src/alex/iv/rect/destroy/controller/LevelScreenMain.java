@@ -17,8 +17,7 @@ import alex.iv.rect.destroy.actors.Wall;
 
 public class LevelScreenMain extends StartScreen {
 
-    //IActivityRequestHandler requestHandler;
-
+    private IActivityRequestHandler requestHandler; // переменная для ссылки на метод из AndroidLauncher(showOrLoadInterstitial()) - показ межстраничного банера
     private float windowPlayWidth;
     private float windowPlayHeight;
     protected Wall wallHeight;
@@ -44,12 +43,13 @@ public class LevelScreenMain extends StartScreen {
     private Sound itemAppearSound;
     private Sound itemCollectSound;
 
-//    public LevelScreenMain(IActivityRequestHandler requestHandler) {
-//        super(requestHandler);
-//    }
-//
-//    public LevelScreenMain() {
-//    }
+    // конструктор, который создает саму ссылку на метод showOrLoadInterstitial из AndroidLauncher
+    public LevelScreenMain(IActivityRequestHandler requestHandler) {
+        this.requestHandler = requestHandler;
+    }
+
+    public LevelScreenMain() {
+    }
 
     @Override
     public void initialize() {
@@ -337,8 +337,8 @@ public class LevelScreenMain extends StartScreen {
                 else if (realItem.getType() == Item.Type.PADDLE_SHRINK)
                     paddle.setWidth(paddle.getWidth() * 0.80f);
                 else if (realItem.getType() == Item.Type.BALL_SPEED_UP)
-                    ball.setSpeed(ball.getSpeed() + 100);
-                    //requestHandler.showOrLoadInterstitial();
+                    //ball.setSpeed(ball.getSpeed() + 100);
+                    requestHandler.showOrLoadInterstitial();
                 if (ball.getSpeed() > ball.getMaxSpeed())
                     ball.setSpeed(ball.getMaxSpeed());
                 else if (realItem.getType() == Item.Type.BALL_SPEED_DOWN)
