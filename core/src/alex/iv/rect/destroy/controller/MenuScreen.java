@@ -109,6 +109,7 @@ public class MenuScreen extends BaseScreen {
                         if (!(e instanceof InputEvent) ||
                                 !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
                             return false;
+//                        RectangleGame.setActiveScreen(new LevelScreen_1(requestHandler));
                         RectangleGame.setActiveScreen(new LevelScreen_1(requestHandler));
                         return false;
                     }
@@ -122,7 +123,7 @@ public class MenuScreen extends BaseScreen {
                         if (!(e instanceof InputEvent) ||
                                 !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
                             return false;
-                        RectangleGame.setActiveScreen(new LevelScreen_2());
+                        RectangleGame.setActiveScreen(new LevelScreen_2(requestHandler));
                         return false;
                     }
                 }
@@ -135,7 +136,7 @@ public class MenuScreen extends BaseScreen {
                         if (!(e instanceof InputEvent) ||
                                 !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
                             return false;
-                        RectangleGame.setActiveScreen(new LevelScreen_3());
+                        RectangleGame.setActiveScreen(new LevelScreen_3(requestHandler));
                         return false;
                     }
                 }
@@ -148,7 +149,7 @@ public class MenuScreen extends BaseScreen {
                         if (!(e instanceof InputEvent) ||
                                 !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
                             return false;
-                        RectangleGame.setActiveScreen(new LevelScreen_4());
+                        RectangleGame.setActiveScreen(new LevelScreen_4(requestHandler));
                         return false;
                     }
                 }
@@ -161,7 +162,7 @@ public class MenuScreen extends BaseScreen {
                         if (!(e instanceof InputEvent) ||
                                 !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
                             return false;
-                        RectangleGame.setActiveScreen(new LevelScreen_5());
+                        RectangleGame.setActiveScreen(new LevelScreen_5(requestHandler));
                         return false;
                     }
                 }

@@ -4,9 +4,20 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import alex.iv.rect.destroy.actors.Brick;
 import alex.iv.rect.destroy.controller.BaseActor;
+import alex.iv.rect.destroy.controller.IActivityRequestHandler;
 import alex.iv.rect.destroy.controller.LevelScreenMain;
 
 public class LevelScreen_3 extends LevelScreenMain {
+
+    public LevelScreen_3() {
+
+    }
+
+    // чтобы реклама появлялась, обязательно нужно использовать этод конструктор(с параметром requestHandler), в классе
+    // MenuScreen
+    public LevelScreen_3(IActivityRequestHandler requestHandler) {
+        super(requestHandler);
+    }
 
     public void initialize() {
         super.initialize();

@@ -8,10 +8,10 @@ import alex.iv.rect.destroy.controller.LevelScreenMain;
 
 public class LevelScreen_1 extends LevelScreenMain {
 
-//    public LevelScreen_1() {
-//
-//    }
-//
+    public LevelScreen_1() {
+
+    }
+
     // чтобы реклама появлялась, обязательно нужно использовать этод конструктор(с параметром requestHandler), в классе
     // MenuScreen
     public LevelScreen_1(IActivityRequestHandler requestHandler) {

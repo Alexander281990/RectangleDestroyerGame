@@ -37,11 +37,11 @@ public class LevelScreenMain extends StartScreen {
     private Paddle paddle;
     private Label messageLabel; //
     private Ball ball;
-    private Sound bounceSound;
-    private Sound brickBumpSound;
-    private Sound wallBumpSound;
-    private Sound itemAppearSound;
-    private Sound itemCollectSound;
+//    private Sound bounceSound;
+//    private Sound brickBumpSound;
+//    private Sound wallBumpSound;
+//    private Sound itemAppearSound;
+//    private Sound itemCollectSound;
 
     // конструктор, который создает саму ссылку на метод showOrLoadInterstitial из AndroidLauncher
     public LevelScreenMain(IActivityRequestHandler requestHandler) {
@@ -97,15 +97,15 @@ public class LevelScreenMain extends StartScreen {
 
         paddle = new Paddle(windowPlayWidth / 2 - 64 , windowPlayHeight, mainStage);
 
-        bounceSound	= Gdx.audio.newSound(Gdx.files.internal("boing.wav"));
-        brickBumpSound = Gdx.audio.newSound(Gdx.files.internal("bump.wav"));
-        wallBumpSound = Gdx.audio.newSound(Gdx.files.internal("bump-low.wav"));
-        itemAppearSound	= Gdx.audio.newSound(Gdx.files.internal("swoosh.wav"));
-        itemCollectSound = Gdx.audio.newSound(Gdx.files.internal("pop.wav"));
-        Music backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("Rollin-at-5.mp3"));
-        backgroundMusic.setLooping(true);
-        backgroundMusic.setVolume(0.50f);
-        backgroundMusic.play();
+//        bounceSound	= Gdx.audio.newSound(Gdx.files.internal("boing.wav"));
+//        brickBumpSound = Gdx.audio.newSound(Gdx.files.internal("bump.wav"));
+//        wallBumpSound = Gdx.audio.newSound(Gdx.files.internal("bump-low.wav"));
+//        itemAppearSound	= Gdx.audio.newSound(Gdx.files.internal("swoosh.wav"));
+//        itemCollectSound = Gdx.audio.newSound(Gdx.files.internal("pop.wav"));
+//        Music backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("Rollin-at-5.mp3"));
+//        backgroundMusic.setLooping(true);
+//        backgroundMusic.setVolume(0.50f);
+//        backgroundMusic.play();
 
         ball = new Ball(0,0, mainStage);
         ball.setColor(Color.GREEN);
@@ -225,11 +225,11 @@ public class LevelScreenMain extends StartScreen {
             for (BaseActor wall : BaseActor.getList(mainStage, "alex.iv.rect.destroy.actors.Wall")) {
                 if (bal.overlaps(wall)) {
                     bal.bounceOff(wall); // отскакивание под углом
-                    wallBumpSound.play();
+                    //wallBumpSound.play();
                 }
             }
             if (bal.overlaps(paddle)) {
-                bounceSound.play();
+                //bounceSound.play();
                 float ballCenterX = bal.getX() + bal.getWidth() / 2;
                 float paddlePercentHit = (ballCenterX - paddle.getX()) / paddle.getWidth();
                 float bounceAngle = MathUtils.lerp(150, 30, paddlePercentHit);
@@ -238,7 +238,7 @@ public class LevelScreenMain extends StartScreen {
             for (BaseActor br : BaseActor.getList(mainStage, "alex.iv.rect.destroy.actors.Brick")) {
                 if (bal.overlaps(br)) {
                     bal.bounceOff(br);
-                    brickBumpSound.play();
+                    //brickBumpSound.play();
                     if (Color.rgb888(br.getColor()) == Color.rgb888(Color.RED)) {
                         br.remove();
                         switch (br.hit) {    // считает сколько раз попали по кирпичю, и добавляет очки за его дальнейшее уничтожение
@@ -336,13 +336,16 @@ public class LevelScreenMain extends StartScreen {
                     paddle.setWidth(paddle.getWidth() * 1.25f);
                 else if (realItem.getType() == Item.Type.PADDLE_SHRINK)
                     paddle.setWidth(paddle.getWidth() * 0.80f);
-                else if (realItem.getType() == Item.Type.BALL_SPEED_UP)
-                    //ball.setSpeed(ball.getSpeed() + 100);
-                    requestHandler.showOrLoadInterstitial();
+                else if (realItem.getType() == Item.Type.BALL_SPEED_UP) {
+                    ball.setSpeed(ball.getSpeed() + 100);
+                    requestHandler.showBannerAd(); // показывает рекламный баннер
+                }
                 if (ball.getSpeed() > ball.getMaxSpeed())
                     ball.setSpeed(ball.getMaxSpeed());
-                else if (realItem.getType() == Item.Type.BALL_SPEED_DOWN)
+                else if (realItem.getType() == Item.Type.BALL_SPEED_DOWN) {
                     ball.setSpeed(ball.getSpeed() * 0.90f);
+                    requestHandler.hideBannerAd(); // удаляет рекламный баннер
+                }
                 else if (realItem.getType() == Item.Type.BALL_TWO) {
                     new Ball(paddle.getX() + paddle.getWidth() / 2 - ball.getWidth() / 2,
                             paddle.getY() + paddle.getHeight() / 2 + ball.getHeight() / 2, false, mainStage);
@@ -357,7 +360,7 @@ public class LevelScreenMain extends StartScreen {
                 }
                 paddle.setBoundaryRectangle();
                 item.remove();
-                itemCollectSound.play();
+                //itemCollectSound.play();
             }
         }
         // если весло пересекается с кем-то из обьектов Item(конец)

@@ -9,6 +9,7 @@ public class LevelScreen_6 extends LevelScreenMain {
 
     public LevelScreen_6(IActivityRequestHandler requestHandler){
         this.requestHandler=requestHandler;
+        requestHandler.showBannerAd(); // при запуске LevelScreen_6 запускается рекламный банер в нижней части экрана
     }
 
     private boolean b;
@@ -28,6 +29,7 @@ public class LevelScreen_6 extends LevelScreenMain {
 
         if (b == false) {
             requestHandler.showOrLoadInterstitial();
+//            requestHandler.showBannerAd();
         }
 
     }

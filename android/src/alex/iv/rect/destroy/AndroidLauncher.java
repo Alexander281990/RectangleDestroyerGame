@@ -45,9 +45,9 @@ public class AndroidLauncher extends AndroidApplication implements IActivityRequ
 		adView.setAdSize(AdSize.BANNER);
 		adView.setAdUnitId(adUnitId);
 
-		AdRequest.Builder adRequestBuilder = new AdRequest.Builder();
-		adRequestBuilder.addTestDevice(AdRequest.DEVICE_ID_EMULATOR);
-		adView.loadAd(adRequestBuilder.build());
+		//AdRequest.Builder adRequestBuilder = new AdRequest.Builder();
+		//adRequestBuilder.addTestDevice(AdRequest.DEVICE_ID_EMULATOR);
+		//adView.loadAd(adRequestBuilder.build());
 
 		RelativeLayout.LayoutParams topParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
 		topParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM,RelativeLayout.TRUE);
@@ -107,6 +107,29 @@ public class AndroidLauncher extends AndroidApplication implements IActivityRequ
 					interstitialAd.show();
 				else
 					loadIntersitialAd();
+			}
+		});
+	}
+
+	@Override
+	public void showBannerAd() {
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				adView.setVisibility(View.VISIBLE);
+				AdRequest.Builder builder = new AdRequest.Builder();
+				AdRequest ad = builder.build();
+				adView.loadAd(ad);
+			}
+		});
+	}
+
+	@Override
+	public void hideBannerAd() {
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				adView.setVisibility(View.INVISIBLE);
 			}
 		});
 	}
