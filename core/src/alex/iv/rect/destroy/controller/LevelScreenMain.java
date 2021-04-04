@@ -298,6 +298,9 @@ public class LevelScreenMain extends StartScreen {
                     ball = new Ball(0,0,mainStage);
                     ball.setColor(Color.GREEN);
                     live --;
+                    if (live < 0) {
+                        requestHandler.showVideoAd();
+                    }
                     pref.putInteger("liveMemory", live);
                     pref.flush();
                     // если небыло перекрытия paddle and PADDLE_STOP, то содаем кнопку start
@@ -338,13 +341,14 @@ public class LevelScreenMain extends StartScreen {
                     paddle.setWidth(paddle.getWidth() * 0.80f);
                 else if (realItem.getType() == Item.Type.BALL_SPEED_UP) {
                     ball.setSpeed(ball.getSpeed() + 100);
-                    requestHandler.showBannerAd(); // показывает рекламный баннер
+                    //requestHandler.showBannerAd(); // показывает рекламный баннер
+                    //requestHandler.showVideoAd(); // показывает видео рекламу с вознагрождением
                 }
                 if (ball.getSpeed() > ball.getMaxSpeed())
                     ball.setSpeed(ball.getMaxSpeed());
                 else if (realItem.getType() == Item.Type.BALL_SPEED_DOWN) {
                     ball.setSpeed(ball.getSpeed() * 0.90f);
-                    requestHandler.hideBannerAd(); // удаляет рекламный баннер
+                    //requestHandler.hideBannerAd(); // удаляет рекламный баннер
                 }
                 else if (realItem.getType() == Item.Type.BALL_TWO) {
                     new Ball(paddle.getX() + paddle.getWidth() / 2 - ball.getWidth() / 2,

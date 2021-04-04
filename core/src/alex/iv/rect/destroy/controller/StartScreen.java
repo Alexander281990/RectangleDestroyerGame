@@ -12,7 +12,7 @@ import alex.iv.rect.destroy.LevelScreen_6;
 public class StartScreen extends BaseScreen {
 
     protected static Preferences pref;
-    static int live = 5;
+    public static int live = 2;
     protected static int recordsLevel_1;
     protected static int recordsLevel_2;
     protected static int recordsLevel_3;
@@ -54,7 +54,7 @@ public class StartScreen extends BaseScreen {
                         recordsLevel_3 = 0;
                         recordsLevel_4 = 0;
                         recordsLevel_5 = 0;
-                        live = 5;
+                        live = 2;
                         pref.putInteger("records_1", recordsLevel_1);
                         pref.putInteger("records_2", recordsLevel_2);
                         pref.putInteger("records_3", recordsLevel_3);
