@@ -3,9 +3,18 @@ package alex.iv.rect.destroy;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import alex.iv.rect.destroy.actors.Brick;
+import alex.iv.rect.destroy.controller.IActivityRequestHandler;
 import alex.iv.rect.destroy.controller.LevelScreenMain;
 
 public class LevelScreen_1 extends LevelScreenMain {
+
+//    public LevelScreen_1() {
+//
+//    }
+//
+//    public LevelScreen_1(IActivityRequestHandler requestHandler) {
+//        super(requestHandler);
+//    }
 
     public void initialize() {
         super.initialize();

@@ -34,7 +34,7 @@ public class LoadingScreen extends BaseScreen {
 //                        pref.putInteger("records_3", LevelScreen_3.recordsLevel_3);
 //                        pref.putInteger("liveMemory", LevelScreenMain.live);
 //                        pref.flush();
-                        RectangleGame.setActiveScreen(new MenuScreen());
+                        //RectangleGame.setActiveScreen(new MenuScreen());
                         return false;
                     }
                 }

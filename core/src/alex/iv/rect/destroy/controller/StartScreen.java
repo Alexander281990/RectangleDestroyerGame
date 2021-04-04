@@ -7,6 +7,8 @@ import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 
+import alex.iv.rect.destroy.LevelScreen_6;
+
 public class StartScreen extends BaseScreen {
 
     protected static Preferences pref;
@@ -16,6 +18,15 @@ public class StartScreen extends BaseScreen {
     protected static int recordsLevel_3;
     protected static int recordsLevel_4;
     protected static int recordsLevel_5;
+
+    public IActivityRequestHandler requestHandler;
+
+    public StartScreen(IActivityRequestHandler requestHandler) {
+        this.requestHandler = requestHandler;
+    }
+
+    public StartScreen() {
+    }
 
     @Override
     public void initialize() {
@@ -51,7 +62,7 @@ public class StartScreen extends BaseScreen {
                         pref.putInteger("records_5", recordsLevel_5);
                         pref.putInteger("liveMemory", live);
                         pref.flush();
-                        RectangleGame.setActiveScreen(new MenuScreen());
+                        RectangleGame.setActiveScreen(new MenuScreen(requestHandler));
                         return false;
                     }
                 }
@@ -68,7 +79,7 @@ public class StartScreen extends BaseScreen {
                                 !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
                             return false;
                         //Gdx.app.exit(); // выходит из игры
-                        RectangleGame.setActiveScreen(new MenuScreen());
+                        RectangleGame.setActiveScreen(new MenuScreen(requestHandler));
 //                        Gdx.app.log("MyTag", "my informative message");
                         return false;
                     }

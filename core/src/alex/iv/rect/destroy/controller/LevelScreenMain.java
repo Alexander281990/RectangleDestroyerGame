@@ -17,6 +17,8 @@ import alex.iv.rect.destroy.actors.Wall;
 
 public class LevelScreenMain extends StartScreen {
 
+    //IActivityRequestHandler requestHandler;
+
     private float windowPlayWidth;
     private float windowPlayHeight;
     protected Wall wallHeight;
@@ -41,6 +43,13 @@ public class LevelScreenMain extends StartScreen {
     private Sound wallBumpSound;
     private Sound itemAppearSound;
     private Sound itemCollectSound;
+
+//    public LevelScreenMain(IActivityRequestHandler requestHandler) {
+//        super(requestHandler);
+//    }
+//
+//    public LevelScreenMain() {
+//    }
 
     @Override
     public void initialize() {
@@ -329,6 +338,7 @@ public class LevelScreenMain extends StartScreen {
                     paddle.setWidth(paddle.getWidth() * 0.80f);
                 else if (realItem.getType() == Item.Type.BALL_SPEED_UP)
                     ball.setSpeed(ball.getSpeed() + 100);
+                    //requestHandler.showOrLoadInterstitial();
                 if (ball.getSpeed() > ball.getMaxSpeed())
                     ball.setSpeed(ball.getMaxSpeed());
                 else if (realItem.getType() == Item.Type.BALL_SPEED_DOWN)

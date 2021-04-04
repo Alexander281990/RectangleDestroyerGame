@@ -6,16 +6,22 @@ import android.widget.RelativeLayout;
 
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
+import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
 
+import alex.iv.rect.destroy.controller.IActivityRequestHandler;
 import alex.iv.rect.destroy.controller.RectangleGame;
 
-public class AndroidLauncher extends AndroidApplication {
+public class AndroidLauncher extends AndroidApplication implements IActivityRequestHandler {
 
 	private static final String adUnitId="ca-app-pub-3940256099942544/6300978111";
 	private AdView adView;
+
+	private static final String AD_UNIT_ID_INTERSTITIAL = "ca-app-pub-3940256099942544/1033173712";
+	private InterstitialAd interstitialAd;
 
 
 	@Override
@@ -26,7 +32,7 @@ public class AndroidLauncher extends AndroidApplication {
 		RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
 		layout.setLayoutParams(params);
 
-		View gameView=initializeForView(new RectangleGame(), config);
+		View gameView=initializeForView(new RectangleGame(this), config);
 
 		RelativeLayout.LayoutParams gameViewParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
 		gameViewParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
@@ -50,6 +56,20 @@ public class AndroidLauncher extends AndroidApplication {
 		adView.setBackgroundColor(android.graphics.Color.TRANSPARENT);
 
 		setContentView(layout);
+//////////////////////////////////////////////////////////////////////
+		interstitialAd = new InterstitialAd(this);
+		interstitialAd.setAdUnitId(AD_UNIT_ID_INTERSTITIAL);
+		interstitialAd.setAdListener(new AdListener() {
+			@Override
+			public void onAdLoaded() {}
+
+			@Override
+			public void onAdClosed() {
+				loadIntersitialAd();
+			}
+		});
+
+		loadIntersitialAd();
 	}
 
 	@Override
@@ -68,5 +88,26 @@ public class AndroidLauncher extends AndroidApplication {
 	protected void onDestroy() {
 		super.onDestroy();
 		adView.destroy();
+	}
+
+	////////////////////////////////////
+
+	private void loadIntersitialAd(){
+
+		AdRequest interstitialRequest = new AdRequest.Builder().build();
+		interstitialAd.loadAd(interstitialRequest);
+	}
+
+	@Override
+	public void showOrLoadInterstitial() {
+
+		runOnUiThread(new Runnable() {
+			public void run() {
+				if (interstitialAd.isLoaded())
+					interstitialAd.show();
+				else
+					loadIntersitialAd();
+			}
+		});
 	}
 }
