@@ -17,7 +17,7 @@ import alex.iv.rect.destroy.actors.Wall;
 
 public class LevelScreenMain extends StartScreen {
 
-    private IActivityRequestHandler requestHandler; // переменная для ссылки на метод из AndroidLauncher(showOrLoadInterstitial()) - показ межстраничного банера
+    private IActivityRequestHandler requestHandler; // переменная для ссылки на метод из AndroidLauncher(showOrLoadInterstitial()) - для вызова метода, который показывает рекламу
     private float windowPlayWidth;
     private float windowPlayHeight;
     protected Wall wallHeight;

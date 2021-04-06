@@ -3,7 +3,6 @@ package alex.iv.rect.destroy;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RelativeLayout;
-
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 import com.google.android.gms.ads.AdListener;
@@ -15,23 +14,20 @@ import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.reward.RewardItem;
 import com.google.android.gms.ads.reward.RewardedVideoAd;
 import com.google.android.gms.ads.reward.RewardedVideoAdListener;
-
 import alex.iv.rect.destroy.controller.IActivityRequestHandler;
 import alex.iv.rect.destroy.controller.RectangleGame;
 import alex.iv.rect.destroy.controller.StartScreen;
 
 public class AndroidLauncher extends AndroidApplication implements IActivityRequestHandler {
 
-	private static final String adUnitId="ca-app-pub-3940256099942544/6300978111";
-	private AdView adView;
-	private static final String AD_UNIT_ID_INTERSTITIAL = "ca-app-pub-3940256099942544/1033173712";
-	private InterstitialAd interstitialAd;
-	private static final String APP_ID="ca-app-pub-XXXXXX~XXXXX";
-	private static final String AD_UNIT_ID="ca-app-pub-3940256099942544/5224354917";
-	private RewardedVideoAd mAd;
+    private static final String APP_ID="ca-app-pub-XXXXXX~XXXXX"; // ID приложения
+	private static final String adUnitId="ca-app-pub-3940256099942544/6300978111"; // ID для баннера
+    private static final String AD_UNIT_ID_INTERSTITIAL = "ca-app-pub-3940256099942544/1033173712"; // ID для межстраничного банера
+    private static final String AD_UNIT_ID="ca-app-pub-3940256099942544/5224354917"; // ID для видео-рекламы
+	private AdView adView; // переменная, которая хранит рекламный баннер
+	private InterstitialAd interstitialAd; // переменная, которая хранит межстраничный баннер
+	private RewardedVideoAd mAd; // переменная, которая хранит видео-рекламу
 	private boolean isRewardLoaded;
-
-
 
 	@Override
 	protected void onCreate (Bundle savedInstanceState) {
@@ -40,32 +36,26 @@ public class AndroidLauncher extends AndroidApplication implements IActivityRequ
 		RelativeLayout layout = new RelativeLayout(this);
 		RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
 		layout.setLayoutParams(params);
-
 		View gameView=initializeForView(new RectangleGame(this), config);
 
+		// инициализация баннерной рекламы
 		RelativeLayout.LayoutParams gameViewParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
 		gameViewParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
 		gameViewParams.addRule(RelativeLayout.CENTER_HORIZONTAL, RelativeLayout.TRUE);
-
 		gameView.setLayoutParams(gameViewParams);
 		layout.addView(gameView);
-
 		adView = new AdView(this);
 		adView.setAdSize(AdSize.BANNER);
 		adView.setAdUnitId(adUnitId);
-
-		//AdRequest.Builder adRequestBuilder = new AdRequest.Builder();
-		//adRequestBuilder.addTestDevice(AdRequest.DEVICE_ID_EMULATOR);
-		//adView.loadAd(adRequestBuilder.build());
-
 		RelativeLayout.LayoutParams topParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
 		topParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM,RelativeLayout.TRUE);
 		topParams.addRule(RelativeLayout.CENTER_HORIZONTAL, RelativeLayout.TRUE);
 		layout.addView(adView, topParams);
 		adView.setBackgroundColor(android.graphics.Color.TRANSPARENT);
-
 		setContentView(layout);
-//////////////////////////////////////////////////////////////////////
+        // инициализация баннерной рекламы(конец)
+
+        // инициализация межстраничной рекламы
 		interstitialAd = new InterstitialAd(this);
 		interstitialAd.setAdUnitId(AD_UNIT_ID_INTERSTITIAL);
 		interstitialAd.setAdListener(new AdListener() {
@@ -79,11 +69,10 @@ public class AndroidLauncher extends AndroidApplication implements IActivityRequ
 		});
 
 		loadIntersitialAd();
+        // инициализация межстраничной рекламы(конец)
 
-		//////////////////////////////////////////////
-
+		// инициализация видео рекламы с вознагрождением
 		MobileAds.initialize(this, APP_ID);
-
 		mAd = MobileAds.getRewardedVideoAdInstance(this);
 		mAd.setRewardedVideoAdListener(new RewardedVideoAdListener() {
 			@Override
@@ -106,12 +95,12 @@ public class AndroidLauncher extends AndroidApplication implements IActivityRequ
 				loadRewardedVideoAd();
 			}
 
+			// метод, в котором нужно прописать вознагрождение, которое нужно за просмотр рекламы
 			@Override
 			public void onRewarded(RewardItem rewardItem) {
+				loadRewardedVideoAd();
+				StartScreen.live += 2; // если посмотрел рекламу, добавится 2 жизни
 
-				// call rewards method from here.
-				loadRewardedVideoAd();  // Load for next Reward Point
-				StartScreen.live += 2;
 			}
 
 			@Override
@@ -130,42 +119,46 @@ public class AndroidLauncher extends AndroidApplication implements IActivityRequ
 //			}
 		});
 		loadRewardedVideoAd();
+        // инициализация видео рекламы с вознагрождением(конец)
+
 	}
+
+    // метод, который показывает рекламный баннер
+    @Override
+    public void showBannerAd() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                adView.setVisibility(View.VISIBLE);
+                AdRequest.Builder builder = new AdRequest.Builder();
+                AdRequest ad = builder.build();
+                adView.loadAd(ad);
+            }
+        });
+    }
+
+    // метод, который скрывает рекламный баннер
+    @Override
+    public void hideBannerAd() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                adView.setVisibility(View.INVISIBLE);
+            }
+        });
+    }
 
 	private void loadRewardedVideoAd() {
 		isRewardLoaded=false;
 		mAd.loadAd(AD_UNIT_ID, new AdRequest.Builder().build());
 	}
 
-	@Override
-	protected void onResume() {
-		super.onResume();
-		adView.resume();
-		mAd.resume(this);
-	}
-
-	@Override
-	protected void onPause() {
-		super.onPause();
-		adView.pause();
-		mAd.pause(this);
-	}
-
-	@Override
-	protected void onDestroy() {
-		super.onDestroy();
-		adView.destroy();
-		mAd.destroy(this);
-	}
-
-	////////////////////////////////////
-
 	private void loadIntersitialAd(){
-
 		AdRequest interstitialRequest = new AdRequest.Builder().build();
 		interstitialAd.loadAd(interstitialRequest);
 	}
 
+	// метод, который загружает межстраничную рекламу
 	@Override
 	public void showOrLoadInterstitial() {
 
@@ -179,31 +172,7 @@ public class AndroidLauncher extends AndroidApplication implements IActivityRequ
 		});
 	}
 
-	@Override
-	public void showBannerAd() {
-		runOnUiThread(new Runnable() {
-			@Override
-			public void run() {
-				adView.setVisibility(View.VISIBLE);
-				AdRequest.Builder builder = new AdRequest.Builder();
-				AdRequest ad = builder.build();
-				adView.loadAd(ad);
-			}
-		});
-	}
-
-	@Override
-	public void hideBannerAd() {
-		runOnUiThread(new Runnable() {
-			@Override
-			public void run() {
-				adView.setVisibility(View.INVISIBLE);
-			}
-		});
-	}
-
-	//////////////////////////////////
-
+	// метод, который загружает видео-рекламу с вознагрождерием(вознагрождение прописывается в методе onRewarded)
 	@Override
 	public void showVideoAd(){
 		runOnUiThread(new Runnable() {
@@ -224,4 +193,41 @@ public class AndroidLauncher extends AndroidApplication implements IActivityRequ
 		return isRewardLoaded;
 		//return mAd.isLoaded();    // -> must be called on the main UI thread.
 	}
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        adView.resume();
+        mAd.resume(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        adView.pause();
+        mAd.pause(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        adView.destroy();
+        mAd.destroy(this);
+    }
 }
+
+// инструкция по показу рекламы
+// - в классе, котором будем показывать рекламу создаем переменную requestHandler
+// private IActivityRequestHandler requestHandler; // переменная для ссылки на метод из AndroidLauncher(showOrLoadInterstitial()) - для вызова метода, который показывает рекламу
+// - нужно в этом классе создать конструктор
+// public NameClass(IActivityRequestHandler requestHandler) { // конструктор, который создает саму ссылку на метод showOrLoadInterstitial из AndroidLauncher
+//    this.requestHandler = requestHandler;
+// }
+// - чтобы requestHandler стал обьектом, и через него можно было вызвать методы показа рекламы, нужно гдето создать екземпляр класса NameClass с параметром requestHandler
+// nameClass = new NameClass(requestHandler);
+// - далее, в нужном месте вызываем нужный метод показа рекламы
+// requestHandler.showBannerAd(); // показывает рекламный баннер
+// requestHandler.showOrLoadInterstitial(); // показывает межстраничный баннер
+// requestHandler.showVideoAd(); // показывает видео рекламу с вознагрождением
+// requestHandler.hideBannerAd(); // скрывает рекламный баннер
+// Примеры находятся в классах LevelScreenMain and LevelScreen_6
