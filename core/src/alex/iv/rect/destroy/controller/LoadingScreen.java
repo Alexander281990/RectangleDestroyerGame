@@ -5,10 +5,6 @@ import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 
-import alex.iv.rect.destroy.LevelScreen_1;
-import alex.iv.rect.destroy.LevelScreen_2;
-import alex.iv.rect.destroy.LevelScreen_3;
-
 public class LoadingScreen extends BaseScreen {
 
     @Override
