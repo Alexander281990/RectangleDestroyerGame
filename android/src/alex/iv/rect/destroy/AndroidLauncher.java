@@ -24,10 +24,10 @@ public class AndroidLauncher extends AndroidApplication implements IActivityRequ
 	private static final String adUnitId="ca-app-pub-3940256099942544/6300978111"; // ID для баннера
     private static final String AD_UNIT_ID_INTERSTITIAL = "ca-app-pub-3940256099942544/1033173712"; // ID для межстраничного банера
     private static final String AD_UNIT_ID="ca-app-pub-3940256099942544/5224354917"; // ID для видео-рекламы
-	private AdView adView; // переменная, которая хранит рекламный баннер
-	private InterstitialAd interstitialAd; // переменная, которая хранит межстраничный баннер
-	private RewardedVideoAd mAd; // переменная, которая хранит видео-рекламу
-	private boolean isRewardLoaded;
+	public AdView adView; // переменная, которая хранит рекламный баннер
+	public InterstitialAd interstitialAd; // переменная, которая хранит межстраничный баннер
+	public RewardedVideoAd mAd; // переменная, которая хранит видео-рекламу
+	public boolean isRewardLoaded;
 
 	@Override
 	protected void onCreate (Bundle savedInstanceState) {

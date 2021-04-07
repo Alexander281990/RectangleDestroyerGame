@@ -156,7 +156,6 @@ public class LevelScreenMain extends StartScreen {
     // в параметр метода нужно вставить аргумент из StartScreen(например recordsLevel_1 или recordsLevel_2 (зависит от Level в
     // котором запускается метод) и стринговый аргумент ключа для сохранения рекорда)
     protected void timeIsUp(int record, String key) {
-        if (starTimer < 0) {
             for (BaseActor brick : BaseActor.getList(mainStage, "alex.iv.rect.destroy.actors.Brick")){
                 brick.remove();
             }
@@ -174,13 +173,11 @@ public class LevelScreenMain extends StartScreen {
             pref.flush();
             recordsLabel.setText("Records: " + record);
             uiStage.addActor(recordsLabel);
-        }
     }
     // метод, который запускается, когда закончилось игровое время(конец)
 
     // метод, который запускается, когда все кирпичи разрушены
     protected void allTheBricksAreBroken(int record, String key) {
-        if (BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick") == 0 && starTimer > 0) {
             messageLabel.setText("You win!");
             messageLabel.setColor(Color.LIME);
             messageLabel.setVisible(true);
@@ -194,7 +191,6 @@ public class LevelScreenMain extends StartScreen {
             pref.flush();
             recordsLabel.setText("Records: " + record);
             uiStage.addActor(recordsLabel);
-        }
     }
     // метод, который запускается, когда все кирпичи разрушены(конец)
 
