@@ -21,6 +21,8 @@ public class IntermediateScreen extends LevelScreenMain {
     }
 
     public void initialize() {
+
+
         TextButton continueButton = new TextButton( "Continue", BaseGame.textButtonStyle );
         //continueButton.setPosition(1000,150);
         uiStage.addActor(continueButton);

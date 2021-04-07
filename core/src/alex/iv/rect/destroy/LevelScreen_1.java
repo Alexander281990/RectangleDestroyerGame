@@ -23,7 +23,7 @@ public class LevelScreen_1 extends LevelScreenMain {
     public void initialize() {
         super.initialize();
 
-        showTime(30); // инициализируем метод отображение игрового времени
+        showTime(20); // инициализируем метод отображение игрового времени
         showRecordsLabelWindow(recordsLevel_1); // инициализируем метод отображение рекорда данного уровня
 
         Brick tempBrick = new Brick(0,0,mainStage);

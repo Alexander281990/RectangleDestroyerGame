@@ -11,9 +11,9 @@ import alex.iv.rect.destroy.LevelScreen_6;
 
 public class StartScreen extends BaseScreen {
 
-    protected static Preferences pref;
+    public static Preferences pref;
     public static int live = 2;
-    protected static int recordsLevel_1;
+    public static int recordsLevel_1;
 //    protected static int recordsLevel_2;
 //    protected static int recordsLevel_3;
 //    protected static int recordsLevel_4;
