@@ -10,6 +10,7 @@ import alex.iv.rect.destroy.controller.IActivityRequestHandler;
 import alex.iv.rect.destroy.controller.LevelScreenMain;
 import alex.iv.rect.destroy.controller.MenuScreen;
 import alex.iv.rect.destroy.controller.RectangleGame;
+import alex.iv.rect.destroy.controller.StartScreen;
 
 public class IntermediateScreen extends LevelScreenMain {
 
@@ -35,7 +36,7 @@ public class IntermediateScreen extends LevelScreenMain {
                             return false;
                         //Gdx.app.exit(); // выходит из игры
                         requestHandler.hideBannerAd();
-                        RectangleGame.setActiveScreen(new MenuScreen(requestHandler));
+                        RectangleGame.setActiveScreen(new StartScreen(requestHandler));
 //                        Gdx.app.log("MyTag", "my informative message");
                         return false;
                     }
