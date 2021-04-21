@@ -12,6 +12,7 @@ import alex.iv.rect.destroy.controller.RectangleGame;
 public class LevelScreen_1 extends LevelScreenMain {
 
     public IActivityRequestHandler requestHandler;
+    private boolean intermediateScreen = true;
 
     // чтобы реклама появлялась, обязательно нужно использовать этод конструктор(с параметром requestHandler), в классе
     // MenuScreen
@@ -55,11 +56,16 @@ public class LevelScreen_1 extends LevelScreenMain {
 
         if (starTimer < 0) {
             timeIsUp(recordsLevel_1, "records_1"); // инициализируем метод timeIsUp - ВРЕМЯ ВЫШЛО
-            RectangleGame.setActiveScreen(new IntermediateScreen(requestHandler));
+            //RectangleGame.setActiveScreen(new IntermediateScreen(requestHandler));
+            //intermediateScreen = false;
         }
         if (BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick") == 0 && starTimer > 0) {
             allTheBricksAreBroken(recordsLevel_1, "records_1");// инициализируем метод allTheBricksAreBroken - ВСЕ КИРПИЧИ РАЗРУШЕНЫ
         }
+
+//        if (!intermediateScreen) {
+//            RectangleGame.setActiveScreen(new IntermediateScreen(requestHandler));
+//        }
 
     }
 }
