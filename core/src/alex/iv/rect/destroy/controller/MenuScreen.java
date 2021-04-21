@@ -9,7 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import alex.iv.rect.destroy.LevelScreen_1;
 import alex.iv.rect.destroy.LevelScreen_6;
 
-public class MenuScreen extends BaseScreen {
+public class MenuScreen extends StartScreen {
 
     public IActivityRequestHandler requestHandler;
     public LevelScreenMain levelScreenMain;
