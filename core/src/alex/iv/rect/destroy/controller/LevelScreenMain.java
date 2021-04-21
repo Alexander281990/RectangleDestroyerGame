@@ -15,7 +15,7 @@ import alex.iv.rect.destroy.actors.Ball;
 import alex.iv.rect.destroy.actors.Paddle;
 import alex.iv.rect.destroy.actors.Wall;
 
-public class LevelScreenMain extends StartScreen {
+public class LevelScreenMain extends MenuScreen {
 
     private IActivityRequestHandler requestHandler; // переменная для ссылки на метод из AndroidLauncher(showOrLoadInterstitial()) - для вызова метода, который показывает рекламу
     private float windowPlayWidth;
