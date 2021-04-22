@@ -18,7 +18,7 @@ public class IntermediateScreen extends LevelScreenMain {
 
     public IntermediateScreen(IActivityRequestHandler requestHandler){
         this.requestHandler=requestHandler;
-        requestHandler.showBannerAd(); // при запуске LevelScreen_6 запускается рекламный банер в нижней части экрана
+        requestHandler.showBannerAd(); // при запуске IntermediateScreen запускается рекламный банер в нижней части экрана
     }
 
     public void initialize() {
@@ -35,7 +35,7 @@ public class IntermediateScreen extends LevelScreenMain {
                                 !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
                             return false;
                         //Gdx.app.exit(); // выходит из игры
-                        requestHandler.hideBannerAd();
+                        requestHandler.hideBannerAd(); // при нажатии на кнопку баннер скрывается
                         RectangleGame.setActiveScreen(new MenuScreen(requestHandler));
 //                        Gdx.app.log("MyTag", "my informative message");
                         return false;
