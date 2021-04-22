@@ -1,5 +1,7 @@
 package alex.iv.rect.destroy.controller;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Event;
 import com.badlogic.gdx.scenes.scene2d.EventListener;
@@ -7,12 +9,14 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 
 import alex.iv.rect.destroy.LevelScreen_1;
+import alex.iv.rect.destroy.LevelScreen_2;
 import alex.iv.rect.destroy.LevelScreen_6;
 
 public class MenuScreen extends StartScreen {
 
     public IActivityRequestHandler requestHandler;
     public LevelScreenMain levelScreenMain;
+    public static Preferences pref;
 
     public MenuScreen() {
 
@@ -24,6 +28,10 @@ public class MenuScreen extends StartScreen {
 
     @Override
     public void initialize() {
+
+        pref = Gdx.app.getPreferences("Preferences");// инициализация Preferences для сохранения лучшего результата в телефоне
+        recordsLevel_1 = pref.getInteger("records_1");
+        recordsLevel_2 = pref.getInteger("records_2");
 
         levelScreenMain = new LevelScreenMain(requestHandler);
 // инициализация кнопок Level
@@ -119,7 +127,7 @@ public class MenuScreen extends StartScreen {
                         if (!(e instanceof InputEvent) ||
                                 !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
                             return false;
-                        //RectangleGame.setActiveScreen(new LevelScreen_2(requestHandler));
+                        RectangleGame.setActiveScreen(new LevelScreen_2(requestHandler));
                         return false;
                     }
                 }

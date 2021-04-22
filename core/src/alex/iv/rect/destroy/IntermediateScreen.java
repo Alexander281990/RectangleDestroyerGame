@@ -36,7 +36,7 @@ public class IntermediateScreen extends LevelScreenMain {
                             return false;
                         //Gdx.app.exit(); // выходит из игры
                         requestHandler.hideBannerAd();
-                        RectangleGame.setActiveScreen(new StartScreen(requestHandler));
+                        RectangleGame.setActiveScreen(new MenuScreen(requestHandler));
 //                        Gdx.app.log("MyTag", "my informative message");
                         return false;
                     }

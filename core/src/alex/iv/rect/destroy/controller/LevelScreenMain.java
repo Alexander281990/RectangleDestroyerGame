@@ -171,8 +171,8 @@ public class LevelScreenMain extends MenuScreen {
             }
             pref.putInteger(key, record);
             pref.flush();
-            recordsLabel.setText("Records: " + record);
-            uiStage.addActor(recordsLabel);
+//            recordsLabel.setText("Records: " + record);
+//            uiStage.addActor(recordsLabel);
     }
     // метод, который запускается, когда закончилось игровое время(конец)
 
