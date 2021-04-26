@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 
+import alex.iv.rect.destroy.IntermediateScreen;
 import alex.iv.rect.destroy.LevelScreen_1;
 import alex.iv.rect.destroy.LevelScreen_2;
 import alex.iv.rect.destroy.LevelScreen_6;
@@ -113,7 +114,7 @@ public class MenuScreen extends StartScreen {
                         if (!(e instanceof InputEvent) ||
                                 !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
                             return false;
-//                        RectangleGame.setActiveScreen(new LevelScreen_1(requestHandler));
+                        requestHandler.hideBannerAd(); // при нажатии на кнопку баннер скрывается
                         RectangleGame.setActiveScreen(new LevelScreen_1(requestHandler));
                         return false;
                     }
@@ -127,6 +128,7 @@ public class MenuScreen extends StartScreen {
                         if (!(e instanceof InputEvent) ||
                                 !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
                             return false;
+                        requestHandler.hideBannerAd(); // при нажатии на кнопку баннер скрывается
                         RectangleGame.setActiveScreen(new LevelScreen_2(requestHandler));
                         return false;
                     }
@@ -140,7 +142,7 @@ public class MenuScreen extends StartScreen {
                         if (!(e instanceof InputEvent) ||
                                 !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
                             return false;
-                        //RectangleGame.setActiveScreen(new LevelScreen_3(requestHandler));
+                        RectangleGame.setActiveScreen(new IntermediateScreen(requestHandler, 3, 6));
                         return false;
                     }
                 }

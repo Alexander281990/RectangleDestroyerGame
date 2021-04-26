@@ -12,19 +12,18 @@ import alex.iv.rect.destroy.controller.RectangleGame;
 public class LevelScreen_1 extends LevelScreenMain {
 
     public IActivityRequestHandler requestHandler;
-    private boolean intermediateScreen = true;
 
     // чтобы реклама появлялась, обязательно нужно использовать этод конструктор(с параметром requestHandler), в классе
     // MenuScreen
     public LevelScreen_1(IActivityRequestHandler requestHandler) {
-        //super(requestHandler);
+        super(requestHandler);
         this.requestHandler = requestHandler;
     }
 
     public void initialize() {
         super.initialize();
 
-        showTime(15); // инициализируем метод отображение игрового времени
+        showTime(35); // инициализируем метод отображение игрового времени
         showRecordsLabelWindow(recordsLevel_1); // инициализируем метод отображение рекорда данного уровня
 
         Brick tempBrick = new Brick(0,0,mainStage);
@@ -56,16 +55,11 @@ public class LevelScreen_1 extends LevelScreenMain {
 
         if (starTimer < 0) {
             timeIsUp(recordsLevel_1, "records_1"); // инициализируем метод timeIsUp - ВРЕМЯ ВЫШЛО
-            RectangleGame.setActiveScreen(new IntermediateScreen(requestHandler));
-            //intermediateScreen = false;
+            RectangleGame.setActiveScreen(new IntermediateScreen(requestHandler, 1, score));
         }
         if (BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick") == 0 && starTimer > 0) {
             allTheBricksAreBroken(recordsLevel_1, "records_1");// инициализируем метод allTheBricksAreBroken - ВСЕ КИРПИЧИ РАЗРУШЕНЫ
         }
-
-//        if (!intermediateScreen) {
-//            RectangleGame.setActiveScreen(new IntermediateScreen(requestHandler));
-//        }
 
     }
 }

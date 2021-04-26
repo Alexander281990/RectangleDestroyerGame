@@ -16,7 +16,7 @@ public class LevelScreen_2 extends LevelScreenMain {
     // чтобы реклама появлялась, обязательно нужно использовать этод конструктор(с параметром requestHandler), в классе
     // MenuScreen
     public LevelScreen_2(IActivityRequestHandler requestHandler) {
-        //super(requestHandler);
+        super(requestHandler);
         this.requestHandler = requestHandler;
     }
 
@@ -55,7 +55,7 @@ public class LevelScreen_2 extends LevelScreenMain {
 
         if (starTimer < 0) {
             timeIsUp(recordsLevel_2, "records_2"); // инициализируем метод timeIsUp - ВРЕМЯ ВЫШЛО
-            RectangleGame.setActiveScreen(new IntermediateScreen(requestHandler));
+            RectangleGame.setActiveScreen(new IntermediateScreen(requestHandler, 2, score));
             //intermediateScreen = false;
         }
         if (BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick") == 0 && starTimer > 0) {

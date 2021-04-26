@@ -294,7 +294,7 @@ public class LevelScreenMain extends MenuScreen {
                     ball = new Ball(0,0,mainStage);
                     ball.setColor(Color.GREEN);
                     live --;
-                    if (live < 0) {
+                    if (live < 1) {
                         requestHandler.showVideoAd();
                     }
                     pref.putInteger("liveMemory", live);
@@ -339,6 +339,7 @@ public class LevelScreenMain extends MenuScreen {
                     ball.setSpeed(ball.getSpeed() + 100);
                     //requestHandler.showBannerAd(); // показывает рекламный баннер
                     //requestHandler.showVideoAd(); // показывает видео рекламу с вознагрождением
+                    //requestHandler.showOrLoadInterstitial(); // показывает межстраничный баннер
                 }
                 if (ball.getSpeed() > ball.getMaxSpeed())
                     ball.setSpeed(ball.getMaxSpeed());
@@ -357,6 +358,8 @@ public class LevelScreenMain extends MenuScreen {
                 }
                 else if (realItem.getType() == Item.Type.LIVE) {
                     live ++;
+                    pref.putInteger("liveMemory", live);
+                    pref.flush();
                 }
                 paddle.setBoundaryRectangle();
                 item.remove();
