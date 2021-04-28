@@ -2,12 +2,22 @@ package alex.iv.rect.destroy;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.NinePatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Event;
 import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
+import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.Align;
 
+import alex.iv.rect.destroy.controller.BaseActor;
 import alex.iv.rect.destroy.controller.BaseGame;
 import alex.iv.rect.destroy.controller.IActivityRequestHandler;
 import alex.iv.rect.destroy.controller.LevelScreenMain;
@@ -29,7 +39,7 @@ public class IntermediateScreen extends LevelScreenMain {
 
     public IntermediateScreen(IActivityRequestHandler requestHandler, int numberLevel, int interScore){
         numberLev = numberLevel;
-        level.setText("Level = " + numberLevel);
+        level.setText("Level : " + numberLevel);
         switch (numberLevel) {
             case 1:
                 records.setText("Record = " + recordsLevel_1);
@@ -131,20 +141,34 @@ public class IntermediateScreen extends LevelScreenMain {
         );
         // инициализация кнопок New game и continue(конец)
 
-        uiTable.add(exitButton);
+        // устанавливает фоновый цвет в Table
+        Pixmap bgPixmap = new Pixmap(1,1, Pixmap.Format.RGB565);
+        bgPixmap.setColor(Color.RED);
+        bgPixmap.fill();
+        TextureRegionDrawable textureRegionDrawableBg = new TextureRegionDrawable(new TextureRegion(new Texture(bgPixmap)));
+        // устанавливает фоновый цвет в Table(конец)
+
+        // устанавливает фоновую картинку в Table
+        NinePatch patch = new NinePatch(new Texture(Gdx.files.internal("space.png")),
+                3, 3, 3, 3);
+        NinePatchDrawable background = new NinePatchDrawable(patch);
+        // устанавливает фоновую картинку в Table(конец)
+
+        //uiTable.setDebug(true); // рисует границы ячеек и виджетов для Table(удобно для отладки)
+        uiTable.setBackground(background);
+        uiTable.align(Align.center|Align.top);
+        uiTable.add(exitButton).expandX().left().padTop(20).padLeft(20);
+        uiTable.add(Live).expandX().right().top().padTop(20).padRight(20);
         uiTable.row();
-        uiTable.add(Live);
+        uiTable.add(level).colspan(2);
         uiTable.row();
-        uiTable.add(timeIsUp);
+        uiTable.add(timeIsUp).colspan(2).padTop(timeIsUp.getHeight()*2).bottom();
         uiTable.row();
-        uiTable.add(level);
+        uiTable.add(records).colspan(2).padTop(records.getHeight());
         uiTable.row();
-        uiTable.add(records);
-        uiTable.row();
-        uiTable.add(results);
+        uiTable.add(results).colspan(2).padBottom(results.getHeight()*2).padTop(results.getHeight());
         uiTable.row();
         uiTable.add(restartButton);
-        uiTable.row();
         uiTable.add(menuButton);
         uiTable.row();
 
