@@ -149,7 +149,7 @@ public class IntermediateScreen extends LevelScreenMain {
         // устанавливает фоновый цвет в Table(конец)
 
         // устанавливает фоновую картинку в Table
-        NinePatch patch = new NinePatch(new Texture(Gdx.files.internal("space.png")),
+        NinePatch patch = new NinePatch(new Texture(Gdx.files.internal("background/fon_intermediate_screen.png")),
                 3, 3, 3, 3);
         NinePatchDrawable background = new NinePatchDrawable(patch);
         // устанавливает фоновую картинку в Table(конец)

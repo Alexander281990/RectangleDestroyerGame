@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.utils.Align;
 
 import alex.iv.rect.destroy.actors.Ball;
 import alex.iv.rect.destroy.actors.Paddle;
@@ -22,6 +23,7 @@ public class LevelScreenMain extends MenuScreen {
     private float windowPlayHeight;
     protected Wall wallHeight;
     protected Wall wallWight;
+    protected BaseActor background;
     protected int score; // переменная набранных очков
     private boolean startGame; // переменная для старта игры(становиться true в методе "touchDown")
     protected float starTimer; // переменная для подсчета проигранного времени
@@ -54,10 +56,12 @@ public class LevelScreenMain extends MenuScreen {
     @Override
     public void initialize() {
         windowPlayWidth = Gdx.graphics.getWidth();
-        windowPlayHeight = Gdx.graphics.getHeight() / 2 - 100;
-        BaseActor background = new BaseActor(0, windowPlayHeight, mainStage);
-        background.loadTexture("space.png");
-        background.setSize(windowPlayWidth, windowPlayHeight + 200);
+        windowPlayHeight = Gdx.graphics.getHeight() / 2f - 100;
+        //BaseActor background = new BaseActor(0, windowPlayHeight, mainStage);
+        background = new BaseActor(0, 0, mainStage);
+        //background.loadTexture("background/fon_level.png");
+        //background.setSize(windowPlayWidth, windowPlayHeight + 200);
+        background.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         BaseActor.setWorldBounds(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         wallHeight = new Wall( 0,0, 20,Gdx.graphics.getHeight(), mainStage); // left wall
         wallHeight = new Wall(Gdx.graphics.getWidth() - 20,0, 20,Gdx.graphics.getHeight(), mainStage); // right wall
@@ -69,7 +73,7 @@ public class LevelScreenMain extends MenuScreen {
         score = 0;
         ///////////////////////////////////////
         recordsLabel = new Label("Records: ", BaseGame.labelStyle);
-        recordsLabel.setPosition((Gdx.graphics.getWidth()/2) - recordsLabel.getWidth()/2, Gdx.graphics.getHeight()/2);
+        recordsLabel.setPosition((Gdx.graphics.getWidth()/2f) - recordsLabel.getWidth()/2, Gdx.graphics.getHeight()/2f);
         recordsLabel.setColor( Color.CYAN );
         ///////////////////////////////////////
         // инициализация метки для отображения жизней
@@ -80,20 +84,22 @@ public class LevelScreenMain extends MenuScreen {
         // инициализация метки для отображения жизней(конец)
         scoreLabel = new Label("Score: " + score, BaseGame.labelStyle); // отображение очков
         messageLabel = new Label("click to start", BaseGame.labelStyle );
+        messageLabel.setFontScale(3, 3);
         messageLabel.setColor( Color.CYAN );
         //////////////////////////
         // отображение 7 секунд при блокировке весла(Item.Type.PADDLE_STOP)
         TimePaddleStop = new Label("", BaseGame.labelStylePaddleStop);
         TimePaddleStop.setColor( Color.CYAN );
-        TimePaddleStop.setPosition(Gdx.graphics.getWidth()/2- TimePaddleStop.getWidth()/2, Gdx.graphics.getHeight() - 500);
+        TimePaddleStop.setPosition(Gdx.graphics.getWidth()/2f- TimePaddleStop.getWidth()/2, Gdx.graphics.getHeight() - 500);
         //uiStage.addActor(TimePaddleStop); // эта строчка используется непосредственно когда игрок ловит Item.Type.PADDLE_STOP
         TimePaddleStop.setText((int)timerPaddleStop);
         ////////////////////////////
-        uiTable.pad(5);
-        uiTable.add(scoreLabel);
-        uiTable.add().expandX();
+        //uiTable.pad(5);
+        uiTable.align(Align.center|Align.top);
+        uiTable.add(scoreLabel).expandX().left().padTop(5).padLeft(20);
+        uiTable.add(Live).expandX().right().top().padTop(5).padRight(20);
         uiTable.row();
-        uiTable.add(messageLabel).colspan(3).expandY();
+        uiTable.add(messageLabel).colspan(2).padTop(Gdx.graphics.getHeight()/4f);;
 
         paddle = new Paddle(windowPlayWidth / 2 - 64 , windowPlayHeight, mainStage);
 
@@ -144,9 +150,9 @@ public class LevelScreenMain extends MenuScreen {
 
     // метод, который показывает на экране рекорд уровня
     protected void showRecordsLabelWindow(int recordsLevels) {
-        recordsLabelWindow = new Label("Records: ", BaseGame.labelStyle);
-        recordsLabelWindow.setPosition(40, Gdx.graphics.getHeight()/4);
-        recordsLabelWindow.setColor( Color.CYAN );
+        recordsLabelWindow = new Label("Records: ", BaseGame.labelStyleLevel);
+        //recordsLabelWindow.setPosition(Gdx.graphics.getWidth()/2f - recordsLabelWindow.getWidth()/2, Gdx.graphics.getHeight()/1.25f);
+        //recordsLabelWindow.setColor( Color.CYAN );
         uiStage.addActor(recordsLabelWindow);
         recordsLabelWindow.setText("Records: " + recordsLevels);
     }
@@ -376,6 +382,7 @@ public class LevelScreenMain extends MenuScreen {
         if (startGame) {
             starTimer -= dt;
             Time.setText((int)starTimer); // вывод времени на экран
+            recordsLabelWindow.remove();
         }
         // если игрок поймал Item.Type.PADDLE_STOP, то блокируем весло на 7 секунд
         if (!paddleStop) {

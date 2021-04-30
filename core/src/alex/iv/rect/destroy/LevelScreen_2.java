@@ -22,7 +22,8 @@ public class LevelScreen_2 extends LevelScreenMain {
 
     public void initialize() {
         super.initialize();
-
+        //background = new BaseActor(0, 0, mainStage);
+        background.loadTexture("background/fon_level_2.png");
         showTime(20); // инициализируем метод отображение игрового времени
         showRecordsLabelWindow(recordsLevel_2); // инициализируем метод отображение рекорда данного уровня
 
