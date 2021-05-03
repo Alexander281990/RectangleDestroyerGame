@@ -3,10 +3,13 @@ package alex.iv.rect.destroy.controller;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.scenes.scene2d.Event;
 import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 
 import alex.iv.rect.destroy.IntermediateScreen;
 import alex.iv.rect.destroy.LevelScreen_1;
@@ -188,6 +191,13 @@ public class MenuScreen extends StartScreen {
                 }
         );
 
+        // устанавливает фоновую картинку в Table
+        NinePatch patch = new NinePatch(new Texture(Gdx.files.internal("background/fon_level_4.png")),
+                3, 3, 3, 3);
+        NinePatchDrawable background = new NinePatchDrawable(patch);
+        // устанавливает фоновую картинку в Table(конец)
+
+        uiTable.setBackground(background);
         uiTable.add(level_1_Button).pad(15,15,15,15);
         uiTable.add(level_2_Button).pad(15,15,15,15);
         uiTable.add(level_3_Button).pad(15,15,15,15);

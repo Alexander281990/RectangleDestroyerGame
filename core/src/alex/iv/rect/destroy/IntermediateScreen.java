@@ -95,7 +95,6 @@ public class IntermediateScreen extends LevelScreenMain {
                     }
                 }
         );
-        // инициализация кнопок New game и continue(конец)
 
         TextButton restartButton = new TextButton( "RESTART", BaseGame.textButtonStyle );
         uiStage.addActor(restartButton);
@@ -120,7 +119,6 @@ public class IntermediateScreen extends LevelScreenMain {
                     }
                 }
         );
-        // инициализация кнопок New game и continue(конец)
 
         TextButton menuButton = new TextButton( "MENU", BaseGame.textButtonStyle );
         //exitButton.setPosition(10, Gdx.graphics.getHeight() - exitButton.getHeight() - 10);
@@ -139,7 +137,6 @@ public class IntermediateScreen extends LevelScreenMain {
                     }
                 }
         );
-        // инициализация кнопок New game и continue(конец)
 
         // устанавливает фоновый цвет в Table
         Pixmap bgPixmap = new Pixmap(1,1, Pixmap.Format.RGB565);

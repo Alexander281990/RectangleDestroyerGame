@@ -39,6 +39,7 @@ public class LevelScreenMain extends MenuScreen {
     private Paddle paddle;
     private Label messageLabel; //
     private Ball ball;
+    private TextButton start;
 //    private Sound bounceSound;
 //    private Sound brickBumpSound;
 //    private Sound wallBumpSound;
@@ -123,9 +124,30 @@ public class LevelScreenMain extends MenuScreen {
         ball = new Ball(0,0, mainStage);
         ball.setColor(Color.GREEN);
 
-        // инициализация кнопки, которая отпускает шарик от весла
-        final TextButton start = new TextButton( "Start", BaseGame.textButtonStyle );
+        start = new TextButton( "Start", BaseGame.textButtonStyle );
         start.setPosition(windowPlayWidth/2 - start.getWidth()/2,(Gdx.graphics.getHeight() - windowPlayHeight) / 2);
+
+        final TextButton menuButton = new TextButton( "MENU", BaseGame.textButtonStyle );
+        menuButton.setPosition(windowPlayWidth/2 - menuButton.getWidth()/2, start.getY() - start.getHeight() - 50);
+        uiStage.addActor(menuButton);
+        menuButton.addListener(
+                new EventListener() {
+                    @Override
+                    public boolean handle(Event e) {
+                        if (!(e instanceof InputEvent) ||
+                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
+                            return false;
+//                        requestHandler.hideBannerAd(); // при нажатии на кнопку баннер скрывается
+                        RectangleGame.setActiveScreen(new MenuScreen(requestHandler));
+//                        Gdx.app.log("MyTag", "my informative message");
+                        return false;
+                    }
+                }
+        );
+
+        // инициализация кнопки, которая отпускает шарик от весла
+//        start = new TextButton( "Start", BaseGame.textButtonStyle );
+//        start.setPosition(windowPlayWidth/2 - start.getWidth()/2,(Gdx.graphics.getHeight() - windowPlayHeight) / 2);
         uiStage.addActor(start);
         start.addListener(
                 new EventListener() {
@@ -137,6 +159,7 @@ public class LevelScreenMain extends MenuScreen {
                         if (live > 0) {
                             startLevel();
                             start.remove();
+                            menuButton.remove();
                         } else {
                             RectangleGame.setActiveScreen(new GetLifeScreen(requestHandler));
                         }
@@ -188,6 +211,24 @@ public class LevelScreenMain extends MenuScreen {
             }
             pref.putInteger(key, record);
             pref.flush();
+            startGame = false;
+        TextButton menuButton = new TextButton( "MENU", BaseGame.textButtonStyle );
+        //exitButton.setPosition(10, Gdx.graphics.getHeight() - exitButton.getHeight() - 10);
+        uiStage.addActor(menuButton);
+        menuButton.addListener(
+                new EventListener() {
+                    @Override
+                    public boolean handle(Event e) {
+                        if (!(e instanceof InputEvent) ||
+                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
+                            return false;
+//                        requestHandler.hideBannerAd(); // при нажатии на кнопку баннер скрывается
+                        RectangleGame.setActiveScreen(new MenuScreen(requestHandler));
+//                        Gdx.app.log("MyTag", "my informative message");
+                        return false;
+                    }
+                }
+        );
 //            recordsLabel.setText("Records: " + record);
 //            uiStage.addActor(recordsLabel);
     }
@@ -195,6 +236,12 @@ public class LevelScreenMain extends MenuScreen {
 
     // метод, который запускается, когда все кирпичи разрушены
     protected void allTheBricksAreBroken(int record, String key) {
+        for (BaseActor ball : BaseActor.getList(mainStage, "alex.iv.rect.destroy.actors.Ball")){
+            ball.remove();
+        }
+        for (BaseActor item : BaseActor.getList(mainStage, "alex.iv.rect.destroy.controller.Item")){
+            item.remove();
+        }
             messageLabel.setText("You win!");
             messageLabel.setColor(Color.LIME);
             messageLabel.setVisible(true);

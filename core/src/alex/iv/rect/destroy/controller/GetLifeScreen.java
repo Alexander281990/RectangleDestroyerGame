@@ -1,9 +1,14 @@
 package alex.iv.rect.destroy.controller;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.scenes.scene2d.Event;
 import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 
 import alex.iv.rect.destroy.LevelScreen_1;
 import alex.iv.rect.destroy.LevelScreen_2;
@@ -11,6 +16,7 @@ import alex.iv.rect.destroy.LevelScreen_2;
 public class GetLifeScreen extends LevelScreenMain {
 
     public IActivityRequestHandler requestHandler;
+    private Label finishedLives;
 
     public GetLifeScreen(IActivityRequestHandler requestHandler) {
         this.requestHandler=requestHandler;
@@ -18,6 +24,9 @@ public class GetLifeScreen extends LevelScreenMain {
 
     public void initialize() {
 
+        finishedLives = new Label("Live:", BaseGame.labelStyleLevel);
+        uiStage.addActor(finishedLives);
+        finishedLives.setText("Your lives are over");
 
         TextButton getLive = new TextButton( "Get Live", BaseGame.textButtonStyle );
         uiStage.addActor(getLive);
@@ -54,9 +63,18 @@ public class GetLifeScreen extends LevelScreenMain {
         );
         // инициализация кнопок New game и continue(конец)
 
-        uiTable.add(getLive);
+        // устанавливает фоновую картинку в Table
+        NinePatch patch = new NinePatch(new Texture(Gdx.files.internal("background/fon_level_3.png")),
+                3, 3, 3, 3);
+        NinePatchDrawable background = new NinePatchDrawable(patch);
+        // устанавливает фоновую картинку в Table(конец)
+
+        uiTable.setBackground(background);
+        uiTable.add(finishedLives).padTop(20);
         uiTable.row();
-        uiTable.add(menuButton);
+        uiTable.add(getLive).padTop(20);
+        uiTable.row();
+        uiTable.add(menuButton).padTop(20);
     }
 
     public void update(float dt) {
