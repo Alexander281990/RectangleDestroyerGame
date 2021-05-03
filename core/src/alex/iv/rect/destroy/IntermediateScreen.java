@@ -49,6 +49,18 @@ public class IntermediateScreen extends LevelScreenMain {
                 records.setText("Record = " + recordsLevel_2);
                 results.setText("Your score = " + interScore);
                 break;
+            case 3:
+                records.setText("Record = " + recordsLevel_3);
+                results.setText("Your score = " + interScore);
+                break;
+            case 4:
+                records.setText("Record = " + recordsLevel_4);
+                results.setText("Your score = " + interScore);
+                break;
+            case 5:
+                records.setText("Record = " + recordsLevel_5);
+                results.setText("Your score = " + interScore);
+                break;
             default:records.setText("Record = " + 0);
         }
         this.requestHandler=requestHandler;
@@ -57,10 +69,13 @@ public class IntermediateScreen extends LevelScreenMain {
 
     public void initialize() {
         windowPlayWidth = Gdx.graphics.getWidth();
-        windowPlayHeight = Gdx.graphics.getHeight() / 2 - 100;
+        windowPlayHeight = Gdx.graphics.getHeight() / 2f - 100;
 
         recordsLevel_1 = pref.getInteger("records_1");
         recordsLevel_2 = pref.getInteger("records_2");
+        recordsLevel_3 = pref.getInteger("records_3");
+        recordsLevel_4 = pref.getInteger("records_4");
+        recordsLevel_5 = pref.getInteger("records_5");
         // инициализация метки для отображения жизней
         Live = new Label("Live:", BaseGame.labelStyle);
         uiStage.addActor(Live);
@@ -112,6 +127,16 @@ public class IntermediateScreen extends LevelScreenMain {
                             case 2:
                                 RectangleGame.setActiveScreen(new LevelScreen_2(requestHandler));
                                 break;
+                            case 3:
+                                RectangleGame.setActiveScreen(new LevelScreen_3(requestHandler));
+                                break;
+                            case 4:
+                                RectangleGame.setActiveScreen(new LevelScreen_4(requestHandler));
+                                break;
+                            case 5:
+                                RectangleGame.setActiveScreen(new LevelScreen_5(requestHandler));
+                                break;
+
                         }
                         requestHandler.hideBannerAd(); // при нажатии на кнопку баннер скрывается
 //                        Gdx.app.log("MyTag", "my informative message");

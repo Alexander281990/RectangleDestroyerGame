@@ -14,6 +14,9 @@ import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 import alex.iv.rect.destroy.IntermediateScreen;
 import alex.iv.rect.destroy.LevelScreen_1;
 import alex.iv.rect.destroy.LevelScreen_2;
+import alex.iv.rect.destroy.LevelScreen_3;
+import alex.iv.rect.destroy.LevelScreen_4;
+import alex.iv.rect.destroy.LevelScreen_5;
 import alex.iv.rect.destroy.LevelScreen_6;
 
 public class MenuScreen extends StartScreen {
@@ -145,7 +148,7 @@ public class MenuScreen extends StartScreen {
                         if (!(e instanceof InputEvent) ||
                                 !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
                             return false;
-                        RectangleGame.setActiveScreen(new IntermediateScreen(requestHandler, 3, 6));
+                        RectangleGame.setActiveScreen(new LevelScreen_3(requestHandler));
                         return false;
                     }
                 }
@@ -158,7 +161,7 @@ public class MenuScreen extends StartScreen {
                         if (!(e instanceof InputEvent) ||
                                 !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
                             return false;
-                        RectangleGame.setActiveScreen(new GetLifeScreen(requestHandler));
+                        RectangleGame.setActiveScreen(new LevelScreen_4(requestHandler));
                         return false;
                     }
                 }
@@ -171,7 +174,7 @@ public class MenuScreen extends StartScreen {
                         if (!(e instanceof InputEvent) ||
                                 !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
                             return false;
-                        //RectangleGame.setActiveScreen(new LevelScreen_5(requestHandler));
+                        RectangleGame.setActiveScreen(new LevelScreen_5(requestHandler));
                         return false;
                     }
                 }

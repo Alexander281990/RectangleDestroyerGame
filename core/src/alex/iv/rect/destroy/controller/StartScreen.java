@@ -7,17 +7,15 @@ import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 
-import alex.iv.rect.destroy.LevelScreen_6;
-
 public class StartScreen extends BaseScreen {
 
     private static Preferences pref;
     public static int live = 2;
     protected static int recordsLevel_1;
     protected static int recordsLevel_2;
-//    protected static int recordsLevel_3;
-//    protected static int recordsLevel_4;
-//    protected static int recordsLevel_5;
+    protected static int recordsLevel_3;
+    protected static int recordsLevel_4;
+    protected static int recordsLevel_5;
 
     public IActivityRequestHandler requestHandler;
 
@@ -35,9 +33,9 @@ public class StartScreen extends BaseScreen {
         live = pref.getInteger("liveMemory");
         recordsLevel_1 = pref.getInteger("records_1");
         recordsLevel_2 = pref.getInteger("records_2");
-//        recordsLevel_3 = pref.getInteger("records_3");
-//        recordsLevel_4 = pref.getInteger("records_4");
-//        recordsLevel_5 = pref.getInteger("records_5");
+        recordsLevel_3 = pref.getInteger("records_3");
+        recordsLevel_4 = pref.getInteger("records_4");
+        recordsLevel_5 = pref.getInteger("records_5");
         // инициализация кнопок New game и continue
         TextButton startButton = new TextButton( "New game", BaseGame.textButtonStyle );
         //startButton.setPosition(150,150);
@@ -51,15 +49,15 @@ public class StartScreen extends BaseScreen {
                             return false;
                         recordsLevel_1 = 0;
                         recordsLevel_2 = 0;
-//                        recordsLevel_3 = 0;
-//                        recordsLevel_4 = 0;
-//                        recordsLevel_5 = 0;
+                        recordsLevel_3 = 0;
+                        recordsLevel_4 = 0;
+                        recordsLevel_5 = 0;
                         live = 2;
                         pref.putInteger("records_1", recordsLevel_1);
                         pref.putInteger("records_2", recordsLevel_2);
-//                        pref.putInteger("records_3", recordsLevel_3);
-//                        pref.putInteger("records_4", recordsLevel_4);
-//                        pref.putInteger("records_5", recordsLevel_5);
+                        pref.putInteger("records_3", recordsLevel_3);
+                        pref.putInteger("records_4", recordsLevel_4);
+                        pref.putInteger("records_5", recordsLevel_5);
                         pref.putInteger("liveMemory", live);
                         pref.flush();
                         RectangleGame.setActiveScreen(new MenuScreen(requestHandler));
