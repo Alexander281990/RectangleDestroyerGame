@@ -25,7 +25,8 @@ public class LevelScreen_2 extends LevelScreenMain {
         //background = new BaseActor(0, 0, mainStage);
         background.loadTexture("background/fon_level_2.png");
         showTime(20); // инициализируем метод отображение игрового времени
-        showRecordsLabelWindow(recordsLevel_2); // инициализируем метод отображение рекорда данного уровня
+        //showRecordsLabelWindow(recordsLevel_2); // инициализируем метод отображение рекорда данного уровня
+        recordsLabelWindow.setText("Records: " + recordsLevel_2);
 
         Brick tempBrick = new Brick(0,0,mainStage);
         float brickWidth = tempBrick.getWidth();

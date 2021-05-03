@@ -32,7 +32,7 @@ public class LevelScreenMain extends MenuScreen {
     private Label Time; // метка, которая отображает проигранное время
     private Label Live; // метка, которая отображает жизни
     private Label recordsLabel;
-    private Label recordsLabelWindow;
+    protected Label recordsLabelWindow;
     private Label TimePaddleStop; // метка, которая отображает время остановки весла
     private float timerPaddleStop; // переменная, которая отсчитывает 7 секунд при блокировке весла(Item.Type.PADDLE_STOP)
     private Label scoreLabel; //
@@ -83,6 +83,10 @@ public class LevelScreenMain extends MenuScreen {
 //        Live.setText("Live: " + liveMemory);
         // инициализация метки для отображения жизней(конец)
         scoreLabel = new Label("Score: " + score, BaseGame.labelStyle); // отображение очков
+        recordsLabelWindow = new Label("Records: ", BaseGame.labelStyleLevel);
+        recordsLabelWindow.setFontScale(1.5f, 1.5f);
+        uiStage.addActor(recordsLabelWindow);
+        //recordsLabelWindow.setText("Records: " + recordsLevel_1);
         messageLabel = new Label("click to start", BaseGame.labelStyle );
         messageLabel.setFontScale(3, 3);
         messageLabel.setColor( Color.CYAN );
@@ -99,7 +103,10 @@ public class LevelScreenMain extends MenuScreen {
         uiTable.add(scoreLabel).expandX().left().padTop(5).padLeft(20);
         uiTable.add(Live).expandX().right().top().padTop(5).padRight(20);
         uiTable.row();
-        uiTable.add(messageLabel).colspan(2).padTop(Gdx.graphics.getHeight()/4f);;
+        uiTable.add(recordsLabelWindow).colspan(2).padTop(Gdx.graphics.getHeight()/10f);
+        uiTable.row();
+        uiTable.add(messageLabel).colspan(2).padTop(Gdx.graphics.getHeight()/8f);
+        uiTable.row();
 
         paddle = new Paddle(windowPlayWidth / 2 - 64 , windowPlayHeight, mainStage);
 
@@ -127,8 +134,12 @@ public class LevelScreenMain extends MenuScreen {
                         if (!(e instanceof InputEvent) ||
                                 !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
                             return false;
-                        startLevel();
-                        start.remove();
+                        if (live > 0) {
+                            startLevel();
+                            start.remove();
+                        } else {
+                            RectangleGame.setActiveScreen(new GetLifeScreen(requestHandler));
+                        }
                         return false;
                     }
                 }
@@ -148,15 +159,15 @@ public class LevelScreenMain extends MenuScreen {
     }
     // метод, который показывает проигранное время(конец)
 
-    // метод, который показывает на экране рекорд уровня
-    protected void showRecordsLabelWindow(int recordsLevels) {
-        recordsLabelWindow = new Label("Records: ", BaseGame.labelStyleLevel);
-        //recordsLabelWindow.setPosition(Gdx.graphics.getWidth()/2f - recordsLabelWindow.getWidth()/2, Gdx.graphics.getHeight()/1.25f);
-        //recordsLabelWindow.setColor( Color.CYAN );
-        uiStage.addActor(recordsLabelWindow);
-        recordsLabelWindow.setText("Records: " + recordsLevels);
-    }
-    // метод, который показывает на экране рекорд уровня(конец)
+//    // метод, который показывает на экране рекорд уровня
+//    protected void showRecordsLabelWindow(int recordsLevels) {
+//        //recordsLabelWindow = new Label("Records: ", BaseGame.labelStyleLevel);
+//        //recordsLabelWindow.setPosition(Gdx.graphics.getWidth()/2f - recordsLabelWindow.getWidth()/2, Gdx.graphics.getHeight()/1.25f);
+//        //recordsLabelWindow.setColor( Color.CYAN );
+//        uiStage.addActor(recordsLabelWindow);
+//        recordsLabelWindow.setText("Records: " + recordsLevels);
+//    }
+//    // метод, который показывает на экране рекорд уровня(конец)
 
     // метод, который запускается, когда закончилось игровое время
     // в параметр метода нужно вставить аргумент из StartScreen(например recordsLevel_1 или recordsLevel_2 (зависит от Level в
@@ -301,7 +312,8 @@ public class LevelScreenMain extends MenuScreen {
                     ball.setColor(Color.GREEN);
                     live --;
                     if (live < 1) {
-                        requestHandler.showVideoAd();
+                        //requestHandler.showVideoAd();
+                        RectangleGame.setActiveScreen(new GetLifeScreen(requestHandler));
                     }
                     pref.putInteger("liveMemory", live);
                     pref.flush();

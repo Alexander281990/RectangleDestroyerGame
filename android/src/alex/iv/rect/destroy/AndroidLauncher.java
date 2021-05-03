@@ -102,7 +102,7 @@ public class AndroidLauncher extends AndroidApplication implements IActivityRequ
 			@Override
 			public void onRewarded(RewardItem rewardItem) {
 				loadRewardedVideoAd();
-				live += 1; // если посмотрел рекламу, добавится 2 жизни
+				live += 2; // если посмотрел рекламу, добавится 2 жизни
 				pref.putInteger("liveMemory", live);
 				pref.flush();
 			}

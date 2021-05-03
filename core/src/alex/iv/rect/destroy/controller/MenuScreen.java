@@ -155,7 +155,7 @@ public class MenuScreen extends StartScreen {
                         if (!(e instanceof InputEvent) ||
                                 !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
                             return false;
-                        //RectangleGame.setActiveScreen(new LevelScreen_4(requestHandler));
+                        RectangleGame.setActiveScreen(new GetLifeScreen(requestHandler));
                         return false;
                     }
                 }
