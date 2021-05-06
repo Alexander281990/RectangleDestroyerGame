@@ -96,4 +96,8 @@ public class BaseGame extends Game {
         game.setScreen(s);
     }
 
+    public static void setActiveScreen(LoadingScreen s) {
+        game.setScreen(s);
+    }
+
 }

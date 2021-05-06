@@ -16,7 +16,6 @@ import com.google.android.gms.ads.reward.RewardedVideoAd;
 import com.google.android.gms.ads.reward.RewardedVideoAdListener;
 import alex.iv.rect.destroy.controller.IActivityRequestHandler;
 import alex.iv.rect.destroy.controller.RectangleGame;
-import alex.iv.rect.destroy.controller.StartScreen;
 
 import static alex.iv.rect.destroy.controller.MenuScreen.pref;
 import static alex.iv.rect.destroy.controller.StartScreen.live;
