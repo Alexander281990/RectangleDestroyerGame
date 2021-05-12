@@ -61,6 +61,10 @@ public class IntermediateScreen extends LevelScreenMain {
                 records.setText("Record = " + recordsLevel_5);
                 results.setText("Your score = " + interScore);
                 break;
+            case 6:
+                records.setText("Record = " + recordsLevel_6);
+                results.setText("Your score = " + interScore);
+                break;
             default:records.setText("Record = " + 0);
         }
         this.requestHandler=requestHandler;
@@ -76,6 +80,7 @@ public class IntermediateScreen extends LevelScreenMain {
         recordsLevel_3 = pref.getInteger("records_3");
         recordsLevel_4 = pref.getInteger("records_4");
         recordsLevel_5 = pref.getInteger("records_5");
+        recordsLevel_6 = pref.getInteger("records_6");
         // инициализация метки для отображения жизней
         Live = new Label("Live:", BaseGame.labelStyle);
         uiStage.addActor(Live);
@@ -135,6 +140,9 @@ public class IntermediateScreen extends LevelScreenMain {
                                 break;
                             case 5:
                                 RectangleGame.setActiveScreen(new LevelScreen_5(requestHandler));
+                                break;
+                            case 6:
+                                RectangleGame.setActiveScreen(new LevelScreen_6(requestHandler));
                                 break;
 
                         }

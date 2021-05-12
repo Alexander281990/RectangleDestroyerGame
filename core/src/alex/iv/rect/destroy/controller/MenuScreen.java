@@ -18,6 +18,7 @@ import alex.iv.rect.destroy.LevelScreen_3;
 import alex.iv.rect.destroy.LevelScreen_4;
 import alex.iv.rect.destroy.LevelScreen_5;
 import alex.iv.rect.destroy.LevelScreen_6;
+import alex.iv.rect.destroy.LevelScreen_7;
 
 public class MenuScreen extends StartScreen {
 
@@ -188,6 +189,20 @@ public class MenuScreen extends StartScreen {
                                 !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
                             return false;
                         RectangleGame.setActiveScreen(new LevelScreen_6(requestHandler));
+//                        Gdx.app.log("MyTag", "my informative message");
+                        return false;
+                    }
+                }
+        );
+
+        level_7_Button.addListener(
+                new EventListener() {
+                    @Override
+                    public boolean handle(Event e) {
+                        if (!(e instanceof InputEvent) ||
+                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
+                            return false;
+                        RectangleGame.setActiveScreen(new LevelScreen_7(requestHandler));
 //                        Gdx.app.log("MyTag", "my informative message");
                         return false;
                     }

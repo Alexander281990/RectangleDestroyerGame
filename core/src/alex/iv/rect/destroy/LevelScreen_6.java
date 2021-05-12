@@ -64,7 +64,7 @@ public class LevelScreen_6 extends LevelScreenMain {
 
         if (starTimer < 0) {
             timeIsUp(recordsLevel_6, "records_6"); // инициализируем метод timeIsUp - ВРЕМЯ ВЫШЛО
-            RectangleGame.setActiveScreen(new IntermediateScreen(requestHandler, 1, score));
+            RectangleGame.setActiveScreen(new IntermediateScreen(requestHandler, 6, score));
         }
         if (BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick") == 0 && starTimer > 0) {
             allTheBricksAreBroken(recordsLevel_6, "records_6");// инициализируем метод allTheBricksAreBroken - ВСЕ КИРПИЧИ РАЗРУШЕНЫ
