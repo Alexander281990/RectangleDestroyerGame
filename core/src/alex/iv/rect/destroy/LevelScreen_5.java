@@ -26,17 +26,15 @@ public class LevelScreen_5 extends LevelScreenMain {
         recordsLabelWindow.setText("Records: " + recordsLevel_5);
 
         Brick tempBrick = new Brick(0,0,mainStage);
-        float brickWidth = tempBrick.getWidth();
-        float brickHeight = tempBrick.getHeight();
         tempBrick.remove();
         int totalRows = 10;
         int totalCols = 10;
-        float marginX = (Gdx.graphics.getWidth() - totalCols * brickWidth) / 2;
-        float marginY = (Gdx.graphics.getHeight() - totalRows * brickHeight) - 150;
+        float marginX = (Gdx.graphics.getWidth() - totalCols * tempBrick.getBrickWidth()) / 2;
+        float marginY = (Gdx.graphics.getHeight() - totalRows * tempBrick.getBrickHeight()) - 150;
         for (int rowNum = 0; rowNum < totalRows; rowNum++) {
             for (int colNum = 0; colNum < totalCols; colNum++) {
-                float x = marginX + brickWidth	* colNum;
-                float y = marginY + brickHeight * rowNum;
+                float x = marginX + tempBrick.getBrickWidth()	* colNum;
+                float y = marginY + tempBrick.getBrickHeight() * rowNum;
                 Brick brick = new Brick( x, y, mainStage );
                 if (rowNum == 5 || rowNum == 6 || rowNum == 7 || rowNum == 8 || rowNum == 9){
                     brick.setColor(Color.ORANGE);

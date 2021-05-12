@@ -26,16 +26,15 @@ public class LevelScreen_3 extends LevelScreenMain {
         recordsLabelWindow.setText("Records: " + recordsLevel_3);
 
         Brick tempBrick = new Brick(0,0,mainStage);
-        float brickWidth = Gdx.graphics.getWidth()/12f;
-        float brickHeight = tempBrick.getHeight();
         tempBrick.remove();
         int totalRows = 10;
         int totalCols = 10;
-        float marginX = (Gdx.graphics.getWidth() - totalCols * brickWidth) / 2; float marginY = (Gdx.graphics.getHeight() - totalRows * brickHeight) - 250;
+        float marginX = (Gdx.graphics.getWidth() - totalCols * tempBrick.getBrickWidth()) / 2;
+        float marginY = (Gdx.graphics.getHeight() - totalRows * tempBrick.getBrickHeight()) - 250;
         for (int rowNum = 0; rowNum < totalRows; rowNum++) {
             for (int colNum = 0; colNum < totalCols; colNum++) {
-                float x = marginX + brickWidth	* colNum;
-                float y = marginY + brickHeight * rowNum;
+                float x = marginX + tempBrick.getBrickWidth()	* colNum;
+                float y = marginY + tempBrick.getBrickHeight() * rowNum;
                 Brick brick = new Brick( x, y, mainStage );
                 if (rowNum == 0 && colNum == 0 || rowNum == 0 && colNum == 2 || rowNum == 0 && colNum == 4 || rowNum == 0 && colNum == 6 || rowNum == 0 && colNum == 8){
                     brick.remove();

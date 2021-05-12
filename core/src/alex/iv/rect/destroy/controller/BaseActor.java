@@ -210,6 +210,7 @@ public class BaseActor extends Group {
         return velocityVec.len();
     }
 
+    // метод, который устанавливает направление движения актера
     public void setMotionAngle(float angle) {
         velocityVec.setAngle(angle);
     }
@@ -463,8 +464,7 @@ public class BaseActor extends Group {
         return Intersector.overlapConvexPolygons( poly1, poly2 );
     }
 
-    //
-
+    // метод, с помощью которого происходит отскакивание под противоположным углом
     public void bounceOff(BaseActor other) {
         Vector2 v = this.preventOverlap(other);
         if ( Math.abs(v.x) >= Math.abs(v.y) ){ // horizontal bounce

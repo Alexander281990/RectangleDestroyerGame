@@ -6,7 +6,6 @@ import alex.iv.rect.destroy.actors.Brick;
 import alex.iv.rect.destroy.controller.BaseActor;
 import alex.iv.rect.destroy.controller.IActivityRequestHandler;
 import alex.iv.rect.destroy.controller.LevelScreenMain;
-import alex.iv.rect.destroy.controller.MenuScreen;
 import alex.iv.rect.destroy.controller.RectangleGame;
 
 public class LevelScreen_1 extends LevelScreenMain {
@@ -24,22 +23,19 @@ public class LevelScreen_1 extends LevelScreenMain {
         super.initialize();
 
         showTime(120); // инициализируем метод отображение игрового времени
-        //showRecordsLabelWindow(recordsLevel_1); // инициализируем метод отображение рекорда данного уровня
         background.loadTexture("background/fon_level.png");
         recordsLabelWindow.setText("Records: " + recordsLevel_1);
 
         Brick tempBrick = new Brick(0,0,mainStage);
-        float brickWidth = tempBrick.getWidth();
-        float brickHeight = tempBrick.getHeight();
         tempBrick.remove();
         int totalRows = 10;
         int totalCols = 10;
-        float marginX = (Gdx.graphics.getWidth() - totalCols * brickWidth) / 2;
-        float marginY = (Gdx.graphics.getHeight() - totalRows * brickHeight) - 150;
+        float marginX = (Gdx.graphics.getWidth() - totalCols * tempBrick.getBrickWidth()) / 2;
+        float marginY = (Gdx.graphics.getHeight() - totalRows * tempBrick.getBrickHeight()) - 150;
         for (int rowNum = 0; rowNum < totalRows; rowNum++) {
             for (int colNum = 0; colNum < totalCols; colNum++) {
-                float x = marginX + brickWidth	* colNum;
-                float y = marginY + brickHeight * rowNum;
+                float x = marginX + tempBrick.getBrickWidth()	* colNum;
+                float y = marginY + tempBrick.getBrickHeight() * rowNum;
                 Brick brick = new Brick( x, y, mainStage );
                 if (rowNum == 5 || rowNum == 6 || rowNum == 7 || rowNum == 8 || rowNum == 9){
                     brick.setColor(Color.ORANGE);

@@ -19,8 +19,8 @@ import alex.iv.rect.destroy.actors.Wall;
 public class LevelScreenMain extends MenuScreen {
 
     private IActivityRequestHandler requestHandler; // переменная для ссылки на метод из AndroidLauncher(showOrLoadInterstitial()) - для вызова метода, который показывает рекламу
-    private float windowPlayWidth;
-    private float windowPlayHeight;
+    private static float windowPlayWidth;
+    private static float windowPlayHeight;
     protected Wall wallHeight;
     protected Wall wallWight;
     protected BaseActor background;
@@ -38,7 +38,7 @@ public class LevelScreenMain extends MenuScreen {
     private Label scoreLabel; //
     private Paddle paddle;
     private Label messageLabel; //
-    private Ball ball;
+    protected Ball ball;
     private TextButton start;
 //    private Sound bounceSound;
 //    private Sound brickBumpSound;
@@ -168,6 +168,14 @@ public class LevelScreenMain extends MenuScreen {
                 }
         );
 
+    }
+
+    public static float getWindowPlayWidth() {
+        return windowPlayWidth;
+    }
+
+    public static float getWindowPlayHeight() {
+        return windowPlayHeight;
     }
 
 
@@ -405,12 +413,12 @@ public class LevelScreenMain extends MenuScreen {
                     //requestHandler.showBannerAd(); // показывает рекламный баннер
                     //requestHandler.showVideoAd(); // показывает видео рекламу с вознагрождением
                     //requestHandler.showOrLoadInterstitial(); // показывает межстраничный баннер
+                    //requestHandler.hideBannerAd(); // удаляет рекламный баннер
                 }
                 if (ball.getSpeed() > ball.getMaxSpeed())
                     ball.setSpeed(ball.getMaxSpeed());
                 else if (realItem.getType() == Item.Type.BALL_SPEED_DOWN) {
                     ball.setSpeed(ball.getSpeed() * 0.90f);
-                    //requestHandler.hideBannerAd(); // удаляет рекламный баннер
                 }
                 else if (realItem.getType() == Item.Type.BALL_TWO) {
                     new Ball(paddle.getX() + paddle.getWidth() / 2 - ball.getWidth() / 2,

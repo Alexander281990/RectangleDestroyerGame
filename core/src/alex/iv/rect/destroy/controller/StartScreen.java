@@ -16,6 +16,7 @@ public class StartScreen extends BaseScreen {
     protected static int recordsLevel_3;
     protected static int recordsLevel_4;
     protected static int recordsLevel_5;
+    protected static int recordsLevel_6;
 
     public IActivityRequestHandler requestHandler;
 
@@ -36,6 +37,7 @@ public class StartScreen extends BaseScreen {
         recordsLevel_3 = pref.getInteger("records_3");
         recordsLevel_4 = pref.getInteger("records_4");
         recordsLevel_5 = pref.getInteger("records_5");
+        recordsLevel_6 = pref.getInteger("records_6");
         // инициализация кнопок New game и continue
         TextButton startButton = new TextButton( "New game", BaseGame.textButtonStyle );
         //startButton.setPosition(150,150);
@@ -52,12 +54,14 @@ public class StartScreen extends BaseScreen {
                         recordsLevel_3 = 0;
                         recordsLevel_4 = 0;
                         recordsLevel_5 = 0;
+                        recordsLevel_6 = 0;
                         live = 2;
                         pref.putInteger("records_1", recordsLevel_1);
                         pref.putInteger("records_2", recordsLevel_2);
                         pref.putInteger("records_3", recordsLevel_3);
                         pref.putInteger("records_4", recordsLevel_4);
                         pref.putInteger("records_5", recordsLevel_5);
+                        pref.putInteger("records_6", recordsLevel_6);
                         pref.putInteger("liveMemory", live);
                         pref.flush();
                         RectangleGame.setActiveScreen(new MenuScreen(requestHandler));

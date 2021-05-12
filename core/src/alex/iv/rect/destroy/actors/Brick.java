@@ -1,16 +1,14 @@
 package alex.iv.rect.destroy.actors;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
 import alex.iv.rect.destroy.controller.BaseActor;
+import alex.iv.rect.destroy.controller.LevelScreenMain;
 
 public class Brick extends BaseActor {
 
-    private float windowPlayWidth = Gdx.graphics.getWidth();
-    private float windowPlayHeight = Gdx.graphics.getHeight() / 2 - 100;
-    private float brickWidth = windowPlayWidth/11;
-    private float brickHeight = ((windowPlayHeight/5)*2)/11;
+    private float brickWidth = LevelScreenMain.getWindowPlayWidth() /11;
+    private float brickHeight = ((LevelScreenMain.getWindowPlayHeight()/5)*2)/11;
 
     public Brick(float x, float y, Stage s) {
         super(x,y,s);
@@ -18,6 +16,14 @@ public class Brick extends BaseActor {
         setSize(brickWidth, brickHeight);
         setBoundaryRectangle();
         hit = 0;
+    }
+
+    public float getBrickHeight() {
+        return brickHeight;
+    }
+
+    public float getBrickWidth() {
+        return brickWidth;
     }
 
     public boolean isBrickMoving() {
