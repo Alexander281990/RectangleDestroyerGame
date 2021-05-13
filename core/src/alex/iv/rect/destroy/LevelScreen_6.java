@@ -13,13 +13,14 @@ import alex.iv.rect.destroy.controller.Warp;
 
 public class LevelScreen_6 extends LevelScreenMain {
 
-    public IActivityRequestHandler requestHandler;
+    //public IActivityRequestHandler requestHandler;
     private Warp warp;
     private Warp warp2;
     private Warp warp3;
 
     public LevelScreen_6(IActivityRequestHandler requestHandler){
-        this.requestHandler=requestHandler;
+        super(requestHandler);
+        //this.requestHandler=requestHandler;
         requestHandler.showBannerAd(); // при запуске LevelScreen_6 запускается рекламный банер в нижней части экрана
     }
 
@@ -45,6 +46,7 @@ public class LevelScreen_6 extends LevelScreenMain {
                     brick.numberColor = 2;
                 } else {
                     brick.setColor(Color.RED);
+                    brick.setBrickFlash(false);
                 }
             }
         }

@@ -24,7 +24,8 @@ public class BaseActor extends Group {
 
     public int numberColor;
     protected int hit;
-    protected boolean brickMoving = true;
+//    protected boolean brickMoving = true;
+//    protected boolean brickFlash = true;
 
     // переменные для метода leftRightMoving();
     private float timeGame;

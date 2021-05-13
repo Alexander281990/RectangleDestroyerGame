@@ -18,7 +18,7 @@ import alex.iv.rect.destroy.actors.Wall;
 
 public class LevelScreenMain extends MenuScreen {
 
-    private IActivityRequestHandler requestHandler; // переменная для ссылки на метод из AndroidLauncher(showOrLoadInterstitial()) - для вызова метода, который показывает рекламу
+    protected IActivityRequestHandler requestHandler; // переменная для ссылки на метод из AndroidLauncher(showOrLoadInterstitial()) - для вызова метода, который показывает рекламу
     private static float windowPlayWidth;
     private static float windowPlayHeight;
     protected Wall wallHeight;
@@ -326,6 +326,8 @@ public class LevelScreenMain extends MenuScreen {
                                 score += 250;
                                 break;
                             default:
+                                score += 500;
+                                break;
                         }
                     } else {
                         br.hit++;

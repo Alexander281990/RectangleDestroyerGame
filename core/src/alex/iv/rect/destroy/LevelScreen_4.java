@@ -10,14 +10,14 @@ import alex.iv.rect.destroy.controller.LevelScreenMain;
 import alex.iv.rect.destroy.controller.RectangleGame;
 
 public class LevelScreen_4 extends LevelScreenMain {
-    public IActivityRequestHandler requestHandler;
+    //public IActivityRequestHandler requestHandler;
     private Brick brick;
 
     // чтобы реклама появлялась, обязательно нужно использовать этод конструктор(с параметром requestHandler), в классе
     // MenuScreen
     public LevelScreen_4(IActivityRequestHandler requestHandler) {
         super(requestHandler);
-        this.requestHandler = requestHandler;
+        //this.requestHandler = requestHandler;
     }
 
     public void initialize() {
