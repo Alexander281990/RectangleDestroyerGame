@@ -16,7 +16,8 @@ public class Warp extends BaseActor {
 
     public Warp(float x, float y, String name,  Stage s) {
         super(x,y,s);
-        loadTexture(name);
+        //loadTexture(name);
+        loadAnimationFromSheet(name, 3, 6, 0.07f, true);
         //addAction(Actions.rotateBy(180, 2));
         setBoundaryPolygon(12);
         //addAction( Actions.delay(10) );

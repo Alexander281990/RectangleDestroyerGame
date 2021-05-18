@@ -2,15 +2,20 @@ package alex.iv.rect.destroy;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.math.MathUtils;
 
 import alex.iv.rect.destroy.actors.Brick;
 import alex.iv.rect.destroy.controller.BaseActor;
 import alex.iv.rect.destroy.controller.IActivityRequestHandler;
 import alex.iv.rect.destroy.controller.LevelScreenMain;
 import alex.iv.rect.destroy.controller.RectangleGame;
+import alex.iv.rect.destroy.controller.Warp;
 
 public class LevelScreen_2 extends LevelScreenMain {
-    //public IActivityRequestHandler requestHandler;
+
+    private Warp warp;
+    private Warp warp2;
+    private Warp warp3;
 
     // чтобы реклама появлялась, обязательно нужно использовать этод конструктор(с параметром requestHandler), в классе
     // MenuScreen
@@ -58,6 +63,14 @@ public class LevelScreen_2 extends LevelScreenMain {
             }
         }
 
+        warp = new Warp(MathUtils.random(LevelScreenMain.getWindowPlayWidth() - 40),
+                MathUtils.random(Gdx.graphics.getHeight() - 80, LevelScreenMain.getWindowPlayHeight() + 100),
+                "black_warp.png", mainStage);
+        warp2 = new Warp(MathUtils.random(LevelScreenMain.getWindowPlayWidth() - 40),
+                MathUtils.random(Gdx.graphics.getHeight() - 50, LevelScreenMain.getWindowPlayHeight() + 100), mainStage);
+        warp3 = new Warp(MathUtils.random(LevelScreenMain.getWindowPlayWidth() - 40),
+                MathUtils.random(Gdx.graphics.getHeight() - 50, LevelScreenMain.getWindowPlayHeight() + 100), mainStage);
+
     }
 
     public void update(float dt) {
@@ -69,6 +82,18 @@ public class LevelScreen_2 extends LevelScreenMain {
         }
         if (BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick") == 0 && starTimer > 0) {
             allTheBricksAreBroken(recordsLevel_2, "records_2");// инициализируем метод allTheBricksAreBroken - ВСЕ КИРПИЧИ РАЗРУШЕНЫ
+        }
+
+        for (BaseActor bal : BaseActor.getList(mainStage, "alex.iv.rect.destroy.actors.Ball")) {
+            if (bal.overlaps(warp)) {
+                int r = MathUtils.random(1, 2);
+                if (r == 1) {
+                    bal.centerAtActor(warp2);
+                } else {
+                    bal.centerAtActor(warp3);
+                }
+                bal.setMotionAngle(MathUtils.random(360));
+            }
         }
 
     }

@@ -7,7 +7,7 @@
     <item>
         <bitmap
             android:gravity="center"
-            android:src="@mipmap/fon_level" />
+            android:src="@drawable/loading" />
     </item>
 
 </layer-list>

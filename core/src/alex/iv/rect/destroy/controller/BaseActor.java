@@ -24,8 +24,6 @@ public class BaseActor extends Group {
 
     public int numberColor;
     protected int hit;
-//    protected boolean brickMoving = true;
-//    protected boolean brickFlash = true;
 
     // переменные для метода leftRightMoving();
     private float timeGame;
@@ -394,7 +392,7 @@ public class BaseActor extends Group {
     // Метод, который сохраняет размер игрового мира непосредственно из числовых значений
     // Этод метод для игры RectangleDestroyer
     public void setWorldBoundsDestroyer(float width, float height) {
-        worldBounds = new Rectangle(0, Gdx.graphics.getHeight()/2, width, height);
+        worldBounds = new Rectangle(0, Gdx.graphics.getHeight()/2f, width, height);
     }
 
     // Метод, который сохраняет размер игрового мира на основе актера(например, актера, отображающее фоновое изображение)
@@ -474,5 +472,18 @@ public class BaseActor extends Group {
             this.velocityVec.y *= -1;
         }
     }
+
+    // метод, который скрывает, но не удаляет актера
+    // если false - то скрывается
+    public void visibleActor(boolean b) {
+        setVisible(b);
+    }
+
+//    public void decreaseSize() {
+//        //setSize(getWidth()/2, getHeight()/2);
+//        for (int f = 0; f < 10; f ++) {
+//            setSize(getWidth()/1.002f, getHeight()/1.002f);
+//        }
+//    }
 
 }

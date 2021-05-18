@@ -13,19 +13,25 @@ import alex.iv.rect.destroy.controller.Warp;
 
 public class LevelScreen_6 extends LevelScreenMain {
 
-    //public IActivityRequestHandler requestHandler;
     private Warp warp;
     private Warp warp2;
     private Warp warp3;
 
     public LevelScreen_6(IActivityRequestHandler requestHandler){
         super(requestHandler);
-        //this.requestHandler=requestHandler;
         requestHandler.showBannerAd(); // при запуске LevelScreen_6 запускается рекламный банер в нижней части экрана
     }
 
 
     public void initialize() {
+        warp = new Warp(MathUtils.random(LevelScreenMain.getWindowPlayWidth() - 40),
+                MathUtils.random(Gdx.graphics.getHeight() - 80, LevelScreenMain.getWindowPlayHeight() + 100),
+                "black_warp.png", mainStage);
+        warp2 = new Warp(MathUtils.random(LevelScreenMain.getWindowPlayWidth() - 40),
+                MathUtils.random(Gdx.graphics.getHeight() - 50, LevelScreenMain.getWindowPlayHeight() + 100), mainStage);
+        warp3 = new Warp(MathUtils.random(LevelScreenMain.getWindowPlayWidth() - 40),
+                MathUtils.random(Gdx.graphics.getHeight() - 50, LevelScreenMain.getWindowPlayHeight() + 100), mainStage);
+
         super.initialize();
         showTime(120); // инициализируем метод отображение игрового времени
         recordsLabelWindow.setText("Records: " + recordsLevel_6);
@@ -51,14 +57,6 @@ public class LevelScreen_6 extends LevelScreenMain {
             }
         }
 
-        warp = new Warp(MathUtils.random(LevelScreenMain.getWindowPlayWidth() - 40),
-                MathUtils.random(Gdx.graphics.getHeight() - 80, LevelScreenMain.getWindowPlayHeight() + 100),
-                "warp_main.png", mainStage);
-        warp2 = new Warp(MathUtils.random(LevelScreenMain.getWindowPlayWidth() - 40),
-                MathUtils.random(Gdx.graphics.getHeight() - 50, LevelScreenMain.getWindowPlayHeight() + 100), mainStage);
-        warp3 = new Warp(MathUtils.random(LevelScreenMain.getWindowPlayWidth() - 40),
-                MathUtils.random(Gdx.graphics.getHeight() - 50, LevelScreenMain.getWindowPlayHeight() + 100), mainStage);
-
     }
 
     public void update(float dt) {
@@ -78,11 +76,18 @@ public class LevelScreen_6 extends LevelScreenMain {
 
         for (BaseActor bal : BaseActor.getList(mainStage, "alex.iv.rect.destroy.actors.Ball")) {
             if (bal.overlaps(warp)) {
+                //bal.decreaseSize();
+                //bal.visibleActor(false);
+                //bal.setSize(bal.getWidth()/2, bal.getHeight()/2);
+                //bal.positionAtActor(warp);
+                //bal.loadAnimationFromSheet("decrease_ball.png", 4, 8, 0.05f, true);
                 int r = MathUtils.random(1, 2);
                 if (r == 1) {
                     bal.centerAtActor(warp2);
+                    //bal.visibleActor(true);
                 } else {
                     bal.centerAtActor(warp3);
+                    //bal.visibleActor(true);
                 }
                 bal.setMotionAngle(MathUtils.random(360));
             }

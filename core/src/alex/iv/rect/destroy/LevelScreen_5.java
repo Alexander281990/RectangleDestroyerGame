@@ -27,7 +27,7 @@ public class LevelScreen_5 extends LevelScreenMain {
 
         Brick tempBrick = new Brick(0,0,mainStage);
         tempBrick.remove();
-        int totalRows = 10;
+        int totalRows = 8;
         int totalCols = 10;
         float marginX = (Gdx.graphics.getWidth() - totalCols * tempBrick.getBrickWidth()) / 2;
         float marginY = (Gdx.graphics.getHeight() - totalRows * tempBrick.getBrickHeight()) - 150;
@@ -36,7 +36,7 @@ public class LevelScreen_5 extends LevelScreenMain {
                 float x = marginX + tempBrick.getBrickWidth()	* colNum;
                 float y = marginY + tempBrick.getBrickHeight() * rowNum;
                 Brick brick = new Brick( x, y, mainStage );
-                if (rowNum == 5 || rowNum == 6 || rowNum == 7 || rowNum == 8 || rowNum == 9){
+                if (colNum == 0 || colNum == 9){
                     brick.setColor(Color.ORANGE);
                     brick.numberColor = 2;
                     brick.setBrickMoving(false); // заставляет двигаться хаотично кирпичи

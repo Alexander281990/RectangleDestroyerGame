@@ -14,6 +14,7 @@ public class Brick extends BaseActor {
     private float brickHeight = ((LevelScreenMain.getWindowPlayHeight()/5)*2)/11;
     private boolean brickMoving = true;
     private boolean brickFlash = true;
+    public static int numberBrick;
 
     private float timeBrick;
 
@@ -24,6 +25,7 @@ public class Brick extends BaseActor {
         setBoundaryRectangle();
         hit = 0;
         timeBrick = 5;
+        numberBrick ++;
     }
 
     // метод, который заставляет мигать кирпичики с частотой в 5 секунд

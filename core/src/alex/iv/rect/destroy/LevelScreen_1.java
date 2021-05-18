@@ -37,9 +37,12 @@ public class LevelScreen_1 extends LevelScreenMain {
                 float x = marginX + tempBrick.getBrickWidth()	* colNum;
                 float y = marginY + tempBrick.getBrickHeight() * rowNum;
                 Brick brick = new Brick( x, y, mainStage );
-                if (rowNum == 5 || rowNum == 6 || rowNum == 7 || rowNum == 8 || rowNum == 9){
+                if (rowNum == 5 || rowNum == 6){
                     brick.setColor(Color.ORANGE);
                     brick.numberColor = 2;
+                } else  if (rowNum == 7){
+                    brick.setColor(Color.YELLOW);
+                    brick.numberColor = 3;
                 } else {
                     brick.setColor(Color.RED);
                 }
