@@ -479,11 +479,4 @@ public class BaseActor extends Group {
         setVisible(b);
     }
 
-//    public void decreaseSize() {
-//        //setSize(getWidth()/2, getHeight()/2);
-//        for (int f = 0; f < 10; f ++) {
-//            setSize(getWidth()/1.002f, getHeight()/1.002f);
-//        }
-//    }
-
 }

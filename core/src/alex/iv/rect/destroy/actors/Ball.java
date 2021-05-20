@@ -1,15 +1,13 @@
 package alex.iv.rect.destroy.actors;
 
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
 import alex.iv.rect.destroy.controller.BaseActor;
-import alex.iv.rect.destroy.controller.Warp;
 
 public class Ball extends BaseActor {
 
-    public boolean paused;
+    private boolean paused;
 
     public Ball(float x, float y, Stage s) {
         super(x,y,s);
@@ -32,7 +30,6 @@ public class Ball extends BaseActor {
         setPaused(paused);
 
     }
-
 
     public boolean isPaused() {
         return paused;
