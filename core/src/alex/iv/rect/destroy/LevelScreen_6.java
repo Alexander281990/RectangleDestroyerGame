@@ -45,7 +45,7 @@ public class LevelScreen_6 extends LevelScreenMain {
                     brick.numberColor = 2;
                 } else {
                     brick.setColor(Color.RED);
-                    brick.setBrickFlash(false);
+                    brick.setBrickFlash(false); // инициализация метода смены цветов кирпича
                 }
             }
         }

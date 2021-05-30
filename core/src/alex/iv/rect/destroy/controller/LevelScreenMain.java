@@ -303,6 +303,13 @@ public class LevelScreenMain extends MenuScreen {
                 float bounceAngle = MathUtils.lerp(150, 30, paddlePercentHit);
                 bal.setMotionAngle(bounceAngle);
             }
+
+            for (BaseActor brick : BaseActor.getList(mainStage, "alex.iv.rect.destroy.actors.BrickHard")) {
+                if (bal.overlaps(brick)) {
+                    bal.bounceOff(brick);
+                }
+            }
+
             for (BaseActor br : BaseActor.getList(mainStage, "alex.iv.rect.destroy.actors.Brick")) {
                 if (bal.overlaps(br)) {
                     bal.bounceOff(br);
