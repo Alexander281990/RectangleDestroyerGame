@@ -21,6 +21,7 @@ import alex.iv.rect.destroy.LevelScreen_5;
 import alex.iv.rect.destroy.LevelScreen_6;
 import alex.iv.rect.destroy.LevelScreen_7;
 import alex.iv.rect.destroy.LevelScreen_8;
+import alex.iv.rect.destroy.LevelScreen_9;
 
 public class MenuScreen extends StartScreen {
 
@@ -40,8 +41,8 @@ public class MenuScreen extends StartScreen {
     public void initialize() {
 
         pref = Gdx.app.getPreferences("Preferences");// инициализация Preferences для сохранения лучшего результата в телефоне
-        recordsLevel_1 = pref.getInteger("records_1");
-        recordsLevel_2 = pref.getInteger("records_2");
+//        recordsLevel_1 = pref.getInteger("records_1");
+//        recordsLevel_2 = pref.getInteger("records_2");
 
         levelScreenMain = new LevelScreenMain(requestHandler);
 // инициализация кнопок Level
@@ -219,6 +220,20 @@ public class MenuScreen extends StartScreen {
                                 !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
                             return false;
                         RectangleGame.setActiveScreen(new LevelScreen_8(requestHandler));
+//                        Gdx.app.log("MyTag", "my informative message");
+                        return false;
+                    }
+                }
+        );
+
+        level_9_Button.addListener(
+                new EventListener() {
+                    @Override
+                    public boolean handle(Event e) {
+                        if (!(e instanceof InputEvent) ||
+                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
+                            return false;
+                        RectangleGame.setActiveScreen(new LevelScreen_9(requestHandler));
 //                        Gdx.app.log("MyTag", "my informative message");
                         return false;
                     }

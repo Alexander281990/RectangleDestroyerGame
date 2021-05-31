@@ -25,10 +25,10 @@ public class LevelScreen_10 extends LevelScreenMain {
 
         Brick tempBrick = new Brick(0,0,mainStage);
         tempBrick.remove();
-        int totalRows = 10;
+        int totalRows = 30;
         int totalCols = 10;
         float marginX = (Gdx.graphics.getWidth() - totalCols * tempBrick.getBrickWidth()) / 2;
-        float marginY = (Gdx.graphics.getHeight() - totalRows * tempBrick.getBrickHeight()) - 150;
+        float marginY = (Gdx.graphics.getHeight() - totalRows * tempBrick.getBrickHeight()) - 50;
         for (int rowNum = 0; rowNum < totalRows; rowNum++) {
             for (int colNum = 0; colNum < totalCols; colNum++) {
                 float x = marginX + tempBrick.getBrickWidth()	* colNum;

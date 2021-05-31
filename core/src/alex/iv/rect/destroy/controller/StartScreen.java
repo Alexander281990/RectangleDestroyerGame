@@ -19,6 +19,7 @@ public class StartScreen extends BaseScreen {
     protected static int recordsLevel_6;
     protected static int recordsLevel_7;
     protected static int recordsLevel_8;
+    protected static int recordsLevel_9;
     protected static int recordsLevel_10;
 
     public IActivityRequestHandler requestHandler;
@@ -43,6 +44,7 @@ public class StartScreen extends BaseScreen {
         recordsLevel_6 = pref.getInteger("records_6");
         recordsLevel_7 = pref.getInteger("records_7");
         recordsLevel_8 = pref.getInteger("records_8");
+        recordsLevel_9 = pref.getInteger("records_9");
         recordsLevel_10 = pref.getInteger("records_10");
         // инициализация кнопок New game и continue
         TextButton startButton = new TextButton( "New game", BaseGame.textButtonStyle );
@@ -63,6 +65,7 @@ public class StartScreen extends BaseScreen {
                         recordsLevel_6 = 0;
                         recordsLevel_7 = 0;
                         recordsLevel_8 = 0;
+                        recordsLevel_9 = 0;
                         recordsLevel_10 = 0;
                         live = 2;
                         pref.putInteger("records_1", recordsLevel_1);
@@ -73,6 +76,7 @@ public class StartScreen extends BaseScreen {
                         pref.putInteger("records_6", recordsLevel_6);
                         pref.putInteger("records_7", recordsLevel_7);
                         pref.putInteger("records_8", recordsLevel_8);
+                        pref.putInteger("records_9", recordsLevel_9);
                         pref.putInteger("records_10", recordsLevel_10);
                         pref.putInteger("liveMemory", live);
                         pref.flush();
