@@ -3,15 +3,15 @@ package alex.iv.rect.destroy.actors;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
 
 import alex.iv.rect.destroy.controller.BaseActor;
 import alex.iv.rect.destroy.controller.LevelScreenMain;
 
 public class Brick extends BaseActor {
 
-    private float brickWidth = LevelScreenMain.getWindowPlayWidth() /11;
-    private float brickHeight = ((LevelScreenMain.getWindowPlayHeight()/5)*2)/11;
+    private float brickWidth = LevelScreenMain.getWindowPlayWidth() / 11;
+    //private float brickHeight = ((LevelScreenMain.getWindowPlayHeight()/5)*2)/11;
+    private float brickHeight = LevelScreenMain.getWindowPlayHeight() / 60;
     private boolean brickMoving = true;
     private boolean brickFlash = true;
     public static int numberBrick;

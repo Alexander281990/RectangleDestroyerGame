@@ -63,13 +63,21 @@ public class LevelScreen_2 extends LevelScreenMain {
             }
         }
 
+//        warp = new Warp(MathUtils.random(LevelScreenMain.getWindowPlayWidth() - 40),
+//                MathUtils.random(Gdx.graphics.getHeight() - 80, LevelScreenMain.getWindowPlayHeight() + 100),
+//                "black_warp.png", mainStage);
+//        warp2 = new Warp(MathUtils.random(LevelScreenMain.getWindowPlayWidth() - 40),
+//                MathUtils.random(Gdx.graphics.getHeight() - 50, LevelScreenMain.getWindowPlayHeight() + 100), mainStage);
+//        warp3 = new Warp(MathUtils.random(LevelScreenMain.getWindowPlayWidth() - 40),
+//                MathUtils.random(Gdx.graphics.getHeight() - 50, LevelScreenMain.getWindowPlayHeight() + 100), mainStage);
+
         warp = new Warp(MathUtils.random(LevelScreenMain.getWindowPlayWidth() - 40),
-                MathUtils.random(Gdx.graphics.getHeight() - 80, LevelScreenMain.getWindowPlayHeight() + 100),
+                MathUtils.random(Gdx.graphics.getHeight() - 80),
                 "black_warp.png", mainStage);
         warp2 = new Warp(MathUtils.random(LevelScreenMain.getWindowPlayWidth() - 40),
-                MathUtils.random(Gdx.graphics.getHeight() - 50, LevelScreenMain.getWindowPlayHeight() + 100), mainStage);
+                MathUtils.random(Gdx.graphics.getHeight() - 50), mainStage);
         warp3 = new Warp(MathUtils.random(LevelScreenMain.getWindowPlayWidth() - 40),
-                MathUtils.random(Gdx.graphics.getHeight() - 50, LevelScreenMain.getWindowPlayHeight() + 100), mainStage);
+                MathUtils.random(Gdx.graphics.getHeight() - 50), mainStage);
 
     }
 

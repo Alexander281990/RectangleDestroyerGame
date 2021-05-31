@@ -25,7 +25,7 @@ public class LevelScreen_10 extends LevelScreenMain {
 
         Brick tempBrick = new Brick(0,0,mainStage);
         tempBrick.remove();
-        int totalRows = 30;
+        int totalRows = 50;
         int totalCols = 10;
         float marginX = (Gdx.graphics.getWidth() - totalCols * tempBrick.getBrickWidth()) / 2;
         float marginY = (Gdx.graphics.getHeight() - totalRows * tempBrick.getBrickHeight()) - 50;
@@ -34,6 +34,9 @@ public class LevelScreen_10 extends LevelScreenMain {
                 float x = marginX + tempBrick.getBrickWidth()	* colNum;
                 float y = marginY + tempBrick.getBrickHeight() * rowNum;
                 Brick brick = new Brick( x, y, mainStage );
+                if (rowNum == 15 || rowNum == 16 || rowNum == 17 || rowNum == 18 || rowNum == 19){
+                    brick.remove();
+                }
                 if (rowNum == 5 || rowNum == 6){
                     brick.setColor(Color.ORANGE);
                     brick.numberColor = 2;

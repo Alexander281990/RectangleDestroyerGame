@@ -57,7 +57,8 @@ public class LevelScreenMain extends MenuScreen {
     @Override
     public void initialize() {
         windowPlayWidth = Gdx.graphics.getWidth();
-        windowPlayHeight = Gdx.graphics.getHeight() / 2f - 100;
+        //windowPlayHeight = Gdx.graphics.getHeight() / 2f - 100;
+        windowPlayHeight = Gdx.graphics.getHeight();
         //BaseActor background = new BaseActor(0, windowPlayHeight, mainStage);
         background = new BaseActor(0, 0, mainStage);
         //background.loadTexture("background/fon_level.png");
@@ -109,7 +110,7 @@ public class LevelScreenMain extends MenuScreen {
         uiTable.add(messageLabel).colspan(2).padTop(Gdx.graphics.getHeight()/8f);
         uiTable.row();
 
-        paddle = new Paddle(windowPlayWidth / 2 - 64 , windowPlayHeight, mainStage);
+        paddle = new Paddle(windowPlayWidth / 2 - 64 , windowPlayHeight / 2.5f, mainStage);
 
 //        bounceSound	= Gdx.audio.newSound(Gdx.files.internal("boing.wav"));
 //        brickBumpSound = Gdx.audio.newSound(Gdx.files.internal("bump.wav"));
@@ -125,7 +126,7 @@ public class LevelScreenMain extends MenuScreen {
         ball.setColor(Color.GREEN);
 
         start = new TextButton( "Start", BaseGame.textButtonStyle );
-        start.setPosition(windowPlayWidth/2 - start.getWidth()/2,(Gdx.graphics.getHeight() - windowPlayHeight) / 2);
+        start.setPosition(windowPlayWidth/2 - start.getWidth()/2,windowPlayHeight / 3.5f);
 
         final TextButton menuButton = new TextButton( "MENU", BaseGame.textButtonStyle );
         menuButton.setPosition(windowPlayWidth/2 - menuButton.getWidth()/2, start.getY() - start.getHeight() - 50);
@@ -298,7 +299,7 @@ public class LevelScreenMain extends MenuScreen {
             }
             if (bal.overlaps(paddle)) {
                 //bounceSound.play();
-                float ballCenterX = bal.getX() + bal.getWidth() / 2;
+                float ballCenterX = bal.getX() + bal.getWidth() / 2; // находим центр шарика по оси Х
                 float paddlePercentHit = (ballCenterX - paddle.getX()) / paddle.getWidth();
                 float bounceAngle = MathUtils.lerp(150, 30, paddlePercentHit);
                 bal.setMotionAngle(bounceAngle);
@@ -386,7 +387,7 @@ public class LevelScreenMain extends MenuScreen {
                     if (paddleStop) {
                         // инициализация кнопки, которая отпускает шарик от весла
                         final TextButton start = new TextButton("Start", BaseGame.textButtonStyle);
-                        start.setPosition(windowPlayWidth / 2 - start.getWidth() / 2, (Gdx.graphics.getHeight() - windowPlayHeight) / 2);
+                        start.setPosition(windowPlayWidth/2 - start.getWidth()/2,windowPlayHeight / 3.5f);
                         uiStage.addActor(start);
                         start.addListener(
                                 new EventListener() {
@@ -482,7 +483,7 @@ public class LevelScreenMain extends MenuScreen {
                 timerPaddleStop = 8;
                 // инициализация кнопки, которая отпускает шарик от весла
                 final TextButton start = new TextButton("Start", BaseGame.textButtonStyle);
-                start.setPosition(windowPlayWidth / 2 - start.getWidth() / 2, (Gdx.graphics.getHeight() - windowPlayHeight) / 2);
+                start.setPosition(windowPlayWidth/2 - start.getWidth()/2,windowPlayHeight / 3.5f);
                 uiStage.addActor(start);
                 start.addListener(
                     new EventListener() {

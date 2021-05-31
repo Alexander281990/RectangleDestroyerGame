@@ -1,5 +1,6 @@
 package alex.iv.rect.destroy.actors;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
@@ -8,10 +9,14 @@ import alex.iv.rect.destroy.controller.BaseActor;
 public class Ball extends BaseActor {
 
     private boolean paused;
+    private float ballHeight = Gdx.graphics.getHeight() / 60f;
+    private float ballWidth = Gdx.graphics.getHeight() / 60f;
 
     public Ball(float x, float y, Stage s) {
         super(x,y,s);
         loadTexture("ball.png");
+        setSize(ballWidth, ballHeight);
+        setBoundaryRectangle();
         setSpeed(700);
         setMaxSpeed(1500);
         setMotionAngle(90);
@@ -23,6 +28,8 @@ public class Ball extends BaseActor {
     public Ball(float x, float y, boolean paused, Stage s) {
         super(x,y,s);
         loadTexture("ball.png");
+        setSize(ballWidth, ballHeight);
+        setBoundaryRectangle();
         setSpeed(700);
         setMaxSpeed(1500);
         setMotionAngle(90);
