@@ -20,7 +20,7 @@ public class LevelScreen_7 extends LevelScreenMain {
     public void initialize() {
         super.initialize();
 
-        showTime(120); // инициализируем метод отображение игрового времени
+        showTime(90); // инициализируем метод отображение игрового времени
         //background.loadTexture("background/fon_level.png");
         recordsLabelWindow.setText("Records: " + recordsLevel_7);
 
