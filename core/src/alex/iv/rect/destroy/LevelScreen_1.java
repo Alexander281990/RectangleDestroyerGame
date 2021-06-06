@@ -16,7 +16,7 @@ public class LevelScreen_1 extends LevelScreenMain {
     // MenuScreen
     public LevelScreen_1(IActivityRequestHandler requestHandler) {
         super(requestHandler);
-        //this.requestHandler = requestHandler;
+        //Brick.numberBrick = 0;
     }
 
     public void initialize() {
@@ -48,7 +48,7 @@ public class LevelScreen_1 extends LevelScreenMain {
                 }
             }
         }
-
+        //Gdx.app.log("MyTag", String.valueOf(Brick.numberBrick));
     }
 
     public void update(float dt) {

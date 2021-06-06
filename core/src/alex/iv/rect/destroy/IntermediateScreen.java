@@ -1,7 +1,6 @@
 package alex.iv.rect.destroy;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
@@ -12,24 +11,20 @@ import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 
-import alex.iv.rect.destroy.controller.BaseActor;
 import alex.iv.rect.destroy.controller.BaseGame;
 import alex.iv.rect.destroy.controller.IActivityRequestHandler;
 import alex.iv.rect.destroy.controller.LevelScreenMain;
 import alex.iv.rect.destroy.controller.MenuScreen;
 import alex.iv.rect.destroy.controller.RectangleGame;
-import alex.iv.rect.destroy.controller.StartScreen;
 
 public class IntermediateScreen extends LevelScreenMain {
 
     private float windowPlayWidth;
     private float windowPlayHeight;
-    //public IActivityRequestHandler requestHandler;
     private int numberLev;
     private Label Live; // метка, которая отображает жизни
     private Label timeIsUp; // метка, которая отображает конец времени
@@ -82,6 +77,10 @@ public class IntermediateScreen extends LevelScreenMain {
                 records.setText("Record = " + recordsLevel_10);
                 results.setText("Your score = " + interScore);
                 break;
+            case 11:
+                records.setText("Record = " + recordsLevel_11);
+                results.setText("Your score = " + interScore);
+                break;
             default:records.setText("Record = " + 0);
         }
         //this.requestHandler=requestHandler;
@@ -102,6 +101,7 @@ public class IntermediateScreen extends LevelScreenMain {
         recordsLevel_8 = pref.getInteger("records_8");
         recordsLevel_9 = pref.getInteger("records_9");
         recordsLevel_10 = pref.getInteger("records_10");
+        recordsLevel_11 = pref.getInteger("records_11");
         // инициализация метки для отображения жизней
         Live = new Label("Live:", BaseGame.labelStyle);
         uiStage.addActor(Live);
@@ -176,6 +176,9 @@ public class IntermediateScreen extends LevelScreenMain {
                                 break;
                             case 10:
                                 RectangleGame.setActiveScreen(new LevelScreen_10(requestHandler));
+                                break;
+                            case 11:
+                                RectangleGame.setActiveScreen(new LevelScreen_11(requestHandler));
                                 break;
 
                         }

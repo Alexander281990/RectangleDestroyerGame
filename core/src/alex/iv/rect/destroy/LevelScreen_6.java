@@ -19,7 +19,7 @@ public class LevelScreen_6 extends LevelScreenMain {
 
     public LevelScreen_6(IActivityRequestHandler requestHandler){
         super(requestHandler);
-        requestHandler.showBannerAd(); // при запуске LevelScreen_6 запускается рекламный банер в нижней части экрана
+        //requestHandler.showBannerAd(); // при запуске LevelScreen_6 запускается рекламный банер в нижней части экрана
     }
 
 
