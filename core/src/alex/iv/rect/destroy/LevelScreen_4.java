@@ -10,14 +10,11 @@ import alex.iv.rect.destroy.controller.LevelScreenMain;
 import alex.iv.rect.destroy.controller.RectangleGame;
 
 public class LevelScreen_4 extends LevelScreenMain {
-    //public IActivityRequestHandler requestHandler;
-    private Brick brick;
 
     // чтобы реклама появлялась, обязательно нужно использовать этод конструктор(с параметром requestHandler), в классе
     // MenuScreen
     public LevelScreen_4(IActivityRequestHandler requestHandler) {
         super(requestHandler);
-        //this.requestHandler = requestHandler;
     }
 
     public void initialize() {
@@ -36,7 +33,8 @@ public class LevelScreen_4 extends LevelScreenMain {
             for (int colNum = 0; colNum < totalCols; colNum++) {
                 float x = marginX + tempBrick.getBrickWidth()	* colNum;
                 float y = marginY + tempBrick.getBrickHeight() * rowNum;
-                brick = new Brick( x, y, mainStage );
+                //public IActivityRequestHandler requestHandler;
+                Brick brick = new Brick(x, y, mainStage);
                 //brick.setBrickMoving(false);
                 brick.setColor(Color.ORANGE);
                 brick.numberColor = 2;

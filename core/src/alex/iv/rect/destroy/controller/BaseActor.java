@@ -24,7 +24,7 @@ public class BaseActor extends Group {
 
     public int numberColor;
     protected int hit;
-    public static int numberBrick;
+    public boolean mBrick;
 
     // переменные для метода leftRightMoving();
     private float timeGame;
@@ -54,8 +54,6 @@ public class BaseActor extends Group {
         super();
         setPosition(x, y);
         s.addActor(this);
-
-        //numberBrick ++;
 
         // Инициализация переменных для анимации
         animation = null;

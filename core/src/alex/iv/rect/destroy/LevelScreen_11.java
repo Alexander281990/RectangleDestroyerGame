@@ -12,17 +12,8 @@ import alex.iv.rect.destroy.controller.RectangleGame;
 
 public class LevelScreen_11 extends LevelScreenMain {
 
-    private int rowNum;
-    private int colNum;
-    private static int row;
-//    private int[] numberBrickLevel_11;
-//    private int numberBrick;
-//    private int numberCell;
-    private Brick brick;
-
     public LevelScreen_11(IActivityRequestHandler requestHandler) {
         super(requestHandler);
-        //BaseActor.numberBrick = 0;
     }
 
     public void initialize() {
@@ -31,25 +22,19 @@ public class LevelScreen_11 extends LevelScreenMain {
         showTime(200); // инициализируем метод отображение игрового времени
         recordsLabelWindow.setText("Records: " + recordsLevel_11);
 
-//        numberBrickLevel_11 = new int[179];
-//        numberBrick = 0;
-//        numberCell = 0;
-
         Brick tempBrick = new Brick(0,0,mainStage);
         tempBrick.remove();
         int totalRows = 18;
         int totalCols = 10;
         float marginX = (Gdx.graphics.getWidth() - totalCols * tempBrick.getBrickWidth()) / 2;
         float marginY = (Gdx.graphics.getHeight() - totalRows * tempBrick.getBrickHeight()) - 50;
+        int rowNum;
         for (rowNum = 0; rowNum < totalRows; rowNum++) {
-            //row ++;
+            int colNum;
             for (colNum = 0; colNum < totalCols; colNum++) {
                 float x = marginX + tempBrick.getBrickWidth()	* colNum;
                 float y = marginY + tempBrick.getBrickHeight() * rowNum;
-                brick = new Brick( x, y, mainStage );
-//                numberBrickLevel_11[numberCell] = numberBrick;
-//                numberCell ++;
-//                numberBrick ++;
+                Brick brick = new Brick(x, y, mainStage);
 
                 if (rowNum == 17 || rowNum == 15 || rowNum == 13 || rowNum == 11 || rowNum == 10 || rowNum == 9 || rowNum == 7 || rowNum == 6 || rowNum == 4) {
                     brick.remove();
@@ -60,6 +45,7 @@ public class LevelScreen_11 extends LevelScreenMain {
                 if (rowNum == 14) {
                     brick.setColor(Color.ORANGE);
                     brick.numberColor = 2;
+                    brick.mBrick = true;
                 }
                 if (rowNum == 14 && colNum == 0 || rowNum == 14 && colNum == 9) {
                     brick.remove();
@@ -126,13 +112,10 @@ public class LevelScreen_11 extends LevelScreenMain {
                 if (rowNum == 0 && colNum == 2 || rowNum == 0 && colNum == 4 || rowNum == 0 && colNum == 5 || rowNum == 0 && colNum == 7) {
                     brick.setColor(Color.ORANGE);
                     brick.numberColor = 2;
+                    brick.mBrick = true;
                 }
-//            if (brick.numberBrick == 72) {
-//                brick.setBrickMoving(false);
-//            }
             }
         }
-        //Gdx.app.log("MyTag", String.valueOf(BaseActor.numberBrick));
     }
 
     public void update(float dt) {
@@ -145,19 +128,12 @@ public class LevelScreen_11 extends LevelScreenMain {
         if (BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick") == 0 && starTimer > 0) {
             allTheBricksAreBroken(recordsLevel_11, "records_11");// инициализируем метод allTheBricksAreBroken - ВСЕ КИРПИЧИ РАЗРУШЕНЫ
         }
-
-
-//        for (BaseActor brick : BaseActor.getList(mainStage, "alex.iv.rect.destroy.actors.Brick")) {
-//            if (brick.numberBrick == 72) {
-//                brick.leftRightMoving(0, 2, 800, 900, 0, 180);
-//            }
-//        }
-
-//        for (int x = 0; x < row; x ++) {
-//            if (x == 2) {
-//                brick.leftRightMoving(0, 2, 800, 900, 0, 180);
-//            }
-//        }
+        
+        for (BaseActor brick : BaseActor.getList(mainStage, "alex.iv.rect.destroy.actors.Brick")) {
+            if (Color.rgb888(brick.getColor()) == Color.rgb888(Color.RED) && brick.mBrick) {
+                brick.leftRightMoving(0, 2, 800, 900, 0, 180);
+            }
+        }
 
     }
 }
