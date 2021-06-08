@@ -22,6 +22,9 @@ public class StartScreen extends BaseScreen {
     protected static int recordsLevel_9;
     protected static int recordsLevel_10;
     protected static int recordsLevel_11;
+    protected static int recordsLevel_12;
+    protected static int recordsLevel_13;
+    protected static int recordsLevel_14;
 
     public IActivityRequestHandler requestHandler;
 
@@ -48,6 +51,9 @@ public class StartScreen extends BaseScreen {
         recordsLevel_9 = pref.getInteger("records_9");
         recordsLevel_10 = pref.getInteger("records_10");
         recordsLevel_11 = pref.getInteger("records_11");
+        recordsLevel_12 = pref.getInteger("records_12");
+        recordsLevel_13 = pref.getInteger("records_13");
+        recordsLevel_14 = pref.getInteger("records_14");
         // инициализация кнопок New game и continue
         TextButton startButton = new TextButton( "New game", BaseGame.textButtonStyle );
         //startButton.setPosition(150,150);
@@ -70,6 +76,9 @@ public class StartScreen extends BaseScreen {
                         recordsLevel_9 = 0;
                         recordsLevel_10 = 0;
                         recordsLevel_11 = 0;
+                        recordsLevel_12 = 0;
+                        recordsLevel_13 = 0;
+                        recordsLevel_14 = 0;
                         live = 2;
                         pref.putInteger("records_1", recordsLevel_1);
                         pref.putInteger("records_2", recordsLevel_2);
@@ -82,6 +91,9 @@ public class StartScreen extends BaseScreen {
                         pref.putInteger("records_9", recordsLevel_9);
                         pref.putInteger("records_10", recordsLevel_10);
                         pref.putInteger("records_11", recordsLevel_11);
+                        pref.putInteger("records_12", recordsLevel_12);
+                        pref.putInteger("records_13", recordsLevel_13);
+                        pref.putInteger("records_14", recordsLevel_14);
                         pref.putInteger("liveMemory", live);
                         pref.flush();
                         RectangleGame.setActiveScreen(new MenuScreen(requestHandler));

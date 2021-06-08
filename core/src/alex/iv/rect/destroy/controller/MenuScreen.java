@@ -14,6 +14,9 @@ import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 import alex.iv.rect.destroy.LevelScreen_1;
 import alex.iv.rect.destroy.LevelScreen_10;
 import alex.iv.rect.destroy.LevelScreen_11;
+import alex.iv.rect.destroy.LevelScreen_12;
+import alex.iv.rect.destroy.LevelScreen_13;
+import alex.iv.rect.destroy.LevelScreen_14;
 import alex.iv.rect.destroy.LevelScreen_2;
 import alex.iv.rect.destroy.LevelScreen_3;
 import alex.iv.rect.destroy.LevelScreen_4;
@@ -262,6 +265,48 @@ public class MenuScreen extends StartScreen {
                                 !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
                             return false;
                         RectangleGame.setActiveScreen(new LevelScreen_11(requestHandler));
+//                        Gdx.app.log("MyTag", "my informative message");
+                        return false;
+                    }
+                }
+        );
+
+        level_12_Button.addListener(
+                new EventListener() {
+                    @Override
+                    public boolean handle(Event e) {
+                        if (!(e instanceof InputEvent) ||
+                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
+                            return false;
+                        RectangleGame.setActiveScreen(new LevelScreen_12(requestHandler));
+//                        Gdx.app.log("MyTag", "my informative message");
+                        return false;
+                    }
+                }
+        );
+
+        level_13_Button.addListener(
+                new EventListener() {
+                    @Override
+                    public boolean handle(Event e) {
+                        if (!(e instanceof InputEvent) ||
+                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
+                            return false;
+                        RectangleGame.setActiveScreen(new LevelScreen_13(requestHandler));
+//                        Gdx.app.log("MyTag", "my informative message");
+                        return false;
+                    }
+                }
+        );
+
+        level_14_Button.addListener(
+                new EventListener() {
+                    @Override
+                    public boolean handle(Event e) {
+                        if (!(e instanceof InputEvent) ||
+                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
+                            return false;
+                        RectangleGame.setActiveScreen(new LevelScreen_14(requestHandler));
 //                        Gdx.app.log("MyTag", "my informative message");
                         return false;
                     }
