@@ -8,6 +8,47 @@ import alex.iv.rect.destroy.controller.IActivityRequestHandler;
 import alex.iv.rect.destroy.controller.LevelScreenMain;
 import alex.iv.rect.destroy.controller.RectangleGame;
 
+
+/** Методы для класса Brick, усложняющие игру
+
+ *  brick.setColor(Color.RED); - задает красный цвет
+
+ *  brick.setColor(Color.ORANGE); - задает оранжевый цвет
+    brick.numberColor = 2;
+
+ *  brick.setColor(Color.YELLOW); - задает желтый цвет
+    brick.numberColor = 3;
+
+ *  brick.setColor(Color.GREEN); - задает зеленый цвет
+    brick.numberColor = 4;
+
+ *  brick.setColor(Color.BLUE); - задает синий цвет
+    brick.numberColor = 5;
+
+ *  brick.setBrickMoving(false); - заставляет двигаться хаотично кирпичи. Пишется в методе public void initialize() { }, при создании brick
+
+ *  brick.setBrickFlash(false); - заставляет мигать разными цветами кирпичи. Пишется в методе public void initialize() { }, при создании brick
+
+ - если brick красного цвета и brick.mBrick == true, то этод код заставляет его двигаться в разные стороны с разной скоростью и длинной(brick.leftRightMoving(0, 2, 800, 900, 0, 180);)
+ - изначально brick.mBrick == false;
+ - чтобы этод код заработал, необходимо при создании brick(в месте которое нам нужно) прописать brick.mBrick == true;
+ - пример LevelScreen_11 --> строка 115
+ *  for (BaseActor brick : BaseActor.getList(mainStage, "alex.iv.rect.destroy.actors.Brick")) {
+        if (Color.rgb888(brick.getColor()) == Color.rgb888(Color.RED) && brick.mBrick) {
+            brick.leftRightMoving(0, 2, 800, 900, 0, 180);
+        }
+    }
+
+ - если brick красного цвета, то этод код заставляет его двигаться в разные стороны с разной скоростью и длинной(brick.leftRightMoving(0, 2, 800, 900, 0, 180);)
+ - пишется в методе public void update(float dt) { }
+ *  for (BaseActor brick : BaseActor.getList(mainStage, "alex.iv.rect.destroy.actors.Brick")) {
+        if (Color.rgb888(brick.getColor()) == Color.rgb888(Color.RED)) {
+            brick.leftRightMoving(0, 2, 800, 900, 0, 180);
+        }
+    }
+
+ * */
+
 public class LevelScreen_1 extends LevelScreenMain {
 
     //public IActivityRequestHandler requestHandler;
