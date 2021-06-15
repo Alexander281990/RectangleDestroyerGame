@@ -40,6 +40,8 @@ public class LevelScreenMain extends MenuScreen {
     private Label messageLabel; //
     protected Ball ball;
     private TextButton start;
+
+    float bounceAngle;
 //    private Sound bounceSound;
 //    private Sound brickBumpSound;
 //    private Sound wallBumpSound;
@@ -299,10 +301,18 @@ public class LevelScreenMain extends MenuScreen {
             }
             if (bal.overlaps(paddle)) {
                 //bounceSound.play();
+                float positionPaddle_Y = paddle.getY() + paddle.getHeight() / 2; // находим центр paddle по оси Y
+                float positionBall_Y = bal.getY() + bal.getHeight() / 2; // находим центр ball по оси Y
                 float ballCenterX = bal.getX() + bal.getWidth() / 2; // находим центр шарика по оси Х
                 float paddlePercentHit = (ballCenterX - paddle.getX()) / paddle.getWidth();
-                float bounceAngle = MathUtils.lerp(150, 30, paddlePercentHit);
+                // если во время столкновения ось Y обьекта bal больше оси Y обьекта paddle, то мячь отскакивает и движется вверх. В противном случае - вниз
+                if (positionBall_Y > positionPaddle_Y) {
+                    bounceAngle = MathUtils.lerp(150, 30, paddlePercentHit);
+                } else {
+                    bounceAngle = MathUtils.lerp(-150, -30, paddlePercentHit);
+                }
                 bal.setMotionAngle(bounceAngle);
+
             }
 
             for (BaseActor brick : BaseActor.getList(mainStage, "alex.iv.rect.destroy.actors.BrickHard")) {
