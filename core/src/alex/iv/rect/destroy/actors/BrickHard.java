@@ -8,7 +8,6 @@ import alex.iv.rect.destroy.controller.LevelScreenMain;
 public class BrickHard extends BaseActor {
 
     private float brickWidth = LevelScreenMain.getWindowPlayWidth() /11;
-    //private float brickHeight = ((LevelScreenMain.getWindowPlayHeight()/5)*2)/11;
     private float brickHeight = LevelScreenMain.getWindowPlayHeight() / 60;
 
     public BrickHard(float x, float y, Stage s) {

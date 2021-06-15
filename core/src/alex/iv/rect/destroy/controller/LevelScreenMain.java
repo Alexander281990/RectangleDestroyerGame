@@ -321,6 +321,12 @@ public class LevelScreenMain extends MenuScreen {
                 }
             }
 
+            for (BaseActor hindrance : BaseActor.getList(mainStage, "alex.iv.rect.destroy.actors.Hindrance")) {
+                if (bal.overlaps(hindrance)) {
+                    bal.bounceOff(hindrance);
+                }
+            }
+
             for (BaseActor br : BaseActor.getList(mainStage, "alex.iv.rect.destroy.actors.Brick")) {
                 if (bal.overlaps(br)) {
                     bal.bounceOff(br);

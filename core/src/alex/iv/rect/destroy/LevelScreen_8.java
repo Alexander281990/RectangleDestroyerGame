@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.MathUtils;
 
 import alex.iv.rect.destroy.actors.Brick;
 import alex.iv.rect.destroy.actors.BrickHard;
+import alex.iv.rect.destroy.actors.Hindrance;
 import alex.iv.rect.destroy.controller.BaseActor;
 import alex.iv.rect.destroy.controller.IActivityRequestHandler;
 import alex.iv.rect.destroy.controller.LevelScreenMain;
@@ -47,6 +48,8 @@ public class LevelScreen_8 extends LevelScreenMain {
                 }
                 if (rowNum == 0 && colNum == 0) {
                     warp1 = new Warp( x, y, mainStage);
+                    Hindrance hindrance = new Hindrance(x, y, mainStage);
+                    hindrance.setHindranceMoving(false);
                 }
                 if (rowNum == 0 && colNum == 9) {
                     warp2 = new Warp( x, y, mainStage);
