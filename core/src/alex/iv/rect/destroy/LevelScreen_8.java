@@ -48,8 +48,6 @@ public class LevelScreen_8 extends LevelScreenMain {
                 }
                 if (rowNum == 0 && colNum == 0) {
                     warp1 = new Warp( x, y, mainStage);
-                    Hindrance hindrance = new Hindrance(x, y, mainStage);
-                    hindrance.setHindranceMoving(false);
                 }
                 if (rowNum == 0 && colNum == 9) {
                     warp2 = new Warp( x, y, mainStage);

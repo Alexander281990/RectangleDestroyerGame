@@ -42,6 +42,7 @@ public class LevelScreenMain extends MenuScreen {
     private TextButton start;
 
     float bounceAngle;
+    float hindranceAngle;
 //    private Sound bounceSound;
 //    private Sound brickBumpSound;
 //    private Sound wallBumpSound;
@@ -323,7 +324,21 @@ public class LevelScreenMain extends MenuScreen {
 
             for (BaseActor hindrance : BaseActor.getList(mainStage, "alex.iv.rect.destroy.actors.Hindrance")) {
                 if (bal.overlaps(hindrance)) {
-                    bal.bounceOff(hindrance);
+//                    float positionHindrance_Y = hindrance.getY() + hindrance.getHeight() / 2;
+//                    float positionBall_Y = bal.getY() + bal.getHeight() / 2;
+//                    float ballCenterX = bal.getX() + bal.getWidth() / 2; // находим центр шарика по оси Х
+//                    float hindrancePercentHit = (ballCenterX - hindrance.getX()) / hindrance.getWidth();
+//                    if (positionBall_Y > positionHindrance_Y) {
+//                        hindranceAngle = MathUtils.lerp(150, 30, hindrancePercentHit);
+//                    } else {
+//                        hindranceAngle = MathUtils.lerp(-150, -30, hindrancePercentHit);
+//                    }
+//                    bal.setMotionAngle(hindranceAngle);
+                    //////////////////или/////////////////////
+                    float ballCenterX = bal.getX() + bal.getWidth() / 2; // находим центр шарика по оси Х
+                    float hindrancePercentHit = (ballCenterX - hindrance.getX()) / hindrance.getWidth();
+                    hindranceAngle = MathUtils.lerp(150, 30, hindrancePercentHit);
+                    bal.setMotionAngle(hindranceAngle);
                 }
             }
 

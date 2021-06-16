@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 
 import alex.iv.rect.destroy.actors.Brick;
+import alex.iv.rect.destroy.actors.BrickHard;
 import alex.iv.rect.destroy.controller.BaseActor;
 import alex.iv.rect.destroy.controller.IActivityRequestHandler;
 import alex.iv.rect.destroy.controller.LevelScreenMain;
@@ -19,7 +20,7 @@ public class LevelScreen_10 extends LevelScreenMain {
     public void initialize() {
         super.initialize();
 
-        showTime(120); // инициализируем метод отображение игрового времени
+        showTime(180); // инициализируем метод отображение игрового времени
         background.loadTexture("background/fon_level.png");
         recordsLabelWindow.setText("Records: " + recordsLevel_10);
 
@@ -34,16 +35,23 @@ public class LevelScreen_10 extends LevelScreenMain {
                 float x = marginX + tempBrick.getBrickWidth()	* colNum;
                 float y = marginY + tempBrick.getBrickHeight() * rowNum;
                 Brick brick = new Brick( x, y, mainStage );
-                if (rowNum == 15 || rowNum == 16 || rowNum == 17 || rowNum == 18 || rowNum == 19){
+                if (rowNum == 15 || rowNum == 16 || rowNum == 17 || rowNum == 18){
                     brick.remove();
                 }
-                if (rowNum == 5 || rowNum == 6){
-                    brick.setColor(Color.ORANGE);
-                    brick.numberColor = 2;
-                } else  if (rowNum == 7){
-                    brick.setColor(Color.YELLOW);
-                    brick.numberColor = 3;
-                } else {
+                if (rowNum == 1 || rowNum == 2 || rowNum == 3 || rowNum == 4 || rowNum == 5 || rowNum == 6 || rowNum == 7 ||
+                        rowNum == 8 || rowNum == 9 || rowNum == 10 || rowNum == 11 || rowNum == 12 || rowNum == 13 || rowNum == 14 ||
+                        rowNum == 20 || rowNum == 21 || rowNum == 22 || rowNum == 23 || rowNum == 24 || rowNum == 25 || rowNum == 26 ||
+                        rowNum == 27 || rowNum == 28 || rowNum == 29 || rowNum == 30 || rowNum == 31 || rowNum == 32 || rowNum == 33 ||
+                        rowNum == 34 || rowNum == 35 || rowNum == 36 || rowNum == 37 || rowNum == 38 || rowNum == 39 || rowNum == 40 ||
+                        rowNum == 41 || rowNum == 42 || rowNum == 43 || rowNum == 44 || rowNum == 45 || rowNum == 46 || rowNum == 47 ||
+                        rowNum == 48 || rowNum == 49 || rowNum == 19){
+                    brick.setColor(Color.RED);
+                }
+                if (rowNum == 0 && colNum == 0 || rowNum == 0 && colNum == 2 || rowNum == 0 && colNum == 4 || rowNum == 0 && colNum == 6 || rowNum == 0 && colNum == 8) {
+                    brick.remove();
+                    BrickHard brickHard = new BrickHard(x, y, mainStage);
+                }
+                if (rowNum == 0 && colNum == 1 || rowNum == 0 && colNum == 3 || rowNum == 0 && colNum == 5 || rowNum == 0 && colNum == 7 || rowNum == 0 && colNum == 9) {
                     brick.setColor(Color.RED);
                 }
             }
