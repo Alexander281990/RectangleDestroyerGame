@@ -251,6 +251,10 @@ public class LevelScreen_2 extends LevelScreenMain {
                 if (rowNum == 23 && colNum == 4) {
                     warp7 = new Warp( x, y, mainStage);
                 }
+                if (rowNum == 6 && colNum == 0 || rowNum == 7 && colNum == 9 || rowNum == 18 && colNum == 0 || rowNum == 11 && colNum == 3 ||
+                        rowNum == 14 && colNum == 6 || rowNum == 19 && colNum == 9) {
+                    brick.remove();
+                }
 
             }
         }
