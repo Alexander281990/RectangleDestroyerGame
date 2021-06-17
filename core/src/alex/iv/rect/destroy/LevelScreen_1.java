@@ -47,6 +47,15 @@ import alex.iv.rect.destroy.controller.RectangleGame;
         }
     }
 
+
+ //        warp = new Warp(MathUtils.random(LevelScreenMain.getWindowPlayWidth() - 40),
+ //                MathUtils.random(Gdx.graphics.getHeight() - 80),
+ //                "black_warp.png", mainStage);
+ //        warp2 = new Warp(MathUtils.random(LevelScreenMain.getWindowPlayWidth() - 40),
+ //                MathUtils.random(Gdx.graphics.getHeight() - 50), mainStage);
+ //        warp3 = new Warp(MathUtils.random(LevelScreenMain.getWindowPlayWidth() - 40),
+ //                MathUtils.random(Gdx.graphics.getHeight() - 50), mainStage);
+
  * */
 
 public class LevelScreen_1 extends LevelScreenMain {
