@@ -43,6 +43,7 @@ public class LevelScreenMain extends MenuScreen {
 
     float bounceAngle;
     float hindranceAngle;
+    float brickHardAngle;
 //    private Sound bounceSound;
 //    private Sound brickBumpSound;
 //    private Sound wallBumpSound;
@@ -316,9 +317,18 @@ public class LevelScreenMain extends MenuScreen {
 
             }
 
-            for (BaseActor brick : BaseActor.getList(mainStage, "alex.iv.rect.destroy.actors.BrickHard")) {
-                if (bal.overlaps(brick)) {
-                    bal.bounceOff(brick);
+            for (BaseActor brickHard : BaseActor.getList(mainStage, "alex.iv.rect.destroy.actors.BrickHard")) {
+                if (bal.overlaps(brickHard)) {
+                    float positionBrickHard_Y = brickHard.getY() + brickHard.getHeight() / 2;
+                    float positionBall_Y = bal.getY() + bal.getHeight() / 2;
+                    float ballCenterX = bal.getX() + bal.getWidth() / 2; // находим центр шарика по оси Х
+                    float brickHardPercentHit = (ballCenterX - brickHard.getX()) / brickHard.getWidth();
+                    if (positionBall_Y > positionBrickHard_Y) {
+                        brickHardAngle = MathUtils.lerp(150, 30, brickHardPercentHit);
+                    } else {
+                        brickHardAngle = MathUtils.lerp(-150, -30, brickHardPercentHit);
+                    }
+                    bal.setMotionAngle(brickHardAngle);
                 }
             }
 
