@@ -25,12 +25,27 @@ import alex.iv.rect.destroy.LevelScreen_6;
 import alex.iv.rect.destroy.LevelScreen_7;
 import alex.iv.rect.destroy.LevelScreen_8;
 import alex.iv.rect.destroy.LevelScreen_9;
+import alex.iv.rect.destroy.actors.Lock;
 
 public class MenuScreen extends StartScreen {
 
     public IActivityRequestHandler requestHandler;
     public LevelScreenMain levelScreenMain;
     public static Preferences pref;
+    private Lock lock1;
+    private Lock lock2;
+    private Lock lock3;
+    private Lock lock4;
+    private Lock lock5;
+    private Lock lock6;
+    private Lock lock7;
+    private Lock lock8;
+    private Lock lock9;
+    private Lock lock10;
+    private Lock lock11;
+    private Lock lock12;
+    private Lock lock13;
+    private Lock lock14;
 
     public MenuScreen() {
 
@@ -43,17 +58,30 @@ public class MenuScreen extends StartScreen {
     @Override
     public void initialize() {
 
+        lock1 = new Lock(0, 0, mainStage);
+        lock2 = new Lock(0, 0, mainStage);
+        lock3 = new Lock(0, 0, mainStage);
+        lock4 = new Lock(0, 0, mainStage);
+        lock5 = new Lock(0, 0, mainStage);
+        lock6 = new Lock(0, 0, mainStage);
+        lock7 = new Lock(0, 0, mainStage);
+        lock8 = new Lock(0, 0, mainStage);
+        lock9 = new Lock(0, 0, mainStage);
+        lock10 = new Lock(0, 0, mainStage);
+        lock11 = new Lock(0, 0, mainStage);
+        lock12 = new Lock(0, 0, mainStage);
+        lock13 = new Lock(0, 0, mainStage);
+        lock14 = new Lock(0, 0, mainStage);
+
         pref = Gdx.app.getPreferences("Preferences");// инициализация Preferences для сохранения лучшего результата в телефоне
-//        recordsLevel_1 = pref.getInteger("records_1");
-//        recordsLevel_2 = pref.getInteger("records_2");
 
         levelScreenMain = new LevelScreenMain(requestHandler);
 // инициализация кнопок Level
         TextButton level_1_Button = new TextButton("01", BaseGame.textButtonStyleLevel);
-        level_1_Button.setColor(Color.GREEN);
+        level_1_Button.setColor(Color.RED);
         uiStage.addActor(level_1_Button);
         TextButton level_2_Button = new TextButton("02", BaseGame.textButtonStyleLevel);
-        level_2_Button.setColor(Color.GREEN);
+        level_2_Button.setColor(Color.RED);
         uiStage.addActor(level_2_Button);
         TextButton level_3_Button = new TextButton("03", BaseGame.textButtonStyleLevel);
         level_3_Button.setColor(Color.RED);
@@ -66,23 +94,32 @@ public class MenuScreen extends StartScreen {
         uiStage.addActor(level_5_Button);
 
         TextButton level_6_Button = new TextButton("06", BaseGame.textButtonStyleLevel);
+        level_6_Button.setColor(Color.RED);
         uiStage.addActor(level_6_Button);
         TextButton level_7_Button = new TextButton("07", BaseGame.textButtonStyleLevel);
+        level_7_Button.setColor(Color.RED);
         uiStage.addActor(level_7_Button);
         TextButton level_8_Button = new TextButton("08", BaseGame.textButtonStyleLevel);
+        level_8_Button.setColor(Color.RED);
         uiStage.addActor(level_8_Button);
         TextButton level_9_Button = new TextButton("09", BaseGame.textButtonStyleLevel);
+        level_9_Button.setColor(Color.RED);
         uiStage.addActor(level_9_Button);
         TextButton level_10_Button = new TextButton("10", BaseGame.textButtonStyleLevel);
+        level_10_Button.setColor(Color.RED);
         uiStage.addActor(level_10_Button);
 
         TextButton level_11_Button = new TextButton("11", BaseGame.textButtonStyleLevel);
+        level_11_Button.setColor(Color.RED);
         uiStage.addActor(level_11_Button);
         TextButton level_12_Button = new TextButton("12", BaseGame.textButtonStyleLevel);
+        level_12_Button.setColor(Color.RED);
         uiStage.addActor(level_12_Button);
         TextButton level_13_Button = new TextButton("13", BaseGame.textButtonStyleLevel);
+        level_13_Button.setColor(Color.RED);
         uiStage.addActor(level_13_Button);
         TextButton level_14_Button = new TextButton("14", BaseGame.textButtonStyleLevel);
+        level_14_Button.setColor(Color.RED);
         uiStage.addActor(level_14_Button);
         TextButton level_15_Button = new TextButton("15", BaseGame.textButtonStyleLevel);
         uiStage.addActor(level_15_Button);
@@ -128,7 +165,9 @@ public class MenuScreen extends StartScreen {
                                 !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
                             return false;
                         requestHandler.hideBannerAd(); // при нажатии на кнопку баннер скрывается
-                        RectangleGame.setActiveScreen(new LevelScreen_1(requestHandler));
+                        if (attainment >= 1) {
+                            RectangleGame.setActiveScreen(new LevelScreen_1(requestHandler));
+                        }
                         return false;
                     }
                 }
@@ -142,7 +181,9 @@ public class MenuScreen extends StartScreen {
                                 !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
                             return false;
                         requestHandler.hideBannerAd(); // при нажатии на кнопку баннер скрывается
-                        RectangleGame.setActiveScreen(new LevelScreen_2(requestHandler));
+                        if (attainment >= 2) {
+                            RectangleGame.setActiveScreen(new LevelScreen_2(requestHandler));
+                        }
                         return false;
                     }
                 }
@@ -155,7 +196,9 @@ public class MenuScreen extends StartScreen {
                         if (!(e instanceof InputEvent) ||
                                 !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
                             return false;
-                        RectangleGame.setActiveScreen(new LevelScreen_3(requestHandler));
+                        if (attainment >= 3) {
+                            RectangleGame.setActiveScreen(new LevelScreen_3(requestHandler));
+                        }
                         return false;
                     }
                 }
@@ -168,7 +211,9 @@ public class MenuScreen extends StartScreen {
                         if (!(e instanceof InputEvent) ||
                                 !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
                             return false;
-                        RectangleGame.setActiveScreen(new LevelScreen_4(requestHandler));
+                        if (attainment >= 4) {
+                            RectangleGame.setActiveScreen(new LevelScreen_4(requestHandler));
+                        }
                         return false;
                     }
                 }
@@ -181,7 +226,9 @@ public class MenuScreen extends StartScreen {
                         if (!(e instanceof InputEvent) ||
                                 !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
                             return false;
-                        RectangleGame.setActiveScreen(new LevelScreen_5(requestHandler));
+                        if (attainment >= 5) {
+                            RectangleGame.setActiveScreen(new LevelScreen_5(requestHandler));
+                        }
                         return false;
                     }
                 }
@@ -194,8 +241,9 @@ public class MenuScreen extends StartScreen {
                         if (!(e instanceof InputEvent) ||
                                 !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
                             return false;
-                        RectangleGame.setActiveScreen(new LevelScreen_6(requestHandler));
-                        //Gdx.app.log("MyTag", "my informative message");
+                        if (attainment >= 6) {
+                            RectangleGame.setActiveScreen(new LevelScreen_6(requestHandler));
+                        }
                         return false;
                     }
                 }
@@ -208,8 +256,9 @@ public class MenuScreen extends StartScreen {
                         if (!(e instanceof InputEvent) ||
                                 !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
                             return false;
-                        RectangleGame.setActiveScreen(new LevelScreen_7(requestHandler));
-//                        Gdx.app.log("MyTag", "my informative message");
+                        if (attainment >= 7) {
+                            RectangleGame.setActiveScreen(new LevelScreen_7(requestHandler));
+                        }
                         return false;
                     }
                 }
@@ -222,8 +271,9 @@ public class MenuScreen extends StartScreen {
                         if (!(e instanceof InputEvent) ||
                                 !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
                             return false;
-                        RectangleGame.setActiveScreen(new LevelScreen_8(requestHandler));
-//                        Gdx.app.log("MyTag", "my informative message");
+                        if (attainment >= 8) {
+                            RectangleGame.setActiveScreen(new LevelScreen_8(requestHandler));
+                        }
                         return false;
                     }
                 }
@@ -236,8 +286,9 @@ public class MenuScreen extends StartScreen {
                         if (!(e instanceof InputEvent) ||
                                 !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
                             return false;
-                        RectangleGame.setActiveScreen(new LevelScreen_9(requestHandler));
-//                        Gdx.app.log("MyTag", "my informative message");
+                        if (attainment >= 9) {
+                            RectangleGame.setActiveScreen(new LevelScreen_9(requestHandler));
+                        }
                         return false;
                     }
                 }
@@ -250,8 +301,9 @@ public class MenuScreen extends StartScreen {
                         if (!(e instanceof InputEvent) ||
                                 !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
                             return false;
-                        RectangleGame.setActiveScreen(new LevelScreen_10(requestHandler));
-//                        Gdx.app.log("MyTag", "my informative message");
+                        if (attainment >= 10) {
+                            RectangleGame.setActiveScreen(new LevelScreen_10(requestHandler));
+                        }
                         return false;
                     }
                 }
@@ -264,8 +316,9 @@ public class MenuScreen extends StartScreen {
                         if (!(e instanceof InputEvent) ||
                                 !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
                             return false;
-                        RectangleGame.setActiveScreen(new LevelScreen_11(requestHandler));
-//                        Gdx.app.log("MyTag", "my informative message");
+                        if (attainment >= 11) {
+                            RectangleGame.setActiveScreen(new LevelScreen_11(requestHandler));
+                        }
                         return false;
                     }
                 }
@@ -278,8 +331,9 @@ public class MenuScreen extends StartScreen {
                         if (!(e instanceof InputEvent) ||
                                 !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
                             return false;
-                        RectangleGame.setActiveScreen(new LevelScreen_12(requestHandler));
-//                        Gdx.app.log("MyTag", "my informative message");
+                        if (attainment >= 12) {
+                            RectangleGame.setActiveScreen(new LevelScreen_12(requestHandler));
+                        }
                         return false;
                     }
                 }
@@ -292,8 +346,9 @@ public class MenuScreen extends StartScreen {
                         if (!(e instanceof InputEvent) ||
                                 !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
                             return false;
-                        RectangleGame.setActiveScreen(new LevelScreen_13(requestHandler));
-//                        Gdx.app.log("MyTag", "my informative message");
+                        if (attainment >= 13) {
+                            RectangleGame.setActiveScreen(new LevelScreen_13(requestHandler));
+                        }
                         return false;
                     }
                 }
@@ -306,8 +361,9 @@ public class MenuScreen extends StartScreen {
                         if (!(e instanceof InputEvent) ||
                                 !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
                             return false;
-                        RectangleGame.setActiveScreen(new LevelScreen_14(requestHandler));
-//                        Gdx.app.log("MyTag", "my informative message");
+                        if (attainment >= 14) {
+                            RectangleGame.setActiveScreen(new LevelScreen_14(requestHandler));
+                        }
                         return false;
                     }
                 }
@@ -355,10 +411,176 @@ public class MenuScreen extends StartScreen {
         uiTable.add(level_28_Button).pad(15,15,15,15);
         uiTable.add(level_29_Button).pad(15,15,15,15);
         uiTable.add(level_30_Button).pad(15,15,15,15);
+
+        level_1_Button.addActor(lock1);
+        lock1.setPosition(level_1_Button.getWidth() / 2 - lock1.getWidth() / 2, level_1_Button.getHeight() / 2 - lock1.getHeight() / 2);
+        level_3_Button.addActor(lock3);
+        lock3.setPosition(level_3_Button.getWidth() / 2 - lock3.getWidth() / 2, level_3_Button.getHeight() / 2 - lock3.getHeight() / 2);
+        level_2_Button.addActor(lock2);
+        lock2.setPosition(level_2_Button.getWidth() / 2 - lock2.getWidth() / 2, level_2_Button.getHeight() / 2 - lock2.getHeight() / 2);
+        level_4_Button.addActor(lock4);
+        lock4.setPosition(level_4_Button.getWidth() / 2 - lock4.getWidth() / 2, level_4_Button.getHeight() / 2 - lock4.getHeight() / 2);
+        level_5_Button.addActor(lock5);
+        lock5.setPosition(level_5_Button.getWidth() / 2 - lock5.getWidth() / 2, level_5_Button.getHeight() / 2 - lock5.getHeight() / 2);
+        level_6_Button.addActor(lock6);
+        lock6.setPosition(level_6_Button.getWidth() / 2 - lock6.getWidth() / 2, level_6_Button.getHeight() / 2 - lock6.getHeight() / 2);
+        level_7_Button.addActor(lock7);
+        lock7.setPosition(level_7_Button.getWidth() / 2 - lock7.getWidth() / 2, level_7_Button.getHeight() / 2 - lock7.getHeight() / 2);
+        level_8_Button.addActor(lock8);
+        lock8.setPosition(level_8_Button.getWidth() / 2 - lock8.getWidth() / 2, level_8_Button.getHeight() / 2 - lock8.getHeight() / 2);
+        level_9_Button.addActor(lock9);
+        lock9.setPosition(level_9_Button.getWidth() / 2 - lock9.getWidth() / 2, level_9_Button.getHeight() / 2 - lock9.getHeight() / 2);
+        level_10_Button.addActor(lock10);
+        lock10.setPosition(level_10_Button.getWidth() / 2 - lock10.getWidth() / 2, level_10_Button.getHeight() / 2 - lock10.getHeight() / 2);
+        level_11_Button.addActor(lock11);
+        lock11.setPosition(level_11_Button.getWidth() / 2 - lock11.getWidth() / 2, level_11_Button.getHeight() / 2 - lock11.getHeight() / 2);
+        level_12_Button.addActor(lock12);
+        lock12.setPosition(level_12_Button.getWidth() / 2 - lock12.getWidth() / 2, level_12_Button.getHeight() / 2 - lock12.getHeight() / 2);
+        level_13_Button.addActor(lock13);
+        lock13.setPosition(level_13_Button.getWidth() / 2 - lock13.getWidth() / 2, level_13_Button.getHeight() / 2 - lock13.getHeight() / 2);
+        level_14_Button.addActor(lock14);
+        lock14.setPosition(level_14_Button.getWidth() / 2 - lock14.getWidth() / 2, level_14_Button.getHeight() / 2 - lock14.getHeight() / 2);
+
+        Gdx.app.log("MyTag", String.valueOf(attainment));
     }
 
     @Override
     public void update(float var1) {
-
+        switch (attainment) {
+            case 1:
+                lock1.remove();
+                break;
+            case 2:
+                lock1.remove();
+                lock2.remove();
+                break;
+            case 3:
+                lock1.remove();
+                lock2.remove();
+                lock3.remove();
+                break;
+            case 4:
+                lock1.remove();
+                lock2.remove();
+                lock3.remove();
+                lock4.remove();
+                break;
+            case 5:
+                lock1.remove();
+                lock2.remove();
+                lock3.remove();
+                lock4.remove();
+                lock5.remove();
+                break;
+            case 6:
+                lock1.remove();
+                lock2.remove();
+                lock3.remove();
+                lock4.remove();
+                lock5.remove();
+                lock6.remove();
+                break;
+            case 7:
+                lock1.remove();
+                lock2.remove();
+                lock3.remove();
+                lock4.remove();
+                lock5.remove();
+                lock6.remove();
+                lock7.remove();
+                break;
+            case 8:
+                lock1.remove();
+                lock2.remove();
+                lock3.remove();
+                lock4.remove();
+                lock5.remove();
+                lock6.remove();
+                lock7.remove();
+                lock8.remove();
+                break;
+            case 9:
+                lock1.remove();
+                lock2.remove();
+                lock3.remove();
+                lock4.remove();
+                lock5.remove();
+                lock6.remove();
+                lock7.remove();
+                lock8.remove();
+                lock9.remove();
+                break;
+            case 10:
+                lock1.remove();
+                lock2.remove();
+                lock3.remove();
+                lock4.remove();
+                lock5.remove();
+                lock6.remove();
+                lock7.remove();
+                lock8.remove();
+                lock9.remove();
+                lock10.remove();
+                break;
+            case 11:
+                lock1.remove();
+                lock2.remove();
+                lock3.remove();
+                lock4.remove();
+                lock5.remove();
+                lock6.remove();
+                lock7.remove();
+                lock8.remove();
+                lock9.remove();
+                lock10.remove();
+                lock11.remove();
+                break;
+            case 12:
+                lock1.remove();
+                lock2.remove();
+                lock3.remove();
+                lock4.remove();
+                lock5.remove();
+                lock6.remove();
+                lock7.remove();
+                lock8.remove();
+                lock9.remove();
+                lock10.remove();
+                lock11.remove();
+                lock12.remove();
+                break;
+            case 13:
+                lock1.remove();
+                lock2.remove();
+                lock3.remove();
+                lock4.remove();
+                lock5.remove();
+                lock6.remove();
+                lock7.remove();
+                lock8.remove();
+                lock9.remove();
+                lock10.remove();
+                lock11.remove();
+                lock12.remove();
+                lock13.remove();
+                break;
+            case 14:
+                lock1.remove();
+                lock2.remove();
+                lock3.remove();
+                lock4.remove();
+                lock5.remove();
+                lock6.remove();
+                lock7.remove();
+                lock8.remove();
+                lock9.remove();
+                lock10.remove();
+                lock11.remove();
+                lock12.remove();
+                lock13.remove();
+                lock14.remove();
+                break;
+            default:
+        }
     }
 }

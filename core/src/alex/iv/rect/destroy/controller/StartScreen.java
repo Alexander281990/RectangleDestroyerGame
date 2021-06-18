@@ -11,6 +11,7 @@ public class StartScreen extends BaseScreen {
 
     private static Preferences pref;
     public static int live = 2;
+    public static int attainment = 1;
     protected static int recordsLevel_1;
     protected static int recordsLevel_2;
     protected static int recordsLevel_3;
@@ -40,6 +41,7 @@ public class StartScreen extends BaseScreen {
 
         pref = Gdx.app.getPreferences("Preferences");// инициализация Preferences для сохранения лучшего результата в телефоне
         live = pref.getInteger("liveMemory");
+        attainment = pref.getInteger("attainmentMemory");
         recordsLevel_1 = pref.getInteger("records_1");
         recordsLevel_2 = pref.getInteger("records_2");
         recordsLevel_3 = pref.getInteger("records_3");
@@ -80,6 +82,8 @@ public class StartScreen extends BaseScreen {
                         recordsLevel_13 = 0;
                         recordsLevel_14 = 0;
                         live = 2;
+                        attainment = 1;
+                        pref.putInteger("attainmentMemory", attainment);
                         pref.putInteger("records_1", recordsLevel_1);
                         pref.putInteger("records_2", recordsLevel_2);
                         pref.putInteger("records_3", recordsLevel_3);
@@ -125,6 +129,8 @@ public class StartScreen extends BaseScreen {
         uiTable.add(startButton);
         uiTable.add().size(250, startButton.getHeight());
         uiTable.add(continueButton);
+
+        Gdx.app.log("MyTag", String.valueOf(attainment));
 
     }
 

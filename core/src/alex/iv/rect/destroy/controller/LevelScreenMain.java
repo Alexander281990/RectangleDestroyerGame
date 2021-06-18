@@ -195,6 +195,16 @@ public class LevelScreenMain extends MenuScreen {
     }
     // метод, который показывает проигранное время(конец)
 
+    // метод, который устанавливает достижение игры
+    protected void createAttainment(int att) {
+        if (attainment < att) {
+            attainment = att;
+            pref.putInteger("attainmentMemory", attainment);
+            pref.flush();
+        }
+    }
+    // метод, который устанавливает достижение игры(конец)
+
 //    // метод, который показывает на экране рекорд уровня
 //    protected void showRecordsLabelWindow(int recordsLevels) {
 //        //recordsLabelWindow = new Label("Records: ", BaseGame.labelStyleLevel);

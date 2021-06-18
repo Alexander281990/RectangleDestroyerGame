@@ -259,7 +259,7 @@ public class LevelScreen_2 extends LevelScreenMain {
             }
         }
 
-
+        Gdx.app.log("MyTag", String.valueOf(BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick")));
     }
 
     public void update(float dt) {
@@ -271,6 +271,9 @@ public class LevelScreen_2 extends LevelScreenMain {
         }
         if (BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick") == 0 && starTimer > 0) {
             allTheBricksAreBroken(recordsLevel_2, "records_2");// инициализируем метод allTheBricksAreBroken - ВСЕ КИРПИЧИ РАЗРУШЕНЫ
+        }
+        if (BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick") < 13 && starTimer > 0) {
+            createAttainment(3);
         }
 
         for (BaseActor bal : BaseActor.getList(mainStage, "alex.iv.rect.destroy.actors.Ball")) {
