@@ -258,26 +258,28 @@ public class LevelScreenMain extends MenuScreen {
     // метод, который запускается, когда закончилось игровое время(конец)
 
     // метод, который запускается, когда все кирпичи разрушены
-    protected void allTheBricksAreBroken(int record, String key) {
-        for (BaseActor ball : BaseActor.getList(mainStage, "alex.iv.rect.destroy.actors.Ball")){
+    protected void allTheBricksAreBroken(int record, String key, int attainmentColorLevel, String keyColor) {
+        for (BaseActor ball : BaseActor.getList(mainStage, "alex.iv.rect.destroy.actors.Ball")) {
             ball.remove();
         }
-        for (BaseActor item : BaseActor.getList(mainStage, "alex.iv.rect.destroy.controller.Item")){
+        for (BaseActor item : BaseActor.getList(mainStage, "alex.iv.rect.destroy.controller.Item")) {
             item.remove();
         }
-            messageLabel.setText("You win!");
-            messageLabel.setColor(Color.LIME);
-            messageLabel.setVisible(true);
-            ball.remove();
-            Time.remove();
-            paddle.remove();
-            record = score;
-            //live ++;
-            pref.putInteger(key, record);
-            //pref.putInteger("liveMemory", live);
-            pref.flush();
-            recordsLabel.setText("Records: " + record);
-            uiStage.addActor(recordsLabel);
+        attainmentColorLevel = 1;
+        pref.putInteger(keyColor, attainmentColorLevel);
+        messageLabel.setText("You win!");
+        messageLabel.setColor(Color.LIME);
+        messageLabel.setVisible(true);
+        ball.remove();
+        Time.remove();
+        paddle.remove();
+        record = score;
+        //live ++;
+        pref.putInteger(key, record);
+        //pref.putInteger("liveMemory", live);
+        pref.flush();
+        recordsLabel.setText("Records: " + record);
+        uiStage.addActor(recordsLabel);
     }
     // метод, который запускается, когда все кирпичи разрушены(конец)
 

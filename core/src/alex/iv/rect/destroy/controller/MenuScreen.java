@@ -32,20 +32,6 @@ public class MenuScreen extends StartScreen {
     public IActivityRequestHandler requestHandler;
     public LevelScreenMain levelScreenMain;
     public static Preferences pref;
-    private Lock lock1;
-    private Lock lock2;
-    private Lock lock3;
-    private Lock lock4;
-    private Lock lock5;
-    private Lock lock6;
-    private Lock lock7;
-    private Lock lock8;
-    private Lock lock9;
-    private Lock lock10;
-    private Lock lock11;
-    private Lock lock12;
-    private Lock lock13;
-    private Lock lock14;
 
     public MenuScreen() {
 
@@ -58,68 +44,55 @@ public class MenuScreen extends StartScreen {
     @Override
     public void initialize() {
 
-        lock1 = new Lock(0, 0, mainStage);
-        lock2 = new Lock(0, 0, mainStage);
-        lock3 = new Lock(0, 0, mainStage);
-        lock4 = new Lock(0, 0, mainStage);
-        lock5 = new Lock(0, 0, mainStage);
-        lock6 = new Lock(0, 0, mainStage);
-        lock7 = new Lock(0, 0, mainStage);
-        lock8 = new Lock(0, 0, mainStage);
-        lock9 = new Lock(0, 0, mainStage);
-        lock10 = new Lock(0, 0, mainStage);
-        lock11 = new Lock(0, 0, mainStage);
-        lock12 = new Lock(0, 0, mainStage);
-        lock13 = new Lock(0, 0, mainStage);
-        lock14 = new Lock(0, 0, mainStage);
+        Lock lock1 = new Lock(0, 0, mainStage);
+        Lock lock2 = new Lock(0, 0, mainStage);
+        Lock lock3 = new Lock(0, 0, mainStage);
+        Lock lock4 = new Lock(0, 0, mainStage);
+        Lock lock5 = new Lock(0, 0, mainStage);
+        Lock lock6 = new Lock(0, 0, mainStage);
+        Lock lock7 = new Lock(0, 0, mainStage);
+        Lock lock8 = new Lock(0, 0, mainStage);
+        Lock lock9 = new Lock(0, 0, mainStage);
+        Lock lock10 = new Lock(0, 0, mainStage);
+        Lock lock11 = new Lock(0, 0, mainStage);
+        Lock lock12 = new Lock(0, 0, mainStage);
+        Lock lock13 = new Lock(0, 0, mainStage);
+        Lock lock14 = new Lock(0, 0, mainStage);
 
         pref = Gdx.app.getPreferences("Preferences");// инициализация Preferences для сохранения лучшего результата в телефоне
 
         levelScreenMain = new LevelScreenMain(requestHandler);
 // инициализация кнопок Level
         TextButton level_1_Button = new TextButton("01", BaseGame.textButtonStyleLevel);
-        level_1_Button.setColor(Color.RED);
+        //level_1_Button.setColor(Color.RED);
         uiStage.addActor(level_1_Button);
         TextButton level_2_Button = new TextButton("02", BaseGame.textButtonStyleLevel);
-        level_2_Button.setColor(Color.RED);
         uiStage.addActor(level_2_Button);
         TextButton level_3_Button = new TextButton("03", BaseGame.textButtonStyleLevel);
-        level_3_Button.setColor(Color.RED);
         uiStage.addActor(level_3_Button);
         TextButton level_4_Button = new TextButton("04", BaseGame.textButtonStyleLevel);
-        level_4_Button.setColor(Color.RED);
         uiStage.addActor(level_4_Button);
         TextButton level_5_Button = new TextButton("05", BaseGame.textButtonStyleLevel);
-        level_5_Button.setColor(Color.RED);
         uiStage.addActor(level_5_Button);
 
         TextButton level_6_Button = new TextButton("06", BaseGame.textButtonStyleLevel);
-        level_6_Button.setColor(Color.RED);
         uiStage.addActor(level_6_Button);
         TextButton level_7_Button = new TextButton("07", BaseGame.textButtonStyleLevel);
-        level_7_Button.setColor(Color.RED);
         uiStage.addActor(level_7_Button);
         TextButton level_8_Button = new TextButton("08", BaseGame.textButtonStyleLevel);
-        level_8_Button.setColor(Color.RED);
         uiStage.addActor(level_8_Button);
         TextButton level_9_Button = new TextButton("09", BaseGame.textButtonStyleLevel);
-        level_9_Button.setColor(Color.RED);
         uiStage.addActor(level_9_Button);
         TextButton level_10_Button = new TextButton("10", BaseGame.textButtonStyleLevel);
-        level_10_Button.setColor(Color.RED);
         uiStage.addActor(level_10_Button);
 
         TextButton level_11_Button = new TextButton("11", BaseGame.textButtonStyleLevel);
-        level_11_Button.setColor(Color.RED);
         uiStage.addActor(level_11_Button);
         TextButton level_12_Button = new TextButton("12", BaseGame.textButtonStyleLevel);
-        level_12_Button.setColor(Color.RED);
         uiStage.addActor(level_12_Button);
         TextButton level_13_Button = new TextButton("13", BaseGame.textButtonStyleLevel);
-        level_13_Button.setColor(Color.RED);
         uiStage.addActor(level_13_Button);
         TextButton level_14_Button = new TextButton("14", BaseGame.textButtonStyleLevel);
-        level_14_Button.setColor(Color.RED);
         uiStage.addActor(level_14_Button);
         TextButton level_15_Button = new TextButton("15", BaseGame.textButtonStyleLevel);
         uiStage.addActor(level_15_Button);
@@ -165,7 +138,7 @@ public class MenuScreen extends StartScreen {
                                 !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
                             return false;
                         requestHandler.hideBannerAd(); // при нажатии на кнопку баннер скрывается
-                        if (attainment >= 1) {
+                        if (attainment >= 0) {
                             RectangleGame.setActiveScreen(new LevelScreen_1(requestHandler));
                         }
                         return false;
@@ -181,7 +154,7 @@ public class MenuScreen extends StartScreen {
                                 !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
                             return false;
                         requestHandler.hideBannerAd(); // при нажатии на кнопку баннер скрывается
-                        if (attainment >= 2) {
+                        if (attainment >= 1) {
                             RectangleGame.setActiveScreen(new LevelScreen_2(requestHandler));
                         }
                         return false;
@@ -196,7 +169,7 @@ public class MenuScreen extends StartScreen {
                         if (!(e instanceof InputEvent) ||
                                 !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
                             return false;
-                        if (attainment >= 3) {
+                        if (attainment >= 2) {
                             RectangleGame.setActiveScreen(new LevelScreen_3(requestHandler));
                         }
                         return false;
@@ -211,7 +184,7 @@ public class MenuScreen extends StartScreen {
                         if (!(e instanceof InputEvent) ||
                                 !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
                             return false;
-                        if (attainment >= 4) {
+                        if (attainment >= 3) {
                             RectangleGame.setActiveScreen(new LevelScreen_4(requestHandler));
                         }
                         return false;
@@ -226,7 +199,7 @@ public class MenuScreen extends StartScreen {
                         if (!(e instanceof InputEvent) ||
                                 !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
                             return false;
-                        if (attainment >= 5) {
+                        if (attainment >= 4) {
                             RectangleGame.setActiveScreen(new LevelScreen_5(requestHandler));
                         }
                         return false;
@@ -241,7 +214,7 @@ public class MenuScreen extends StartScreen {
                         if (!(e instanceof InputEvent) ||
                                 !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
                             return false;
-                        if (attainment >= 6) {
+                        if (attainment >= 5) {
                             RectangleGame.setActiveScreen(new LevelScreen_6(requestHandler));
                         }
                         return false;
@@ -256,7 +229,7 @@ public class MenuScreen extends StartScreen {
                         if (!(e instanceof InputEvent) ||
                                 !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
                             return false;
-                        if (attainment >= 7) {
+                        if (attainment >= 6) {
                             RectangleGame.setActiveScreen(new LevelScreen_7(requestHandler));
                         }
                         return false;
@@ -271,7 +244,7 @@ public class MenuScreen extends StartScreen {
                         if (!(e instanceof InputEvent) ||
                                 !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
                             return false;
-                        if (attainment >= 8) {
+                        if (attainment >= 7) {
                             RectangleGame.setActiveScreen(new LevelScreen_8(requestHandler));
                         }
                         return false;
@@ -286,7 +259,7 @@ public class MenuScreen extends StartScreen {
                         if (!(e instanceof InputEvent) ||
                                 !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
                             return false;
-                        if (attainment >= 9) {
+                        if (attainment >= 8) {
                             RectangleGame.setActiveScreen(new LevelScreen_9(requestHandler));
                         }
                         return false;
@@ -301,7 +274,7 @@ public class MenuScreen extends StartScreen {
                         if (!(e instanceof InputEvent) ||
                                 !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
                             return false;
-                        if (attainment >= 10) {
+                        if (attainment >= 9) {
                             RectangleGame.setActiveScreen(new LevelScreen_10(requestHandler));
                         }
                         return false;
@@ -316,7 +289,7 @@ public class MenuScreen extends StartScreen {
                         if (!(e instanceof InputEvent) ||
                                 !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
                             return false;
-                        if (attainment >= 11) {
+                        if (attainment >= 10) {
                             RectangleGame.setActiveScreen(new LevelScreen_11(requestHandler));
                         }
                         return false;
@@ -331,7 +304,7 @@ public class MenuScreen extends StartScreen {
                         if (!(e instanceof InputEvent) ||
                                 !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
                             return false;
-                        if (attainment >= 12) {
+                        if (attainment >= 11) {
                             RectangleGame.setActiveScreen(new LevelScreen_12(requestHandler));
                         }
                         return false;
@@ -346,7 +319,7 @@ public class MenuScreen extends StartScreen {
                         if (!(e instanceof InputEvent) ||
                                 !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
                             return false;
-                        if (attainment >= 13) {
+                        if (attainment >= 12) {
                             RectangleGame.setActiveScreen(new LevelScreen_13(requestHandler));
                         }
                         return false;
@@ -361,7 +334,7 @@ public class MenuScreen extends StartScreen {
                         if (!(e instanceof InputEvent) ||
                                 !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
                             return false;
-                        if (attainment >= 14) {
+                        if (attainment >= 13) {
                             RectangleGame.setActiveScreen(new LevelScreen_14(requestHandler));
                         }
                         return false;
@@ -441,29 +414,33 @@ public class MenuScreen extends StartScreen {
         level_14_Button.addActor(lock14);
         lock14.setPosition(level_14_Button.getWidth() / 2 - lock14.getWidth() / 2, level_14_Button.getHeight() / 2 - lock14.getHeight() / 2);
 
-        Gdx.app.log("MyTag", String.valueOf(attainment));
-    }
+        Gdx.app.log("MyTag", String.valueOf(attainmentColorLevel_1));
 
-    @Override
-    public void update(float var1) {
         switch (attainment) {
+            case 0:
+                lock1.remove();
+                break;
             case 1:
                 lock1.remove();
+                lock2.remove();
                 break;
             case 2:
                 lock1.remove();
                 lock2.remove();
+                lock3.remove();
                 break;
             case 3:
                 lock1.remove();
                 lock2.remove();
                 lock3.remove();
+                lock4.remove();
                 break;
             case 4:
                 lock1.remove();
                 lock2.remove();
                 lock3.remove();
                 lock4.remove();
+                lock5.remove();
                 break;
             case 5:
                 lock1.remove();
@@ -471,6 +448,7 @@ public class MenuScreen extends StartScreen {
                 lock3.remove();
                 lock4.remove();
                 lock5.remove();
+                lock6.remove();
                 break;
             case 6:
                 lock1.remove();
@@ -479,6 +457,7 @@ public class MenuScreen extends StartScreen {
                 lock4.remove();
                 lock5.remove();
                 lock6.remove();
+                lock7.remove();
                 break;
             case 7:
                 lock1.remove();
@@ -488,6 +467,7 @@ public class MenuScreen extends StartScreen {
                 lock5.remove();
                 lock6.remove();
                 lock7.remove();
+                lock8.remove();
                 break;
             case 8:
                 lock1.remove();
@@ -498,6 +478,7 @@ public class MenuScreen extends StartScreen {
                 lock6.remove();
                 lock7.remove();
                 lock8.remove();
+                lock9.remove();
                 break;
             case 9:
                 lock1.remove();
@@ -509,6 +490,7 @@ public class MenuScreen extends StartScreen {
                 lock7.remove();
                 lock8.remove();
                 lock9.remove();
+                lock10.remove();
                 break;
             case 10:
                 lock1.remove();
@@ -521,6 +503,7 @@ public class MenuScreen extends StartScreen {
                 lock8.remove();
                 lock9.remove();
                 lock10.remove();
+                lock11.remove();
                 break;
             case 11:
                 lock1.remove();
@@ -534,6 +517,7 @@ public class MenuScreen extends StartScreen {
                 lock9.remove();
                 lock10.remove();
                 lock11.remove();
+                lock12.remove();
                 break;
             case 12:
                 lock1.remove();
@@ -548,23 +532,9 @@ public class MenuScreen extends StartScreen {
                 lock10.remove();
                 lock11.remove();
                 lock12.remove();
-                break;
-            case 13:
-                lock1.remove();
-                lock2.remove();
-                lock3.remove();
-                lock4.remove();
-                lock5.remove();
-                lock6.remove();
-                lock7.remove();
-                lock8.remove();
-                lock9.remove();
-                lock10.remove();
-                lock11.remove();
-                lock12.remove();
                 lock13.remove();
                 break;
-            case 14:
+            case 13:
                 lock1.remove();
                 lock2.remove();
                 lock3.remove();
@@ -582,5 +552,122 @@ public class MenuScreen extends StartScreen {
                 break;
             default:
         }
+
+        if (attainmentColorLevel_1 == 0) {
+            level_1_Button.setColor(Color.RED);
+        } else {
+            if (attainmentColorLevel_1 == 1) {
+                level_1_Button.setColor(Color.GREEN);
+            }
+        }
+
+        if (attainmentColorLevel_2 == 0) {
+            level_2_Button.setColor(Color.RED);
+        } else {
+            if (attainmentColorLevel_2 == 1) {
+                level_2_Button.setColor(Color.GREEN);
+            }
+        }
+
+        if (attainmentColorLevel_3 == 0) {
+            level_3_Button.setColor(Color.RED);
+        } else {
+            if (attainmentColorLevel_3 == 1) {
+                level_3_Button.setColor(Color.GREEN);
+            }
+        }
+
+        if (attainmentColorLevel_4 == 0) {
+            level_4_Button.setColor(Color.RED);
+        } else {
+            if (attainmentColorLevel_4 == 1) {
+                level_4_Button.setColor(Color.GREEN);
+            }
+        }
+
+        if (attainmentColorLevel_5 == 0) {
+            level_5_Button.setColor(Color.RED);
+        } else {
+            if (attainmentColorLevel_5 == 1) {
+                level_5_Button.setColor(Color.GREEN);
+            }
+        }
+
+        if (attainmentColorLevel_6 == 0) {
+            level_6_Button.setColor(Color.RED);
+        } else {
+            if (attainmentColorLevel_6 == 1) {
+                level_6_Button.setColor(Color.GREEN);
+            }
+        }
+
+        if (attainmentColorLevel_7 == 0) {
+            level_7_Button.setColor(Color.RED);
+        } else {
+            if (attainmentColorLevel_7 == 1) {
+                level_7_Button.setColor(Color.GREEN);
+            }
+        }
+
+        if (attainmentColorLevel_8 == 0) {
+            level_8_Button.setColor(Color.RED);
+        } else {
+            if (attainmentColorLevel_8 == 1) {
+                level_8_Button.setColor(Color.GREEN);
+            }
+        }
+
+        if (attainmentColorLevel_9 == 0) {
+            level_9_Button.setColor(Color.RED);
+        } else {
+            if (attainmentColorLevel_9 == 1) {
+                level_9_Button.setColor(Color.GREEN);
+            }
+        }
+
+        if (attainmentColorLevel_10 == 0) {
+            level_10_Button.setColor(Color.RED);
+        } else {
+            if (attainmentColorLevel_10 == 1) {
+                level_10_Button.setColor(Color.GREEN);
+            }
+        }
+
+        if (attainmentColorLevel_11 == 0) {
+            level_11_Button.setColor(Color.RED);
+        } else {
+            if (attainmentColorLevel_11 == 1) {
+                level_11_Button.setColor(Color.GREEN);
+            }
+        }
+
+        if (attainmentColorLevel_12 == 0) {
+            level_12_Button.setColor(Color.RED);
+        } else {
+            if (attainmentColorLevel_12 == 1) {
+                level_12_Button.setColor(Color.GREEN);
+            }
+        }
+
+        if (attainmentColorLevel_13 == 0) {
+            level_13_Button.setColor(Color.RED);
+        } else {
+            if (attainmentColorLevel_13 == 1) {
+                level_13_Button.setColor(Color.GREEN);
+            }
+        }
+
+        if (attainmentColorLevel_14 == 0) {
+            level_14_Button.setColor(Color.RED);
+        } else {
+            if (attainmentColorLevel_14 == 1) {
+                level_14_Button.setColor(Color.GREEN);
+            }
+        }
+    }
+
+    @Override
+    public void update(float var1) {
+
     }
 }

@@ -56,6 +56,15 @@ import alex.iv.rect.destroy.controller.RectangleGame;
  //        warp3 = new Warp(MathUtils.random(LevelScreenMain.getWindowPlayWidth() - 40),
  //                MathUtils.random(Gdx.graphics.getHeight() - 50), mainStage);
 
+
+ //     Gdx.app.log("MyTag", "my informative message"); выводит в Log текстовое сообщение
+
+ // выводит в Log переменную int
+ //     Gdx.app.log("MyTag", String.valueOf(BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick")));
+ //     Gdx.app.log("MyTag", String.valueOf(10));
+ //     Gdx.app.log("MyTag", String.valueOf(attainment));
+
+
  * */
 
 public class LevelScreen_1 extends LevelScreenMain {
@@ -101,10 +110,10 @@ public class LevelScreen_1 extends LevelScreenMain {
             RectangleGame.setActiveScreen(new IntermediateScreen(requestHandler, 1, score));
         }
         if (BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick") == 0 && starTimer > 0) {
-            allTheBricksAreBroken(recordsLevel_1, "records_1");// инициализируем метод allTheBricksAreBroken - ВСЕ КИРПИЧИ РАЗРУШЕНЫ
+            allTheBricksAreBroken(recordsLevel_1, "records_1", attainmentColorLevel_1, "attainmentColorLevelMemory_1");// инициализируем метод allTheBricksAreBroken - ВСЕ КИРПИЧИ РАЗРУШЕНЫ
         }
         if (BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick") < 11 && starTimer > 0) {
-            createAttainment(2);
+            createAttainment(1);
         }
 
     }

@@ -22,7 +22,7 @@ public class LevelScreen_13 extends LevelScreenMain {
     public void initialize() {
         super.initialize();
 
-        showTime(120); // инициализируем метод отображение игрового времени
+        showTime(200); // инициализируем метод отображение игрового времени
         background.loadTexture("background/fon_level.png");
         recordsLabelWindow.setText("Records: " + recordsLevel_13);
 
@@ -135,10 +135,10 @@ public class LevelScreen_13 extends LevelScreenMain {
             RectangleGame.setActiveScreen(new IntermediateScreen(requestHandler, 13, score));
         }
         if (BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick") == 0 && starTimer > 0) {
-            allTheBricksAreBroken(recordsLevel_13, "records_13");// инициализируем метод allTheBricksAreBroken - ВСЕ КИРПИЧИ РАЗРУШЕНЫ
+            allTheBricksAreBroken(recordsLevel_13, "records_13", attainmentColorLevel_13, "attainmentColorLevelMemory_13");// инициализируем метод allTheBricksAreBroken - ВСЕ КИРПИЧИ РАЗРУШЕНЫ
         }
         if (BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick") < 8 && starTimer > 0) {
-            createAttainment(14);
+            createAttainment(13);
         }
 
     }
