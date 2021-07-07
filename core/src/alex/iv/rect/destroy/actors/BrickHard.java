@@ -10,12 +10,13 @@ public class BrickHard extends BaseActor {
     private float brickWidth = LevelScreenMain.getWindowPlayWidth() /11;
     private float brickHeight = LevelScreenMain.getWindowPlayHeight() / 60;
 
-    public BrickHard(float x, float y, Stage s) {
+    public BrickHard(float x, float y, Stage s, boolean b) {
         super(x,y,s);
         loadTexture("brick-gray.png");
         setSize(brickWidth, brickHeight);
         setBoundaryRectangle();
         setColor(Color.GRAY);
+        brickHardStatus = b;
     }
 
     public float getBrickHeight() {

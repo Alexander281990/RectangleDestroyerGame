@@ -11,6 +11,8 @@ import alex.iv.rect.destroy.controller.RectangleGame;
 
 /** Методы для класса Brick, усложняющие игру
 
+ ///////////////////////////////////////////////////////
+
  *  brick.setColor(Color.RED); - задает красный цвет
 
  *  brick.setColor(Color.ORANGE); - задает оранжевый цвет
@@ -24,6 +26,8 @@ import alex.iv.rect.destroy.controller.RectangleGame;
 
  *  brick.setColor(Color.BLUE); - задает синий цвет
     brick.numberColor = 5;
+
+ //////////////////////////////////////////////////////////
 
  *  brick.setBrickMoving(false); - заставляет двигаться хаотично кирпичи. Пишется в методе public void initialize() { }, при создании brick
 
@@ -47,6 +51,7 @@ import alex.iv.rect.destroy.controller.RectangleGame;
         }
     }
 
+///////////////////////////////////////////////////
 
  //        warp = new Warp(MathUtils.random(LevelScreenMain.getWindowPlayWidth() - 40),
  //                MathUtils.random(Gdx.graphics.getHeight() - 80),
@@ -56,13 +61,37 @@ import alex.iv.rect.destroy.controller.RectangleGame;
  //        warp3 = new Warp(MathUtils.random(LevelScreenMain.getWindowPlayWidth() - 40),
  //                MathUtils.random(Gdx.graphics.getHeight() - 50), mainStage);
 
+//////////////////////////////////////////////////
 
  //     Gdx.app.log("MyTag", "my informative message"); выводит в Log текстовое сообщение
-
  // выводит в Log переменную int
  //     Gdx.app.log("MyTag", String.valueOf(BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick")));
  //     Gdx.app.log("MyTag", String.valueOf(10));
  //     Gdx.app.log("MyTag", String.valueOf(attainment));
+
+ /////////////////////////////////////////////////
+
+ - При создании экземпляра BrickHard(жесткий кирпич) конструктор имеет булевую переменную "brickHardStatus".
+ - Если brickHardStatus = true, то мяч будет отскакивать от BrickHard как от стен(Wall)
+ - Если brickHardStatus = false, то мяч будет отскакивать от BrickHard как от весла(Paddle)
+
+    НАПРИМЕР:
+        BrickHard brickHard = new BrickHard(x, y, mainStage, true);
+            или
+        BrickHard brickHard = new BrickHard(x, y, mainStage, false);
+
+ //////////////////////////////////////////////////
+
+ - При создании экземпляра Hindrance(помеха) конструктор имеет булевую переменную "hindranceStatus".
+ - Если hindranceStatus = true, то мяч от помехи будет отскакивать с обоих сторон
+ - Если hindranceStatus = false, то мяч от помехи будет отскакивать только с верхней стороны. Если мяч коснется нижней стороны помехи, то она пропустит мяч на верхнюю свою сторону
+ - Также после создании экземпляра Hindrance нужно вызвать метод "setHindranceMoving(false)", который заставляет хаотично двигаться обьект
+
+    НАПРИМЕР:
+        Hindrance hindrance = new Hindrance(x, y, mainStage, true);
+        hindrance.setHindranceMoving(false);
+
+ //////////////////////////////////////////////////
 
 
  * */

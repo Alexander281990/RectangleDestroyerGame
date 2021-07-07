@@ -331,36 +331,47 @@ public class LevelScreenMain extends MenuScreen {
 
             for (BaseActor brickHard : BaseActor.getList(mainStage, "alex.iv.rect.destroy.actors.BrickHard")) {
                 if (bal.overlaps(brickHard)) {
-                    float positionBrickHard_Y = brickHard.getY() + brickHard.getHeight() / 2;
-                    float positionBall_Y = bal.getY() + bal.getHeight() / 2;
-                    float ballCenterX = bal.getX() + bal.getWidth() / 2; // находим центр шарика по оси Х
-                    float brickHardPercentHit = (ballCenterX - brickHard.getX()) / brickHard.getWidth();
-                    if (positionBall_Y > positionBrickHard_Y) {
-                        brickHardAngle = MathUtils.lerp(150, 30, brickHardPercentHit);
+                    // если brickHardStatus = true, то мяч отскакивает от кирпича как от стен. А если brickHardStatus = false, то
+                    // мяч отскакивает от кирпича как от весла(paddle)
+                    if (brickHard.brickHardStatus) {
+                        bal.bounceOff(brickHard);
                     } else {
-                        brickHardAngle = MathUtils.lerp(-150, -30, brickHardPercentHit);
+                        float positionBrickHard_Y = brickHard.getY() + brickHard.getHeight() / 2;
+                        float positionBall_Y = bal.getY() + bal.getHeight() / 2;
+                        float ballCenterX = bal.getX() + bal.getWidth() / 2; // находим центр шарика по оси Х
+                        float brickHardPercentHit = (ballCenterX - brickHard.getX()) / brickHard.getWidth();
+                            if (positionBall_Y > positionBrickHard_Y) {
+                                brickHardAngle = MathUtils.lerp(150, 30, brickHardPercentHit);
+                            } else {
+                                brickHardAngle = MathUtils.lerp(-150, -30, brickHardPercentHit);
+                            }
+                        bal.setMotionAngle(brickHardAngle);
                     }
-                    bal.setMotionAngle(brickHardAngle);
                 }
             }
 
             for (BaseActor hindrance : BaseActor.getList(mainStage, "alex.iv.rect.destroy.actors.Hindrance")) {
                 if (bal.overlaps(hindrance)) {
-//                    float positionHindrance_Y = hindrance.getY() + hindrance.getHeight() / 2;
-//                    float positionBall_Y = bal.getY() + bal.getHeight() / 2;
-//                    float ballCenterX = bal.getX() + bal.getWidth() / 2; // находим центр шарика по оси Х
-//                    float hindrancePercentHit = (ballCenterX - hindrance.getX()) / hindrance.getWidth();
-//                    if (positionBall_Y > positionHindrance_Y) {
-//                        hindranceAngle = MathUtils.lerp(150, 30, hindrancePercentHit);
-//                    } else {
-//                        hindranceAngle = MathUtils.lerp(-150, -30, hindrancePercentHit);
-//                    }
-//                    bal.setMotionAngle(hindranceAngle);
-                    //////////////////или/////////////////////
-                    float ballCenterX = bal.getX() + bal.getWidth() / 2; // находим центр шарика по оси Х
-                    float hindrancePercentHit = (ballCenterX - hindrance.getX()) / hindrance.getWidth();
-                    hindranceAngle = MathUtils.lerp(150, 30, hindrancePercentHit);
-                    bal.setMotionAngle(hindranceAngle);
+                    // Если hindrance.brickHardStatus = true, то мяч от помехи будет отскакивать с обоих сторон
+                    // Если hindrance.brickHardStatus = false, то мяч от помехи будет отскакивать только с верхней стороны. Если мяч
+                        // коснется нижней стороны помехи, то она пропустит мяч на верхнюю свою сторону
+                    if (hindrance.brickHardStatus) {
+                        float ballCenterX = bal.getX() + bal.getWidth() / 2; // находим центр шарика по оси Х
+                        float hindrancePercentHit = (ballCenterX - hindrance.getX()) / hindrance.getWidth();
+                        hindranceAngle = MathUtils.lerp(150, 30, hindrancePercentHit);
+                        bal.setMotionAngle(hindranceAngle);
+                    } else {
+                        float positionHindrance_Y = hindrance.getY() + hindrance.getHeight() / 2;
+                        float positionBall_Y = bal.getY() + bal.getHeight() / 2;
+                        float ballCenterX = bal.getX() + bal.getWidth() / 2; // находим центр шарика по оси Х
+                        float hindrancePercentHit = (ballCenterX - hindrance.getX()) / hindrance.getWidth();
+                        if (positionBall_Y > positionHindrance_Y) {
+                            hindranceAngle = MathUtils.lerp(150, 30, hindrancePercentHit);
+                        } else {
+                            hindranceAngle = MathUtils.lerp(-150, -30, hindrancePercentHit);
+                        }
+                        bal.setMotionAngle(hindranceAngle);
+                    }
                 }
             }
 

@@ -48,10 +48,10 @@ public class LevelScreen_12 extends LevelScreenMain {
                     brick.remove();
                 }
                 if (rowNum == 0 && colNum == 0 || rowNum == 0 && colNum == 1 || rowNum == 0 && colNum == 8 || rowNum == 0 && colNum == 9) {
-                    BrickHard brickHard = new BrickHard(x, y, mainStage);
+                    BrickHard brickHard = new BrickHard(x, y, mainStage, false);
                 }
                 if (rowNum == 25 && colNum == 0 || rowNum == 25 && colNum == 9) {
-                    BrickHard brickHard = new BrickHard(x, y, mainStage);
+                    BrickHard brickHard = new BrickHard(x, y, mainStage, false);
                 }
                 if (rowNum == 25 && colNum == 8) {
                     warp2 = new Warp( x, y, mainStage);
@@ -63,7 +63,7 @@ public class LevelScreen_12 extends LevelScreenMain {
                     brick.setColor(Color.RED);
                 }
                 if (rowNum == 27 && colNum == 2 || rowNum == 27 && colNum == 7) {
-                    BrickHard brickHard = new BrickHard(x, y, mainStage);
+                    BrickHard brickHard = new BrickHard(x, y, mainStage, false);
                 }
                 if (rowNum == 28 && colNum == 0 || rowNum == 28 && colNum == 1 || rowNum == 28 && colNum == 2 || rowNum == 28 && colNum == 4 || rowNum == 28 && colNum == 5 || rowNum == 28 && colNum == 7 || rowNum == 28 && colNum == 8 || rowNum == 28 && colNum == 9) {
                     brick.remove();
@@ -94,7 +94,7 @@ public class LevelScreen_12 extends LevelScreenMain {
                     brick.remove();
                 }
                 if (rowNum == 32 && colNum == 0 || rowNum == 32 && colNum == 1 || rowNum == 32 && colNum == 2 ||  rowNum == 32 && colNum == 7 || rowNum == 32 && colNum == 8 || rowNum == 32 && colNum == 9) {
-                    BrickHard brickHard = new BrickHard(x, y, mainStage);
+                    BrickHard brickHard = new BrickHard(x, y, mainStage, false);
                 }
                 if (rowNum == 32 && colNum == 3 || rowNum == 32 && colNum == 6) {
                     brick.setColor(Color.BLUE);
@@ -146,7 +146,7 @@ public class LevelScreen_12 extends LevelScreenMain {
                 }
                 if (rowNum == 41 && colNum == 1 || rowNum == 41 && colNum == 8) {
                     brick.remove();
-                    BrickHard brickHard = new BrickHard(x, y, mainStage);
+                    BrickHard brickHard = new BrickHard(x, y, mainStage,true);
                 }
                 if (rowNum == 41 && colNum == 2 || rowNum == 41 && colNum == 7) {
                     brick.setColor(Color.RED);
@@ -163,14 +163,14 @@ public class LevelScreen_12 extends LevelScreenMain {
                 }
                 if (rowNum == 42 && colNum == 1 || rowNum == 42 && colNum == 8) {
                     brick.remove();
-                    BrickHard brickHard = new BrickHard(x, y, mainStage);
+                    BrickHard brickHard = new BrickHard(x, y, mainStage, true);
                 }
                 if (rowNum == 43 && colNum == 0 || rowNum == 43 && colNum == 2 || rowNum == 43 && colNum == 3 || rowNum == 43 && colNum == 6 || rowNum == 43 && colNum == 7 || rowNum == 43 && colNum == 9) {
                     brick.remove();
                 }
                 if (rowNum == 43 && colNum == 1 || rowNum == 43 && colNum == 8) {
                     brick.remove();
-                    BrickHard brickHard = new BrickHard(x, y, mainStage);
+                    BrickHard brickHard = new BrickHard(x, y, mainStage, true);
                 }
                 if (rowNum == 43 && colNum == 4 || rowNum == 43 && colNum == 5) {
                     brick.setColor(Color.YELLOW);
@@ -181,7 +181,7 @@ public class LevelScreen_12 extends LevelScreenMain {
                 }
                 if (rowNum == 44 && colNum == 1 || rowNum == 44 && colNum == 8) {
                     brick.remove();
-                    BrickHard brickHard = new BrickHard(x, y, mainStage);
+                    BrickHard brickHard = new BrickHard(x, y, mainStage, true);
                 }
                 if (rowNum == 44 && colNum == 3 || rowNum == 44 && colNum == 6) {
                     brick.setColor(Color.GREEN);
@@ -199,7 +199,7 @@ public class LevelScreen_12 extends LevelScreenMain {
                 }
                 if (rowNum == 46 && colNum == 2 || rowNum == 46 && colNum == 7) {
                     brick.remove();
-                    BrickHard brickHard = new BrickHard(x, y, mainStage);
+                    BrickHard brickHard = new BrickHard(x, y, mainStage, true);
                 }
                 if (rowNum == 47 || rowNum == 48 || rowNum == 49) {
                     brick.setColor(Color.RED);

@@ -58,11 +58,11 @@ public class LevelScreen_11 extends LevelScreenMain {
                     brick.setBrickFlash(false); // инициализация метода смены цветов кирпича
                 }
                 if (rowNum == 10 && colNum == 3 || rowNum == 10 && colNum == 4 || rowNum == 10 && colNum == 5 || rowNum == 10 && colNum == 6) {
-                    BrickHard brickHard = new BrickHard(x, y, mainStage);
+                    BrickHard brickHard = new BrickHard(x, y, mainStage, false);
                 }
                 if (rowNum == 8 && colNum == 0 || rowNum == 8 && colNum == 9) {
                     brick.remove();
-                    BrickHard brickHard_1 = new BrickHard(x, y, mainStage);
+                    BrickHard brickHard_1 = new BrickHard(x, y, mainStage, false);
                 }
                 if (rowNum == 8 && colNum == 1 || rowNum == 8 && colNum == 2 || rowNum == 8 && colNum == 3 || rowNum == 8 && colNum == 6 || rowNum == 8 && colNum == 7 || rowNum == 8 && colNum == 8) {
                     brick.remove();
@@ -81,7 +81,7 @@ public class LevelScreen_11 extends LevelScreenMain {
                 }
                 if (rowNum == 5 && colNum == 3 || rowNum == 5 && colNum == 6) {
                     brick.remove();
-                    BrickHard brickHard_2 = new BrickHard(x, y, mainStage);
+                    BrickHard brickHard_2 = new BrickHard(x, y, mainStage, true);
                 }
                 if (rowNum == 3) {
                     brick.setColor(Color.RED);
@@ -101,7 +101,7 @@ public class LevelScreen_11 extends LevelScreenMain {
                 }
                 if (rowNum == 2 && colNum == 4 || rowNum == 2 && colNum == 5) {
                     brick.remove();
-                    BrickHard brickHard_3 = new BrickHard(x, y, mainStage);
+                    BrickHard brickHard_3 = new BrickHard(x, y, mainStage, true);
                 }
                 if (rowNum == 1 && colNum == 0 || rowNum == 1 && colNum == 2 || rowNum == 1 && colNum == 4 || rowNum == 1 && colNum == 5 || rowNum == 1 && colNum == 7 || rowNum == 1 && colNum == 9) {
                     brick.remove();

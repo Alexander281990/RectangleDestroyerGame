@@ -49,7 +49,7 @@ public class LevelScreen_10 extends LevelScreenMain {
                 }
                 if (rowNum == 0 && colNum == 0 || rowNum == 0 && colNum == 2 || rowNum == 0 && colNum == 4 || rowNum == 0 && colNum == 6 || rowNum == 0 && colNum == 8) {
                     brick.remove();
-                    BrickHard brickHard = new BrickHard(x, y, mainStage);
+                    BrickHard brickHard = new BrickHard(x, y, mainStage, false);
                 }
                 if (rowNum == 0 && colNum == 1 || rowNum == 0 && colNum == 3 || rowNum == 0 && colNum == 5 || rowNum == 0 && colNum == 7 || rowNum == 0 && colNum == 9) {
                     brick.setColor(Color.RED);

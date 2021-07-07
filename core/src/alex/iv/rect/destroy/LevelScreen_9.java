@@ -51,7 +51,7 @@ public class LevelScreen_9 extends LevelScreenMain {
                     brick.setColor(Color.RED);
                 }
                 if (rowNum == 34 && colNum == 0 || rowNum == 34 && colNum == 1 || rowNum == 34 && colNum == 8 || rowNum == 34 && colNum == 9) {
-                    BrickHard brickHard = new BrickHard(x, y, mainStage);
+                    BrickHard brickHard = new BrickHard(x, y, mainStage, false);
                 }
                 if (rowNum == 27 && colNum == 0) {
                     warp1 = new Warp( x, y, mainStage);

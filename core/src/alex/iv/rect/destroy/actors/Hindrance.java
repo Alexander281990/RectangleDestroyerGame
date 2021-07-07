@@ -12,12 +12,13 @@ public class Hindrance extends BaseActor {
     private float hindranceHeight = LevelScreenMain.getWindowPlayHeight() / 60;
     private boolean hindranceMoving = true;
 
-    public Hindrance(float x, float y, Stage s) {
+    public Hindrance(float x, float y, Stage s, boolean b) {
         super(x,y,s);
         loadTexture("brick-gray.png");
         setSize(hindranceWidth, hindranceHeight);
         setBoundaryRectangle();
         setColor(Color.BLACK);
+        hindranceStatus = b;
     }
 
     public float getHindranceHeight() {
