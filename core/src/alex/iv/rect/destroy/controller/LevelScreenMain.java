@@ -1,8 +1,6 @@
 package alex.iv.rect.destroy.controller;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Event;
@@ -27,7 +25,7 @@ public class LevelScreenMain extends MenuScreen {
     protected int score; // переменная набранных очков
     private boolean startGame; // переменная для старта игры(становиться true в методе "touchDown")
     protected float starTimer; // переменная для подсчета проигранного времени
-    private boolean paddleStop; // переменная, которая разрешает веслу двигаться(если игрок словил Item.Type.PADDLE_STOP, то переменная блокирует весло на 7 секунд)
+    protected boolean paddleStop; // переменная, которая разрешает веслу двигаться(если игрок словил Item.Type.PADDLE_STOP, то переменная блокирует весло на 7 секунд)
     private boolean ballStop; // переменная, которая разрешает ball двигаться(если игрок словил Item.Type.PADDLE_STOP, то переменная блокирует ball на 7 секунд)
     private Label Time; // метка, которая отображает проигранное время
     private Label Live; // метка, которая отображает жизни
@@ -36,12 +34,12 @@ public class LevelScreenMain extends MenuScreen {
     private Label TimePaddleStop; // метка, которая отображает время остановки весла
     private float timerPaddleStop; // переменная, которая отсчитывает 7 секунд при блокировке весла(Item.Type.PADDLE_STOP)
     private Label scoreLabel; //
-    private Paddle paddle;
+    protected Paddle paddle;
     private Label messageLabel; //
     protected Ball ball;
     private TextButton start;
 
-    float bounceAngle;
+    protected float bounceAngle;
     float hindranceAngle;
     float brickHardAngle;
 //    private Sound bounceSound;
@@ -127,7 +125,6 @@ public class LevelScreenMain extends MenuScreen {
 //        backgroundMusic.play();
 
         ball = new Ball(0,0, mainStage);
-        ball.setColor(Color.GREEN);
 
         start = new TextButton( "Start", BaseGame.textButtonStyle );
         start.setPosition(windowPlayWidth/2 - start.getWidth()/2,windowPlayHeight / 3.5f);
@@ -423,7 +420,7 @@ public class LevelScreenMain extends MenuScreen {
                     }
                     scoreLabel.setText("Score " + score);
                     // если зеленый шар косается кирпича, то (иногда) появляется Item
-                    if (Color.rgb888(bal.getColor()) == Color.rgb888(Color.GREEN)) {
+                    if (Color.rgb888(bal.getColor()) == Color.rgb888(Color.WHITE)) {
                         float spawnProbability = 30; // частота появления Item
                         if (MathUtils.random(0, 100) < spawnProbability) {
                             Item i = new Item(0, 0, mainStage);
@@ -436,9 +433,9 @@ public class LevelScreenMain extends MenuScreen {
             if (bal.getY() < -50 && BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick") > 0 ||
                     bal.getY() > Gdx.graphics.getHeight() && BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick") > 0) {
                 bal.remove();
-                if (Color.rgb888(bal.getColor()) == Color.rgb888(Color.GREEN)) {
+                if (Color.rgb888(bal.getColor()) == Color.rgb888(Color.WHITE)) {
                     ball = new Ball(0,0,mainStage);
-                    ball.setColor(Color.GREEN);
+                    ball.setColor(Color.WHITE);
                     live --;
                     if (live < 1) {
                         //requestHandler.showVideoAd();
