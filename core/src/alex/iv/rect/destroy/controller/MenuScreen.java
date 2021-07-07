@@ -414,7 +414,7 @@ public class MenuScreen extends StartScreen {
         level_14_Button.addActor(lock14);
         lock14.setPosition(level_14_Button.getWidth() / 2 - lock14.getWidth() / 2, level_14_Button.getHeight() / 2 - lock14.getHeight() / 2);
 
-        Gdx.app.log("MyTag", String.valueOf(attainmentColorLevel_1));
+        Gdx.app.log("MyTag", String.valueOf(attainment));
 
         switch (attainment) {
             case 0:
