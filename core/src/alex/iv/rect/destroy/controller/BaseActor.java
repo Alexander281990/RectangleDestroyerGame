@@ -23,9 +23,9 @@ import java.util.ArrayList;
 public class BaseActor extends Group {
 
     public int numberColor;
-    protected int hit;
+    public int hit;
     public boolean mBrick;
-    protected boolean brickHardStatus;
+    public boolean brickHardStatus;
     protected boolean hindranceStatus;
 
     // переменные для метода leftRightMoving();

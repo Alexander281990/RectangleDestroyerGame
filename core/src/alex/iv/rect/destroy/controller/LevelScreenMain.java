@@ -17,8 +17,8 @@ import alex.iv.rect.destroy.actors.Wall;
 public class LevelScreenMain extends MenuScreen {
 
     protected IActivityRequestHandler requestHandler; // переменная для ссылки на метод из AndroidLauncher(showOrLoadInterstitial()) - для вызова метода, который показывает рекламу
-    private static float windowPlayWidth;
-    private static float windowPlayHeight;
+    protected static float windowPlayWidth;
+    protected static float windowPlayHeight;
     protected Wall wallHeight;
     protected Wall wallWight;
     protected BaseActor background;
@@ -33,15 +33,15 @@ public class LevelScreenMain extends MenuScreen {
     protected Label recordsLabelWindow;
     private Label TimePaddleStop; // метка, которая отображает время остановки весла
     private float timerPaddleStop; // переменная, которая отсчитывает 7 секунд при блокировке весла(Item.Type.PADDLE_STOP)
-    private Label scoreLabel; //
+    protected Label scoreLabel; //
     protected Paddle paddle;
     private Label messageLabel; //
     protected Ball ball;
     private TextButton start;
 
     protected float bounceAngle;
-    float hindranceAngle;
-    float brickHardAngle;
+    protected float hindranceAngle;
+    protected float brickHardAngle;
 //    private Sound bounceSound;
 //    private Sound brickBumpSound;
 //    private Sound wallBumpSound;
@@ -292,7 +292,7 @@ public class LevelScreenMain extends MenuScreen {
 //    // когда игрок отпускает палец от экрана, мяч начинает лететь(конец)
 
     // метод, который заставляет шарик двигаться
-    private void startLevel() {
+    protected void startLevel() {
         if ( ball.isPaused() && ballStop) {
             ball.setPaused(false);
             messageLabel.setVisible(false);
@@ -302,7 +302,7 @@ public class LevelScreenMain extends MenuScreen {
     // метод, который заставляет шарик двигаться(конец)
 
     // когда на поле появляется несколько мячей
-    private void ballsOverlaps() {
+    protected void ballsOverlaps() {
         for (BaseActor bal : BaseActor.getList(mainStage, "alex.iv.rect.destroy.actors.Ball")) {
             for (BaseActor wall : BaseActor.getList(mainStage, "alex.iv.rect.destroy.actors.Wall")) {
                 if (bal.overlaps(wall)) {
