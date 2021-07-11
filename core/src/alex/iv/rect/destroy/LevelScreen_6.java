@@ -3,18 +3,9 @@ package alex.iv.rect.destroy;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.scenes.scene2d.Event;
-import com.badlogic.gdx.scenes.scene2d.EventListener;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-
-import alex.iv.rect.destroy.actors.Ball;
 import alex.iv.rect.destroy.actors.Brick;
 import alex.iv.rect.destroy.controller.BaseActor;
-import alex.iv.rect.destroy.controller.BaseGame;
-import alex.iv.rect.destroy.controller.GetLifeScreen;
 import alex.iv.rect.destroy.controller.IActivityRequestHandler;
-import alex.iv.rect.destroy.controller.Item;
 import alex.iv.rect.destroy.controller.LevelScreenMain;
 import alex.iv.rect.destroy.controller.RectangleGame;
 import alex.iv.rect.destroy.controller.Warp;
@@ -39,6 +30,7 @@ public class LevelScreen_6 extends LevelScreenMain {
         showTime(120); // инициализируем метод отображение игрового времени
         //background.loadTexture("background/fon_level.png");
         recordsLabelWindow.setText("Records: " + recordsLevel_6);
+        quantityBricks(90, 9);
 
         Brick tempBrick = new Brick(0,0,mainStage);
         tempBrick.remove();

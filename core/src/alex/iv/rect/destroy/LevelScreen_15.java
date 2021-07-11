@@ -30,6 +30,7 @@ public class LevelScreen_15 extends LevelScreenMain {
         showTime(240); // инициализируем метод отображение игрового времени
         background.loadTexture("background/fon_level.png");
         recordsLabelWindow.setText("Records: " + recordsLevel_1);
+        quantityBricks(200, 20);
 
         Brick tempBrick = new Brick(0,0,mainStage);
         tempBrick.remove();
@@ -213,23 +214,29 @@ public class LevelScreen_15 extends LevelScreenMain {
                     //brickBumpSound.play();
                     if (Color.rgb888(br.getColor()) == Color.rgb888(Color.RED) && Color.rgb888(bal.getColor()) == Color.rgb888(Color.RED)) {
                         br.remove();
+                        mQuantityBricks -- ;
                         score += 50;
                     } else if (Color.rgb888(br.getColor()) == Color.rgb888(Color.ORANGE) && Color.rgb888(bal.getColor()) == Color.rgb888(Color.ORANGE)) {
                         br.remove();
+                        mQuantityBricks -- ;
                         score += 100;
                     } else if (Color.rgb888(br.getColor()) == Color.rgb888(Color.YELLOW) && Color.rgb888(bal.getColor()) == Color.rgb888(Color.YELLOW)) {
                         br.remove();
+                        mQuantityBricks -- ;
                         score += 150;
                     } else if (Color.rgb888(br.getColor()) == Color.rgb888(Color.GREEN) && Color.rgb888(bal.getColor()) == Color.rgb888(Color.GREEN)) {
                         br.remove();
+                        mQuantityBricks -- ;
                         score += 200;
                     } else if (Color.rgb888(br.getColor()) == Color.rgb888(Color.BLUE) && Color.rgb888(bal.getColor()) == Color.rgb888(Color.BLUE)) {
                         br.remove();
+                        mQuantityBricks -- ;
                         score += 250;
                     }
 
                     if (Color.rgb888(br.getColor()) == Color.rgb888(Color.RED)) {
                         br.remove();
+                        mQuantityBricks -- ;
                         switch (br.hit) {    // считает сколько раз попали по кирпичю, и добавляет очки за его дальнейшее уничтожение
                             case 0:
                                 score += 40;
@@ -334,7 +341,7 @@ public class LevelScreen_15 extends LevelScreenMain {
         if (BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick") == 0 && starTimer > 0) {
             allTheBricksAreBroken(recordsLevel_15, "records_15", attainmentColorLevel_15, "attainmentColorLevelMemory_15");// инициализируем метод allTheBricksAreBroken - ВСЕ КИРПИЧИ РАЗРУШЕНЫ
         }
-        if (BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick") < 30 && starTimer > 0) {
+        if (BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick") < 21 && starTimer > 0) {
             createAttainment(15);
         }
 

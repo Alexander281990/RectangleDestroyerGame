@@ -40,6 +40,7 @@ public class LevelScreen_2 extends LevelScreenMain {
         background.loadTexture("background/fon_level.png");
         showTime(100); // инициализируем метод отображение игрового времени
         recordsLabelWindow.setText("Records: " + recordsLevel_2);
+        quantityBricks(124, 12);
 
         Brick tempBrick = new Brick(0,0,mainStage);
         tempBrick.remove();

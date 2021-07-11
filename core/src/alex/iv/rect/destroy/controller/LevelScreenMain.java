@@ -24,6 +24,8 @@ public class LevelScreenMain extends MenuScreen {
     protected BaseActor background;
     protected int score; // переменная набранных очков
     private boolean startGame; // переменная для старта игры(становиться true в методе "touchDown")
+    protected int mQuantityBricks; //
+    private float finishQuantityBricks; //
     protected float starTimer; // переменная для подсчета проигранного времени
     protected boolean paddleStop; // переменная, которая разрешает веслу двигаться(если игрок словил Item.Type.PADDLE_STOP, то переменная блокирует весло на 7 секунд)
     private boolean ballStop; // переменная, которая разрешает ball двигаться(если игрок словил Item.Type.PADDLE_STOP, то переменная блокирует ball на 7 секунд)
@@ -31,6 +33,7 @@ public class LevelScreenMain extends MenuScreen {
     private Label Live; // метка, которая отображает жизни
     private Label recordsLabel;
     protected Label recordsLabelWindow;
+    protected Label quantityBricks; // метка, которая отображает количество кирпичиков
     private Label TimePaddleStop; // метка, которая отображает время остановки весла
     private float timerPaddleStop; // переменная, которая отсчитывает 7 секунд при блокировке весла(Item.Type.PADDLE_STOP)
     protected Label scoreLabel; //
@@ -76,6 +79,10 @@ public class LevelScreenMain extends MenuScreen {
         ballStop = true;
         score = 0;
         ///////////////////////////////////////
+        quantityBricks = new Label("Bricks: ", BaseGame.labelStyle);
+        quantityBricks.setPosition(Gdx.graphics.getWidth() - quantityBricks.getWidth() - wallHeight.getWidth(), Gdx.graphics.getHeight() - quantityBricks.getHeight() - wallWight.getHeight());
+        uiStage.addActor(quantityBricks);
+        ////////////////////////////////////////
         recordsLabel = new Label("Records: ", BaseGame.labelStyle);
         recordsLabel.setPosition((Gdx.graphics.getWidth()/2f) - recordsLabel.getWidth()/2, Gdx.graphics.getHeight()/2f);
         recordsLabel.setColor( Color.CYAN );
@@ -105,11 +112,12 @@ public class LevelScreenMain extends MenuScreen {
         //uiTable.pad(5);
         uiTable.align(Align.center|Align.top);
         uiTable.add(scoreLabel).expandX().left().padTop(5).padLeft(20);
+        uiTable.add(quantityBricks).expandX().center().padTop(5);
         uiTable.add(Live).expandX().right().top().padTop(5).padRight(20);
         uiTable.row();
-        uiTable.add(recordsLabelWindow).colspan(2).padTop(Gdx.graphics.getHeight()/10f);
+        uiTable.add(recordsLabelWindow).colspan(3).padTop(Gdx.graphics.getHeight()/10f);
         uiTable.row();
-        uiTable.add(messageLabel).colspan(2).padTop(Gdx.graphics.getHeight()/8f);
+        uiTable.add(messageLabel).colspan(3).padTop(Gdx.graphics.getHeight()/8f);
         uiTable.row();
 
         paddle = new Paddle(windowPlayWidth / 2 - 64 , windowPlayHeight / 2.5f, mainStage);
@@ -191,6 +199,14 @@ public class LevelScreenMain extends MenuScreen {
         Time.setText((int)starTimer);
     }
     // метод, который показывает проигранное время(конец)
+
+    // метод, который показывает количество кирпичиков
+    protected void quantityBricks(int quantityB, int changeColor) {
+        mQuantityBricks = quantityB;
+        finishQuantityBricks = changeColor;
+
+    }
+    // метод, который показывает количество кирпичиков(конец)
 
     // метод, который устанавливает достижение игры
     protected void createAttainment(int att) {
@@ -378,6 +394,7 @@ public class LevelScreenMain extends MenuScreen {
                     //brickBumpSound.play();
                     if (Color.rgb888(br.getColor()) == Color.rgb888(Color.RED)) {
                         br.remove();
+                        mQuantityBricks -- ;
                         switch (br.hit) {    // считает сколько раз попали по кирпичю, и добавляет очки за его дальнейшее уничтожение
                             case 0:
                                 score += 50;
@@ -578,6 +595,14 @@ public class LevelScreenMain extends MenuScreen {
         // метод, который фиксирует мяч над центром весла, если он не движется(конец)
 
         Live.setText("Live: " + live);
+        /////////////////////////////////
+        if (mQuantityBricks <= finishQuantityBricks) {
+            quantityBricks.setColor(Color.GREEN);
+        } else {
+            quantityBricks.setColor(Color.WHITE);
+        }
+        quantityBricks.setText("Bricks: " + mQuantityBricks);
+        ///////////////////////////////////////////
         ballsOverlaps();
         itemOverlaps();
 
