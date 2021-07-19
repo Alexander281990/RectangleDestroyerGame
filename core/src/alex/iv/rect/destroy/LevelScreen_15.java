@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 
 import alex.iv.rect.destroy.actors.Ball;
 import alex.iv.rect.destroy.actors.Brick;
+import alex.iv.rect.destroy.actors.Hindrance;
 import alex.iv.rect.destroy.controller.BaseActor;
 import alex.iv.rect.destroy.controller.BaseGame;
 import alex.iv.rect.destroy.controller.GetLifeScreen;
@@ -31,6 +32,9 @@ public class LevelScreen_15 extends LevelScreenMain {
         background.loadTexture("background/fon_level.png");
         recordsLabelWindow.setText("Records: " + recordsLevel_1);
         quantityBricks(200, 20);
+
+        Hindrance hindrance = new Hindrance(100, 200, mainStage, true);
+        hindrance.setHindranceMoving(false);
 
         Brick tempBrick = new Brick(0,0,mainStage);
         tempBrick.remove();
@@ -206,6 +210,31 @@ public class LevelScreen_15 extends LevelScreenMain {
                 }
                 bal.setMotionAngle(bounceAngle);
 
+            }
+
+            for (BaseActor hindrance : BaseActor.getList(mainStage, "alex.iv.rect.destroy.actors.Hindrance")) {
+                if (bal.overlaps(hindrance)) {
+                    // Если hindrance.brickHardStatus = true, то мяч от помехи будет отскакивать с обоих сторон
+                    // Если hindrance.brickHardStatus = false, то мяч от помехи будет отскакивать только с верхней стороны. Если мяч
+                    // коснется нижней стороны помехи, то она пропустит мяч на верхнюю свою сторону
+                    if (hindrance.brickHardStatus) {
+                        float ballCenterX = bal.getX() + bal.getWidth() / 2; // находим центр шарика по оси Х
+                        float hindrancePercentHit = (ballCenterX - hindrance.getX()) / hindrance.getWidth();
+                        hindranceAngle = MathUtils.lerp(150, 30, hindrancePercentHit);
+                        bal.setMotionAngle(hindranceAngle);
+                    } else {
+                        float positionHindrance_Y = hindrance.getY() + hindrance.getHeight() / 2;
+                        float positionBall_Y = bal.getY() + bal.getHeight() / 2;
+                        float ballCenterX = bal.getX() + bal.getWidth() / 2; // находим центр шарика по оси Х
+                        float hindrancePercentHit = (ballCenterX - hindrance.getX()) / hindrance.getWidth();
+                        if (positionBall_Y > positionHindrance_Y) {
+                            hindranceAngle = MathUtils.lerp(150, 30, hindrancePercentHit);
+                        } else {
+                            hindranceAngle = MathUtils.lerp(-150, -30, hindrancePercentHit);
+                        }
+                        bal.setMotionAngle(hindranceAngle);
+                    }
+                }
             }
 
             for (BaseActor br : BaseActor.getList(mainStage, "alex.iv.rect.destroy.actors.Brick")) {

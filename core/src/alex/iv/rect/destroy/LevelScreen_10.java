@@ -2,9 +2,11 @@ package alex.iv.rect.destroy;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.math.MathUtils;
 
 import alex.iv.rect.destroy.actors.Brick;
 import alex.iv.rect.destroy.actors.BrickHard;
+import alex.iv.rect.destroy.actors.Clouds;
 import alex.iv.rect.destroy.controller.BaseActor;
 import alex.iv.rect.destroy.controller.IActivityRequestHandler;
 import alex.iv.rect.destroy.controller.LevelScreenMain;
@@ -12,16 +14,17 @@ import alex.iv.rect.destroy.controller.RectangleGame;
 
 public class LevelScreen_10 extends LevelScreenMain {
 
+    private Clouds cloud;
+
     public LevelScreen_10(IActivityRequestHandler requestHandler) {
         super(requestHandler);
-        //this.requestHandler = requestHandler;
     }
 
     public void initialize() {
         super.initialize();
 
         showTime(180); // инициализируем метод отображение игрового времени
-        background.loadTexture("background/fon_level.png");
+        //background.loadTexture("background/fon_level.png");
         recordsLabelWindow.setText("Records: " + recordsLevel_10);
         quantityBricks(455, 45);
 
@@ -58,7 +61,11 @@ public class LevelScreen_10 extends LevelScreenMain {
             }
         }
 
+        cloud = new Clouds(0, Gdx.graphics.getHeight(), mainStage);
+        uiStage.addActor(cloud);
+
         Gdx.app.log("MyTag", String.valueOf(BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick")));
+
     }
 
     public void update(float dt) {
@@ -75,5 +82,8 @@ public class LevelScreen_10 extends LevelScreenMain {
             createAttainment(10);
         }
 
+        cloud.setMotionAngle(-90); // заставляет двигаться облака снизу в верх
+
     }
+
 }

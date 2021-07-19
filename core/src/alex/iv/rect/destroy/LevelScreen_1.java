@@ -128,6 +128,14 @@ import alex.iv.rect.destroy.controller.RectangleGame;
 
  ////////////////////////////////////////////////////////////////////////////////////////////
 
+ - Создание движущихся облаков
+    1. private Clouds cloud; // создаем поле класса
+    2. cloud = new Clouds(0, Gdx.graphics.getHeight(), mainStage); // в методе "initialize()" создаем обьект Clouds
+        uiStage.addActor(cloud);  // в методе "initialize()" добавляем его к "uiStage"
+    3. cloud.setMotionAngle(-90); // в методе "update()" заставляем его двигаться
+
+ ////////////////////////////////////////////////////////////////////////////////////////////
+
  * */
 
 public class LevelScreen_1 extends LevelScreenMain {

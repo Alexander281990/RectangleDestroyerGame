@@ -9,11 +9,11 @@ import alex.iv.rect.destroy.controller.IActivityRequestHandler;
 import alex.iv.rect.destroy.controller.LevelScreenMain;
 import alex.iv.rect.destroy.controller.RectangleGame;
 
-public class LevelScreen_4 extends LevelScreenMain {
+public class LevelScreen_17 extends LevelScreenMain {
 
     // чтобы реклама появлялась, обязательно нужно использовать этод конструктор(с параметром requestHandler), в классе
     // MenuScreen
-    public LevelScreen_4(IActivityRequestHandler requestHandler) {
+    public LevelScreen_17(IActivityRequestHandler requestHandler) {
         super(requestHandler);
     }
 
@@ -21,7 +21,7 @@ public class LevelScreen_4 extends LevelScreenMain {
         super.initialize();
         background.loadTexture("background/fon_level.png");
         showTime(80); // инициализируем метод отображение игрового времени
-        recordsLabelWindow.setText("Records: " + recordsLevel_4);
+        recordsLabelWindow.setText("Records: " + recordsLevel_17);
         quantityBricks(10, 1);
 
         Brick tempBrick = new Brick(0,0,mainStage);
@@ -46,14 +46,14 @@ public class LevelScreen_4 extends LevelScreenMain {
         super.update(dt);
 
         if (starTimer < 0) {
-            timeIsUp(recordsLevel_4, "records_4"); // инициализируем метод timeIsUp - ВРЕМЯ ВЫШЛО
-            RectangleGame.setActiveScreen(new IntermediateScreen(requestHandler, 4, score));
+            timeIsUp(recordsLevel_17, "records_17"); // инициализируем метод timeIsUp - ВРЕМЯ ВЫШЛО
+            RectangleGame.setActiveScreen(new IntermediateScreen(requestHandler, 17, score));
         }
         if (BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick") == 0 && starTimer > 0) {
-            allTheBricksAreBroken(recordsLevel_4, "records_4", attainmentColorLevel_4, "attainmentColorLevelMemory_4");// инициализируем метод allTheBricksAreBroken - ВСЕ КИРПИЧИ РАЗРУШЕНЫ
+            allTheBricksAreBroken(recordsLevel_17, "records_17", attainmentColorLevel_17, "attainmentColorLevelMemory_17");// инициализируем метод allTheBricksAreBroken - ВСЕ КИРПИЧИ РАЗРУШЕНЫ
         }
         if (BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick") < 2 && starTimer > 0) {
-            createAttainment(4);
+            createAttainment(17);
         }
 
         for (BaseActor brick : BaseActor.getList(mainStage, "alex.iv.rect.destroy.actors.Brick")) {
