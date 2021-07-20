@@ -9,11 +9,11 @@ import alex.iv.rect.destroy.controller.IActivityRequestHandler;
 import alex.iv.rect.destroy.controller.LevelScreenMain;
 import alex.iv.rect.destroy.controller.RectangleGame;
 
-public class LevelScreen_18 extends LevelScreenMain {
+public class LevelScreen_19 extends LevelScreenMain {
 
     // чтобы реклама появлялась, обязательно нужно использовать этод конструктор(с параметром requestHandler), в классе
     // MenuScreen
-    public LevelScreen_18(IActivityRequestHandler requestHandler) {
+    public LevelScreen_19(IActivityRequestHandler requestHandler) {
         super(requestHandler);
     }
 
@@ -23,7 +23,7 @@ public class LevelScreen_18 extends LevelScreenMain {
         super.paddle.setBoundaryRectangle();
         background.loadTexture("background/fon_level.png");
         showTime(200); // инициализируем метод отображение игрового времени
-        recordsLabelWindow.setText("Records: " + recordsLevel_18);
+        recordsLabelWindow.setText("Records: " + recordsLevel_19);
         quantityBricks(101, 10);
 
         Brick tempBrick = new Brick(0,0,mainStage);
@@ -96,6 +96,7 @@ public class LevelScreen_18 extends LevelScreenMain {
                         rowNum == 23 && colNum == 0 || rowNum == 25 && colNum == 9 || rowNum == 26 && colNum == 1 || rowNum == 29 && colNum == 9) {
                     brick.setColor(Color.RED);
                     brick.setBrickMoving(false); // заставляет двигаться хаотично кирпичи
+                    brick.setBrickFlash(false);
                 }
                 if (rowNum == 0 && colNum == 7 || rowNum == 1 && colNum == 3 || rowNum == 3 && colNum == 6 || rowNum == 5 && colNum == 0 ||
                         rowNum == 7 && colNum == 8 || rowNum == 9 && colNum == 9 || rowNum == 10 && colNum == 4 || rowNum == 11 && colNum == 1 ||
@@ -105,6 +106,7 @@ public class LevelScreen_18 extends LevelScreenMain {
                     brick.setColor(Color.ORANGE);
                     brick.numberColor = 2;
                     brick.setBrickMoving(false); // заставляет двигаться хаотично кирпичи
+                    brick.setBrickFlash(false);
                 }
                 if (rowNum == 0 && colNum == 4 || rowNum == 2 && colNum == 8 || rowNum == 4 && colNum == 8 || rowNum == 6 && colNum == 9 ||
                         rowNum == 7 && colNum == 6 || rowNum == 9 && colNum == 8 || rowNum == 10 && colNum == 2 || rowNum == 12 && colNum == 8 ||
@@ -114,6 +116,7 @@ public class LevelScreen_18 extends LevelScreenMain {
                     brick.setColor(Color.YELLOW);
                     brick.numberColor = 3;
                     brick.setBrickMoving(false); // заставляет двигаться хаотично кирпичи
+                    brick.setBrickFlash(false);
                 }
                 if (rowNum == 0 && colNum == 1 || rowNum == 2 && colNum == 4 || rowNum == 4 && colNum == 3 || rowNum == 6 && colNum == 6 ||
                         rowNum == 7 && colNum == 3 || rowNum == 9 && colNum == 7 || rowNum == 11 && colNum == 9 || rowNum == 12 && colNum == 3 ||
@@ -123,6 +126,7 @@ public class LevelScreen_18 extends LevelScreenMain {
                     brick.setColor(Color.GREEN);
                     brick.numberColor = 4;
                     brick.setBrickMoving(false); // заставляет двигаться хаотично кирпичи
+                    brick.setBrickFlash(false);
                 }
                 if (rowNum == 0 && colNum == 9 || rowNum == 1 && colNum == 5 || rowNum == 2 && colNum == 0 || rowNum == 4 && colNum == 1 ||
                         rowNum == 6 && colNum == 2 || rowNum == 7 && colNum == 0 || rowNum == 9 && colNum == 2 || rowNum == 11 && colNum == 6 ||
@@ -133,6 +137,7 @@ public class LevelScreen_18 extends LevelScreenMain {
                     brick.setColor(Color.BLUE);
                     brick.numberColor = 5;
                     brick.setBrickMoving(false); // заставляет двигаться хаотично кирпичи
+                    brick.setBrickFlash(false);
                 }
             }
         }
@@ -143,14 +148,14 @@ public class LevelScreen_18 extends LevelScreenMain {
         super.update(dt);
 
         if (starTimer < 0) {
-            timeIsUp(recordsLevel_18, "records_18"); // инициализируем метод timeIsUp - ВРЕМЯ ВЫШЛО
-            RectangleGame.setActiveScreen(new IntermediateScreen(requestHandler, 18, score));
+            timeIsUp(recordsLevel_19, "records_19"); // инициализируем метод timeIsUp - ВРЕМЯ ВЫШЛО
+            RectangleGame.setActiveScreen(new IntermediateScreen(requestHandler, 19, score));
         }
         if (BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick") == 0 && starTimer > 0) {
-            allTheBricksAreBroken(recordsLevel_18, "records_18", attainmentColorLevel_18, "attainmentColorLevelMemory_18");// инициализируем метод allTheBricksAreBroken - ВСЕ КИРПИЧИ РАЗРУШЕНЫ
+            allTheBricksAreBroken(recordsLevel_19, "records_19", attainmentColorLevel_19, "attainmentColorLevelMemory_19");// инициализируем метод allTheBricksAreBroken - ВСЕ КИРПИЧИ РАЗРУШЕНЫ
         }
         if (BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick") < 11 && starTimer > 0) {
-            createAttainment(18);
+            createAttainment(19);
         }
 
     }

@@ -27,6 +27,7 @@ public class BaseActor extends Group {
     public boolean mBrick;
     public boolean brickHardStatus;
     protected boolean hindranceStatus;
+    public boolean brickVisible;
 
     // переменные для метода leftRightMoving();
     private float timeGame;
@@ -78,6 +79,7 @@ public class BaseActor extends Group {
         timeSpeed = MathUtils.random(100, 200);
 
         numberColor = 4;
+        brickVisible = true;
 
     }
 
@@ -478,8 +480,9 @@ public class BaseActor extends Group {
 
     // метод, который скрывает, но не удаляет актера
     // если false - то скрывается
-    public void visibleActor(boolean b) {
+    public void visibleActor(boolean b, boolean overlaps) {
         setVisible(b);
+        brickVisible = overlaps;
     }
 
 }
