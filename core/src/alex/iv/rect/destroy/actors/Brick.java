@@ -14,12 +14,6 @@ public class Brick extends BaseActor {
     private float brickHeight = LevelScreenMain.getWindowPlayHeight() / 60;
     private boolean brickMoving = true;
     private boolean brickFlash = true;
-    //private static int numberBrick;
-
-//    public int getNumberBrick() {
-//        return numberBrick;
-//    }
-
     private float timeBrick;
 
     public Brick(float x, float y, Stage s) {
@@ -30,7 +24,6 @@ public class Brick extends BaseActor {
         hit = 0;
         timeBrick = 5;
         mBrick = false;
-        //numberBrick ++;
     }
 
     // метод, который заставляет мигать кирпичики с частотой в 5 секунд

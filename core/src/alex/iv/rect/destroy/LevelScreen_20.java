@@ -8,6 +8,8 @@ import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 
+import java.util.ArrayList;
+
 import alex.iv.rect.destroy.actors.Ball;
 import alex.iv.rect.destroy.actors.Brick;
 import alex.iv.rect.destroy.controller.BaseActor;
@@ -20,6 +22,9 @@ import alex.iv.rect.destroy.controller.RectangleGame;
 
 public class LevelScreen_20 extends LevelScreenMain {
 
+    ArrayList<Brick> bricks;
+    Brick brick;
+
     // чтобы реклама появлялась, обязательно нужно использовать этод конструктор(с параметром requestHandler), в классе
     // MenuScreen
     public LevelScreen_20(IActivityRequestHandler requestHandler) {
@@ -28,8 +33,9 @@ public class LevelScreen_20 extends LevelScreenMain {
 
     public void initialize() {
         super.initialize();
+        bricks = new ArrayList<>();
         background.loadTexture("background/fon_level.png");
-        showTime(200); // инициализируем метод отображение игрового времени
+        showTime(300); // инициализируем метод отображение игрового времени
         recordsLabelWindow.setText("Records: " + recordsLevel_20);
         quantityBricks(300, 30);
 
@@ -43,27 +49,58 @@ public class LevelScreen_20 extends LevelScreenMain {
             for (int colNum = 0; colNum < totalCols; colNum++) {
                 float x = marginX + tempBrick.getBrickWidth()	* colNum;
                 float y = marginY + tempBrick.getBrickHeight() * rowNum;
-                Brick brick = new Brick(x, y, mainStage);
-                brick.setColor(Color.RED);
-                if (rowNum == 0 || rowNum == 1 || rowNum == 2 || rowNum == 3 || rowNum == 4 || rowNum == 5 || rowNum == 6 ||
-                        rowNum == 7 || rowNum == 8 || rowNum == 9 || rowNum == 10 || rowNum == 11 || rowNum == 12 || rowNum == 13 ||
-                        rowNum == 14 || rowNum == 16 || rowNum == 17 || rowNum == 18 || rowNum == 19 || rowNum == 20 || rowNum == 21 ||
-                        rowNum == 22 || rowNum == 23 || rowNum == 24 || rowNum == 25 || rowNum == 26 || rowNum == 27 || rowNum == 28 ||
-                        rowNum == 29) {
-                    brick.visibleActor(false, false);
+                brick = new Brick(x, y, mainStage);
+                switch (MathUtils.random(1, 5)) {
+                    case 1:
+                        brick.setColor(Color.RED);
+                        break;
+                    case 2:
+                        brick.setColor(Color.ORANGE);
+                        brick.numberColor = 2;
+                        break;
+                    case 3:
+                        brick.setColor(Color.YELLOW);
+                        brick.numberColor = 3;
+                        break;
+                    case 4:
+                        brick.setColor(Color.GREEN);
+                        brick.numberColor = 4;
+                    case 5:
+                        brick.setColor(Color.BLUE);
+                        brick.numberColor = 5;
+                        break;
+                    default:
                 }
-                if (rowNum == 15 && colNum == 0 || rowNum == 15 && colNum == 1 || rowNum == 15 && colNum == 2 || rowNum == 15 && colNum == 3 ||
-                        rowNum == 15 && colNum == 5 || rowNum == 15 && colNum == 6 || rowNum == 15 && colNum == 7 || rowNum == 15 && colNum == 8 ||
-                        rowNum == 15 && colNum == 9) {
-                    brick.visibleActor(false, false);
-                }
-                if (rowNum == 15 && colNum == 4) {
-                    brick.setColor(Color.RED);
-                }
+                bricks.add(brick);
             }
         }
 
-        Gdx.app.log("MyTag", String.valueOf(BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick")));
+        for (int i = 0; i < bricks.size(); i ++) {
+            if (i != 135) {
+                bricks.get(i).visibleActor(false, false);
+            }
+        }
+        bricks.remove(135);
+
+
+        //Gdx.app.log("MyTag", String.valueOf(BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick")));
+        Gdx.app.log("MyTag", String.valueOf(bricks.size()));
+    }
+
+    // метод, который в случайном порядке показывает два новых кирпича
+    private void emergenceBricks() {
+        int r1 = MathUtils.random(0, bricks.size());
+        int r2 = MathUtils.random(0, bricks.size());
+        for (int i = 0; i < bricks.size(); i ++) {
+            if (i == r1) {
+                bricks.get(i).visibleActor(true, true);
+                bricks.remove(i); // удаляем обьект из листа
+            }
+            if (i == r2) {
+                bricks.get(i).visibleActor(true, true);
+                bricks.remove(i); // удаляем обьект из листа
+            }
+        }
     }
 
     @Override
@@ -143,6 +180,7 @@ public class LevelScreen_20 extends LevelScreenMain {
                     //brickBumpSound.play();
                     if (Color.rgb888(br.getColor()) == Color.rgb888(Color.RED)) {
                         br.remove();
+                        emergenceBricks();
                         mQuantityBricks -- ;
                         switch (br.hit) {    // считает сколько раз попали по кирпичю, и добавляет очки за его дальнейшее уничтожение
                             case 0:
