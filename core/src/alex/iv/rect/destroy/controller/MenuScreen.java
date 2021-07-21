@@ -24,6 +24,9 @@ import alex.iv.rect.destroy.LevelScreen_18;
 import alex.iv.rect.destroy.LevelScreen_19;
 import alex.iv.rect.destroy.LevelScreen_2;
 import alex.iv.rect.destroy.LevelScreen_20;
+import alex.iv.rect.destroy.LevelScreen_21;
+import alex.iv.rect.destroy.LevelScreen_22;
+import alex.iv.rect.destroy.LevelScreen_23;
 import alex.iv.rect.destroy.LevelScreen_3;
 import alex.iv.rect.destroy.LevelScreen_4;
 import alex.iv.rect.destroy.LevelScreen_5;
@@ -70,6 +73,9 @@ public class MenuScreen extends StartScreen {
         Lock lock18 = new Lock(0, 0, mainStage);
         Lock lock19 = new Lock(0, 0, mainStage);
         Lock lock20 = new Lock(0, 0, mainStage);
+        Lock lock21 = new Lock(0, 0, mainStage);
+        Lock lock22 = new Lock(0, 0, mainStage);
+        Lock lock23 = new Lock(0, 0, mainStage);
 
         pref = Gdx.app.getPreferences("Preferences");// инициализация Preferences для сохранения лучшего результата в телефоне
 
@@ -444,6 +450,51 @@ public class MenuScreen extends StartScreen {
                 }
         );
 
+        level_21_Button.addListener(
+                new EventListener() {
+                    @Override
+                    public boolean handle(Event e) {
+                        if (!(e instanceof InputEvent) ||
+                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
+                            return false;
+                        if (attainment >= 20) {
+                            RectangleGame.setActiveScreen(new LevelScreen_21(requestHandler));
+                        }
+                        return false;
+                    }
+                }
+        );
+
+        level_22_Button.addListener(
+                new EventListener() {
+                    @Override
+                    public boolean handle(Event e) {
+                        if (!(e instanceof InputEvent) ||
+                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
+                            return false;
+                        if (attainment >= 21) {
+                            RectangleGame.setActiveScreen(new LevelScreen_22(requestHandler));
+                        }
+                        return false;
+                    }
+                }
+        );
+
+        level_23_Button.addListener(
+                new EventListener() {
+                    @Override
+                    public boolean handle(Event e) {
+                        if (!(e instanceof InputEvent) ||
+                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
+                            return false;
+                        if (attainment >= 22) {
+                            RectangleGame.setActiveScreen(new LevelScreen_23(requestHandler));
+                        }
+                        return false;
+                    }
+                }
+        );
+
         // устанавливает фоновую картинку в Table
         NinePatch patch = new NinePatch(new Texture(Gdx.files.internal("background/fon_level_4.png")),
                 3, 3, 3, 3);
@@ -527,6 +578,12 @@ public class MenuScreen extends StartScreen {
         lock19.setPosition(level_19_Button.getWidth() / 2 - lock19.getWidth() / 2, level_19_Button.getHeight() / 2 - lock19.getHeight() / 2);
         level_20_Button.addActor(lock20);
         lock20.setPosition(level_20_Button.getWidth() / 2 - lock20.getWidth() / 2, level_20_Button.getHeight() / 2 - lock20.getHeight() / 2);
+        level_21_Button.addActor(lock21);
+        lock21.setPosition(level_21_Button.getWidth() / 2 - lock21.getWidth() / 2, level_21_Button.getHeight() / 2 - lock21.getHeight() / 2);
+        level_22_Button.addActor(lock22);
+        lock22.setPosition(level_22_Button.getWidth() / 2 - lock22.getWidth() / 2, level_22_Button.getHeight() / 2 - lock22.getHeight() / 2);
+        level_23_Button.addActor(lock23);
+        lock23.setPosition(level_23_Button.getWidth() / 2 - lock23.getWidth() / 2, level_23_Button.getHeight() / 2 - lock23.getHeight() / 2);
 
 
         Gdx.app.log("MyTag", String.valueOf(attainment));
@@ -782,6 +839,78 @@ public class MenuScreen extends StartScreen {
                 lock19.remove();
                 lock20.remove();
                 break;
+            case 20:
+                lock1.remove();
+                lock2.remove();
+                lock3.remove();
+                lock4.remove();
+                lock5.remove();
+                lock6.remove();
+                lock7.remove();
+                lock8.remove();
+                lock9.remove();
+                lock10.remove();
+                lock11.remove();
+                lock12.remove();
+                lock13.remove();
+                lock14.remove();
+                lock15.remove();
+                lock16.remove();
+                lock17.remove();
+                lock18.remove();
+                lock19.remove();
+                lock20.remove();
+                lock21.remove();
+                break;
+            case 21:
+                lock1.remove();
+                lock2.remove();
+                lock3.remove();
+                lock4.remove();
+                lock5.remove();
+                lock6.remove();
+                lock7.remove();
+                lock8.remove();
+                lock9.remove();
+                lock10.remove();
+                lock11.remove();
+                lock12.remove();
+                lock13.remove();
+                lock14.remove();
+                lock15.remove();
+                lock16.remove();
+                lock17.remove();
+                lock18.remove();
+                lock19.remove();
+                lock20.remove();
+                lock21.remove();
+                lock22.remove();
+                break;
+            case 22:
+                lock1.remove();
+                lock2.remove();
+                lock3.remove();
+                lock4.remove();
+                lock5.remove();
+                lock6.remove();
+                lock7.remove();
+                lock8.remove();
+                lock9.remove();
+                lock10.remove();
+                lock11.remove();
+                lock12.remove();
+                lock13.remove();
+                lock14.remove();
+                lock15.remove();
+                lock16.remove();
+                lock17.remove();
+                lock18.remove();
+                lock19.remove();
+                lock20.remove();
+                lock21.remove();
+                lock22.remove();
+                lock23.remove();
+                break;
             default:
         }
 
@@ -942,6 +1071,30 @@ public class MenuScreen extends StartScreen {
         } else {
             if (attainmentColorLevel_20 == 1) {
                 level_20_Button.setColor(Color.GREEN);
+            }
+        }
+
+        if (attainmentColorLevel_21 == 0) {
+            level_21_Button.setColor(Color.RED);
+        } else {
+            if (attainmentColorLevel_21 == 1) {
+                level_21_Button.setColor(Color.GREEN);
+            }
+        }
+
+        if (attainmentColorLevel_22 == 0) {
+            level_22_Button.setColor(Color.RED);
+        } else {
+            if (attainmentColorLevel_22 == 1) {
+                level_22_Button.setColor(Color.GREEN);
+            }
+        }
+
+        if (attainmentColorLevel_23 == 0) {
+            level_23_Button.setColor(Color.RED);
+        } else {
+            if (attainmentColorLevel_23 == 1) {
+                level_23_Button.setColor(Color.GREEN);
             }
         }
 

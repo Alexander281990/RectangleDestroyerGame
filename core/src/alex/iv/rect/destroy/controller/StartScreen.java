@@ -32,6 +32,9 @@ public class StartScreen extends BaseScreen {
     protected static int attainmentColorLevel_18 = 0;
     protected static int attainmentColorLevel_19 = 0;
     protected static int attainmentColorLevel_20 = 0;
+    protected static int attainmentColorLevel_21 = 0;
+    protected static int attainmentColorLevel_22 = 0;
+    protected static int attainmentColorLevel_23 = 0;
     protected static int recordsLevel_1;
     protected static int recordsLevel_2;
     protected static int recordsLevel_3;
@@ -52,6 +55,9 @@ public class StartScreen extends BaseScreen {
     protected static int recordsLevel_18;
     protected static int recordsLevel_19;
     protected static int recordsLevel_20;
+    protected static int recordsLevel_21;
+    protected static int recordsLevel_22;
+    protected static int recordsLevel_23;
 
     public IActivityRequestHandler requestHandler;
 
@@ -88,6 +94,9 @@ public class StartScreen extends BaseScreen {
         attainmentColorLevel_18 = pref.getInteger("attainmentColorLevelMemory_18");
         attainmentColorLevel_19 = pref.getInteger("attainmentColorLevelMemory_19");
         attainmentColorLevel_20 = pref.getInteger("attainmentColorLevelMemory_20");
+        attainmentColorLevel_21 = pref.getInteger("attainmentColorLevelMemory_21");
+        attainmentColorLevel_22 = pref.getInteger("attainmentColorLevelMemory_22");
+        attainmentColorLevel_23 = pref.getInteger("attainmentColorLevelMemory_23");
         recordsLevel_1 = pref.getInteger("records_1");
         recordsLevel_2 = pref.getInteger("records_2");
         recordsLevel_3 = pref.getInteger("records_3");
@@ -108,6 +117,9 @@ public class StartScreen extends BaseScreen {
         recordsLevel_18 = pref.getInteger("records_18");
         recordsLevel_19 = pref.getInteger("records_19");
         recordsLevel_20 = pref.getInteger("records_20");
+        recordsLevel_21 = pref.getInteger("records_21");
+        recordsLevel_22 = pref.getInteger("records_22");
+        recordsLevel_23 = pref.getInteger("records_23");
         // инициализация кнопок New game и continue
         TextButton startButton = new TextButton( "New game", BaseGame.textButtonStyle );
         //startButton.setPosition(150,150);
@@ -139,8 +151,11 @@ public class StartScreen extends BaseScreen {
                         recordsLevel_18 = 0;
                         recordsLevel_19 = 0;
                         recordsLevel_20 = 0;
+                        recordsLevel_21 = 0;
+                        recordsLevel_22 = 0;
+                        recordsLevel_23 = 0;
                         live = 2;
-                        attainment = 20;
+                        attainment = 23;
                         attainmentColorLevel_1 = 0;
                         attainmentColorLevel_2 = 0;
                         attainmentColorLevel_3 = 0;
@@ -161,6 +176,9 @@ public class StartScreen extends BaseScreen {
                         attainmentColorLevel_18 = 0;
                         attainmentColorLevel_19 = 0;
                         attainmentColorLevel_20 = 0;
+                        attainmentColorLevel_21 = 0;
+                        attainmentColorLevel_22 = 0;
+                        attainmentColorLevel_23 = 0;
                         pref.putInteger("attainmentColorLevelMemory_1", attainmentColorLevel_1);
                         pref.putInteger("attainmentColorLevelMemory_2", attainmentColorLevel_2);
                         pref.putInteger("attainmentColorLevelMemory_3", attainmentColorLevel_3);
@@ -181,6 +199,9 @@ public class StartScreen extends BaseScreen {
                         pref.putInteger("attainmentColorLevelMemory_18", attainmentColorLevel_18);
                         pref.putInteger("attainmentColorLevelMemory_19", attainmentColorLevel_19);
                         pref.putInteger("attainmentColorLevelMemory_20", attainmentColorLevel_20);
+                        pref.putInteger("attainmentColorLevelMemory_21", attainmentColorLevel_21);
+                        pref.putInteger("attainmentColorLevelMemory_22", attainmentColorLevel_22);
+                        pref.putInteger("attainmentColorLevelMemory_23", attainmentColorLevel_23);
                         pref.putInteger("attainmentMemory", attainment);
                         pref.putInteger("records_1", recordsLevel_1);
                         pref.putInteger("records_2", recordsLevel_2);
@@ -202,6 +223,9 @@ public class StartScreen extends BaseScreen {
                         pref.putInteger("records_18", recordsLevel_18);
                         pref.putInteger("records_19", recordsLevel_19);
                         pref.putInteger("records_20", recordsLevel_20);
+                        pref.putInteger("records_21", recordsLevel_21);
+                        pref.putInteger("records_22", recordsLevel_22);
+                        pref.putInteger("records_23", recordsLevel_23);
                         pref.putInteger("liveMemory", live);
                         pref.flush();
                         RectangleGame.setActiveScreen(new MenuScreen(requestHandler));

@@ -96,7 +96,7 @@ public class LevelScreen_20 extends LevelScreenMain {
                 bricks.get(i).visibleActor(true, true);
                 bricks.remove(i); // удаляем обьект из листа
             }
-            if (i == r2) {
+            if (i == r2 && i != r1) {
                 bricks.get(i).visibleActor(true, true);
                 bricks.remove(i); // удаляем обьект из листа
             }
