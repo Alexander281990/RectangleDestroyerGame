@@ -28,7 +28,7 @@ public class LevelScreen_15 extends LevelScreenMain {
     public void initialize() {
         super.initialize();
 
-        showTime(240); // инициализируем метод отображение игрового времени
+        showTime(300); // инициализируем метод отображение игрового времени
         background.loadTexture("background/fon_level.png");
         recordsLabelWindow.setText("Records: " + recordsLevel_1);
         quantityBricks(200, 20);

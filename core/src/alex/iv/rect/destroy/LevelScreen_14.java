@@ -71,7 +71,7 @@ public class LevelScreen_14 extends LevelScreenMain {
                 }
                 if (rowNum == 2 && colNum == 8) {
                     brick.remove();
-                    BrickHard brickHard = new BrickHard(x, y, mainStage, false);
+                    new BrickHard(x, y, mainStage, false);
                 }
                 if (rowNum == 2 && colNum == 9) {
                     brick.remove();
@@ -99,7 +99,7 @@ public class LevelScreen_14 extends LevelScreenMain {
                 }
                 if (rowNum == 3 && colNum == 8) {
                     brick.remove();
-                    BrickHard brickHard = new BrickHard(x, y, mainStage, false);
+                    new BrickHard(x, y, mainStage, false);
                 }
                 if (rowNum == 3 && colNum == 9) {
                     brick.remove();
@@ -126,7 +126,7 @@ public class LevelScreen_14 extends LevelScreenMain {
                 }
                 if (rowNum == 4 && colNum == 8 || rowNum == 4 && colNum == 9) {
                     brick.remove();
-                    BrickHard brickHard = new BrickHard(x, y, mainStage, false);
+                    new BrickHard(x, y, mainStage, false);
                 }
                 //////////////////////////////////////
                 if (rowNum == 5 && colNum == 0 || rowNum == 5 && colNum == 5) {
@@ -223,7 +223,7 @@ public class LevelScreen_14 extends LevelScreenMain {
                 }
                 if (rowNum == 16 && colNum == 0 || rowNum == 16 && colNum == 3 || rowNum == 16 && colNum == 6 || rowNum == 16 && colNum == 9) {
                     brick.remove();
-                    BrickHard brickHard = new BrickHard(x, y, mainStage, false);
+                    new BrickHard(x, y, mainStage, false);
                 }
                 if (rowNum == 16 && colNum == 1 || rowNum == 16 && colNum == 2 || rowNum == 16 && colNum == 4 || rowNum == 16 && colNum == 5 || rowNum == 16 && colNum == 7 || rowNum == 16 && colNum == 8) {
                     brick.setColor(Color.RED);

@@ -22,8 +22,7 @@ import alex.iv.rect.destroy.controller.RectangleGame;
 
 public class LevelScreen_20 extends LevelScreenMain {
 
-    ArrayList<Brick> bricks;
-    Brick brick;
+    private ArrayList<Brick> bricks;
 
     // чтобы реклама появлялась, обязательно нужно использовать этод конструктор(с параметром requestHandler), в классе
     // MenuScreen
@@ -49,42 +48,40 @@ public class LevelScreen_20 extends LevelScreenMain {
             for (int colNum = 0; colNum < totalCols; colNum++) {
                 float x = marginX + tempBrick.getBrickWidth()	* colNum;
                 float y = marginY + tempBrick.getBrickHeight() * rowNum;
-                brick = new Brick(x, y, mainStage);
-                switch (MathUtils.random(1, 5)) {
-                    case 1:
-                        brick.setColor(Color.RED);
-                        break;
-                    case 2:
-                        brick.setColor(Color.ORANGE);
-                        brick.numberColor = 2;
-                        break;
-                    case 3:
-                        brick.setColor(Color.YELLOW);
-                        brick.numberColor = 3;
-                        break;
-                    case 4:
-                        brick.setColor(Color.GREEN);
-                        brick.numberColor = 4;
-                    case 5:
-                        brick.setColor(Color.BLUE);
-                        brick.numberColor = 5;
-                        break;
-                    default:
+                Brick brick = new Brick(x, y, mainStage);
+                if (rowNum == 0 || rowNum == 5 || rowNum == 10 || rowNum == 19 || rowNum == 24 || rowNum == 29) {
+                    brick.setColor(Color.RED);
+                }
+                if (rowNum == 1 || rowNum == 6 || rowNum == 11 || rowNum == 15 ||  rowNum == 20 || rowNum == 25) {
+                    brick.setColor(Color.ORANGE);
+                    brick.numberColor = 2;
+                }
+                if (rowNum == 2 || rowNum == 7 || rowNum == 12 || rowNum == 16 ||  rowNum == 21 || rowNum == 26) {
+                    brick.setColor(Color.YELLOW);
+                    brick.numberColor = 3;
+                }
+                if (rowNum == 3 || rowNum == 8 || rowNum == 13 || rowNum == 17 ||  rowNum == 22 || rowNum == 27) {
+                    brick.setColor(Color.GREEN);
+                    brick.numberColor = 4;
+                }
+                if (rowNum == 4 || rowNum == 9 || rowNum == 14 || rowNum == 18 ||  rowNum == 23 || rowNum == 28) {
+                    brick.setColor(Color.BLUE);
+                    brick.numberColor = 5;
                 }
                 bricks.add(brick);
             }
         }
 
         for (int i = 0; i < bricks.size(); i ++) {
-            if (i != 135) {
+            if (i != 115) {
                 bricks.get(i).visibleActor(false, false);
             }
         }
-        bricks.remove(135);
+        bricks.remove(115);
 
 
         //Gdx.app.log("MyTag", String.valueOf(BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick")));
-        Gdx.app.log("MyTag", String.valueOf(bricks.size()));
+//        Gdx.app.log("MyTag", String.valueOf(bricks.size()));
     }
 
     // метод, который в случайном порядке показывает два новых кирпича
@@ -95,10 +92,12 @@ public class LevelScreen_20 extends LevelScreenMain {
             if (i == r1) {
                 bricks.get(i).visibleActor(true, true);
                 bricks.remove(i); // удаляем обьект из листа
-            }
-            if (i == r2 && i != r1) {
-                bricks.get(i).visibleActor(true, true);
-                bricks.remove(i); // удаляем обьект из листа
+                for (int t = 0; t < bricks.size(); t ++) {
+                    if (t == r2) {
+                        bricks.get(t).visibleActor(true, true);
+                        bricks.remove(t); // удаляем обьект из листа
+                    }
+                }
             }
         }
     }
@@ -288,6 +287,9 @@ public class LevelScreen_20 extends LevelScreenMain {
         }
 
         ballsOverlaps();
+
+        //Gdx.app.log("MyTag", String.valueOf(r1) + "-" + String.valueOf(r2));
+        //Gdx.app.log("MyTag", String.valueOf(r2));
 
     }
 }

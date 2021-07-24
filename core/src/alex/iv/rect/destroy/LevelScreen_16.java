@@ -59,7 +59,7 @@ public class LevelScreen_16 extends LevelScreenMain {
                     brick.remove();
                 }
                 if (rowNum == 4 && colNum == 9) {
-                    BrickHard brickHard = new BrickHard(x, y, mainStage, false);
+                    new BrickHard(x, y, mainStage, false);
                 }
                 if (rowNum == 4 && colNum == 0) {
                     brick.setColor(Color.RED);
@@ -124,7 +124,7 @@ public class LevelScreen_16 extends LevelScreenMain {
                     brick.numberColor = 4;
                 }
                 if (rowNum == 10 && colNum == 4 || rowNum == 10 && colNum == 5) {
-                    BrickHard brickHard = new BrickHard(x, y, mainStage, false);
+                    new BrickHard(x, y, mainStage, false);
                 }
                 if (rowNum == 11 && colNum == 0 || rowNum == 11 && colNum == 2 || rowNum == 11 && colNum == 3 ||
                         rowNum == 11 && colNum == 4 || rowNum == 11 && colNum == 5 || rowNum == 11 && colNum == 6 || rowNum == 11 && colNum == 9) {
@@ -166,7 +166,7 @@ public class LevelScreen_16 extends LevelScreenMain {
                     brick.setBrickFlash(false);
                 }
                 if (rowNum == 14 && colNum == 0) {
-                    BrickHard brickHard = new BrickHard(x, y, mainStage, false);
+                    new BrickHard(x, y, mainStage, false);
                 }
                 if (rowNum == 15 && colNum == 0 || rowNum == 15 && colNum == 1 || rowNum == 15 && colNum == 4 || rowNum == 15 && colNum == 5 ||
                         rowNum == 15 && colNum == 6 || rowNum == 15 && colNum == 7 || rowNum == 15 && colNum == 8 || rowNum == 15 && colNum == 9 ||
@@ -191,7 +191,7 @@ public class LevelScreen_16 extends LevelScreenMain {
                     brick.remove();
                 }
                 if (rowNum == 18 && colNum == 9) {
-                    BrickHard brickHard = new BrickHard(x, y, mainStage, false);
+                    new BrickHard(x, y, mainStage, false);
                 }
                 if (rowNum == 18 && colNum == 0 || rowNum == 18 && colNum == 1) {
                     brick.setColor(Color.BLUE);
