@@ -2,7 +2,6 @@ package alex.iv.rect.destroy;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.math.MathUtils;
 
 import alex.iv.rect.destroy.actors.Brick;
 import alex.iv.rect.destroy.actors.BrickHard;
@@ -53,7 +52,7 @@ public class LevelScreen_10 extends LevelScreenMain {
                 }
                 if (rowNum == 0 && colNum == 0 || rowNum == 0 && colNum == 2 || rowNum == 0 && colNum == 4 || rowNum == 0 && colNum == 6 || rowNum == 0 && colNum == 8) {
                     brick.remove();
-                    BrickHard brickHard = new BrickHard(x, y, mainStage, false);
+                    new BrickHard(x, y, mainStage, false);
                 }
                 if (rowNum == 0 && colNum == 1 || rowNum == 0 && colNum == 3 || rowNum == 0 && colNum == 5 || rowNum == 0 && colNum == 7 || rowNum == 0 && colNum == 9) {
                     brick.setColor(Color.RED);
