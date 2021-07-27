@@ -129,6 +129,22 @@ public class IntermediateScreen extends LevelScreenMain {
                 records.setText("Record = " + recordsLevel_23);
                 results.setText("Your score = " + interScore);
                 break;
+            case 24:
+                records.setText("Record = " + recordsLevel_24);
+                results.setText("Your score = " + interScore);
+                break;
+            case 25:
+                records.setText("Record = " + recordsLevel_25);
+                results.setText("Your score = " + interScore);
+                break;
+            case 26:
+                records.setText("Record = " + recordsLevel_26);
+                results.setText("Your score = " + interScore);
+                break;
+            case 27:
+                records.setText("Record = " + recordsLevel_27);
+                results.setText("Your score = " + interScore);
+                break;
             default:records.setText("Record = " + 0);
         }
         //this.requestHandler=requestHandler;
@@ -162,6 +178,10 @@ public class IntermediateScreen extends LevelScreenMain {
         recordsLevel_21 = pref.getInteger("records_21");
         recordsLevel_22 = pref.getInteger("records_22");
         recordsLevel_23 = pref.getInteger("records_23");
+        recordsLevel_24 = pref.getInteger("records_24");
+        recordsLevel_25 = pref.getInteger("records_25");
+        recordsLevel_26 = pref.getInteger("records_26");
+        recordsLevel_27 = pref.getInteger("records_27");
         // инициализация метки для отображения жизней
         Live = new Label("Live:", BaseGame.labelStyle);
         uiStage.addActor(Live);
@@ -275,6 +295,18 @@ public class IntermediateScreen extends LevelScreenMain {
                                 break;
                             case 23:
                                 RectangleGame.setActiveScreen(new LevelScreen_23(requestHandler));
+                                break;
+                            case 24:
+                                RectangleGame.setActiveScreen(new LevelScreen_24(requestHandler));
+                                break;
+                            case 25:
+                                RectangleGame.setActiveScreen(new LevelScreen_25(requestHandler));
+                                break;
+                            case 26:
+                                RectangleGame.setActiveScreen(new LevelScreen_26(requestHandler));
+                                break;
+                            case 27:
+                                RectangleGame.setActiveScreen(new LevelScreen_27(requestHandler));
                                 break;
 
                         }
