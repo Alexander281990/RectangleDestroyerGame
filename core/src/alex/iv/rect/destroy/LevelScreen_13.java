@@ -48,22 +48,22 @@ public class LevelScreen_13 extends LevelScreenMain {
                     hindrance.setHindranceMoving(false);
                 }
                 if (rowNum == 0 && colNum == 0 || rowNum == 0 && colNum == 2 || rowNum == 0 && colNum == 4 || rowNum == 0 && colNum == 6 || rowNum == 0 && colNum == 8) {
-                    BrickHard brickHard = new BrickHard(x, y, mainStage, true);
+                    new BrickHard(x, y, mainStage, true);
                 }
                 if (rowNum == 1 && colNum == 0 || rowNum == 1 && colNum == 2 || rowNum == 1 && colNum == 4 || rowNum == 1 && colNum == 6 || rowNum == 1 && colNum == 8) {
-                    BrickHard brickHard = new BrickHard(x, y, mainStage, true);
+                    new BrickHard(x, y, mainStage, true);
                 }
                 if (rowNum == 2 && colNum == 0 || rowNum == 2 && colNum == 2 || rowNum == 2 && colNum == 4 || rowNum == 2 && colNum == 6 || rowNum == 2 && colNum == 8) {
-                    BrickHard brickHard = new BrickHard(x, y, mainStage, true);
+                    new BrickHard(x, y, mainStage, true);
                 }
                 if (rowNum == 3 && colNum == 0 || rowNum == 3 && colNum == 2 || rowNum == 3 && colNum == 4 || rowNum == 3 && colNum == 6 || rowNum == 3 && colNum == 8) {
-                    BrickHard brickHard = new BrickHard(x, y, mainStage, true);
+                    new BrickHard(x, y, mainStage, true);
                 }
                 if (rowNum == 4 && colNum == 2 || rowNum == 4 && colNum == 6) {
-                    BrickHard brickHard = new BrickHard(x, y, mainStage, true);
+                    new BrickHard(x, y, mainStage, true);
                 }
                 if (rowNum == 5 && colNum == 2 || rowNum == 5 && colNum == 6) {
-                    BrickHard brickHard = new BrickHard(x, y, mainStage, false);
+                    new BrickHard(x, y, mainStage, false);
                 }
                 if (rowNum == 7 && colNum == 1 || rowNum == 7 && colNum == 2 || rowNum == 7 && colNum == 3 || rowNum == 7 && colNum == 5 || rowNum == 7 && colNum == 6 ||
                         rowNum == 7 && colNum == 7 || rowNum == 7 && colNum == 9) {
