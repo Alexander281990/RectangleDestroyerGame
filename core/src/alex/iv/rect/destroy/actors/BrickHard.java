@@ -9,6 +9,7 @@ public class BrickHard extends BaseActor {
 
     private float brickWidth = LevelScreenMain.getWindowPlayWidth() /11;
     private float brickHeight = LevelScreenMain.getWindowPlayHeight() / 60;
+    private boolean brickHardMoving = true;
 
     public BrickHard(float x, float y, Stage s, boolean b) {
         super(x,y,s);
@@ -27,10 +28,17 @@ public class BrickHard extends BaseActor {
         return brickWidth;
     }
 
+    public void setBrickHardMoving(boolean b) {
+        brickHardMoving = b;
+    }
+
     public void act(float dt) {
         super.act(dt);
         applyPhysics(dt);
         boundToWorld();
+        if (!brickHardMoving) {
+            leftRightMoving(0, 2, 100, 400, 0, 180);
+        }
     }
 
 }
