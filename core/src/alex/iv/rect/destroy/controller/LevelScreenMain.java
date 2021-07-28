@@ -214,6 +214,11 @@ public class LevelScreenMain extends MenuScreen {
             attainment = att;
             pref.putInteger("attainmentMemory", attainment);
             pref.flush();
+            if (att == 30) {
+                attainment = 0;
+                pref.putInteger("attainmentMemory", attainment);
+                pref.flush();
+            }
         }
     }
     // метод, который устанавливает достижение игры(конец)

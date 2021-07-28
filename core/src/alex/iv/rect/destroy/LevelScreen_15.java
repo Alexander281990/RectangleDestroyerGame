@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import alex.iv.rect.destroy.actors.Ball;
 import alex.iv.rect.destroy.actors.Brick;
 import alex.iv.rect.destroy.actors.Hindrance;
+import alex.iv.rect.destroy.actors.Paddle;
 import alex.iv.rect.destroy.controller.BaseActor;
 import alex.iv.rect.destroy.controller.BaseGame;
 import alex.iv.rect.destroy.controller.GetLifeScreen;
@@ -21,6 +22,8 @@ import alex.iv.rect.destroy.controller.RectangleGame;
 
 public class LevelScreen_15 extends LevelScreenMain {
 
+    private Paddle paddle_2;
+
     public LevelScreen_15(IActivityRequestHandler requestHandler) {
         super(requestHandler);
     }
@@ -28,13 +31,13 @@ public class LevelScreen_15 extends LevelScreenMain {
     public void initialize() {
         super.initialize();
 
+        paddle_2 = new Paddle(paddle.getX(), 50, mainStage);
+        paddle_2.setSize( paddle_2.getWidth() * 2,Gdx.graphics.getHeight() / 60f);
+        paddle_2.setBoundaryRectangle();
         showTime(300); // инициализируем метод отображение игрового времени
         background.loadTexture("background/fon_level.png");
-        recordsLabelWindow.setText("Records: " + recordsLevel_1);
+        recordsLabelWindow.setText("Records: " + recordsLevel_15);
         quantityBricks(200, 20);
-
-        Hindrance hindrance = new Hindrance(100, 200, mainStage, true);
-        hindrance.setHindranceMoving(false);
 
         Brick tempBrick = new Brick(0,0,mainStage);
         tempBrick.remove();
@@ -212,31 +215,6 @@ public class LevelScreen_15 extends LevelScreenMain {
 
             }
 
-            for (BaseActor hindrance : BaseActor.getList(mainStage, "alex.iv.rect.destroy.actors.Hindrance")) {
-                if (bal.overlaps(hindrance)) {
-                    // Если hindrance.brickHardStatus = true, то мяч от помехи будет отскакивать с обоих сторон
-                    // Если hindrance.brickHardStatus = false, то мяч от помехи будет отскакивать только с верхней стороны. Если мяч
-                    // коснется нижней стороны помехи, то она пропустит мяч на верхнюю свою сторону
-                    if (hindrance.brickHardStatus) {
-                        float ballCenterX = bal.getX() + bal.getWidth() / 2; // находим центр шарика по оси Х
-                        float hindrancePercentHit = (ballCenterX - hindrance.getX()) / hindrance.getWidth();
-                        hindranceAngle = MathUtils.lerp(150, 30, hindrancePercentHit);
-                        bal.setMotionAngle(hindranceAngle);
-                    } else {
-                        float positionHindrance_Y = hindrance.getY() + hindrance.getHeight() / 2;
-                        float positionBall_Y = bal.getY() + bal.getHeight() / 2;
-                        float ballCenterX = bal.getX() + bal.getWidth() / 2; // находим центр шарика по оси Х
-                        float hindrancePercentHit = (ballCenterX - hindrance.getX()) / hindrance.getWidth();
-                        if (positionBall_Y > positionHindrance_Y) {
-                            hindranceAngle = MathUtils.lerp(150, 30, hindrancePercentHit);
-                        } else {
-                            hindranceAngle = MathUtils.lerp(-150, -30, hindrancePercentHit);
-                        }
-                        bal.setMotionAngle(hindranceAngle);
-                    }
-                }
-            }
-
             for (BaseActor br : BaseActor.getList(mainStage, "alex.iv.rect.destroy.actors.Brick")) {
                 if (bal.overlaps(br)) {
                     bal.bounceOff(br);
@@ -375,6 +353,32 @@ public class LevelScreen_15 extends LevelScreenMain {
         }
 
         ballsOverlaps();
+
+        // метод, который держит ракетку горизонтально выровнянную с пальцем на экране
+        if (paddleStop) {
+            float touchDownX = Gdx.input.getX();
+            paddle_2.setX(touchDownX - paddle_2.getWidth() / 2);
+            paddle_2.boundToWorld();
+        }
+        // метод, который держит ракетку горизонтально выровнянную с пальцем на экране(конец)
+        // метод, который заставляет отскакивать мячики от дополнительного весла
+        for (BaseActor bal : BaseActor.getList(mainStage, "alex.iv.rect.destroy.actors.Ball")) {
+            if (bal.overlaps(paddle_2)) {
+                //bounceSound.play();
+                float positionPaddle_Y = paddle_2.getY() + paddle_2.getHeight() / 2; // находим центр paddle по оси Y
+                float positionBall_Y = bal.getY() + bal.getHeight() / 2; // находим центр ball по оси Y
+                float ballCenterX = bal.getX() + bal.getWidth() / 2; // находим центр шарика по оси Х
+                float paddlePercentHit = (ballCenterX - paddle_2.getX()) / paddle_2.getWidth();
+                // если во время столкновения ось Y обьекта bal больше оси Y обьекта paddle, то мячь отскакивает и движется вверх. В противном случае - вниз
+                if (positionBall_Y > positionPaddle_Y) {
+                    bounceAngle = MathUtils.lerp(150, 30, paddlePercentHit);
+                } else {
+                    bounceAngle = MathUtils.lerp(-150, -30, paddlePercentHit);
+                }
+                bal.setMotionAngle(bounceAngle);
+            }
+        }
+        // метод, который заставляет отскакивать мячики от дополнительного весла(конец)
 
     }
 }

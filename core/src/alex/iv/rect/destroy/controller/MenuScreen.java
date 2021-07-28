@@ -31,7 +31,10 @@ import alex.iv.rect.destroy.LevelScreen_24;
 import alex.iv.rect.destroy.LevelScreen_25;
 import alex.iv.rect.destroy.LevelScreen_26;
 import alex.iv.rect.destroy.LevelScreen_27;
+import alex.iv.rect.destroy.LevelScreen_28;
+import alex.iv.rect.destroy.LevelScreen_29;
 import alex.iv.rect.destroy.LevelScreen_3;
+import alex.iv.rect.destroy.LevelScreen_30;
 import alex.iv.rect.destroy.LevelScreen_4;
 import alex.iv.rect.destroy.LevelScreen_5;
 import alex.iv.rect.destroy.LevelScreen_6;
@@ -84,6 +87,9 @@ public class MenuScreen extends StartScreen {
         Lock lock25 = new Lock(0, 0, mainStage);
         Lock lock26 = new Lock(0, 0, mainStage);
         Lock lock27 = new Lock(0, 0, mainStage);
+        Lock lock28 = new Lock(0, 0, mainStage);
+        Lock lock29 = new Lock(0, 0, mainStage);
+        Lock lock30 = new Lock(0, 0, mainStage);
 
         pref = Gdx.app.getPreferences("Preferences");// инициализация Preferences для сохранения лучшего результата в телефоне
 
@@ -563,6 +569,51 @@ public class MenuScreen extends StartScreen {
                 }
         );
 
+        level_28_Button.addListener(
+                new EventListener() {
+                    @Override
+                    public boolean handle(Event e) {
+                        if (!(e instanceof InputEvent) ||
+                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
+                            return false;
+                        if (attainment >= 27) {
+                            RectangleGame.setActiveScreen(new LevelScreen_28(requestHandler));
+                        }
+                        return false;
+                    }
+                }
+        );
+
+        level_29_Button.addListener(
+                new EventListener() {
+                    @Override
+                    public boolean handle(Event e) {
+                        if (!(e instanceof InputEvent) ||
+                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
+                            return false;
+                        if (attainment >= 28) {
+                            RectangleGame.setActiveScreen(new LevelScreen_29(requestHandler));
+                        }
+                        return false;
+                    }
+                }
+        );
+
+        level_30_Button.addListener(
+                new EventListener() {
+                    @Override
+                    public boolean handle(Event e) {
+                        if (!(e instanceof InputEvent) ||
+                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
+                            return false;
+                        if (attainment >= 29) {
+                            RectangleGame.setActiveScreen(new LevelScreen_30(requestHandler));
+                        }
+                        return false;
+                    }
+                }
+        );
+
         // устанавливает фоновую картинку в Table
         NinePatch patch = new NinePatch(new Texture(Gdx.files.internal("background/fon_level_4.png")),
                 3, 3, 3, 3);
@@ -660,6 +711,12 @@ public class MenuScreen extends StartScreen {
         lock26.setPosition(level_26_Button.getWidth() / 2 - lock26.getWidth() / 2, level_26_Button.getHeight() / 2 - lock26.getHeight() / 2);
         level_27_Button.addActor(lock27);
         lock27.setPosition(level_27_Button.getWidth() / 2 - lock27.getWidth() / 2, level_27_Button.getHeight() / 2 - lock27.getHeight() / 2);
+        level_28_Button.addActor(lock28);
+        lock28.setPosition(level_28_Button.getWidth() / 2 - lock28.getWidth() / 2, level_28_Button.getHeight() / 2 - lock28.getHeight() / 2);
+        level_29_Button.addActor(lock29);
+        lock29.setPosition(level_29_Button.getWidth() / 2 - lock29.getWidth() / 2, level_29_Button.getHeight() / 2 - lock29.getHeight() / 2);
+        level_30_Button.addActor(lock30);
+        lock30.setPosition(level_30_Button.getWidth() / 2 - lock30.getWidth() / 2, level_30_Button.getHeight() / 2 - lock30.getHeight() / 2);
 
 
         Gdx.app.log("MyTag", String.valueOf(attainment));
@@ -1097,6 +1154,99 @@ public class MenuScreen extends StartScreen {
                 lock26.remove();
                 lock27.remove();
                 break;
+            case 27:
+                lock1.remove();
+                lock2.remove();
+                lock3.remove();
+                lock4.remove();
+                lock5.remove();
+                lock6.remove();
+                lock7.remove();
+                lock8.remove();
+                lock9.remove();
+                lock10.remove();
+                lock11.remove();
+                lock12.remove();
+                lock13.remove();
+                lock14.remove();
+                lock15.remove();
+                lock16.remove();
+                lock17.remove();
+                lock18.remove();
+                lock19.remove();
+                lock20.remove();
+                lock21.remove();
+                lock22.remove();
+                lock23.remove();
+                lock24.remove();
+                lock25.remove();
+                lock26.remove();
+                lock27.remove();
+                lock28.remove();
+                break;
+            case 28:
+                lock1.remove();
+                lock2.remove();
+                lock3.remove();
+                lock4.remove();
+                lock5.remove();
+                lock6.remove();
+                lock7.remove();
+                lock8.remove();
+                lock9.remove();
+                lock10.remove();
+                lock11.remove();
+                lock12.remove();
+                lock13.remove();
+                lock14.remove();
+                lock15.remove();
+                lock16.remove();
+                lock17.remove();
+                lock18.remove();
+                lock19.remove();
+                lock20.remove();
+                lock21.remove();
+                lock22.remove();
+                lock23.remove();
+                lock24.remove();
+                lock25.remove();
+                lock26.remove();
+                lock27.remove();
+                lock28.remove();
+                lock29.remove();
+                break;
+            case 29:
+                lock1.remove();
+                lock2.remove();
+                lock3.remove();
+                lock4.remove();
+                lock5.remove();
+                lock6.remove();
+                lock7.remove();
+                lock8.remove();
+                lock9.remove();
+                lock10.remove();
+                lock11.remove();
+                lock12.remove();
+                lock13.remove();
+                lock14.remove();
+                lock15.remove();
+                lock16.remove();
+                lock17.remove();
+                lock18.remove();
+                lock19.remove();
+                lock20.remove();
+                lock21.remove();
+                lock22.remove();
+                lock23.remove();
+                lock24.remove();
+                lock25.remove();
+                lock26.remove();
+                lock27.remove();
+                lock28.remove();
+                lock29.remove();
+                lock30.remove();
+                break;
             default:
         }
 
@@ -1313,6 +1463,30 @@ public class MenuScreen extends StartScreen {
         } else {
             if (attainmentColorLevel_27 == 1) {
                 level_27_Button.setColor(Color.GREEN);
+            }
+        }
+
+        if (attainmentColorLevel_28 == 0) {
+            level_28_Button.setColor(Color.RED);
+        } else {
+            if (attainmentColorLevel_28 == 1) {
+                level_28_Button.setColor(Color.GREEN);
+            }
+        }
+
+        if (attainmentColorLevel_29 == 0) {
+            level_29_Button.setColor(Color.RED);
+        } else {
+            if (attainmentColorLevel_29 == 1) {
+                level_29_Button.setColor(Color.GREEN);
+            }
+        }
+
+        if (attainmentColorLevel_30 == 0) {
+            level_30_Button.setColor(Color.RED);
+        } else {
+            if (attainmentColorLevel_30 == 1) {
+                level_30_Button.setColor(Color.GREEN);
             }
         }
 
