@@ -34,7 +34,7 @@ public class LevelScreen_21 extends LevelScreenMain {
     public void initialize() {
         super.initialize();
         bricks = new ArrayList<>();
-        showTime(320); // инициализируем метод отображение игрового времени
+        showTime(240); // инициализируем метод отображение игрового времени
         recordsLabelWindow.setText("Records: " + recordsLevel_21);
         quantityBricks(455, 45);
 
@@ -104,6 +104,7 @@ public class LevelScreen_21 extends LevelScreenMain {
     private void emergenceBricks() {
         int r1 = MathUtils.random(0, bricks.size());
         int r2 = MathUtils.random(0, bricks.size());
+        int r3 = MathUtils.random(0, bricks.size());
         for (int i = 0; i < bricks.size(); i ++) {
             if (i == r1) {
                 bricks.get(i).visibleActor(true, true);
@@ -112,6 +113,12 @@ public class LevelScreen_21 extends LevelScreenMain {
                     if (t == r2) {
                         bricks.get(t).visibleActor(true, true);
                         bricks.remove(t); // удаляем обьект из листа
+                        for (int n = 0; n < bricks.size(); n ++) {
+                            if (n == r3) {
+                                bricks.get(n).visibleActor(true, true);
+                                bricks.remove(n); // удаляем обьект из листа
+                            }
+                        }
                     }
                 }
             }

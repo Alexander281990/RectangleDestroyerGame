@@ -136,6 +136,16 @@ import alex.iv.rect.destroy.controller.RectangleGame;
 
  ////////////////////////////////////////////////////////////////////////////////////////////
 
+ - Вращение обьекта вокруг своей оси
+    1. Action spin_1 = Actions.rotateBy( 360, 2 ); // заставляет вращаться кирпич на 360 градусов за 2 секунды
+    2. Action spinForever_1 = Actions.forever( spin_1 ); // повторяет цикл вращения бесконечно
+    3. BrickHard brickHard_1 = new BrickHard(x, y, mainStage, false);
+    4. brickHard_1.addAction(spinForever_1); // добавляет бесконечное вращение обькту brickHard
+
+ // ВАЖНО - что бы актер вращался вокруг оси, необходимо прописать ему - setOrigin(Align.center); // фиксирует центр обьекта(нужно для вращения вокруг оси)
+
+ ////////////////////////////////////////////////////////////////////////////////////////////
+
  * */
 
 public class LevelScreen_1 extends LevelScreenMain {

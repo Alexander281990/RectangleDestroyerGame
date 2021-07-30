@@ -2,6 +2,8 @@ package alex.iv.rect.destroy.actors;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.Align;
+
 import alex.iv.rect.destroy.controller.BaseActor;
 import alex.iv.rect.destroy.controller.LevelScreenMain;
 
@@ -15,6 +17,7 @@ public class BrickHard extends BaseActor {
         super(x,y,s);
         loadTexture("brick-gray.png");
         setSize(brickWidth, brickHeight);
+        setOrigin(Align.center); // фиксирует центр обьекта(нужно для вращения вокруг оси)
         setBoundaryRectangle();
         setColor(Color.GRAY);
         brickHardStatus = b;

@@ -3,6 +3,8 @@ package alex.iv.rect.destroy;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.scenes.scene2d.Action;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 
 import alex.iv.rect.destroy.actors.Brick;
 import alex.iv.rect.destroy.actors.BrickHard;
@@ -72,6 +74,36 @@ public class LevelScreen_24 extends LevelScreenMain {
                         rowNum == 4 && colNum == 4) {
                     BrickHard brickHard = new BrickHard(x, y, mainStage, false);
                     brickHard.setBrickHardMoving(false);
+                }
+                if (rowNum == 20 && colNum == 1) {
+                    Action spin_1 = Actions.rotateBy( 360, 2 ); // заставляет вращаться кирпич на 360 градусов за 2 секунды
+                    Action spinForever_1 = Actions.forever( spin_1 ); // повторяет цикл вращения бесконечно
+                    BrickHard brickHard_1 = new BrickHard(x, y, mainStage, false);
+                    brickHard_1.addAction(spinForever_1); // добавляет бесконечное вращение обькту brickHard
+                }
+                if (rowNum == 20 && colNum == 3) {
+                    Action spin_2 = Actions.rotateBy( 360, 2 );
+                    Action spinForever_2 = Actions.forever( spin_2 );
+                    BrickHard brickHard_2 = new BrickHard(x, y, mainStage, false);
+                    brickHard_2.addAction(spinForever_2);
+                }
+                if (rowNum == 20 && colNum == 5) {
+                    Action spin_3 = Actions.rotateBy( 360, 2 );
+                    Action spinForever_3 = Actions.forever( spin_3 );
+                    BrickHard brickHard_3 = new BrickHard(x, y, mainStage, false);
+                    brickHard_3.addAction(spinForever_3);
+                }
+                if (rowNum == 20 && colNum == 7) {
+                    Action spin_4 = Actions.rotateBy( 360, 2 );
+                    Action spinForever_4 = Actions.forever( spin_4 );
+                    BrickHard brickHard_4 = new BrickHard(x, y, mainStage, false);
+                    brickHard_4.addAction(spinForever_4);
+                }
+                if (rowNum == 20 && colNum == 9) {
+                    Action spin_5 = Actions.rotateBy( 360, 2 );
+                    Action spinForever_5 = Actions.forever( spin_5 );
+                    BrickHard brickHard_5 = new BrickHard(x, y, mainStage, false);
+                    brickHard_5.addAction(spinForever_5);
                 }
 
             }
