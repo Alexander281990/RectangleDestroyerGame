@@ -1,13 +1,19 @@
 package alex.iv.rect.destroy.actors;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.utils.Align;
 
 import alex.iv.rect.destroy.controller.BaseActor;
 import alex.iv.rect.destroy.controller.LevelScreenMain;
 
 public class BrickHard extends BaseActor {
+
+    private float timer_sec;
+    private float sec;
+    private boolean rotateBrick = true;
 
     private float brickWidth = LevelScreenMain.getWindowPlayWidth() /11;
     private float brickHeight = LevelScreenMain.getWindowPlayHeight() / 60;
@@ -35,13 +41,31 @@ public class BrickHard extends BaseActor {
         brickHardMoving = b;
     }
 
+    public void setRotateBrick(boolean rotateBrick, float t) {
+        this.rotateBrick = rotateBrick;
+        sec = t;
+        timer_sec = sec;
+    }
+
+    // метод, который заставляет поворачиваться кирпич на 90 градусов
+    private void rotateSec() {
+        Action spin = Actions.rotateBy( 90, 1 ); // заставляет вращаться кирпич на 360 градусов за 2 секунды
+        addAction(spin); // добавляет бесконечное вращение обькту brickHard
+    }
+
     public void act(float dt) {
         super.act(dt);
         applyPhysics(dt);
         boundToWorld();
+        timer_sec -= dt;
         if (!brickHardMoving) {
             leftRightMoving(0, 2, 100, 400, 0, 180);
         }
+        if (!rotateBrick && timer_sec < 1) {
+            rotateSec();
+            timer_sec = sec;
+        }
+
     }
 
 }
