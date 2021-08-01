@@ -64,7 +64,7 @@ public class LevelScreen_12 extends LevelScreenMain {
                     brick.setColor(Color.RED);
                 }
                 if (rowNum == 27 && colNum == 2 || rowNum == 27 && colNum == 7) {
-                    BrickHard brickHard = new BrickHard(x, y, mainStage, false);
+                    new BrickHard(x, y, mainStage, false);
                 }
                 if (rowNum == 28 && colNum == 0 || rowNum == 28 && colNum == 1 || rowNum == 28 && colNum == 2 || rowNum == 28 && colNum == 4 || rowNum == 28 && colNum == 5 || rowNum == 28 && colNum == 7 || rowNum == 28 && colNum == 8 || rowNum == 28 && colNum == 9) {
                     brick.remove();

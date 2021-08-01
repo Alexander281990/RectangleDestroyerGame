@@ -93,13 +93,13 @@ public class LevelScreen_26 extends LevelScreenMain {
                         rowNum == 3 && colNum == 4 || rowNum == 3 && colNum == 5 || rowNum == 3 && colNum == 6 || rowNum == 3 && colNum == 7 ||
                         rowNum == 3 && colNum == 8 || rowNum == 3 && colNum == 9) {
                     BrickHard brickHard = new BrickHard(x, y, mainStage, true);
-                    brickHard.setRotateBrick(false, 7);
+                    brickHard.setRotateBrick(false, 10);
                 }
                 if (rowNum == 8 && colNum == 0 || rowNum == 8 && colNum == 1 || rowNum == 8 && colNum == 2 || rowNum == 8 && colNum == 3 ||
                         rowNum == 8 && colNum == 4 || rowNum == 8 && colNum == 5 || rowNum == 8 && colNum == 6 || rowNum == 8 && colNum == 7 ||
                         rowNum == 8 && colNum == 8 || rowNum == 8 && colNum == 9) {
                     BrickHard brickHard = new BrickHard(x, y, mainStage, true);
-                    brickHard.setRotateBrick(false, 10);
+                    brickHard.setRotateBrick(false, 6);
                 }
 
 
