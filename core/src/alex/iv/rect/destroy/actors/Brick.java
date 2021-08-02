@@ -12,6 +12,7 @@ public class Brick extends BaseActor {
     private float brickWidth = LevelScreenMain.getWindowPlayWidth() / 11;
     //private float brickHeight = ((LevelScreenMain.getWindowPlayHeight()/5)*2)/11;
     private float brickHeight = LevelScreenMain.getWindowPlayHeight() / 60;
+    public static float brickWidthFromHindrance = LevelScreenMain.getWindowPlayWidth() / 11;
     private boolean brickMoving = true;
     private boolean brickFlash = true;
     private float timeBrick;

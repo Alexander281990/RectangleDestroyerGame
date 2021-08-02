@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
 import alex.iv.rect.destroy.controller.BaseActor;
+import alex.iv.rect.destroy.controller.BaseScreen;
 import alex.iv.rect.destroy.controller.LevelScreenMain;
 
 public class Hindrance extends BaseActor {
@@ -12,7 +13,7 @@ public class Hindrance extends BaseActor {
     private float time = 2;
     private boolean hindranceIncrease = true;
     private boolean flagIncrease = true;
-    private float hindranceWidth = LevelScreenMain.getWindowPlayWidth() / 4;
+    private float hindranceWidth = Brick.brickWidthFromHindrance * 3;
     private float hindranceHeight = LevelScreenMain.getWindowPlayHeight() / 60;
     private boolean hindranceMoving = true;
 
@@ -48,6 +49,11 @@ public class Hindrance extends BaseActor {
 
     public void setHindranceIncrease(boolean f) {
         hindranceIncrease = f;
+    }
+
+    public void setHindranceIncrease(boolean f, float timeNew) {
+        hindranceIncrease = f;
+        time = timeNew;
     }
 
     public float getHindranceHeight() {

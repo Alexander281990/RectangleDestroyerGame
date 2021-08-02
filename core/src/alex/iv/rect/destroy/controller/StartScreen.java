@@ -189,8 +189,8 @@ public class StartScreen extends BaseScreen {
                         recordsLevel_28 = 0;
                         recordsLevel_29 = 0;
                         recordsLevel_30 = 0;
-                        live = 2;
-                        attainment = 23;
+                        live = 5;
+                        attainment = 28;
                         attainmentColorLevel_1 = 0;
                         attainmentColorLevel_2 = 0;
                         attainmentColorLevel_3 = 0;
