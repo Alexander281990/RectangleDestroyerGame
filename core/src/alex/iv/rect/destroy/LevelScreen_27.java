@@ -9,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import alex.iv.rect.destroy.actors.Brick;
 import alex.iv.rect.destroy.actors.BrickHard;
 import alex.iv.rect.destroy.actors.Hindrance;
+import alex.iv.rect.destroy.actors.Paddle;
 import alex.iv.rect.destroy.controller.BaseActor;
 import alex.iv.rect.destroy.controller.IActivityRequestHandler;
 import alex.iv.rect.destroy.controller.LevelScreenMain;
@@ -134,6 +135,12 @@ public class LevelScreen_27 extends LevelScreenMain {
                 }
                 if (rowNum == 26 && colNum == 9) {
                     warp2 = new Warp( x, y, mainStage);
+                }
+                if (rowNum == 15 && colNum == 0) {
+                    Hindrance hindrance_5 = new Hindrance(0, y, mainStage, false);
+                    hindrance_5.setSize( 0,Gdx.graphics.getHeight() / 60f);
+                    hindrance_5.setBoundaryRectangle();
+                    hindrance_5.setHindranceIncrease(false);
                 }
 
 

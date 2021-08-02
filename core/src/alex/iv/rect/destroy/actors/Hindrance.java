@@ -1,5 +1,6 @@
 package alex.iv.rect.destroy.actors;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
@@ -8,6 +9,9 @@ import alex.iv.rect.destroy.controller.LevelScreenMain;
 
 public class Hindrance extends BaseActor {
 
+    private float time = 2;
+    private boolean hindranceIncrease = true;
+    private boolean flagIncrease = true;
     private float hindranceWidth = LevelScreenMain.getWindowPlayWidth() / 4;
     private float hindranceHeight = LevelScreenMain.getWindowPlayHeight() / 60;
     private boolean hindranceMoving = true;
@@ -19,6 +23,31 @@ public class Hindrance extends BaseActor {
         setBoundaryRectangle();
         setColor(Color.BLACK);
         hindranceStatus = b;
+    }
+
+    private void increaseSize(float dt) {
+        super.act(dt);
+        time -= dt;
+        if (time < 0.05 && flagIncrease) {
+            setWidth(getWidth() + 10);
+            setBoundaryRectangle();
+            time = (float) 0.07;
+            if (getWidth() > Gdx.graphics.getWidth()) {
+                flagIncrease = false;
+            }
+        } else if (time < 0.05 && !flagIncrease) {
+            setWidth(getWidth() - 10);
+            setBoundaryRectangle();
+            time = (float) 0.07;
+            if (getWidth() < 0) {
+                flagIncrease = true;
+            }
+        }
+
+    }
+
+    public void setHindranceIncrease(boolean f) {
+        hindranceIncrease = f;
     }
 
     public float getHindranceHeight() {
@@ -43,6 +72,9 @@ public class Hindrance extends BaseActor {
         boundToWorld();
         if (!hindranceMoving) {
             leftRightMoving(0, 2, 100, 400, 0, 180);
+        }
+        if (!hindranceIncrease) {
+            increaseSize(dt);
         }
     }
 
