@@ -16,7 +16,7 @@ public class LevelScreen_3 extends LevelScreenMain {
     // MenuScreen
     public LevelScreen_3(IActivityRequestHandler requestHandler) {
         super(requestHandler);
-        //this.requestHandler = requestHandler;
+        requestHandler.hideBannerAd(); // при нажатии на кнопку баннер скрывается
     }
 
     public void initialize() {

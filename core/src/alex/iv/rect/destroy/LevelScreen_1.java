@@ -2,11 +2,7 @@ package alex.iv.rect.destroy;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.math.MathUtils;
-
-import alex.iv.rect.destroy.actors.Ball;
 import alex.iv.rect.destroy.actors.Brick;
-import alex.iv.rect.destroy.actors.Paddle;
 import alex.iv.rect.destroy.controller.BaseActor;
 import alex.iv.rect.destroy.controller.IActivityRequestHandler;
 import alex.iv.rect.destroy.controller.LevelScreenMain;
@@ -150,25 +146,20 @@ import alex.iv.rect.destroy.controller.RectangleGame;
 
 public class LevelScreen_1 extends LevelScreenMain {
 
-    private Paddle paddle_2;
-
-    //public IActivityRequestHandler requestHandler;
-
     // чтобы реклама появлялась, обязательно нужно использовать этод конструктор(с параметром requestHandler), в классе
     // MenuScreen
     public LevelScreen_1(IActivityRequestHandler requestHandler) {
         super(requestHandler);
+        requestHandler.hideBannerAd(); // при запуске уровня баннер скрывается
     }
 
     public void initialize() {
         super.initialize();
 
-        paddle_2 = new Paddle(paddle.getX(), 50, mainStage);
-
-        showTime(120); // инициализируем метод отображение игрового времени
-        background.loadTexture("background/fon_level.png");
+        showTime(300); // инициализируем метод отображение игрового времени
+        //background.loadTexture("background/fon_level.png");
         recordsLabelWindow.setText("Records: " + recordsLevel_1);
-        quantityBricks(100, 10);
+        quantityBricks(100, 7);
 
         Brick tempBrick = new Brick(0,0,mainStage);
         tempBrick.remove();
@@ -181,11 +172,30 @@ public class LevelScreen_1 extends LevelScreenMain {
                 float x = marginX + tempBrick.getBrickWidth()	* colNum;
                 float y = marginY + tempBrick.getBrickHeight() * rowNum;
                 Brick brick = new Brick( x, y, mainStage);
-                brick.setColor(Color.RED);
+                if (rowNum == 0 || rowNum == 1 || rowNum == 2 || rowNum == 3 || rowNum == 4 || rowNum == 5) {
+                    brick.setColor(Color.RED);
+                }
+                if (rowNum == 6) {
+                    brick.setColor(Color.ORANGE);
+                    brick.numberColor = 2;
+                }
+                if (rowNum == 7) {
+                    brick.setColor(Color.YELLOW);
+                    brick.numberColor = 3;
+                }
+                if (rowNum == 8) {
+                    brick.setColor(Color.GREEN);
+                    brick.numberColor = 4;
+                }
+                if (rowNum == 9) {
+                    brick.setColor(Color.BLUE);
+                    brick.numberColor = 5;
+                }
+
             }
         }
         // показывает в Log количество видимых обьектов Brick
-        Gdx.app.log("MyTag", String.valueOf(BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick")));
+        //Gdx.app.log("MyTag", String.valueOf(BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick")));
     }
 
     public void update(float dt) {
@@ -198,38 +208,9 @@ public class LevelScreen_1 extends LevelScreenMain {
         if (BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick") == 0 && starTimer > 0) {
             allTheBricksAreBroken(recordsLevel_1, "records_1", attainmentColorLevel_1, "attainmentColorLevelMemory_1");// инициализируем метод allTheBricksAreBroken - ВСЕ КИРПИЧИ РАЗРУШЕНЫ
         }
-        if (BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick") < 11 && starTimer > 0) {
+        if (BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick") < 8 && starTimer > 0) {
             createAttainment(1);
         }
-
-        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // метод, который держит ракетку горизонтально выровнянную с пальцем на экране
-        if (paddleStop) {
-            float touchDownX = Gdx.input.getX();
-            paddle_2.setX(touchDownX - paddle_2.getWidth() / 2);
-            paddle_2.boundToWorld();
-        }
-        // метод, который держит ракетку горизонтально выровнянную с пальцем на экране(конец)
-        // метод, который заставляет отскакивать мячики от дополнительного весла
-        for (BaseActor bal : BaseActor.getList(mainStage, "alex.iv.rect.destroy.actors.Ball")) {
-            if (bal.overlaps(paddle_2)) {
-                //bounceSound.play();
-                float positionPaddle_Y = paddle_2.getY() + paddle_2.getHeight() / 2; // находим центр paddle по оси Y
-                float positionBall_Y = bal.getY() + bal.getHeight() / 2; // находим центр ball по оси Y
-                float ballCenterX = bal.getX() + bal.getWidth() / 2; // находим центр шарика по оси Х
-                float paddlePercentHit = (ballCenterX - paddle_2.getX()) / paddle_2.getWidth();
-                // если во время столкновения ось Y обьекта bal больше оси Y обьекта paddle, то мячь отскакивает и движется вверх. В противном случае - вниз
-                if (positionBall_Y > positionPaddle_Y) {
-                    bounceAngle = MathUtils.lerp(150, 30, paddlePercentHit);
-                } else {
-                    bounceAngle = MathUtils.lerp(-150, -30, paddlePercentHit);
-                }
-                bal.setMotionAngle(bounceAngle);
-            }
-        }
-        // метод, который заставляет отскакивать мячики от дополнительного весла(конец)
-///////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
     }
 }

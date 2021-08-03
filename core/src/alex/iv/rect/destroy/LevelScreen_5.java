@@ -16,7 +16,6 @@ public class LevelScreen_5 extends LevelScreenMain {
     // MenuScreen
     public LevelScreen_5(IActivityRequestHandler requestHandler) {
         super(requestHandler);
-        //this.requestHandler = requestHandler;
     }
 
     public void initialize() {
