@@ -34,13 +34,14 @@ public class LevelScreen_21 extends LevelScreenMain {
     public void initialize() {
         super.initialize();
         bricks = new ArrayList<>();
-        showTime(240); // инициализируем метод отображение игрового времени
+        background.loadTexture("background/fon_level.png");
+        showTime(300); // инициализируем метод отображение игрового времени
         recordsLabelWindow.setText("Records: " + recordsLevel_21);
-        quantityBricks(455, 45);
+        quantityBricks(300, 30);
 
         Brick tempBrick = new Brick(0,0,mainStage);
         tempBrick.remove();
-        int totalRows = 50;
+        int totalRows = 30;
         int totalCols = 10;
         float marginX = (Gdx.graphics.getWidth() - totalCols * tempBrick.getBrickWidth()) / 2;
         float marginY = (Gdx.graphics.getHeight() - totalRows * tempBrick.getBrickHeight()) - 50;
@@ -49,62 +50,45 @@ public class LevelScreen_21 extends LevelScreenMain {
                 float x = marginX + tempBrick.getBrickWidth()	* colNum;
                 float y = marginY + tempBrick.getBrickHeight() * rowNum;
                 Brick brick = new Brick(x, y, mainStage);
-                bricks.add(brick);
-                if (rowNum == 15 || rowNum == 16 || rowNum == 17 || rowNum == 18){
-                    brick.remove();
-                    bricks.remove(brick);
-                }
-                if (rowNum == 5 || rowNum == 10 || rowNum == 19 || rowNum == 24 || rowNum == 29 || rowNum == 34 || rowNum == 39 ||
-                        rowNum == 44 || rowNum == 49) {
+                if (rowNum == 0 || rowNum == 5 || rowNum == 10 || rowNum == 19 || rowNum == 24 || rowNum == 29) {
                     brick.setColor(Color.RED);
                 }
-                if (rowNum == 1 || rowNum == 6 || rowNum == 11 || rowNum == 20 || rowNum == 25 || rowNum == 30 || rowNum == 35 ||
-                        rowNum == 40 || rowNum == 45) {
+                if (rowNum == 1 || rowNum == 6 || rowNum == 11 || rowNum == 15 ||  rowNum == 20 || rowNum == 25) {
                     brick.setColor(Color.ORANGE);
                     brick.numberColor = 2;
                 }
-                if (rowNum == 2 || rowNum == 7 || rowNum == 12 || rowNum == 21 || rowNum == 26 || rowNum == 31 || rowNum == 36 ||
-                        rowNum == 41 || rowNum == 46) {
+                if (rowNum == 2 || rowNum == 7 || rowNum == 12 || rowNum == 16 ||  rowNum == 21 || rowNum == 26) {
                     brick.setColor(Color.YELLOW);
                     brick.numberColor = 3;
                 }
-                if (rowNum == 3 || rowNum == 8 || rowNum == 13 || rowNum == 22 || rowNum == 27 || rowNum == 32 || rowNum == 37 ||
-                        rowNum == 42 || rowNum == 47) {
+                if (rowNum == 3 || rowNum == 8 || rowNum == 13 || rowNum == 17 ||  rowNum == 22 || rowNum == 27) {
                     brick.setColor(Color.GREEN);
                     brick.numberColor = 4;
                 }
-                if (rowNum == 4 || rowNum == 9 || rowNum == 14 || rowNum == 23 || rowNum == 28 || rowNum == 33 || rowNum == 38 ||
-                        rowNum == 43 || rowNum == 48) {
+                if (rowNum == 4 || rowNum == 9 || rowNum == 14 || rowNum == 18 ||  rowNum == 23 || rowNum == 28) {
                     brick.setColor(Color.BLUE);
                     brick.numberColor = 5;
                 }
-                if (rowNum == 0 && colNum == 0 || rowNum == 0 && colNum == 2 || rowNum == 0 && colNum == 4 || rowNum == 0 && colNum == 6 || rowNum == 0 && colNum == 8) {
-                    brick.remove();
-                    bricks.remove(brick);
-                    new BrickHard(x, y, mainStage, false);
-                }
-                if (rowNum == 0 && colNum == 1 || rowNum == 0 && colNum == 3 || rowNum == 0 && colNum == 5 || rowNum == 0 && colNum == 7 || rowNum == 0 && colNum == 9) {
-                    brick.setColor(Color.RED);
-                }
-
-
+                bricks.add(brick);
             }
         }
+
         for (int i = 0; i < bricks.size(); i ++) {
-            if (i != 304) {
+            if (i != 115) {
                 bricks.get(i).visibleActor(false, false);
             }
         }
-        bricks.remove(304);
+        bricks.remove(115);
+
 
         //Gdx.app.log("MyTag", String.valueOf(BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick")));
-        Gdx.app.log("MyTag", String.valueOf(bricks.size()));
+//        Gdx.app.log("MyTag", String.valueOf(bricks.size()));
     }
 
+    // метод, который в случайном порядке показывает два новых кирпича
     private void emergenceBricks() {
         int r1 = MathUtils.random(0, bricks.size());
         int r2 = MathUtils.random(0, bricks.size());
-        int r3 = MathUtils.random(0, bricks.size());
         for (int i = 0; i < bricks.size(); i ++) {
             if (i == r1) {
                 bricks.get(i).visibleActor(true, true);
@@ -113,12 +97,6 @@ public class LevelScreen_21 extends LevelScreenMain {
                     if (t == r2) {
                         bricks.get(t).visibleActor(true, true);
                         bricks.remove(t); // удаляем обьект из листа
-                        for (int n = 0; n < bricks.size(); n ++) {
-                            if (n == r3) {
-                                bricks.get(n).visibleActor(true, true);
-                                bricks.remove(n); // удаляем обьект из листа
-                            }
-                        }
                     }
                 }
             }
@@ -305,11 +283,14 @@ public class LevelScreen_21 extends LevelScreenMain {
         if (BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick") == 0 && starTimer > 0) {
             allTheBricksAreBroken(recordsLevel_21, "records_21", attainmentColorLevel_21, "attainmentColorLevelMemory_21");// инициализируем метод allTheBricksAreBroken - ВСЕ КИРПИЧИ РАЗРУШЕНЫ
         }
-        if (BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick") < 46 && starTimer > 0) {
+        if (BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick") < 31 && starTimer > 0) {
             createAttainment(21);
         }
 
+        ballsOverlaps();
+
         //Gdx.app.log("MyTag", String.valueOf(r1) + "-" + String.valueOf(r2));
+        //Gdx.app.log("MyTag", String.valueOf(r2));
 
     }
 }
