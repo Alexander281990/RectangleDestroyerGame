@@ -152,7 +152,7 @@ public class LevelScreen_19 extends LevelScreenMain {
             RectangleGame.setActiveScreen(new IntermediateScreen(requestHandler, 19, score));
         }
         if (BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick") == 0 && starTimer > 0) {
-            allTheBricksAreBroken(recordsLevel_19, "records_19", attainmentColorLevel_19, "attainmentColorLevelMemory_19");// инициализируем метод allTheBricksAreBroken - ВСЕ КИРПИЧИ РАЗРУШЕНЫ
+            allTheBricksAreBroken("records_19", "attainmentColorLevelMemory_19");// инициализируем метод allTheBricksAreBroken - ВСЕ КИРПИЧИ РАЗРУШЕНЫ
         }
         if (BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick") < 11 && starTimer > 0) {
             createAttainment(19);

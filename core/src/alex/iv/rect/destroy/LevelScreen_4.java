@@ -128,7 +128,7 @@ public class LevelScreen_4 extends LevelScreenMain {
             RectangleGame.setActiveScreen(new IntermediateScreen(requestHandler, 4, score));
         }
         if (BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick") == 0 && starTimer > 0) {
-            allTheBricksAreBroken(recordsLevel_4, "records_4", attainmentColorLevel_4, "attainmentColorLevelMemory_4");// инициализируем метод allTheBricksAreBroken - ВСЕ КИРПИЧИ РАЗРУШЕНЫ
+            allTheBricksAreBroken("records_4", "attainmentColorLevelMemory_4");// инициализируем метод allTheBricksAreBroken - ВСЕ КИРПИЧИ РАЗРУШЕНЫ
         }
         if (BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick") < 6 && starTimer > 0) {
             createAttainment(4);

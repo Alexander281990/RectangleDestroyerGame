@@ -3,22 +3,12 @@ package alex.iv.rect.destroy;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.scenes.scene2d.Event;
-import com.badlogic.gdx.scenes.scene2d.EventListener;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 
-import java.util.ArrayList;
-
-import alex.iv.rect.destroy.actors.Ball;
 import alex.iv.rect.destroy.actors.Brick;
 import alex.iv.rect.destroy.actors.BrickHard;
 import alex.iv.rect.destroy.actors.Paddle;
 import alex.iv.rect.destroy.controller.BaseActor;
-import alex.iv.rect.destroy.controller.BaseGame;
-import alex.iv.rect.destroy.controller.GetLifeScreen;
 import alex.iv.rect.destroy.controller.IActivityRequestHandler;
-import alex.iv.rect.destroy.controller.Item;
 import alex.iv.rect.destroy.controller.LevelScreenMain;
 import alex.iv.rect.destroy.controller.RectangleGame;
 import alex.iv.rect.destroy.controller.Warp;
@@ -116,7 +106,7 @@ public class LevelScreen_28 extends LevelScreenMain {
             RectangleGame.setActiveScreen(new IntermediateScreen(requestHandler, 28, score));
         }
         if (BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick") == 0 && starTimer > 0) {
-            allTheBricksAreBroken(recordsLevel_28, "records_28", attainmentColorLevel_28, "attainmentColorLevelMemory_28");// инициализируем метод allTheBricksAreBroken - ВСЕ КИРПИЧИ РАЗРУШЕНЫ
+            allTheBricksAreBroken("records_28", "attainmentColorLevelMemory_28");// инициализируем метод allTheBricksAreBroken - ВСЕ КИРПИЧИ РАЗРУШЕНЫ
         }
         if (BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick") < 7 && starTimer > 0) {
             createAttainment(28);

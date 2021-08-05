@@ -2,15 +2,12 @@ package alex.iv.rect.destroy;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.math.MathUtils;
 
 import alex.iv.rect.destroy.actors.Brick;
-import alex.iv.rect.destroy.actors.BrickHard;
 import alex.iv.rect.destroy.controller.BaseActor;
 import alex.iv.rect.destroy.controller.IActivityRequestHandler;
 import alex.iv.rect.destroy.controller.LevelScreenMain;
 import alex.iv.rect.destroy.controller.RectangleGame;
-import alex.iv.rect.destroy.controller.Warp;
 
 public class LevelScreen_2 extends LevelScreenMain {
 
@@ -53,7 +50,7 @@ public class LevelScreen_2 extends LevelScreenMain {
             RectangleGame.setActiveScreen(new IntermediateScreen(requestHandler, 2, score));
         }
         if (BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick") == 0 && starTimer > 0) {
-            allTheBricksAreBroken(recordsLevel_2, "records_2", attainmentColorLevel_2, "attainmentColorLevelMemory_2");// инициализируем метод allTheBricksAreBroken - ВСЕ КИРПИЧИ РАЗРУШЕНЫ
+            allTheBricksAreBroken("records_2", "attainmentColorLevelMemory_2");// инициализируем метод allTheBricksAreBroken - ВСЕ КИРПИЧИ РАЗРУШЕНЫ
         }
         if (BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick") < 2 && starTimer > 0) {
             createAttainment(2);

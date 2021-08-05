@@ -276,14 +276,14 @@ public class LevelScreenMain extends MenuScreen {
     // метод, который запускается, когда закончилось игровое время(конец)
 
     // метод, который запускается, когда все кирпичи разрушены
-    protected void allTheBricksAreBroken(int record, String key, int attainmentColorLevel, String keyColor) {
+    protected void allTheBricksAreBroken(String key, String keyColor) {
         for (BaseActor ball : BaseActor.getList(mainStage, "alex.iv.rect.destroy.actors.Ball")) {
             ball.remove();
         }
         for (BaseActor item : BaseActor.getList(mainStage, "alex.iv.rect.destroy.controller.Item")) {
             item.remove();
         }
-        attainmentColorLevel = 1;
+        int attainmentColorLevel = 1;
         pref.putInteger(keyColor, attainmentColorLevel);
         messageLabel.setText("You win!");
         messageLabel.setColor(Color.LIME);
@@ -291,7 +291,7 @@ public class LevelScreenMain extends MenuScreen {
         ball.remove();
         Time.remove();
         paddle.remove();
-        record = score;
+        int record = score;
         //live ++;
         pref.putInteger(key, record);
         //pref.putInteger("liveMemory", live);
@@ -441,13 +441,20 @@ public class LevelScreenMain extends MenuScreen {
                         }
                     }
                     scoreLabel.setText("Score " + score);
-                    // если зеленый шар косается кирпича, то (иногда) появляется Item
+                    // если белый шар косается кирпича, то (иногда) появляется Item
                     if (Color.rgb888(bal.getColor()) == Color.rgb888(Color.WHITE)) {
-                        float spawnProbability = 30; // частота появления Item
-                        if (MathUtils.random(0, 100) < spawnProbability) {
+                        int randomNumber = MathUtils.random(0, 100);
+                        int spawnProbability = 30; // частота появления Item
+                        int spawnProbabilityLive = 95; // частота появления Item для жизней
+                        if (randomNumber < spawnProbability) {
                             Item i = new Item(0, 0, mainStage);
                             i.centerAtActor(br);
                         }
+                        if (randomNumber > spawnProbabilityLive) {
+                            Item i = new Item(0, 0, mainStage, "LIVE");
+                            i.centerAtActor(br);
+                        }
+                        //Gdx.app.log("MyTag", String.valueOf(randomNumber));
                     }
                 }
             }
@@ -502,27 +509,31 @@ public class LevelScreenMain extends MenuScreen {
                 else if (realItem.getType() == Item.Type.PADDLE_SHRINK)
                     paddle.setWidth(paddle.getWidth() * 0.80f);
                 else if (realItem.getType() == Item.Type.BALL_SPEED_UP) {
-                    ball.setSpeed(ball.getSpeed() + 100);
+                    ball.setSize(ball.getWidth() * 1.20f, ball.getHeight() * 1.20f);
+                    ball.setBoundaryRectangle();
+                    //ball.setSpeed(ball.getSpeed() + 100);
                     //requestHandler.showBannerAd(); // показывает рекламный баннер
                     //requestHandler.showVideoAd(); // показывает видео рекламу с вознагрождением
                     //requestHandler.showOrLoadInterstitial(); // показывает межстраничный баннер
                     //requestHandler.hideBannerAd(); // удаляет рекламный баннер
                 }
-                if (ball.getSpeed() > ball.getMaxSpeed())
-                    ball.setSpeed(ball.getMaxSpeed());
+//                if (ball.getSpeed() > ball.getMaxSpeed())
+//                    ball.setSpeed(ball.getMaxSpeed());
                 else if (realItem.getType() == Item.Type.BALL_SPEED_DOWN) {
-                    ball.setSpeed(ball.getSpeed() * 0.90f);
+                    //ball.setSpeed(ball.getSpeed() * 0.90f);
+                    ball.setSize(ball.getWidth() / 2, ball.getHeight() / 2);
+                    ball.setBoundaryRectangle();
                 }
                 else if (realItem.getType() == Item.Type.BALL_TWO) {
                     new Ball(paddle.getX() + paddle.getWidth() / 2 - ball.getWidth() / 2,
-                            paddle.getY() + paddle.getHeight() / 2 + ball.getHeight() / 2, false, mainStage);
+                            paddle.getY() + paddle.getHeight() / 1.25f + ball.getHeight() / 1.25f, false, mainStage);
                 }
                 else if (realItem.getType() == Item.Type.PADDLE_STOP) {
                     paddleStop = false;
                     ballStop = false;
                     uiStage.addActor(TimePaddleStop);
                 }
-                else if (realItem.getType() == Item.Type.LIVE) {
+                else if (realItem.getLive() == Item.Live.LIVE) {
                     live ++;
                     pref.putInteger("liveMemory", live);
                     pref.flush();

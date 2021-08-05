@@ -21,7 +21,7 @@ public class Ball extends BaseActor {
         setSize(ballWidth, ballHeight);
         setBoundaryRectangle();
         setSpeed(700);
-        setMaxSpeed(1500);
+        //setMaxSpeed(1500);
         setMotionAngle(90);
         setBoundaryPolygon(12);
         setPaused(true);

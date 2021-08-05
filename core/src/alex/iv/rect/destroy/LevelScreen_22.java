@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import alex.iv.rect.destroy.actors.Ball;
 import alex.iv.rect.destroy.actors.Brick;
 import alex.iv.rect.destroy.actors.BrickHard;
-import alex.iv.rect.destroy.actors.Paddle;
 import alex.iv.rect.destroy.controller.BaseActor;
 import alex.iv.rect.destroy.controller.BaseGame;
 import alex.iv.rect.destroy.controller.GetLifeScreen;
@@ -21,7 +20,6 @@ import alex.iv.rect.destroy.controller.IActivityRequestHandler;
 import alex.iv.rect.destroy.controller.Item;
 import alex.iv.rect.destroy.controller.LevelScreenMain;
 import alex.iv.rect.destroy.controller.RectangleGame;
-import alex.iv.rect.destroy.controller.Warp;
 
 public class LevelScreen_22 extends LevelScreenMain {
 
@@ -305,7 +303,7 @@ public class LevelScreen_22 extends LevelScreenMain {
             RectangleGame.setActiveScreen(new IntermediateScreen(requestHandler, 22, score));
         }
         if (BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick") == 0 && starTimer > 0) {
-            allTheBricksAreBroken(recordsLevel_22, "records_22", attainmentColorLevel_22, "attainmentColorLevelMemory_22");// инициализируем метод allTheBricksAreBroken - ВСЕ КИРПИЧИ РАЗРУШЕНЫ
+            allTheBricksAreBroken("records_22", "attainmentColorLevelMemory_22");// инициализируем метод allTheBricksAreBroken - ВСЕ КИРПИЧИ РАЗРУШЕНЫ
         }
         if (BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick") < 46 && starTimer > 0) {
             createAttainment(22);
