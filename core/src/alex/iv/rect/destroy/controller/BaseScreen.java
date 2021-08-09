@@ -33,6 +33,7 @@ public abstract class BaseScreen implements Screen, InputProcessor {
 
     public void render(float dt) {
         dt = Math.min(dt, 0.033333335F);
+        //dt = Math.min(Gdx.graphics.getDeltaTime(), 1 / 60f);
         this.uiStage.act(dt);
         this.mainStage.act(dt);
         this.update(dt);

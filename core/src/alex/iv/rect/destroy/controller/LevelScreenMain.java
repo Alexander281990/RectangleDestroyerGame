@@ -509,9 +509,9 @@ public class LevelScreenMain extends MenuScreen {
                 else if (realItem.getType() == Item.Type.PADDLE_SHRINK)
                     paddle.setWidth(paddle.getWidth() * 0.80f);
                 else if (realItem.getType() == Item.Type.BALL_SPEED_UP) {
-                    ball.setSize(ball.getWidth() * 1.20f, ball.getHeight() * 1.20f);
-                    ball.setBoundaryRectangle();
-                    //ball.setSpeed(ball.getSpeed() + 100);
+                    //ball.setSize(ball.getWidth() * 1.20f, ball.getHeight() * 1.20f);
+                    //ball.setBoundaryRectangle();
+                    ball.setSpeed(ball.getSpeed() * 1.20f);
                     //requestHandler.showBannerAd(); // показывает рекламный баннер
                     //requestHandler.showVideoAd(); // показывает видео рекламу с вознагрождением
                     //requestHandler.showOrLoadInterstitial(); // показывает межстраничный баннер
@@ -520,9 +520,9 @@ public class LevelScreenMain extends MenuScreen {
 //                if (ball.getSpeed() > ball.getMaxSpeed())
 //                    ball.setSpeed(ball.getMaxSpeed());
                 else if (realItem.getType() == Item.Type.BALL_SPEED_DOWN) {
-                    //ball.setSpeed(ball.getSpeed() * 0.90f);
-                    ball.setSize(ball.getWidth() / 2, ball.getHeight() / 2);
-                    ball.setBoundaryRectangle();
+                    ball.setSpeed(ball.getSpeed() * 1.20f);
+                    //ball.setSize(ball.getWidth() / 2, ball.getHeight() / 2);
+                    //ball.setBoundaryRectangle();
                 }
                 else if (realItem.getType() == Item.Type.BALL_TWO) {
                     new Ball(paddle.getX() + paddle.getWidth() / 2 - ball.getWidth() / 2,
