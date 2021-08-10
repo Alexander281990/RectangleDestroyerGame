@@ -49,8 +49,8 @@ public class LevelScreenMain extends MenuScreen {
     private Sound bounceSound;
     private Sound brickBumpSound;
     private Sound wallBumpSound;
-//    private Sound itemAppearSound;
     private Sound itemCollectSound;
+//    private Sound itemAppearSound;
 
     // конструктор, который создает саму ссылку на метод showOrLoadInterstitial из AndroidLauncher
     public LevelScreenMain(IActivityRequestHandler requestHandler) {
@@ -511,9 +511,6 @@ public class LevelScreenMain extends MenuScreen {
                 else if (realItem.getType() == Item.Type.PADDLE_SHRINK)
                     paddle.setWidth(paddle.getWidth() * 0.80f);
                 else if (realItem.getType() == Item.Type.BALL_SPEED_UP) {
-                    //ball.setSize(ball.getWidth() * 1.20f, ball.getHeight() * 1.20f);
-                    //ball.setBoundaryRectangle();
-                    ball.setSpeed(ball.getSpeed() * 1.20f);
 //                    ball.setSize(ball.getWidth() * 1.20f, ball.getHeight() * 1.20f);
 //                    ball.setBoundaryRectangle();
                     //ball.setSpeed(ball.getSpeed() * 1.10f);
@@ -525,12 +522,7 @@ public class LevelScreenMain extends MenuScreen {
 //                if (ball.getSpeed() > ball.getMaxSpeed())
 //                    ball.setSpeed(ball.getMaxSpeed());
                 else if (realItem.getType() == Item.Type.BALL_SPEED_DOWN) {
-                    ball.setSpeed(ball.getSpeed() * 1.20f);
-                    //ball.setSize(ball.getWidth() / 2, ball.getHeight() / 2);
-                    //ball.setBoundaryRectangle();
                     //ball.setSpeed(ball.getSpeed() * 0.90f);
-//                    ball.setSize(ball.getWidth() / 2, ball.getHeight() / 2);
-//                    ball.setBoundaryRectangle();
                 }
                 else if (realItem.getType() == Item.Type.BALL_TWO) {
                     new Ball(paddle.getX() + paddle.getWidth() / 2 - ball.getWidth() / 2,
