@@ -1,6 +1,7 @@
 package alex.iv.rect.destroy.controller;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Event;
@@ -45,11 +46,11 @@ public class LevelScreenMain extends MenuScreen {
     protected float bounceAngle;
     protected float hindranceAngle;
     protected float brickHardAngle;
-//    private Sound bounceSound;
-//    private Sound brickBumpSound;
-//    private Sound wallBumpSound;
+    private Sound bounceSound;
+    private Sound brickBumpSound;
+    private Sound wallBumpSound;
 //    private Sound itemAppearSound;
-//    private Sound itemCollectSound;
+    private Sound itemCollectSound;
 
     // конструктор, который создает саму ссылку на метод showOrLoadInterstitial из AndroidLauncher
     public LevelScreenMain(IActivityRequestHandler requestHandler) {
@@ -122,11 +123,11 @@ public class LevelScreenMain extends MenuScreen {
 
         paddle = new Paddle(windowPlayWidth / 2 - 64 , windowPlayHeight / 2.5f, mainStage);
 
-//        bounceSound	= Gdx.audio.newSound(Gdx.files.internal("boing.wav"));
-//        brickBumpSound = Gdx.audio.newSound(Gdx.files.internal("bump.wav"));
-//        wallBumpSound = Gdx.audio.newSound(Gdx.files.internal("bump-low.wav"));
+        bounceSound	= Gdx.audio.newSound(Gdx.files.internal("boing.wav"));
+        brickBumpSound = Gdx.audio.newSound(Gdx.files.internal("bump.wav"));
+        wallBumpSound = Gdx.audio.newSound(Gdx.files.internal("bump-low.wav"));
+        itemCollectSound = Gdx.audio.newSound(Gdx.files.internal("pop.wav"));
 //        itemAppearSound	= Gdx.audio.newSound(Gdx.files.internal("swoosh.wav"));
-//        itemCollectSound = Gdx.audio.newSound(Gdx.files.internal("pop.wav"));
 //        Music backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("Rollin-at-5.mp3"));
 //        backgroundMusic.setLooping(true);
 //        backgroundMusic.setVolume(0.50f);
@@ -328,11 +329,11 @@ public class LevelScreenMain extends MenuScreen {
             for (BaseActor wall : BaseActor.getList(mainStage, "alex.iv.rect.destroy.actors.Wall")) {
                 if (bal.overlaps(wall)) {
                     bal.bounceOff(wall); // отскакивание под углом
-                    //wallBumpSound.play();
+                    wallBumpSound.play();
                 }
             }
             if (bal.overlaps(paddle)) {
-                //bounceSound.play();
+                bounceSound.play();
                 float positionPaddle_Y = paddle.getY() + paddle.getHeight() / 2; // находим центр paddle по оси Y
                 float positionBall_Y = bal.getY() + bal.getHeight() / 2; // находим центр ball по оси Y
                 float ballCenterX = bal.getX() + bal.getWidth() / 2; // находим центр шарика по оси Х
@@ -349,6 +350,7 @@ public class LevelScreenMain extends MenuScreen {
 
             for (BaseActor brickHard : BaseActor.getList(mainStage, "alex.iv.rect.destroy.actors.BrickHard")) {
                 if (bal.overlaps(brickHard)) {
+                    brickBumpSound.play();
                     // если brickHardStatus = true, то мяч отскакивает от кирпича как от стен. А если brickHardStatus = false, то
                     // мяч отскакивает от кирпича как от весла(paddle)
                     if (brickHard.brickHardStatus) {
@@ -396,7 +398,7 @@ public class LevelScreenMain extends MenuScreen {
             for (BaseActor br : BaseActor.getList(mainStage, "alex.iv.rect.destroy.actors.Brick")) {
                 if (bal.overlaps(br)) {
                     bal.bounceOff(br);
-                    //brickBumpSound.play();
+                    brickBumpSound.play();
                     if (Color.rgb888(br.getColor()) == Color.rgb888(Color.RED)) {
                         br.remove();
                         mQuantityBricks -- ;
@@ -445,12 +447,12 @@ public class LevelScreenMain extends MenuScreen {
                     if (Color.rgb888(bal.getColor()) == Color.rgb888(Color.WHITE)) {
                         int randomNumber = MathUtils.random(0, 100);
                         int spawnProbability = 30; // частота появления Item
-                        int spawnProbabilityLive = 95; // частота появления Item для жизней
+                        int spawnProbabilityLive = 33; // частота появления Item для жизней
                         if (randomNumber < spawnProbability) {
                             Item i = new Item(0, 0, mainStage);
                             i.centerAtActor(br);
                         }
-                        if (randomNumber > spawnProbabilityLive) {
+                        if (randomNumber > spawnProbability && randomNumber < spawnProbabilityLive) {
                             Item i = new Item(0, 0, mainStage, "LIVE");
                             i.centerAtActor(br);
                         }
@@ -512,6 +514,9 @@ public class LevelScreenMain extends MenuScreen {
                     //ball.setSize(ball.getWidth() * 1.20f, ball.getHeight() * 1.20f);
                     //ball.setBoundaryRectangle();
                     ball.setSpeed(ball.getSpeed() * 1.20f);
+//                    ball.setSize(ball.getWidth() * 1.20f, ball.getHeight() * 1.20f);
+//                    ball.setBoundaryRectangle();
+                    //ball.setSpeed(ball.getSpeed() * 1.10f);
                     //requestHandler.showBannerAd(); // показывает рекламный баннер
                     //requestHandler.showVideoAd(); // показывает видео рекламу с вознагрождением
                     //requestHandler.showOrLoadInterstitial(); // показывает межстраничный баннер
@@ -523,6 +528,9 @@ public class LevelScreenMain extends MenuScreen {
                     ball.setSpeed(ball.getSpeed() * 1.20f);
                     //ball.setSize(ball.getWidth() / 2, ball.getHeight() / 2);
                     //ball.setBoundaryRectangle();
+                    //ball.setSpeed(ball.getSpeed() * 0.90f);
+//                    ball.setSize(ball.getWidth() / 2, ball.getHeight() / 2);
+//                    ball.setBoundaryRectangle();
                 }
                 else if (realItem.getType() == Item.Type.BALL_TWO) {
                     new Ball(paddle.getX() + paddle.getWidth() / 2 - ball.getWidth() / 2,
@@ -540,7 +548,7 @@ public class LevelScreenMain extends MenuScreen {
                 }
                 paddle.setBoundaryRectangle();
                 item.remove();
-                //itemCollectSound.play();
+                itemCollectSound.play();
             }
         }
         // если весло пересекается с кем-то из обьектов Item(конец)
