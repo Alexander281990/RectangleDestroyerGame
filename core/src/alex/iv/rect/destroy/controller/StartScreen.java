@@ -2,6 +2,7 @@ package alex.iv.rect.destroy.controller;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.scenes.scene2d.Event;
 import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -9,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 
 public class StartScreen extends BaseScreen {
 
+    private Sound clickButton;
     private static Preferences pref;
     public static int live = 2;
     static int attainment = 0;
@@ -85,6 +87,7 @@ public class StartScreen extends BaseScreen {
     @Override
     public void initialize() {
 
+        clickButton = Gdx.audio.newSound(Gdx.files.internal("click_button.wav"));
         pref = Gdx.app.getPreferences("Preferences");// инициализация Preferences для сохранения лучшего результата в телефоне
         live = pref.getInteger("liveMemory");
         attainment = pref.getInteger("attainmentMemory");
@@ -284,6 +287,7 @@ public class StartScreen extends BaseScreen {
                         pref.putInteger("records_30", recordsLevel_30);
                         pref.putInteger("liveMemory", live);
                         pref.flush();
+                        clickButton.play();
                         RectangleGame.setActiveScreen(new MenuScreen(requestHandler));
                         return false;
                     }
@@ -301,6 +305,7 @@ public class StartScreen extends BaseScreen {
                                 !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
                             return false;
                         //Gdx.app.exit(); // выходит из игры
+                        clickButton.play();
                         RectangleGame.setActiveScreen(new MenuScreen(requestHandler));
 //                        Gdx.app.log("MyTag", "my informative message");
                         return false;
