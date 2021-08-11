@@ -254,51 +254,25 @@ public class LevelScreenMain extends MenuScreen {
             pref.putInteger(key, record);
             pref.flush();
             startGame = false;
-        TextButton menuButton = new TextButton( "MENU", BaseGame.textButtonStyle );
-        //exitButton.setPosition(10, Gdx.graphics.getHeight() - exitButton.getHeight() - 10);
-        uiStage.addActor(menuButton);
-        menuButton.addListener(
-                new EventListener() {
-                    @Override
-                    public boolean handle(Event e) {
-                        if (!(e instanceof InputEvent) ||
-                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
-                            return false;
-//                        requestHandler.hideBannerAd(); // при нажатии на кнопку баннер скрывается
-                        RectangleGame.setActiveScreen(new MenuScreen(requestHandler));
-//                        Gdx.app.log("MyTag", "my informative message");
-                        return false;
-                    }
-                }
-        );
 //            recordsLabel.setText("Records: " + record);
 //            uiStage.addActor(recordsLabel);
     }
     // метод, который запускается, когда закончилось игровое время(конец)
 
     // метод, который запускается, когда все кирпичи разрушены
-    protected void allTheBricksAreBroken(String key, String keyColor) {
+    protected void allTheBricksAreBroken(String key) {
         for (BaseActor ball : BaseActor.getList(mainStage, "alex.iv.rect.destroy.actors.Ball")) {
             ball.remove();
         }
         for (BaseActor item : BaseActor.getList(mainStage, "alex.iv.rect.destroy.controller.Item")) {
             item.remove();
         }
-        int attainmentColorLevel = 1;
-        pref.putInteger(keyColor, attainmentColorLevel);
-        messageLabel.setText("You win!");
-        messageLabel.setColor(Color.LIME);
-        messageLabel.setVisible(true);
         ball.remove();
         Time.remove();
         paddle.remove();
         int record = score;
-        //live ++;
         pref.putInteger(key, record);
-        //pref.putInteger("liveMemory", live);
         pref.flush();
-        recordsLabel.setText("Records: " + record);
-        uiStage.addActor(recordsLabel);
     }
     // метод, который запускается, когда все кирпичи разрушены(конец)
 

@@ -60,6 +60,72 @@ public class MenuScreen extends StartScreen {
     @Override
     public void initialize() {
 
+        pref = Gdx.app.getPreferences("Preferences");// инициализация Preferences для сохранения лучшего результата в телефоне
+
+        live = pref.getInteger("liveMemory");
+
+        attainmentColorLevel_1 = pref.getInteger("attainmentColorLevelMemory_1");
+        attainmentColorLevel_2 = pref.getInteger("attainmentColorLevelMemory_2");
+        attainmentColorLevel_3 = pref.getInteger("attainmentColorLevelMemory_3");
+        attainmentColorLevel_4 = pref.getInteger("attainmentColorLevelMemory_4");
+        attainmentColorLevel_5 = pref.getInteger("attainmentColorLevelMemory_5");
+        attainmentColorLevel_6 = pref.getInteger("attainmentColorLevelMemory_6");
+        attainmentColorLevel_7 = pref.getInteger("attainmentColorLevelMemory_7");
+        attainmentColorLevel_8 = pref.getInteger("attainmentColorLevelMemory_8");
+        attainmentColorLevel_9 = pref.getInteger("attainmentColorLevelMemory_9");
+        attainmentColorLevel_10 = pref.getInteger("attainmentColorLevelMemory_10");
+        attainmentColorLevel_11 = pref.getInteger("attainmentColorLevelMemory_11");
+        attainmentColorLevel_12 = pref.getInteger("attainmentColorLevelMemory_12");
+        attainmentColorLevel_13 = pref.getInteger("attainmentColorLevelMemory_13");
+        attainmentColorLevel_14 = pref.getInteger("attainmentColorLevelMemory_14");
+        attainmentColorLevel_15 = pref.getInteger("attainmentColorLevelMemory_15");
+        attainmentColorLevel_16 = pref.getInteger("attainmentColorLevelMemory_16");
+        attainmentColorLevel_17 = pref.getInteger("attainmentColorLevelMemory_17");
+        attainmentColorLevel_18 = pref.getInteger("attainmentColorLevelMemory_18");
+        attainmentColorLevel_19 = pref.getInteger("attainmentColorLevelMemory_19");
+        attainmentColorLevel_20 = pref.getInteger("attainmentColorLevelMemory_20");
+        attainmentColorLevel_21 = pref.getInteger("attainmentColorLevelMemory_21");
+        attainmentColorLevel_22 = pref.getInteger("attainmentColorLevelMemory_22");
+        attainmentColorLevel_23 = pref.getInteger("attainmentColorLevelMemory_23");
+        attainmentColorLevel_24 = pref.getInteger("attainmentColorLevelMemory_24");
+        attainmentColorLevel_25 = pref.getInteger("attainmentColorLevelMemory_25");
+        attainmentColorLevel_26 = pref.getInteger("attainmentColorLevelMemory_26");
+        attainmentColorLevel_27 = pref.getInteger("attainmentColorLevelMemory_27");
+        attainmentColorLevel_28 = pref.getInteger("attainmentColorLevelMemory_28");
+        attainmentColorLevel_29 = pref.getInteger("attainmentColorLevelMemory_29");
+        attainmentColorLevel_30 = pref.getInteger("attainmentColorLevelMemory_30");
+
+        recordsLevel_1 = pref.getInteger("records_1");
+        recordsLevel_2 = pref.getInteger("records_2");
+        recordsLevel_3 = pref.getInteger("records_3");
+        recordsLevel_4 = pref.getInteger("records_4");
+        recordsLevel_5 = pref.getInteger("records_5");
+        recordsLevel_6 = pref.getInteger("records_6");
+        recordsLevel_7 = pref.getInteger("records_7");
+        recordsLevel_8 = pref.getInteger("records_8");
+        recordsLevel_9 = pref.getInteger("records_9");
+        recordsLevel_10 = pref.getInteger("records_10");
+        recordsLevel_11 = pref.getInteger("records_11");
+        recordsLevel_12 = pref.getInteger("records_12");
+        recordsLevel_13 = pref.getInteger("records_13");
+        recordsLevel_14 = pref.getInteger("records_14");
+        recordsLevel_15 = pref.getInteger("records_15");
+        recordsLevel_16 = pref.getInteger("records_16");
+        recordsLevel_17 = pref.getInteger("records_17");
+        recordsLevel_18 = pref.getInteger("records_18");
+        recordsLevel_19 = pref.getInteger("records_19");
+        recordsLevel_20 = pref.getInteger("records_20");
+        recordsLevel_21 = pref.getInteger("records_21");
+        recordsLevel_22 = pref.getInteger("records_22");
+        recordsLevel_23 = pref.getInteger("records_23");
+        recordsLevel_24 = pref.getInteger("records_24");
+        recordsLevel_25 = pref.getInteger("records_25");
+        recordsLevel_26 = pref.getInteger("records_26");
+        recordsLevel_27 = pref.getInteger("records_27");
+        recordsLevel_28 = pref.getInteger("records_28");
+        recordsLevel_29 = pref.getInteger("records_29");
+        recordsLevel_30 = pref.getInteger("records_30");
+
         Lock lock1 = new Lock(0, 0, mainStage);
         Lock lock2 = new Lock(0, 0, mainStage);
         Lock lock3 = new Lock(0, 0, mainStage);
@@ -90,8 +156,6 @@ public class MenuScreen extends StartScreen {
         Lock lock28 = new Lock(0, 0, mainStage);
         Lock lock29 = new Lock(0, 0, mainStage);
         Lock lock30 = new Lock(0, 0, mainStage);
-
-        pref = Gdx.app.getPreferences("Preferences");// инициализация Preferences для сохранения лучшего результата в телефоне
 
         levelScreenMain = new LevelScreenMain(requestHandler);
 // инициализация кнопок Level
