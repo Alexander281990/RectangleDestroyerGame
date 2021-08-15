@@ -92,7 +92,6 @@ public class StartScreen extends BaseScreen {
         attainment = pref.getInteger("attainmentMemory");
         // инициализация кнопок New game и continue
         TextButton startButton = new TextButton( "New game", BaseGame.textButtonStyle );
-        //startButton.setPosition(150,150);
         uiStage.addActor(startButton);
         startButton.addListener(
                 new EventListener() {
@@ -247,6 +246,7 @@ public class StartScreen extends BaseScreen {
                         clickButton.play();
                         RectangleGame.setActiveScreen(new MenuScreen(requestHandler));
 //                        Gdx.app.log("MyTag", "my informative message");
+                        //RectangleGame.setActiveScreen(new VictoryScreen());
                         return false;
                     }
                 }

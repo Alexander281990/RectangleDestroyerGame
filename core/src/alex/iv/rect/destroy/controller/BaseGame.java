@@ -16,6 +16,7 @@ public class BaseGame extends Game {
 
     private static BaseGame game;
     public static Label.LabelStyle labelStyle;
+    public static Label.LabelStyle labelStyleRU;
     public static Label.LabelStyle labelStyleLevel;
     public static Label.LabelStyle labelStylePaddleStop;
     public static TextButton.TextButtonStyle textButtonStyle;
@@ -30,6 +31,23 @@ public class BaseGame extends Game {
 
         InputMultiplexer im = new InputMultiplexer();
         Gdx.input.setInputProcessor(im);
+
+        String FONT_CHARS  = "абвгдеёжзийклмнопрстуфхцчшщъыьэюяabcdefghijklmnopqrstuvwxyzАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789][_!$%#@|\\\\/?-+=()*&.;:,{}\\\"´`'<>";
+        BitmapFont font1;
+        final String FONT_PATH = "OpenSans.ttf";
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal(FONT_PATH));
+        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        parameter.characters = FONT_CHARS;
+        parameter.size = 36;
+        parameter.color = Color.WHITE;
+        parameter.borderWidth = 2.0f;
+        parameter.borderStraight = true;
+        parameter.minFilter = Texture.TextureFilter.Linear;
+        parameter.magFilter = Texture.TextureFilter.Linear;
+        font1 = generator.generateFont(parameter);
+        labelStyleRU = new Label.LabelStyle();
+        labelStyleRU.font = font1;
+
         FreeTypeFontGenerator fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("OpenSans.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter fontParameters = new FreeTypeFontGenerator.FreeTypeFontParameter();
         fontParameters.size = 36;

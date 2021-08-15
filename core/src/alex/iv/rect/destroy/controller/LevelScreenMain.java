@@ -2,13 +2,18 @@ package alex.iv.rect.destroy.controller;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Event;
 import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 
 import alex.iv.rect.destroy.actors.Ball;
@@ -34,12 +39,13 @@ public class LevelScreenMain extends MenuScreen {
     private Label Live; // метка, которая отображает жизни
     private Label recordsLabel;
     protected Label recordsLabelWindow;
+    private Label numberLevel;
+    private Label rulesGame;
     protected Label quantityBricks; // метка, которая отображает количество кирпичиков
     private Label TimePaddleStop; // метка, которая отображает время остановки весла
     private float timerPaddleStop; // переменная, которая отсчитывает 7 секунд при блокировке весла(Item.Type.PADDLE_STOP)
     protected Label scoreLabel; //
     protected Paddle paddle;
-    private Label messageLabel; //
     protected Ball ball;
     private TextButton start;
 
@@ -81,27 +87,23 @@ public class LevelScreenMain extends MenuScreen {
         score = 0;
         ///////////////////////////////////////
         quantityBricks = new Label("Bricks: ", BaseGame.labelStyle);
-        quantityBricks.setPosition(Gdx.graphics.getWidth() - quantityBricks.getWidth() - wallHeight.getWidth(), Gdx.graphics.getHeight() - quantityBricks.getHeight() - wallWight.getHeight());
-        uiStage.addActor(quantityBricks);
-        ////////////////////////////////////////
+        ///////////////////////////////////////
         recordsLabel = new Label("Records: ", BaseGame.labelStyle);
-        recordsLabel.setPosition((Gdx.graphics.getWidth()/2f) - recordsLabel.getWidth()/2, Gdx.graphics.getHeight()/2f);
         recordsLabel.setColor( Color.CYAN );
+        ///////////////////////////////////////
+        numberLevel = new Label("Level: ", BaseGame.labelStyleLevel);
+        numberLevel.setFontScale(1.5f, 1.5f);
+        numberLevel.setColor( Color.WHITE );
+        ///////////////////////////////////////
+        rulesGame = new Label("Level: ", BaseGame.labelStyleRU);
+        rulesGame.setColor( Color.WHITE );
         ///////////////////////////////////////
         // инициализация метки для отображения жизней
         Live = new Label("Live:", BaseGame.labelStyle);
-        Live.setPosition(windowPlayWidth - Live.getWidth() - 70, Gdx.graphics.getHeight() - Live.getHeight() - 6);
-        uiStage.addActor(Live);
-//        Live.setText("Live: " + liveMemory);
-        // инициализация метки для отображения жизней(конец)
+        ///////////////////////////////////////
         scoreLabel = new Label("Score: " + score, BaseGame.labelStyle); // отображение очков
         recordsLabelWindow = new Label("Records: ", BaseGame.labelStyleLevel);
         recordsLabelWindow.setFontScale(1.5f, 1.5f);
-        uiStage.addActor(recordsLabelWindow);
-        //recordsLabelWindow.setText("Records: " + recordsLevel_1);
-        messageLabel = new Label("click to start", BaseGame.labelStyle );
-        messageLabel.setFontScale(3, 3);
-        messageLabel.setColor( Color.CYAN );
         //////////////////////////
         // отображение 7 секунд при блокировке весла(Item.Type.PADDLE_STOP)
         TimePaddleStop = new Label("", BaseGame.labelStylePaddleStop);
@@ -109,17 +111,11 @@ public class LevelScreenMain extends MenuScreen {
         TimePaddleStop.setPosition(Gdx.graphics.getWidth()/2f- TimePaddleStop.getWidth()/2, Gdx.graphics.getHeight() - 500);
         //uiStage.addActor(TimePaddleStop); // эта строчка используется непосредственно когда игрок ловит Item.Type.PADDLE_STOP
         TimePaddleStop.setText((int)timerPaddleStop);
-        ////////////////////////////
-        //uiTable.pad(5);
+        /////////////////////////
         uiTable.align(Align.center|Align.top);
         uiTable.add(scoreLabel).expandX().left().padTop(5).padLeft(20);
         uiTable.add(quantityBricks).expandX().center().padTop(5);
         uiTable.add(Live).expandX().right().top().padTop(5).padRight(20);
-        uiTable.row();
-        uiTable.add(recordsLabelWindow).colspan(3).padTop(Gdx.graphics.getHeight()/10f);
-        uiTable.row();
-        uiTable.add(messageLabel).colspan(3).padTop(Gdx.graphics.getHeight()/8f);
-        uiTable.row();
 
         paddle = new Paddle(windowPlayWidth / 2 - 64 , windowPlayHeight / 2.5f, mainStage);
 
@@ -135,12 +131,55 @@ public class LevelScreenMain extends MenuScreen {
 
         ball = new Ball(0,0, mainStage);
 
+        // инициализация кнопки, которая отпускает шарик от весла
         start = new TextButton( "Start", BaseGame.textButtonStyle );
         start.setPosition(windowPlayWidth/2 - start.getWidth()/2,windowPlayHeight / 3.5f);
+//        uiStage.addActor(start); // эта строчка используется в функционале кнопки "NEXT"
+        start.addListener(
+                new EventListener() {
+                    @Override
+                    public boolean handle(Event e) {
+                        if (!(e instanceof InputEvent) ||
+                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
+                            return false;
+                        if (live > 0) {
+                            startLevel();
+                            start.remove();
+                        } else {
+                            RectangleGame.setActiveScreen(new GetLifeScreen(requestHandler));
+                        }
+                        return false;
+                    }
+                }
+        );
 
+    }
+
+    // Метод, который создает модальное окно перед началом уровня
+    protected void showModalScreen(int numbLevel, int recordLevel, String filePath) {
+        recordsLabelWindow.setText("Records: " + recordLevel);
+        numberLevel.setText("Level: " + numbLevel);
+        // следующие три строчки выводят текст из assets/rules_level_screen
+        FileHandle file = Gdx.files.internal(filePath);
+        String text = file.readString();
+        rulesGame.setText(text);
+        /////////
+        final TextButton nextButton = new TextButton( "NEXT", BaseGame.textButtonStyle );
+        nextButton.addListener(
+                new EventListener() {
+                    @Override
+                    public boolean handle(Event e) {
+                        if (!(e instanceof InputEvent) ||
+                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
+                            return false;
+                        uiStage.addActor(start); // при нажатии на кнопку показываем кнопку "tart"
+                        uiModalWindowTable.remove(); // И при нажатии на кнопку удаляем модальное окно
+                        return false;
+                    }
+                }
+        );
+        //////////
         final TextButton menuButton = new TextButton( "MENU", BaseGame.textButtonStyle );
-        menuButton.setPosition(windowPlayWidth/2 - menuButton.getWidth()/2, start.getY() - start.getHeight() - 50);
-        uiStage.addActor(menuButton);
         menuButton.addListener(
                 new EventListener() {
                     @Override
@@ -155,31 +194,39 @@ public class LevelScreenMain extends MenuScreen {
                     }
                 }
         );
+        //////////////
+        // устанавливает фоновый цвет в Table
+        Pixmap bgPixmap = new Pixmap(1, 1, Pixmap.Format.RGB565);
+        bgPixmap.setColor(Color.BLACK);
+        bgPixmap.fill();
+        TextureRegionDrawable textureRegionDrawableBg = new TextureRegionDrawable(new TextureRegion(new Texture(bgPixmap)));
+        // устанавливает фоновый цвет в Table(конец)
 
-        // инициализация кнопки, которая отпускает шарик от весла
-//        start = new TextButton( "Start", BaseGame.textButtonStyle );
-//        start.setPosition(windowPlayWidth/2 - start.getWidth()/2,(Gdx.graphics.getHeight() - windowPlayHeight) / 2);
-        uiStage.addActor(start);
-        start.addListener(
-                new EventListener() {
-                    @Override
-                    public boolean handle(Event e) {
-                        if (!(e instanceof InputEvent) ||
-                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
-                            return false;
-                        if (live > 0) {
-                            startLevel();
-                            start.remove();
-                            menuButton.remove();
-                        } else {
-                            RectangleGame.setActiveScreen(new GetLifeScreen(requestHandler));
-                        }
-                        return false;
-                    }
-                }
-        );
-
+        myTable.align(Align.center);
+        //myTable.setDebug(true);
+        uiModalWindowTable.align(Align.center|Align.top);
+        myTable.add(uiModalWindowTable).width(Gdx.graphics.getWidth()-200).height(Gdx.graphics.getHeight()-400);
+        uiModalWindowTable.setBackground(textureRegionDrawableBg);
+        uiModalWindowTable.getColor().a = 0.5f;
+        //uiModalWindowTable.setDebug(true);
+        uiModalWindowTable.add(numberLevel).expandX().colspan(2);
+        numberLevel.getColor().a = 10;
+        uiModalWindowTable.row();
+        uiModalWindowTable.add(recordsLabelWindow).expandX().colspan(2);
+        recordsLabelWindow.getColor().a = 10;
+        uiModalWindowTable.row();
+        uiModalWindowTable.add(rulesGame).expandY().left().top().width(Gdx.graphics.getWidth()-200).colspan(2);
+        rulesGame.setWrap(true);
+        rulesGame.getColor().a = 10;
+        uiModalWindowTable.row();
+        uiModalWindowTable.add(menuButton).center().expandX().uniform();
+        menuButton.getColor().a = 10;
+        menuButton.getLabel().setFontScale(3, 2);
+        uiModalWindowTable.add(nextButton).center().expandX().uniform();
+        nextButton.getColor().a = 10;
+        nextButton.getLabel().setFontScale(3, 2);
     }
+    // Метод, который создает модальное окно перед началом уровня(конец)
 
     public static float getWindowPlayWidth() {
         return windowPlayWidth;
@@ -247,7 +294,6 @@ public class LevelScreenMain extends MenuScreen {
             Time.remove();
             paddle.remove();
             ball.remove();
-            messageLabel.remove();
             if (score > record) {
                 record = score;
             }
@@ -291,7 +337,6 @@ public class LevelScreenMain extends MenuScreen {
     protected void startLevel() {
         if ( ball.isPaused() && ballStop) {
             ball.setPaused(false);
-            messageLabel.setVisible(false);
             startGame = true;
         }
     }
