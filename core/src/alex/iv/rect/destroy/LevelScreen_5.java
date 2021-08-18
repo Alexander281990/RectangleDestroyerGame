@@ -4,6 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
 
+import java.util.Locale;
+
 import alex.iv.rect.destroy.actors.Brick;
 import alex.iv.rect.destroy.controller.BaseActor;
 import alex.iv.rect.destroy.controller.IActivityRequestHandler;
@@ -30,8 +32,9 @@ public class LevelScreen_5 extends LevelScreenMain {
 
         showTime(150); // инициализируем метод отображение игрового времени
         //background.loadTexture("background/fon_level.png");
-        recordsLabelWindow.setText("Records: " + recordsLevel_5);
         quantityBricks(90, 9);
+        showModalScreen(5, recordsLevel_5, "rules_level_screen/level_screen_5_ru.txt",
+                "rules_level_screen/level_screen_5.txt");
 
         Brick tempBrick = new Brick(0,0,mainStage);
         tempBrick.remove();

@@ -3,6 +3,9 @@ package alex.iv.rect.destroy;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
+
+import java.util.Locale;
+
 import alex.iv.rect.destroy.actors.Brick;
 import alex.iv.rect.destroy.actors.BrickHard;
 import alex.iv.rect.destroy.controller.BaseActor;
@@ -38,8 +41,9 @@ public class LevelScreen_6 extends LevelScreenMain {
         super.initialize();
         background.loadTexture("background/fon_level.png");
         showTime(120); // инициализируем метод отображение игрового времени
-        recordsLabelWindow.setText("Records: " + recordsLevel_6);
         quantityBricks(124, 12);
+        showModalScreen(6, recordsLevel_6, "rules_level_screen/level_screen_6_ru.txt",
+                "rules_level_screen/level_screen_6.txt");
 
         Brick tempBrick = new Brick(0,0,mainStage);
         tempBrick.remove();

@@ -2,22 +2,10 @@ package alex.iv.rect.destroy;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Pixmap;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.Event;
-import com.badlogic.gdx.scenes.scene2d.EventListener;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.badlogic.gdx.utils.Align;
-
 import alex.iv.rect.destroy.actors.Brick;
 import alex.iv.rect.destroy.controller.BaseActor;
-import alex.iv.rect.destroy.controller.BaseGame;
 import alex.iv.rect.destroy.controller.IActivityRequestHandler;
 import alex.iv.rect.destroy.controller.LevelScreenMain;
-import alex.iv.rect.destroy.controller.MenuScreen;
 import alex.iv.rect.destroy.controller.RectangleGame;
 
 
@@ -170,8 +158,9 @@ public class LevelScreen_1 extends LevelScreenMain {
 
         showTime(280); // инициализируем метод отображение игрового времени
         background.loadTexture("background/fon_level.png");
-        showModalScreen(1, recordsLevel_1, "rules_level_screen/level_screen_1.txt");
         quantityBricks(100, 7);
+        showModalScreen(1, recordsLevel_1, "rules_level_screen/level_screen_1_ru.txt",
+                "rules_level_screen/level_screen_1.txt");
 
         Brick tempBrick = new Brick(0,0,mainStage);
         tempBrick.remove();

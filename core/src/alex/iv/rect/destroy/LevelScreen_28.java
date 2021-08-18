@@ -31,8 +31,9 @@ public class LevelScreen_28 extends LevelScreenMain {
         super.initialize();
         background.loadTexture("background/fon_level.png");
         showTime(300); // инициализируем метод отображение игрового времени
-        recordsLabelWindow.setText("Records: " + recordsLevel_28);
         quantityBricks(69, 6);
+        showModalScreen(28, recordsLevel_28, "rules_level_screen/level_screen_28_ru.txt",
+                "rules_level_screen/level_screen_28.txt");
 
         paddle_2 = new Paddle(paddle.getX(), Gdx.graphics.getHeight() - super.wallWight.getHeight() * 2.5f , mainStage);
         paddle_2.setSize(paddle.getWidth() * 2,Gdx.graphics.getHeight() / 60f);

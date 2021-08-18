@@ -16,6 +16,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 
+import java.util.Locale;
+
 import alex.iv.rect.destroy.actors.Ball;
 import alex.iv.rect.destroy.actors.Paddle;
 import alex.iv.rect.destroy.actors.Wall;
@@ -156,13 +158,20 @@ public class LevelScreenMain extends MenuScreen {
     }
 
     // Метод, который создает модальное окно перед началом уровня
-    protected void showModalScreen(int numbLevel, int recordLevel, String filePath) {
+    protected void showModalScreen(int numbLevel, int recordLevel, String filePathText_RU, String filePathText_EN) {
         recordsLabelWindow.setText("Records: " + recordLevel);
         numberLevel.setText("Level: " + numbLevel);
-        // следующие три строчки выводят текст из assets/rules_level_screen
-        FileHandle file = Gdx.files.internal(filePath);
-        String text = file.readString();
-        rulesGame.setText(text);
+        // следующие девять строчек выводят текст из assets/rules_level_screen
+        // в зависимости от того, какой язык используется по кмолчанию на устройстве
+        if (Locale.getDefault().getLanguage().equals("ru")) { // если используется русский язык по умолчанию на устройстве
+            FileHandle file = Gdx.files.internal(filePathText_RU);
+            String text = file.readString();
+            rulesGame.setText(text);
+        } else {
+            FileHandle file = Gdx.files.internal(filePathText_EN);
+            String text = file.readString();
+            rulesGame.setText(text);
+        }
         /////////
         final TextButton nextButton = new TextButton( "NEXT", BaseGame.textButtonStyle );
         nextButton.addListener(

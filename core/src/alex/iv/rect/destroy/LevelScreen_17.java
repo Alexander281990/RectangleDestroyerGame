@@ -23,8 +23,9 @@ public class LevelScreen_17 extends LevelScreenMain {
         super.paddle.setBoundaryRectangle();
         background.loadTexture("background/fon_level.png");
         showTime(200); // инициализируем метод отображение игрового времени
-        recordsLabelWindow.setText("Records: " + recordsLevel_17);
         quantityBricks(101, 10);
+        showModalScreen(17, recordsLevel_17, "rules_level_screen/level_screen_17_ru.txt",
+                "rules_level_screen/level_screen_17.txt");
 
         Brick tempBrick = new Brick(0,0,mainStage);
         tempBrick.remove();
