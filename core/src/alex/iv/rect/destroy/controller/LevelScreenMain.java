@@ -15,9 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
-
 import java.util.Locale;
-
 import alex.iv.rect.destroy.actors.Ball;
 import alex.iv.rect.destroy.actors.Paddle;
 import alex.iv.rect.destroy.actors.Wall;
@@ -39,8 +37,8 @@ public class LevelScreenMain extends MenuScreen {
     private boolean ballStop; // переменная, которая разрешает ball двигаться(если игрок словил Item.Type.PADDLE_STOP, то переменная блокирует ball на 7 секунд)
     private Label Time; // метка, которая отображает проигранное время
     private Label Live; // метка, которая отображает жизни
-    private Label recordsLabel;
-    protected Label recordsLabelWindow;
+    //private Label recordsLabel;
+    private Label recordsLabelWindow;
     private Label numberLevel;
     private Label rulesGame;
     protected Label quantityBricks; // метка, которая отображает количество кирпичиков
@@ -50,6 +48,7 @@ public class LevelScreenMain extends MenuScreen {
     protected Paddle paddle;
     protected Ball ball;
     private TextButton start;
+    private static int increasePaddleWight;
 
     protected float bounceAngle;
     protected float hindranceAngle;
@@ -82,16 +81,17 @@ public class LevelScreenMain extends MenuScreen {
         wallHeight = new Wall( 0,0, 20,Gdx.graphics.getHeight(), mainStage); // left wall
         wallHeight = new Wall(Gdx.graphics.getWidth() - 20,0, 20,Gdx.graphics.getHeight(), mainStage); // right wall
         wallWight = new Wall(0,Gdx.graphics.getHeight() - 50, Gdx.graphics.getWidth(),50, mainStage); // top wall
-        timerPaddleStop = 8;
+        timerPaddleStop = 7;
         startGame = false;
         paddleStop = true;
         ballStop = true;
         score = 0;
+        increasePaddleWight = 0;
         ///////////////////////////////////////
         quantityBricks = new Label("Bricks: ", BaseGame.labelStyle);
         ///////////////////////////////////////
-        recordsLabel = new Label("Records: ", BaseGame.labelStyle);
-        recordsLabel.setColor( Color.CYAN );
+        //recordsLabel = new Label("Records: ", BaseGame.labelStyle);
+        //recordsLabel.setColor( Color.CYAN );
         ///////////////////////////////////////
         numberLevel = new Label("Level: ", BaseGame.labelStyleLevel);
         numberLevel.setFontScale(1.5f, 1.5f);
@@ -475,12 +475,12 @@ public class LevelScreenMain extends MenuScreen {
                     if (Color.rgb888(bal.getColor()) == Color.rgb888(Color.WHITE)) {
                         int randomNumber = MathUtils.random(0, 100);
                         int spawnProbability = 30; // частота появления Item
-                        int spawnProbabilityLive = 33; // частота появления Item для жизней
+                        int spawnProbabilityLive = 63; // частота появления Item для жизней
                         if (randomNumber < spawnProbability) {
                             Item i = new Item(0, 0, mainStage);
                             i.centerAtActor(br);
                         }
-                        if (randomNumber > spawnProbability && randomNumber < spawnProbabilityLive) {
+                        if (randomNumber == spawnProbabilityLive) {
                             Item i = new Item(0, 0, mainStage, "LIVE");
                             i.centerAtActor(br);
                         }
@@ -534,11 +534,17 @@ public class LevelScreenMain extends MenuScreen {
         for (BaseActor item : BaseActor.getList(mainStage, "alex.iv.rect.destroy.controller.Item")) {
             if (paddle.overlaps(item)) {
                 Item realItem = (Item) item;
-                if (realItem.getType() == Item.Type.PADDLE_EXPAND)
-                    paddle.setWidth(paddle.getWidth() * 1.25f);
-                else if (realItem.getType() == Item.Type.PADDLE_SHRINK)
+                if (realItem.getType() == Item.Type.PADDLE_EXPAND) {
+                    increasePaddleWight++;
+                    if (increasePaddleWight < 10) {
+                        paddle.setWidth(paddle.getWidth() * 1.25f);
+                    } else {
+                        increasePaddleWight = 10;
+                    }
+                } else if (realItem.getType() == Item.Type.PADDLE_SHRINK) {
+                    increasePaddleWight--;
                     paddle.setWidth(paddle.getWidth() * 0.80f);
-                else if (realItem.getType() == Item.Type.BALL_SPEED_UP) {
+                } else if (realItem.getType() == Item.Type.BALL_SPEED_UP) {
 //                    ball.setSize(ball.getWidth() * 1.20f, ball.getHeight() * 1.20f);
 //                    ball.setBoundaryRectangle();
                     //ball.setSpeed(ball.getSpeed() * 1.10f);
@@ -555,13 +561,11 @@ public class LevelScreenMain extends MenuScreen {
                 else if (realItem.getType() == Item.Type.BALL_TWO) {
                     new Ball(paddle.getX() + paddle.getWidth() / 2 - ball.getWidth() / 2,
                             paddle.getY() + paddle.getHeight() / 1.25f + ball.getHeight() / 1.25f, false, mainStage);
-                }
-                else if (realItem.getType() == Item.Type.PADDLE_STOP) {
+                } else if (realItem.getType() == Item.Type.PADDLE_STOP) {
                     paddleStop = false;
                     ballStop = false;
                     uiStage.addActor(TimePaddleStop);
-                }
-                else if (realItem.getLive() == Item.Live.LIVE) {
+                } else if (realItem.getLive() == Item.Live.LIVE) {
                     live ++;
                     pref.putInteger("liveMemory", live);
                     pref.flush();
@@ -570,6 +574,7 @@ public class LevelScreenMain extends MenuScreen {
                 item.remove();
                 itemCollectSound.play();
             }
+            Gdx.app.log("MyTag", String.valueOf(increasePaddleWight));
         }
         // если весло пересекается с кем-то из обьектов Item(конец)
     }
@@ -597,12 +602,12 @@ public class LevelScreenMain extends MenuScreen {
                 paddleStop = true;
                 ballStop = true;
                 TimePaddleStop.remove();
-                timerPaddleStop = 8;
+                timerPaddleStop = 7;
             } else {
                 paddleStop = true;
                 ballStop = true;
                 TimePaddleStop.remove();
-                timerPaddleStop = 8;
+                timerPaddleStop = 7;
                 // инициализация кнопки, которая отпускает шарик от весла
                 final TextButton start = new TextButton("Start", BaseGame.textButtonStyle);
                 start.setPosition(windowPlayWidth/2 - start.getWidth()/2,windowPlayHeight / 3.5f);

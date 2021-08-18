@@ -160,71 +160,71 @@ public class MenuScreen extends StartScreen {
         levelScreenMain = new LevelScreenMain(requestHandler);
 // инициализация кнопок Level
         TextButton level_1_Button = new TextButton("01", BaseGame.textButtonStyleLevel);
-        //level_1_Button.setColor(Color.RED);
-        uiStage.addActor(level_1_Button);
+//        //level_1_Button.setColor(Color.RED);
+//        uiStage.addActor(level_1_Button);
         TextButton level_2_Button = new TextButton("02", BaseGame.textButtonStyleLevel);
-        uiStage.addActor(level_2_Button);
+        //uiStage.addActor(level_2_Button);
         TextButton level_3_Button = new TextButton("03", BaseGame.textButtonStyleLevel);
-        uiStage.addActor(level_3_Button);
+        //uiStage.addActor(level_3_Button);
         TextButton level_4_Button = new TextButton("04", BaseGame.textButtonStyleLevel);
-        uiStage.addActor(level_4_Button);
+        //uiStage.addActor(level_4_Button);
         TextButton level_5_Button = new TextButton("05", BaseGame.textButtonStyleLevel);
-        uiStage.addActor(level_5_Button);
+        //uiStage.addActor(level_5_Button);
 
         TextButton level_6_Button = new TextButton("06", BaseGame.textButtonStyleLevel);
-        uiStage.addActor(level_6_Button);
+        //uiStage.addActor(level_6_Button);
         TextButton level_7_Button = new TextButton("07", BaseGame.textButtonStyleLevel);
-        uiStage.addActor(level_7_Button);
+        //uiStage.addActor(level_7_Button);
         TextButton level_8_Button = new TextButton("08", BaseGame.textButtonStyleLevel);
-        uiStage.addActor(level_8_Button);
+        //uiStage.addActor(level_8_Button);
         TextButton level_9_Button = new TextButton("09", BaseGame.textButtonStyleLevel);
-        uiStage.addActor(level_9_Button);
+        //uiStage.addActor(level_9_Button);
         TextButton level_10_Button = new TextButton("10", BaseGame.textButtonStyleLevel);
-        uiStage.addActor(level_10_Button);
+        //uiStage.addActor(level_10_Button);
 
         TextButton level_11_Button = new TextButton("11", BaseGame.textButtonStyleLevel);
-        uiStage.addActor(level_11_Button);
+        //uiStage.addActor(level_11_Button);
         TextButton level_12_Button = new TextButton("12", BaseGame.textButtonStyleLevel);
-        uiStage.addActor(level_12_Button);
+        //uiStage.addActor(level_12_Button);
         TextButton level_13_Button = new TextButton("13", BaseGame.textButtonStyleLevel);
-        uiStage.addActor(level_13_Button);
+        //uiStage.addActor(level_13_Button);
         TextButton level_14_Button = new TextButton("14", BaseGame.textButtonStyleLevel);
-        uiStage.addActor(level_14_Button);
+        //uiStage.addActor(level_14_Button);
         TextButton level_15_Button = new TextButton("15", BaseGame.textButtonStyleLevel);
-        uiStage.addActor(level_15_Button);
+        //uiStage.addActor(level_15_Button);
 
         TextButton level_16_Button = new TextButton("16", BaseGame.textButtonStyleLevel);
-        uiStage.addActor(level_16_Button);
+        //uiStage.addActor(level_16_Button);
         TextButton level_17_Button = new TextButton("17", BaseGame.textButtonStyleLevel);
-        uiStage.addActor(level_17_Button);
+        //uiStage.addActor(level_17_Button);
         TextButton level_18_Button = new TextButton("18", BaseGame.textButtonStyleLevel);
-        uiStage.addActor(level_18_Button);
+        //uiStage.addActor(level_18_Button);
         TextButton level_19_Button = new TextButton("19", BaseGame.textButtonStyleLevel);
-        uiStage.addActor(level_19_Button);
+        //uiStage.addActor(level_19_Button);
         TextButton level_20_Button = new TextButton("20", BaseGame.textButtonStyleLevel);
-        uiStage.addActor(level_20_Button);
+        //uiStage.addActor(level_20_Button);
 
         TextButton level_21_Button = new TextButton("21", BaseGame.textButtonStyleLevel);
-        uiStage.addActor(level_21_Button);
+        //uiStage.addActor(level_21_Button);
         TextButton level_22_Button = new TextButton("22", BaseGame.textButtonStyleLevel);
-        uiStage.addActor(level_22_Button);
+        //uiStage.addActor(level_22_Button);
         TextButton level_23_Button = new TextButton("23", BaseGame.textButtonStyleLevel);
-        uiStage.addActor(level_23_Button);
+        //uiStage.addActor(level_23_Button);
         TextButton level_24_Button = new TextButton("24", BaseGame.textButtonStyleLevel);
-        uiStage.addActor(level_24_Button);
+        //uiStage.addActor(level_24_Button);
         TextButton level_25_Button = new TextButton("25", BaseGame.textButtonStyleLevel);
-        uiStage.addActor(level_25_Button);
+        //uiStage.addActor(level_25_Button);
 
         TextButton level_26_Button = new TextButton("26", BaseGame.textButtonStyleLevel);
-        uiStage.addActor(level_26_Button);
+        //uiStage.addActor(level_26_Button);
         TextButton level_27_Button = new TextButton("27", BaseGame.textButtonStyleLevel);
-        uiStage.addActor(level_27_Button);
+        //uiStage.addActor(level_27_Button);
         TextButton level_28_Button = new TextButton("28", BaseGame.textButtonStyleLevel);
-        uiStage.addActor(level_28_Button);
+        //uiStage.addActor(level_28_Button);
         TextButton level_29_Button = new TextButton("29", BaseGame.textButtonStyleLevel);
-        uiStage.addActor(level_29_Button);
+        //uiStage.addActor(level_29_Button);
         TextButton level_30_Button = new TextButton("30", BaseGame.textButtonStyleLevel);
-        uiStage.addActor(level_30_Button);
+        //uiStage.addActor(level_30_Button);
 
         level_1_Button.addListener(
                 new EventListener() {

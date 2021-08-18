@@ -92,7 +92,6 @@ public class StartScreen extends BaseScreen {
         attainment = pref.getInteger("attainmentMemory");
         // инициализация кнопок New game и continue
         TextButton startButton = new TextButton( "New game", BaseGame.textButtonStyle );
-        uiStage.addActor(startButton);
         startButton.addListener(
                 new EventListener() {
                     @Override
@@ -233,8 +232,6 @@ public class StartScreen extends BaseScreen {
         );
 
         TextButton continueButton = new TextButton( "Continue", BaseGame.textButtonStyle );
-        //continueButton.setPosition(1000,150);
-        uiStage.addActor(continueButton);
         continueButton.addListener(
                 new EventListener() {
                     @Override
@@ -253,10 +250,13 @@ public class StartScreen extends BaseScreen {
         );
         // инициализация кнопок New game и continue(конец)
 
-        //uiTable.row();
-        uiTable.add(startButton);
-        uiTable.add().size(250, startButton.getHeight());
-        uiTable.add(continueButton);
+        if (attainment != 0) {
+            uiTable.add(startButton);
+            uiTable.add().size(250, startButton.getHeight());
+            uiTable.add(continueButton);
+        } else {
+            uiTable.add(startButton);
+        }
 
         Gdx.app.log("MyTag", String.valueOf(attainment));
 
