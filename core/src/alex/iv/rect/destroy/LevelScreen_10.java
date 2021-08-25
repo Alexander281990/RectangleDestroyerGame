@@ -2,10 +2,8 @@ package alex.iv.rect.destroy;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-
 import alex.iv.rect.destroy.actors.Brick;
 import alex.iv.rect.destroy.actors.BrickHard;
-import alex.iv.rect.destroy.actors.Clouds;
 import alex.iv.rect.destroy.controller.BaseActor;
 import alex.iv.rect.destroy.controller.IActivityRequestHandler;
 import alex.iv.rect.destroy.controller.LevelScreenMain;
@@ -13,7 +11,7 @@ import alex.iv.rect.destroy.controller.RectangleGame;
 
 public class LevelScreen_10 extends LevelScreenMain {
 
-    private Clouds cloud;
+    //private Clouds cloud;
 
     public LevelScreen_10(IActivityRequestHandler requestHandler) {
         super(requestHandler);
@@ -61,10 +59,10 @@ public class LevelScreen_10 extends LevelScreenMain {
             }
         }
 
-        cloud = new Clouds(0, Gdx.graphics.getHeight(), mainStage);
-        uiStage.addActor(cloud);
+//        cloud = new Clouds(0, Gdx.graphics.getHeight(), mainStage);
+//        uiStage.addActor(cloud);
 
-        Gdx.app.log("MyTag", String.valueOf(BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick")));
+        //Gdx.app.log("MyTag", String.valueOf(BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick")));
 
     }
 
@@ -83,7 +81,7 @@ public class LevelScreen_10 extends LevelScreenMain {
             createAttainment(10);
         }
 
-        cloud.setMotionAngle(-90); // заставляет двигаться облака снизу в верх
+        //cloud.setMotionAngle(-90); // заставляет двигаться облака снизу в верх
 
     }
 

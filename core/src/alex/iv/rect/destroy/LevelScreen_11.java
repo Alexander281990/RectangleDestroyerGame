@@ -1,6 +1,7 @@
 package alex.iv.rect.destroy;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Graphics;
 import com.badlogic.gdx.graphics.Color;
 
 import alex.iv.rect.destroy.actors.Brick;
@@ -304,7 +305,8 @@ public class LevelScreen_11 extends LevelScreenMain {
                 }
             }
         }
-        Gdx.app.log("MyTag", String.valueOf(BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick")));
+
+        //Gdx.app.log("MyTag", String.valueOf(BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick")));
     }
 
     public void update(float dt) {

@@ -49,6 +49,8 @@ public class Item extends BaseActor {
             loadTexture("items/ball-two.png");
         else if (t == Type.PADDLE_STOP)
             loadTexture("items/paddle-stop.png");
+//        else if (t == Type.PADDLE_ADS)
+//            loadTexture("items/ball-large.png");
         else
             loadTexture("items/item-blank.png");
 

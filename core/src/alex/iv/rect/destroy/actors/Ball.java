@@ -20,7 +20,15 @@ public class Ball extends BaseActor {
         loadTexture("ball.png");
         setSize(ballWidth, ballHeight);
         setBoundaryRectangle();
-        setSpeed(700);
+        if (getScreenSizeInches() <= 5.7) {
+            setSpeed(700);
+        } else if (getScreenSizeInches() > 5.7 && getScreenSizeInches() <= 6.1 ) {
+            setSpeed(580);
+        } else if (getScreenSizeInches() > 6.1 && getScreenSizeInches() <= 7 ) {
+            setSpeed(480);
+        } else if (getScreenSizeInches() > 7 && getScreenSizeInches() <= 8 ) {
+            setSpeed(350);
+        }
         //setMaxSpeed(1500);
         setMotionAngle(90);
         setBoundaryPolygon(12);
@@ -35,8 +43,15 @@ public class Ball extends BaseActor {
         loadTexture("ball.png");
         setSize(ballWidth, ballHeight);
         setBoundaryRectangle();
-        setSpeed(700);
-        //setMaxSpeed(1500);
+        if (getScreenSizeInches() <= 5.7) {
+            setSpeed(700);
+        } else if (getScreenSizeInches() > 5.7 && getScreenSizeInches() <= 6.1 ) {
+            setSpeed(580);
+        } else if (getScreenSizeInches() > 6.1 && getScreenSizeInches() <= 7 ) {
+            setSpeed(480);
+        } else if (getScreenSizeInches() > 7 && getScreenSizeInches() <= 8 ) {
+            setSpeed(350);
+        }
         setMotionAngle(90);
         setBoundaryPolygon(12);
         setPaused(paused);

@@ -90,9 +90,6 @@ public class LevelScreenMain extends MenuScreen {
         ///////////////////////////////////////
         quantityBricks = new Label("Bricks: ", BaseGame.labelStyle);
         ///////////////////////////////////////
-        //recordsLabel = new Label("Records: ", BaseGame.labelStyle);
-        //recordsLabel.setColor( Color.CYAN );
-        ///////////////////////////////////////
         numberLevel = new Label("Level: ", BaseGame.labelStyleLevel);
         numberLevel.setFontScale(1.5f, 1.5f);
         numberLevel.setColor( Color.WHITE );
@@ -545,6 +542,7 @@ public class LevelScreenMain extends MenuScreen {
                     increasePaddleWight--;
                     paddle.setWidth(paddle.getWidth() * 0.80f);
                 } else if (realItem.getType() == Item.Type.BALL_SPEED_UP) {
+                    starTimer += 10;
 //                    ball.setSize(ball.getWidth() * 1.20f, ball.getHeight() * 1.20f);
 //                    ball.setBoundaryRectangle();
                     //ball.setSpeed(ball.getSpeed() * 1.10f);
@@ -557,7 +555,11 @@ public class LevelScreenMain extends MenuScreen {
 //                    ball.setSpeed(ball.getMaxSpeed());
                 else if (realItem.getType() == Item.Type.BALL_SPEED_DOWN) {
                     //ball.setSpeed(ball.getSpeed() * 0.90f);
+                    starTimer -= 10;
                 }
+//                else if (realItem.getType() == Item.Type.PADDLE_ADS) {
+//                    requestHandler.showOrLoadInterstitial(); // показывает межстраничный баннер
+//                }
                 else if (realItem.getType() == Item.Type.BALL_TWO) {
                     new Ball(paddle.getX() + paddle.getWidth() / 2 - ball.getWidth() / 2,
                             paddle.getY() + paddle.getHeight() / 1.25f + ball.getHeight() / 1.25f, false, mainStage);
