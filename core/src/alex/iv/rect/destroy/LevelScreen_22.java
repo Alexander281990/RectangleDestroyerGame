@@ -15,7 +15,6 @@ import alex.iv.rect.destroy.actors.Brick;
 import alex.iv.rect.destroy.actors.BrickHard;
 import alex.iv.rect.destroy.controller.BaseActor;
 import alex.iv.rect.destroy.controller.BaseGame;
-import alex.iv.rect.destroy.controller.GetLifeScreen;
 import alex.iv.rect.destroy.controller.IActivityRequestHandler;
 import alex.iv.rect.destroy.controller.Item;
 import alex.iv.rect.destroy.controller.LevelScreenMain;
@@ -265,14 +264,18 @@ public class LevelScreen_22 extends LevelScreenMain {
                     ball.setColor(Color.WHITE);
                     live --;
                     if (live < 1) {
-                        //requestHandler.showVideoAd();
-                        RectangleGame.setActiveScreen(new GetLifeScreen(requestHandler));
+                        for (BaseActor item : BaseActor.getList(mainStage, "alex.iv.rect.destroy.controller.Item")) {
+                            item.remove();
+                        }
+                        for (BaseActor additionalBalls : BaseActor.getList(mainStage, "alex.iv.rect.destroy.actors.Ball")) {
+                            additionalBalls.remove();
+                        }
+                        startGame = false; // остонавливает игровое время
+                        uiStage.addActor(getLive);
                     }
-                    pref.putInteger("liveMemory", live);
-                    pref.flush();
                     // если небыло перекрытия paddle and PADDLE_STOP, то содаем кнопку start
                     // если перекрытие было, то кнопка создасться как закончится время timerPaddleStop
-                    if (paddleStop) {
+                    if (paddleStop && live > 0) {
                         // инициализация кнопки, которая отпускает шарик от весла
                         final TextButton start = new TextButton("Start", BaseGame.textButtonStyle);
                         start.setPosition(windowPlayWidth/2 - start.getWidth()/2,windowPlayHeight / 3.5f);

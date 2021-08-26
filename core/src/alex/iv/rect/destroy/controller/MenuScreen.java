@@ -62,8 +62,6 @@ public class MenuScreen extends StartScreen {
 
         pref = Gdx.app.getPreferences("Preferences");// инициализация Preferences для сохранения лучшего результата в телефоне
 
-        live = pref.getInteger("liveMemory");
-
         attainmentColorLevel_1 = pref.getInteger("attainmentColorLevelMemory_1");
         attainmentColorLevel_2 = pref.getInteger("attainmentColorLevelMemory_2");
         attainmentColorLevel_3 = pref.getInteger("attainmentColorLevelMemory_3");

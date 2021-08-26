@@ -25,11 +25,11 @@ public class LevelScreenMain extends MenuScreen {
     protected IActivityRequestHandler requestHandler; // переменная для ссылки на метод из AndroidLauncher(showOrLoadInterstitial()) - для вызова метода, который показывает рекламу
     protected static float windowPlayWidth;
     protected static float windowPlayHeight;
-    protected Wall wallHeight;
+    private Wall wallHeight;
     protected Wall wallWight;
     protected BaseActor background;
     protected int score; // переменная набранных очков
-    private boolean startGame; // переменная для старта игры(становиться true в методе "touchDown")
+    protected boolean startGame; // переменная для старта игры(становиться true в методе "touchDown")
     protected int mQuantityBricks; //
     private float finishQuantityBricks; //
     protected float starTimer; // переменная для подсчета проигранного времени
@@ -37,10 +37,10 @@ public class LevelScreenMain extends MenuScreen {
     private boolean ballStop; // переменная, которая разрешает ball двигаться(если игрок словил Item.Type.PADDLE_STOP, то переменная блокирует ball на 7 секунд)
     private Label Time; // метка, которая отображает проигранное время
     private Label Live; // метка, которая отображает жизни
-    //private Label recordsLabel;
     private Label recordsLabelWindow;
     private Label numberLevel;
     private Label rulesGame;
+    public static int live;
     protected Label quantityBricks; // метка, которая отображает количество кирпичиков
     private Label TimePaddleStop; // метка, которая отображает время остановки весла
     private float timerPaddleStop; // переменная, которая отсчитывает 7 секунд при блокировке весла(Item.Type.PADDLE_STOP)
@@ -48,6 +48,8 @@ public class LevelScreenMain extends MenuScreen {
     protected Paddle paddle;
     protected Ball ball;
     private TextButton start;
+    public static TextButton getLive;
+    public static boolean liveFlag = true;
     private static int increasePaddleWight;
 
     protected float bounceAngle;
@@ -81,12 +83,13 @@ public class LevelScreenMain extends MenuScreen {
         wallHeight = new Wall( 0,0, 20,Gdx.graphics.getHeight(), mainStage); // left wall
         wallHeight = new Wall(Gdx.graphics.getWidth() - 20,0, 20,Gdx.graphics.getHeight(), mainStage); // right wall
         wallWight = new Wall(0,Gdx.graphics.getHeight() - 50, Gdx.graphics.getWidth(),50, mainStage); // top wall
-        timerPaddleStop = 7;
+        timerPaddleStop = 6;
         startGame = false;
         paddleStop = true;
         ballStop = true;
         score = 0;
         increasePaddleWight = 0;
+        live = 5;
         ///////////////////////////////////////
         quantityBricks = new Label("Bricks: ", BaseGame.labelStyle);
         ///////////////////////////////////////
@@ -104,7 +107,7 @@ public class LevelScreenMain extends MenuScreen {
         recordsLabelWindow = new Label("Records: ", BaseGame.labelStyleLevel);
         recordsLabelWindow.setFontScale(1.5f, 1.5f);
         //////////////////////////
-        // отображение 7 секунд при блокировке весла(Item.Type.PADDLE_STOP)
+        // отображение 6 секунд при блокировке весла(Item.Type.PADDLE_STOP)
         TimePaddleStop = new Label("", BaseGame.labelStylePaddleStop);
         TimePaddleStop.setColor( Color.CYAN );
         TimePaddleStop.setPosition(Gdx.graphics.getWidth()/2f- TimePaddleStop.getWidth()/2, Gdx.graphics.getHeight() - 500);
@@ -145,12 +148,31 @@ public class LevelScreenMain extends MenuScreen {
                             startLevel();
                             start.remove();
                         } else {
-                            RectangleGame.setActiveScreen(new GetLifeScreen(requestHandler));
+                            //RectangleGame.setActiveScreen(new GetLifeScreen(requestHandler));
+                            requestHandler.showVideoAd();
                         }
                         return false;
                     }
                 }
         );
+
+        getLive = new TextButton( "getLive", BaseGame.textButtonStyle );
+        getLive.setPosition(windowPlayWidth/2 - getLive.getWidth()/2,windowPlayHeight / 3.5f);
+//        uiStage.addActor(getLive);
+        getLive.addListener(
+                new EventListener() {
+                    @Override
+                    public boolean handle(Event e) {
+                        if (!(e instanceof InputEvent) ||
+                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
+                            return false;
+                        requestHandler.showVideoAd();
+                        return false;
+                    }
+                }
+        );
+
+
 
     }
 
@@ -277,16 +299,6 @@ public class LevelScreenMain extends MenuScreen {
     }
     // метод, который устанавливает достижение игры(конец)
 
-//    // метод, который показывает на экране рекорд уровня
-//    protected void showRecordsLabelWindow(int recordsLevels) {
-//        //recordsLabelWindow = new Label("Records: ", BaseGame.labelStyleLevel);
-//        //recordsLabelWindow.setPosition(Gdx.graphics.getWidth()/2f - recordsLabelWindow.getWidth()/2, Gdx.graphics.getHeight()/1.25f);
-//        //recordsLabelWindow.setColor( Color.CYAN );
-//        uiStage.addActor(recordsLabelWindow);
-//        recordsLabelWindow.setText("Records: " + recordsLevels);
-//    }
-//    // метод, который показывает на экране рекорд уровня(конец)
-
     // метод, который запускается, когда закончилось игровое время
     // в параметр метода нужно вставить аргумент из StartScreen(например recordsLevel_1 или recordsLevel_2 (зависит от Level в
     // котором запускается метод) и стринговый аргумент ключа для сохранения рекорда)
@@ -306,8 +318,6 @@ public class LevelScreenMain extends MenuScreen {
             pref.putInteger(key, record);
             pref.flush();
             startGame = false;
-//            recordsLabel.setText("Records: " + record);
-//            uiStage.addActor(recordsLabel);
     }
     // метод, который запускается, когда закончилось игровое время(конец)
 
@@ -494,14 +504,18 @@ public class LevelScreenMain extends MenuScreen {
                     ball.setColor(Color.WHITE);
                     live --;
                     if (live < 1) {
-                        //requestHandler.showVideoAd();
-                        RectangleGame.setActiveScreen(new GetLifeScreen(requestHandler));
+                        for (BaseActor item : BaseActor.getList(mainStage, "alex.iv.rect.destroy.controller.Item")) {
+                            item.remove();
+                        }
+                        for (BaseActor additionalBalls : BaseActor.getList(mainStage, "alex.iv.rect.destroy.actors.Ball")) {
+                            additionalBalls.remove();
+                        }
+                        startGame = false; // остонавливает игровое время
+                        uiStage.addActor(getLive);
                     }
-                    pref.putInteger("liveMemory", live);
-                    pref.flush();
                     // если небыло перекрытия paddle and PADDLE_STOP, то содаем кнопку start
                     // если перекрытие было, то кнопка создасться как закончится время timerPaddleStop
-                    if (paddleStop) {
+                    if (paddleStop && live > 0) {
                         // инициализация кнопки, которая отпускает шарик от весла
                         final TextButton start = new TextButton("Start", BaseGame.textButtonStyle);
                         start.setPosition(windowPlayWidth/2 - start.getWidth()/2,windowPlayHeight / 3.5f);
@@ -535,14 +549,17 @@ public class LevelScreenMain extends MenuScreen {
                     increasePaddleWight++;
                     if (increasePaddleWight < 10) {
                         paddle.setWidth(paddle.getWidth() * 1.25f);
+                        paddle.setBoundaryRectangle();
                     } else {
                         increasePaddleWight = 10;
+                        paddle.setBoundaryRectangle();
                     }
                 } else if (realItem.getType() == Item.Type.PADDLE_SHRINK) {
                     increasePaddleWight--;
                     paddle.setWidth(paddle.getWidth() * 0.80f);
                 } else if (realItem.getType() == Item.Type.BALL_SPEED_UP) {
                     starTimer += 10;
+                    paddle.setBoundaryRectangle();
 //                    ball.setSize(ball.getWidth() * 1.20f, ball.getHeight() * 1.20f);
 //                    ball.setBoundaryRectangle();
                     //ball.setSpeed(ball.getSpeed() * 1.10f);
@@ -569,10 +586,7 @@ public class LevelScreenMain extends MenuScreen {
                     uiStage.addActor(TimePaddleStop);
                 } else if (realItem.getLive() == Item.Live.LIVE) {
                     live ++;
-                    pref.putInteger("liveMemory", live);
-                    pref.flush();
                 }
-                paddle.setBoundaryRectangle();
                 item.remove();
                 itemCollectSound.play();
             }
@@ -590,45 +604,71 @@ public class LevelScreenMain extends MenuScreen {
             Time.setText((int)starTimer); // вывод времени на экран
             recordsLabelWindow.remove();
         }
-        // если игрок поймал Item.Type.PADDLE_STOP, то блокируем весло на 7 секунд
+        // если игрок поймал Item.Type.PADDLE_STOP, то блокируем весло на 6 секунд
         if (!paddleStop) {
             timerPaddleStop -= dt;
             TimePaddleStop.setText((int)timerPaddleStop);// выводим время на экран
         }
-        // если 7 секунд прошло, то весло снова может двигаться
+        // если 6 секунд прошло, то весло снова может двигаться
         if (timerPaddleStop < 0) {
-            // если штрафное время закончилось, но зеленый шар находится на игровом поле и в движении, то продолжаем играть
+            // если штрафное время закончилось, но белый шар находится на игровом поле и в движении, то продолжаем играть
             // и никакая кнопка не появляется. В противном случае появляется кнопка для старта игры(после ее нажатия про-
             // должаем играть дальше)
             if (ball.getY() > 0 && !ball.isPaused() || ball.getY() < Gdx.graphics.getHeight() && !ball.isPaused()) {
                 paddleStop = true;
                 ballStop = true;
                 TimePaddleStop.remove();
-                timerPaddleStop = 7;
+                timerPaddleStop = 6;
             } else {
                 paddleStop = true;
                 ballStop = true;
                 TimePaddleStop.remove();
-                timerPaddleStop = 7;
-                // инициализация кнопки, которая отпускает шарик от весла
-                final TextButton start = new TextButton("Start", BaseGame.textButtonStyle);
-                start.setPosition(windowPlayWidth/2 - start.getWidth()/2,windowPlayHeight / 3.5f);
-                uiStage.addActor(start);
-                start.addListener(
+                timerPaddleStop = 6;
+                if (live > 0) {
+                    // инициализация кнопки, которая отпускает шарик от весла
+                    final TextButton start = new TextButton("Start", BaseGame.textButtonStyle);
+                    start.setPosition(windowPlayWidth / 2 - start.getWidth() / 2, windowPlayHeight / 3.5f);
+                    uiStage.addActor(start);
+                    start.addListener(
+                        new EventListener() {
+                            @Override
+                            public boolean handle(Event e) {
+                                if (!(e instanceof InputEvent) ||
+                                        !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
+                                    return false;
+                                start.remove();
+                                startLevel();
+                                return false;
+                            }
+                        }
+                    );
+                }
+            }
+        }
+
+        // если мы получили жизни после просмотра рекламы
+        if (!liveFlag) {
+            liveFlag = true;
+            ball = new Ball(0,0,mainStage);
+            ball.setColor(Color.WHITE);
+            final TextButton start = new TextButton("Start", BaseGame.textButtonStyle);
+            start.setPosition(windowPlayWidth/2 - start.getWidth()/2,windowPlayHeight / 3.5f);
+            uiStage.addActor(start);
+            start.addListener(
                     new EventListener() {
                         @Override
                         public boolean handle(Event e) {
                             if (!(e instanceof InputEvent) ||
                                     !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
                                 return false;
-                            startLevel();
                             start.remove();
+                            startLevel();
                             return false;
                         }
                     }
-                );
-            }
+            );
         }
+        // если мы получили жизни после просмотра рекламы(конец)
 
         // метод, который держит ракетку горизонтально выровнянную с пальцем на экране
         if (paddleStop) {

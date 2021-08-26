@@ -17,8 +17,9 @@ import com.google.android.gms.ads.reward.RewardedVideoAdListener;
 import alex.iv.rect.destroy.controller.IActivityRequestHandler;
 import alex.iv.rect.destroy.controller.RectangleGame;
 
-import static alex.iv.rect.destroy.controller.MenuScreen.pref;
-import static alex.iv.rect.destroy.controller.StartScreen.live;
+import static alex.iv.rect.destroy.controller.LevelScreenMain.liveFlag;
+import static alex.iv.rect.destroy.controller.LevelScreenMain.live;
+import static alex.iv.rect.destroy.controller.LevelScreenMain.getLive;
 
 public class AndroidLauncher extends AndroidApplication implements IActivityRequestHandler {
 
@@ -95,6 +96,8 @@ public class AndroidLauncher extends AndroidApplication implements IActivityRequ
 			@Override
 			public void onRewardedVideoAdClosed() {
 				loadRewardedVideoAd();
+				liveFlag = false;
+				getLive.remove();
 			}
 
 			// метод, в котором нужно прописать вознагрождение, которое нужно за просмотр рекламы
@@ -102,8 +105,6 @@ public class AndroidLauncher extends AndroidApplication implements IActivityRequ
 			public void onRewarded(RewardItem rewardItem) {
 				loadRewardedVideoAd();
 				live += 2; // если посмотрел рекламу, добавится 2 жизни
-				pref.putInteger("liveMemory", live);
-				pref.flush();
 			}
 
 			@Override

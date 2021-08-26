@@ -18,9 +18,9 @@ public class VictoryScreen extends LevelScreenMain {
     public VictoryScreen(IActivityRequestHandler requestHandler, String keyColor) {
         super(requestHandler);
         int attainmentColorLevel = 1;
-        live += 3;
+        //live += 3;
         pref.putInteger(keyColor, attainmentColorLevel);
-        pref.putInteger("liveMemory", live);
+        //pref.putInteger("liveMemory", live);
         pref.flush();
         requestHandler.showBannerAd(); // при запуске IntermediateScreen запускается рекламный банер в нижней части экрана
     }

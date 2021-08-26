@@ -12,7 +12,6 @@ public class StartScreen extends BaseScreen {
 
     private Sound clickButton;
     private static Preferences pref;
-    public static int live = 2;
     static int attainment = 0;
     static int attainmentColorLevel_1 = 0;
     static int attainmentColorLevel_2 = 0;
@@ -129,7 +128,6 @@ public class StartScreen extends BaseScreen {
                         recordsLevel_28 = 0;
                         recordsLevel_29 = 0;
                         recordsLevel_30 = 0;
-                        live = 5;
                         attainment = 29;
                         attainmentColorLevel_1 = 0;
                         attainmentColorLevel_2 = 0;
@@ -222,7 +220,6 @@ public class StartScreen extends BaseScreen {
                         pref.putInteger("records_28", recordsLevel_28);
                         pref.putInteger("records_29", recordsLevel_29);
                         pref.putInteger("records_30", recordsLevel_30);
-                        pref.putInteger("liveMemory", live);
                         pref.flush();
                         clickButton.play();
                         RectangleGame.setActiveScreen(new MenuScreen(requestHandler));
