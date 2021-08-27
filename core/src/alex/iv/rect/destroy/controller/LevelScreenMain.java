@@ -548,7 +548,7 @@ public class LevelScreenMain extends MenuScreen {
                 if (realItem.getType() == Item.Type.PADDLE_EXPAND) {
                     increasePaddleWight++;
                     if (increasePaddleWight < 10) {
-                        paddle.setWidth(paddle.getWidth() * 1.25f);
+                        paddle.setWidth(paddle.getWidth() * 1.20f);
                         paddle.setBoundaryRectangle();
                     } else {
                         increasePaddleWight = 10;
@@ -557,21 +557,15 @@ public class LevelScreenMain extends MenuScreen {
                 } else if (realItem.getType() == Item.Type.PADDLE_SHRINK) {
                     increasePaddleWight--;
                     paddle.setWidth(paddle.getWidth() * 0.80f);
+                    paddle.setBoundaryRectangle();
                 } else if (realItem.getType() == Item.Type.BALL_SPEED_UP) {
                     starTimer += 10;
-                    paddle.setBoundaryRectangle();
-//                    ball.setSize(ball.getWidth() * 1.20f, ball.getHeight() * 1.20f);
-//                    ball.setBoundaryRectangle();
-                    //ball.setSpeed(ball.getSpeed() * 1.10f);
                     //requestHandler.showBannerAd(); // показывает рекламный баннер
                     //requestHandler.showVideoAd(); // показывает видео рекламу с вознагрождением
                     //requestHandler.showOrLoadInterstitial(); // показывает межстраничный баннер
                     //requestHandler.hideBannerAd(); // удаляет рекламный баннер
                 }
-//                if (ball.getSpeed() > ball.getMaxSpeed())
-//                    ball.setSpeed(ball.getMaxSpeed());
                 else if (realItem.getType() == Item.Type.BALL_SPEED_DOWN) {
-                    //ball.setSpeed(ball.getSpeed() * 0.90f);
                     starTimer -= 10;
                 }
 //                else if (realItem.getType() == Item.Type.PADDLE_ADS) {
