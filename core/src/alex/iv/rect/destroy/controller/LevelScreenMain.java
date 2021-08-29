@@ -584,7 +584,7 @@ public class LevelScreenMain extends MenuScreen {
                 item.remove();
                 itemCollectSound.play();
             }
-            Gdx.app.log("MyTag", String.valueOf(increasePaddleWight));
+            //Gdx.app.log("MyTag", String.valueOf(increasePaddleWight));
         }
         // если весло пересекается с кем-то из обьектов Item(конец)
     }

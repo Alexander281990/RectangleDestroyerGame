@@ -39,7 +39,7 @@ public class LevelScreen_2 extends LevelScreenMain {
                 brick.numberColor = 2;
             }
         }
-        Gdx.app.log("MyTag", String.valueOf(BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick")));
+        //Gdx.app.log("MyTag", String.valueOf(BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick")));
     }
 
     public void update(float dt) {

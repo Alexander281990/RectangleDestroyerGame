@@ -16,6 +16,8 @@ public abstract class BaseScreen implements Screen, InputProcessor {
     protected Table uiTable = new Table();
     Table myTable = new Table();
     Table uiModalWindowTable = new Table();
+    Table uiModalWindowTable_2 = new Table();
+    Table uiModalWindowTable_3 = new Table();
 
 
 
@@ -25,6 +27,8 @@ public abstract class BaseScreen implements Screen, InputProcessor {
         this.uiStage.addActor(this.uiTable);
         this.uiStage.addActor(this.myTable);
         this.uiStage.addActor(this.uiModalWindowTable);
+        this.uiStage.addActor(this.uiModalWindowTable_2);
+        this.uiStage.addActor(this.uiModalWindowTable_3);
         this.initialize();
     }
 

@@ -3,13 +3,17 @@ package alex.iv.rect.destroy.controller;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Event;
 import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.Align;
 
 import alex.iv.rect.destroy.LevelScreen_1;
 import alex.iv.rect.destroy.LevelScreen_10;
@@ -48,6 +52,7 @@ public class MenuScreen extends StartScreen {
     public IActivityRequestHandler requestHandler;
     public LevelScreenMain levelScreenMain;
     public static Preferences pref;
+    private int countGreen;
 
     public MenuScreen() {
 
@@ -124,6 +129,8 @@ public class MenuScreen extends StartScreen {
         recordsLevel_29 = pref.getInteger("records_29");
         recordsLevel_30 = pref.getInteger("records_30");
 
+        //countGreenLevelScreen = pref.getInteger("countGreenLevels");
+
         Lock lock1 = new Lock(0, 0, mainStage);
         Lock lock2 = new Lock(0, 0, mainStage);
         Lock lock3 = new Lock(0, 0, mainStage);
@@ -158,523 +165,295 @@ public class MenuScreen extends StartScreen {
         levelScreenMain = new LevelScreenMain(requestHandler);
 // инициализация кнопок Level
         TextButton level_1_Button = new TextButton("01", BaseGame.textButtonStyleLevel);
-//        //level_1_Button.setColor(Color.RED);
-//        uiStage.addActor(level_1_Button);
         TextButton level_2_Button = new TextButton("02", BaseGame.textButtonStyleLevel);
-        //uiStage.addActor(level_2_Button);
         TextButton level_3_Button = new TextButton("03", BaseGame.textButtonStyleLevel);
-        //uiStage.addActor(level_3_Button);
         TextButton level_4_Button = new TextButton("04", BaseGame.textButtonStyleLevel);
-        //uiStage.addActor(level_4_Button);
         TextButton level_5_Button = new TextButton("05", BaseGame.textButtonStyleLevel);
-        //uiStage.addActor(level_5_Button);
-
         TextButton level_6_Button = new TextButton("06", BaseGame.textButtonStyleLevel);
-        //uiStage.addActor(level_6_Button);
         TextButton level_7_Button = new TextButton("07", BaseGame.textButtonStyleLevel);
-        //uiStage.addActor(level_7_Button);
         TextButton level_8_Button = new TextButton("08", BaseGame.textButtonStyleLevel);
-        //uiStage.addActor(level_8_Button);
         TextButton level_9_Button = new TextButton("09", BaseGame.textButtonStyleLevel);
-        //uiStage.addActor(level_9_Button);
         TextButton level_10_Button = new TextButton("10", BaseGame.textButtonStyleLevel);
-        //uiStage.addActor(level_10_Button);
-
         TextButton level_11_Button = new TextButton("11", BaseGame.textButtonStyleLevel);
-        //uiStage.addActor(level_11_Button);
         TextButton level_12_Button = new TextButton("12", BaseGame.textButtonStyleLevel);
-        //uiStage.addActor(level_12_Button);
         TextButton level_13_Button = new TextButton("13", BaseGame.textButtonStyleLevel);
-        //uiStage.addActor(level_13_Button);
         TextButton level_14_Button = new TextButton("14", BaseGame.textButtonStyleLevel);
-        //uiStage.addActor(level_14_Button);
         TextButton level_15_Button = new TextButton("15", BaseGame.textButtonStyleLevel);
-        //uiStage.addActor(level_15_Button);
-
         TextButton level_16_Button = new TextButton("16", BaseGame.textButtonStyleLevel);
-        //uiStage.addActor(level_16_Button);
         TextButton level_17_Button = new TextButton("17", BaseGame.textButtonStyleLevel);
-        //uiStage.addActor(level_17_Button);
         TextButton level_18_Button = new TextButton("18", BaseGame.textButtonStyleLevel);
-        //uiStage.addActor(level_18_Button);
         TextButton level_19_Button = new TextButton("19", BaseGame.textButtonStyleLevel);
-        //uiStage.addActor(level_19_Button);
         TextButton level_20_Button = new TextButton("20", BaseGame.textButtonStyleLevel);
-        //uiStage.addActor(level_20_Button);
-
         TextButton level_21_Button = new TextButton("21", BaseGame.textButtonStyleLevel);
-        //uiStage.addActor(level_21_Button);
         TextButton level_22_Button = new TextButton("22", BaseGame.textButtonStyleLevel);
-        //uiStage.addActor(level_22_Button);
         TextButton level_23_Button = new TextButton("23", BaseGame.textButtonStyleLevel);
-        //uiStage.addActor(level_23_Button);
         TextButton level_24_Button = new TextButton("24", BaseGame.textButtonStyleLevel);
-        //uiStage.addActor(level_24_Button);
         TextButton level_25_Button = new TextButton("25", BaseGame.textButtonStyleLevel);
-        //uiStage.addActor(level_25_Button);
-
         TextButton level_26_Button = new TextButton("26", BaseGame.textButtonStyleLevel);
-        //uiStage.addActor(level_26_Button);
         TextButton level_27_Button = new TextButton("27", BaseGame.textButtonStyleLevel);
-        //uiStage.addActor(level_27_Button);
         TextButton level_28_Button = new TextButton("28", BaseGame.textButtonStyleLevel);
-        //uiStage.addActor(level_28_Button);
         TextButton level_29_Button = new TextButton("29", BaseGame.textButtonStyleLevel);
-        //uiStage.addActor(level_29_Button);
         TextButton level_30_Button = new TextButton("30", BaseGame.textButtonStyleLevel);
-        //uiStage.addActor(level_30_Button);
 
-        level_1_Button.addListener(
-                new EventListener() {
-                    @Override
-                    public boolean handle(Event e) {
-                        if (!(e instanceof InputEvent) ||
-                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
-                            return false;
-                        requestHandler.hideBannerAd(); // при нажатии на кнопку баннер скрывается
-                        if (attainment >= 0) {
-                            RectangleGame.setActiveScreen(new LevelScreen_1(requestHandler));
-                        }
-                        return false;
-                    }
-                }
-        );
+        if (attainmentColorLevel_1 == 0) {
+            level_1_Button.setColor(Color.RED);
+        } else {
+            if (attainmentColorLevel_1 == 1) {
+                level_1_Button.setColor(Color.GREEN);
+                countGreen++;
+            }
+        }
 
-        level_2_Button.addListener(
-                new EventListener() {
-                    @Override
-                    public boolean handle(Event e) {
-                        if (!(e instanceof InputEvent) ||
-                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
-                            return false;
-                        requestHandler.hideBannerAd(); // при нажатии на кнопку баннер скрывается
-                        if (attainment >= 1) {
-                            RectangleGame.setActiveScreen(new LevelScreen_2(requestHandler));
-                        }
-                        return false;
-                    }
-                }
-        );
+        if (attainmentColorLevel_2 == 0) {
+            level_2_Button.setColor(Color.RED);
+        } else {
+            if (attainmentColorLevel_2 == 1) {
+                level_2_Button.setColor(Color.GREEN);
+                countGreen++;
+            }
+        }
 
-        level_3_Button.addListener(
-                new EventListener() {
-                    @Override
-                    public boolean handle(Event e) {
-                        if (!(e instanceof InputEvent) ||
-                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
-                            return false;
-                        if (attainment >= 2) {
-                            RectangleGame.setActiveScreen(new LevelScreen_3(requestHandler));
-                        }
-                        return false;
-                    }
-                }
-        );
+        if (attainmentColorLevel_3 == 0) {
+            level_3_Button.setColor(Color.RED);
+        } else {
+            if (attainmentColorLevel_3 == 1) {
+                level_3_Button.setColor(Color.GREEN);
+                countGreen++;
+            }
+        }
 
-        level_4_Button.addListener(
-                new EventListener() {
-                    @Override
-                    public boolean handle(Event e) {
-                        if (!(e instanceof InputEvent) ||
-                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
-                            return false;
-                        if (attainment >= 3) {
-                            RectangleGame.setActiveScreen(new LevelScreen_4(requestHandler));
-                        }
-                        return false;
-                    }
-                }
-        );
+        if (attainmentColorLevel_4 == 0) {
+            level_4_Button.setColor(Color.RED);
+        } else {
+            if (attainmentColorLevel_4 == 1) {
+                level_4_Button.setColor(Color.GREEN);
+                countGreen++;
+            }
+        }
 
-        level_5_Button.addListener(
-                new EventListener() {
-                    @Override
-                    public boolean handle(Event e) {
-                        if (!(e instanceof InputEvent) ||
-                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
-                            return false;
-                        if (attainment >= 4) {
-                            RectangleGame.setActiveScreen(new LevelScreen_5(requestHandler));
-                        }
-                        return false;
-                    }
-                }
-        );
+        if (attainmentColorLevel_5 == 0) {
+            level_5_Button.setColor(Color.RED);
+        } else {
+            if (attainmentColorLevel_5 == 1) {
+                level_5_Button.setColor(Color.GREEN);
+                countGreen++;
+            }
+        }
 
-        level_6_Button.addListener(
-                new EventListener() {
-                    @Override
-                    public boolean handle(Event e) {
-                        if (!(e instanceof InputEvent) ||
-                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
-                            return false;
-                        if (attainment >= 5) {
-                            RectangleGame.setActiveScreen(new LevelScreen_6(requestHandler));
-                        }
-                        return false;
-                    }
-                }
-        );
+        if (attainmentColorLevel_6 == 0) {
+            level_6_Button.setColor(Color.RED);
+        } else {
+            if (attainmentColorLevel_6 == 1) {
+                level_6_Button.setColor(Color.GREEN);
+                countGreen++;
+            }
+        }
 
-        level_7_Button.addListener(
-                new EventListener() {
-                    @Override
-                    public boolean handle(Event e) {
-                        if (!(e instanceof InputEvent) ||
-                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
-                            return false;
-                        if (attainment >= 6) {
-                            RectangleGame.setActiveScreen(new LevelScreen_7(requestHandler));
-                        }
-                        return false;
-                    }
-                }
-        );
+        if (attainmentColorLevel_7 == 0) {
+            level_7_Button.setColor(Color.RED);
+        } else {
+            if (attainmentColorLevel_7 == 1) {
+                level_7_Button.setColor(Color.GREEN);
+                countGreen++;
+            }
+        }
 
-        level_8_Button.addListener(
-                new EventListener() {
-                    @Override
-                    public boolean handle(Event e) {
-                        if (!(e instanceof InputEvent) ||
-                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
-                            return false;
-                        if (attainment >= 7) {
-                            RectangleGame.setActiveScreen(new LevelScreen_8(requestHandler));
-                        }
-                        return false;
-                    }
-                }
-        );
+        if (attainmentColorLevel_8 == 0) {
+            level_8_Button.setColor(Color.RED);
+        } else {
+            if (attainmentColorLevel_8 == 1) {
+                level_8_Button.setColor(Color.GREEN);
+                countGreen++;
+            }
+        }
 
-        level_9_Button.addListener(
-                new EventListener() {
-                    @Override
-                    public boolean handle(Event e) {
-                        if (!(e instanceof InputEvent) ||
-                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
-                            return false;
-                        if (attainment >= 8) {
-                            RectangleGame.setActiveScreen(new LevelScreen_9(requestHandler));
-                        }
-                        return false;
-                    }
-                }
-        );
+        if (attainmentColorLevel_9 == 0) {
+            level_9_Button.setColor(Color.RED);
+        } else {
+            if (attainmentColorLevel_9 == 1) {
+                level_9_Button.setColor(Color.GREEN);
+                countGreen++;
+            }
+        }
 
-        level_10_Button.addListener(
-                new EventListener() {
-                    @Override
-                    public boolean handle(Event e) {
-                        if (!(e instanceof InputEvent) ||
-                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
-                            return false;
-                        if (attainment >= 9) {
-                            RectangleGame.setActiveScreen(new LevelScreen_10(requestHandler));
-                        }
-                        return false;
-                    }
-                }
-        );
+        if (attainmentColorLevel_10 == 0) {
+            level_10_Button.setColor(Color.RED);
+        } else {
+            if (attainmentColorLevel_10 == 1) {
+                level_10_Button.setColor(Color.GREEN);
+                countGreen++;
+            }
+        }
 
-        level_11_Button.addListener(
-                new EventListener() {
-                    @Override
-                    public boolean handle(Event e) {
-                        if (!(e instanceof InputEvent) ||
-                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
-                            return false;
-                        if (attainment >= 10) {
-                            RectangleGame.setActiveScreen(new LevelScreen_11(requestHandler));
-                        }
-                        return false;
-                    }
-                }
-        );
+        if (attainmentColorLevel_11 == 0) {
+            level_11_Button.setColor(Color.RED);
+        } else {
+            if (attainmentColorLevel_11 == 1) {
+                level_11_Button.setColor(Color.GREEN);
+            }
+        }
 
-        level_12_Button.addListener(
-                new EventListener() {
-                    @Override
-                    public boolean handle(Event e) {
-                        if (!(e instanceof InputEvent) ||
-                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
-                            return false;
-                        if (attainment >= 11) {
-                            RectangleGame.setActiveScreen(new LevelScreen_12(requestHandler));
-                        }
-                        return false;
-                    }
-                }
-        );
+        if (attainmentColorLevel_12 == 0) {
+            level_12_Button.setColor(Color.RED);
+        } else {
+            if (attainmentColorLevel_12 == 1) {
+                level_12_Button.setColor(Color.GREEN);
+            }
+        }
 
-        level_13_Button.addListener(
-                new EventListener() {
-                    @Override
-                    public boolean handle(Event e) {
-                        if (!(e instanceof InputEvent) ||
-                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
-                            return false;
-                        if (attainment >= 12) {
-                            RectangleGame.setActiveScreen(new LevelScreen_13(requestHandler));
-                        }
-                        return false;
-                    }
-                }
-        );
+        if (attainmentColorLevel_13 == 0) {
+            level_13_Button.setColor(Color.RED);
+        } else {
+            if (attainmentColorLevel_13 == 1) {
+                level_13_Button.setColor(Color.GREEN);
+            }
+        }
 
-        level_14_Button.addListener(
-                new EventListener() {
-                    @Override
-                    public boolean handle(Event e) {
-                        if (!(e instanceof InputEvent) ||
-                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
-                            return false;
-                        if (attainment >= 13) {
-                            RectangleGame.setActiveScreen(new LevelScreen_14(requestHandler));
-                        }
-                        return false;
-                    }
-                }
-        );
+        if (attainmentColorLevel_14 == 0) {
+            level_14_Button.setColor(Color.RED);
+        } else {
+            if (attainmentColorLevel_14 == 1) {
+                level_14_Button.setColor(Color.GREEN);
+            }
+        }
 
-        level_15_Button.addListener(
-                new EventListener() {
-                    @Override
-                    public boolean handle(Event e) {
-                        if (!(e instanceof InputEvent) ||
-                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
-                            return false;
-                        if (attainment >= 14) {
-                            RectangleGame.setActiveScreen(new LevelScreen_15(requestHandler));
-                        }
-                        return false;
-                    }
-                }
-        );
+        if (attainmentColorLevel_15 == 0) {
+            level_15_Button.setColor(Color.RED);
+        } else {
+            if (attainmentColorLevel_15 == 1) {
+                level_15_Button.setColor(Color.GREEN);
+            }
+        }
 
-        level_16_Button.addListener(
-                new EventListener() {
-                    @Override
-                    public boolean handle(Event e) {
-                        if (!(e instanceof InputEvent) ||
-                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
-                            return false;
-                        if (attainment >= 15) {
-                            RectangleGame.setActiveScreen(new LevelScreen_16(requestHandler));
-                        }
-                        return false;
-                    }
-                }
-        );
+        if (attainmentColorLevel_16 == 0) {
+            level_16_Button.setColor(Color.RED);
+        } else {
+            if (attainmentColorLevel_16 == 1) {
+                level_16_Button.setColor(Color.GREEN);
+            }
+        }
 
-        level_17_Button.addListener(
-                new EventListener() {
-                    @Override
-                    public boolean handle(Event e) {
-                        if (!(e instanceof InputEvent) ||
-                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
-                            return false;
-                        if (attainment >= 16) {
-                            RectangleGame.setActiveScreen(new LevelScreen_17(requestHandler));
-                        }
-                        return false;
-                    }
-                }
-        );
+        if (attainmentColorLevel_17 == 0) {
+            level_17_Button.setColor(Color.RED);
+        } else {
+            if (attainmentColorLevel_17 == 1) {
+                level_17_Button.setColor(Color.GREEN);
+            }
+        }
 
-        level_18_Button.addListener(
-                new EventListener() {
-                    @Override
-                    public boolean handle(Event e) {
-                        if (!(e instanceof InputEvent) ||
-                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
-                            return false;
-                        if (attainment >= 17) {
-                            RectangleGame.setActiveScreen(new LevelScreen_18(requestHandler));
-                        }
-                        return false;
-                    }
-                }
-        );
+        if (attainmentColorLevel_18 == 0) {
+            level_18_Button.setColor(Color.RED);
+        } else {
+            if (attainmentColorLevel_18 == 1) {
+                level_18_Button.setColor(Color.GREEN);
+            }
+        }
 
-        level_19_Button.addListener(
-                new EventListener() {
-                    @Override
-                    public boolean handle(Event e) {
-                        if (!(e instanceof InputEvent) ||
-                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
-                            return false;
-                        if (attainment >= 18) {
-                            RectangleGame.setActiveScreen(new LevelScreen_19(requestHandler));
-                        }
-                        return false;
-                    }
-                }
-        );
+        if (attainmentColorLevel_19 == 0) {
+            level_19_Button.setColor(Color.RED);
+        } else {
+            if (attainmentColorLevel_19 == 1) {
+                level_19_Button.setColor(Color.GREEN);
+            }
+        }
 
-        level_20_Button.addListener(
-                new EventListener() {
-                    @Override
-                    public boolean handle(Event e) {
-                        if (!(e instanceof InputEvent) ||
-                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
-                            return false;
-                        if (attainment >= 19) {
-                            RectangleGame.setActiveScreen(new LevelScreen_20(requestHandler));
-                        }
-                        return false;
-                    }
-                }
-        );
+        if (attainmentColorLevel_20 == 0) {
+            level_20_Button.setColor(Color.RED);
+        } else {
+            if (attainmentColorLevel_20 == 1) {
+                level_20_Button.setColor(Color.GREEN);
+            }
+        }
 
-        level_21_Button.addListener(
-                new EventListener() {
-                    @Override
-                    public boolean handle(Event e) {
-                        if (!(e instanceof InputEvent) ||
-                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
-                            return false;
-                        if (attainment >= 20) {
-                            RectangleGame.setActiveScreen(new LevelScreen_21(requestHandler));
-                        }
-                        return false;
-                    }
-                }
-        );
+        if (attainmentColorLevel_21 == 0) {
+            level_21_Button.setColor(Color.RED);
+        } else {
+            if (attainmentColorLevel_21 == 1) {
+                level_21_Button.setColor(Color.GREEN);
+            }
+        }
 
-        level_22_Button.addListener(
-                new EventListener() {
-                    @Override
-                    public boolean handle(Event e) {
-                        if (!(e instanceof InputEvent) ||
-                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
-                            return false;
-                        if (attainment >= 21) {
-                            RectangleGame.setActiveScreen(new LevelScreen_22(requestHandler));
-                        }
-                        return false;
-                    }
-                }
-        );
+        if (attainmentColorLevel_22 == 0) {
+            level_22_Button.setColor(Color.RED);
+        } else {
+            if (attainmentColorLevel_22 == 1) {
+                level_22_Button.setColor(Color.GREEN);
+            }
+        }
 
-        level_23_Button.addListener(
-                new EventListener() {
-                    @Override
-                    public boolean handle(Event e) {
-                        if (!(e instanceof InputEvent) ||
-                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
-                            return false;
-                        if (attainment >= 22) {
-                            RectangleGame.setActiveScreen(new LevelScreen_23(requestHandler));
-                        }
-                        return false;
-                    }
-                }
-        );
+        if (attainmentColorLevel_23 == 0) {
+            level_23_Button.setColor(Color.RED);
+        } else {
+            if (attainmentColorLevel_23 == 1) {
+                level_23_Button.setColor(Color.GREEN);
+            }
+        }
 
-        level_24_Button.addListener(
-                new EventListener() {
-                    @Override
-                    public boolean handle(Event e) {
-                        if (!(e instanceof InputEvent) ||
-                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
-                            return false;
-                        if (attainment >= 23) {
-                            RectangleGame.setActiveScreen(new LevelScreen_24(requestHandler));
-                        }
-                        return false;
-                    }
-                }
-        );
+        if (attainmentColorLevel_24 == 0) {
+            level_24_Button.setColor(Color.RED);
+        } else {
+            if (attainmentColorLevel_24 == 1) {
+                level_24_Button.setColor(Color.GREEN);
+            }
+        }
 
-        level_25_Button.addListener(
-                new EventListener() {
-                    @Override
-                    public boolean handle(Event e) {
-                        if (!(e instanceof InputEvent) ||
-                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
-                            return false;
-                        if (attainment >= 24) {
-                            RectangleGame.setActiveScreen(new LevelScreen_25(requestHandler));
-                        }
-                        return false;
-                    }
-                }
-        );
+        if (attainmentColorLevel_25 == 0) {
+            level_25_Button.setColor(Color.RED);
+        } else {
+            if (attainmentColorLevel_25 == 1) {
+                level_25_Button.setColor(Color.GREEN);
+            }
+        }
 
-        level_26_Button.addListener(
-                new EventListener() {
-                    @Override
-                    public boolean handle(Event e) {
-                        if (!(e instanceof InputEvent) ||
-                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
-                            return false;
-                        if (attainment >= 25) {
-                            RectangleGame.setActiveScreen(new LevelScreen_26(requestHandler));
-                        }
-                        return false;
-                    }
-                }
-        );
+        if (attainmentColorLevel_26 == 0) {
+            level_26_Button.setColor(Color.RED);
+        } else {
+            if (attainmentColorLevel_26 == 1) {
+                level_26_Button.setColor(Color.GREEN);
+            }
+        }
 
-        level_27_Button.addListener(
-                new EventListener() {
-                    @Override
-                    public boolean handle(Event e) {
-                        if (!(e instanceof InputEvent) ||
-                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
-                            return false;
-                        if (attainment >= 26) {
-                            RectangleGame.setActiveScreen(new LevelScreen_27(requestHandler));
-                        }
-                        return false;
-                    }
-                }
-        );
+        if (attainmentColorLevel_27 == 0) {
+            level_27_Button.setColor(Color.RED);
+        } else {
+            if (attainmentColorLevel_27 == 1) {
+                level_27_Button.setColor(Color.GREEN);
+            }
+        }
 
-        level_28_Button.addListener(
-                new EventListener() {
-                    @Override
-                    public boolean handle(Event e) {
-                        if (!(e instanceof InputEvent) ||
-                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
-                            return false;
-                        if (attainment >= 27) {
-                            RectangleGame.setActiveScreen(new LevelScreen_28(requestHandler));
-                        }
-                        return false;
-                    }
-                }
-        );
+        if (attainmentColorLevel_28 == 0) {
+            level_28_Button.setColor(Color.RED);
+        } else {
+            if (attainmentColorLevel_28 == 1) {
+                level_28_Button.setColor(Color.GREEN);
+            }
+        }
 
-        level_29_Button.addListener(
-                new EventListener() {
-                    @Override
-                    public boolean handle(Event e) {
-                        if (!(e instanceof InputEvent) ||
-                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
-                            return false;
-                        if (attainment >= 28) {
-                            RectangleGame.setActiveScreen(new LevelScreen_29(requestHandler));
-                        }
-                        return false;
-                    }
-                }
-        );
+        if (attainmentColorLevel_29 == 0) {
+            level_29_Button.setColor(Color.RED);
+        } else {
+            if (attainmentColorLevel_29 == 1) {
+                level_29_Button.setColor(Color.GREEN);
+            }
+        }
 
-        level_30_Button.addListener(
-                new EventListener() {
-                    @Override
-                    public boolean handle(Event e) {
-                        if (!(e instanceof InputEvent) ||
-                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
-                            return false;
-                        if (attainment >= 29) {
-                            RectangleGame.setActiveScreen(new LevelScreen_30(requestHandler));
-                        }
-                        return false;
-                    }
-                }
-        );
+        if (attainmentColorLevel_30 == 0) {
+            level_30_Button.setColor(Color.RED);
+        } else {
+            if (attainmentColorLevel_30 == 1) {
+                level_30_Button.setColor(Color.GREEN);
+            }
+        }
+
+        /////////////////////////////////////////
+//        TextButton[] group_1 = new TextButton[] {level_1_Button, level_2_Button, level_3_Button, level_4_Button, level_5_Button,
+//                level_6_Button, level_7_Button, level_8_Button, level_9_Button, level_10_Button};
+//        for (TextButton textButton : group_1) {
+//            if (textButton.getColor() == Color.GREEN) {
+//                countGreen++;
+//            }
+//
+//        }
 
         // устанавливает фоновую картинку в Table
         NinePatch patch = new NinePatch(new Texture(Gdx.files.internal("background/fon_level_4.png")),
@@ -718,6 +497,61 @@ public class MenuScreen extends StartScreen {
         uiTable.add(level_28_Button).pad(15,15,15,15);
         uiTable.add(level_29_Button).pad(15,15,15,15);
         uiTable.add(level_30_Button).pad(15,15,15,15);
+
+
+        // устанавливает фоновый цвет в Table
+        Pixmap bgPixmap = new Pixmap(1, 1, Pixmap.Format.RGB565);
+        bgPixmap.setColor(Color.BLACK);
+        bgPixmap.fill();
+        TextureRegionDrawable textureRegionDrawableBg = new TextureRegionDrawable(new TextureRegion(new Texture(bgPixmap)));
+        // устанавливает фоновый цвет в Table(конец)
+
+        // устанавливает затемненный блок на вторую и третью десятки кнопок LevelScreens
+        myTable.align(Align.center);
+        myTable.add(uiModalWindowTable).width((level_16_Button.getWidth() * 5) + 130).height((level_1_Button.getHeight() * 2) + 30).padBottom(15);
+        uiModalWindowTable.setBackground(textureRegionDrawableBg);
+        uiModalWindowTable.getColor().a = 0f;
+        myTable.row();
+        myTable.add(uiModalWindowTable_2).width((level_16_Button.getWidth() * 5) + 130).height((level_1_Button.getHeight() * 2) + 30).padBottom(15).padTop(15);
+        uiModalWindowTable_2.setBackground(textureRegionDrawableBg);
+        switch (countGreen) {
+            case 0:
+                uiModalWindowTable_2.getColor().a = 0.8f;
+                break;
+            case 1:
+                uiModalWindowTable_2.getColor().a = 0.7f;
+                break;
+            case 2:
+                uiModalWindowTable_2.getColor().a = 0.65f;
+                break;
+            case 3:
+                uiModalWindowTable_2.getColor().a = 0.6f;
+                break;
+            case 4:
+                uiModalWindowTable_2.getColor().a = 0.5f;
+                break;
+            case 5:
+                uiModalWindowTable_2.getColor().a = 0.45f;
+                break;
+            case 6:
+                uiModalWindowTable_2.getColor().a = 0.4f;
+                break;
+            case 7:
+                uiModalWindowTable_2.getColor().a = 0.3f;
+                break;
+            case 8:
+                uiModalWindowTable_2.getColor().a = 0.2f;
+                break;
+            case 9:
+                uiModalWindowTable_2.getColor().a = 0f;
+                break;
+        }
+        myTable.row();
+        myTable.add(uiModalWindowTable_3).width((level_16_Button.getWidth() * 5) + 130).height((level_1_Button.getHeight() * 2) + 30).padTop(15);
+        uiModalWindowTable_3.setBackground(textureRegionDrawableBg);
+        uiModalWindowTable_3.getColor().a = 0.8f;
+        // устанавливает затемненный блок на вторую и третью десятки кнопок LevelScreens (конец)
+
 
         level_1_Button.addActor(lock1);
         lock1.setPosition(level_1_Button.getWidth() / 2 - lock1.getWidth() / 2, level_1_Button.getHeight() / 2 - lock1.getHeight() / 2);
@@ -779,9 +613,6 @@ public class MenuScreen extends StartScreen {
         lock29.setPosition(level_29_Button.getWidth() / 2 - lock29.getWidth() / 2, level_29_Button.getHeight() / 2 - lock29.getHeight() / 2);
         level_30_Button.addActor(lock30);
         lock30.setPosition(level_30_Button.getWidth() / 2 - lock30.getWidth() / 2, level_30_Button.getHeight() / 2 - lock30.getHeight() / 2);
-
-
-        Gdx.app.log("MyTag", String.valueOf(attainment));
 
         switch (attainment) {
             case 0:
@@ -1312,246 +1143,459 @@ public class MenuScreen extends StartScreen {
             default:
         }
 
-        if (attainmentColorLevel_1 == 0) {
-            level_1_Button.setColor(Color.RED);
-        } else {
-            if (attainmentColorLevel_1 == 1) {
-                level_1_Button.setColor(Color.GREEN);
-            }
-        }
+        level_1_Button.addListener(
+                new EventListener() {
+                    @Override
+                    public boolean handle(Event e) {
+                        if (!(e instanceof InputEvent) ||
+                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
+                            return false;
+                        requestHandler.hideBannerAd(); // при нажатии на кнопку баннер скрывается
+                        if (attainment >= 0) {
+                            RectangleGame.setActiveScreen(new LevelScreen_1(requestHandler));
+                        }
+                        return false;
+                    }
+                }
+        );
 
-        if (attainmentColorLevel_2 == 0) {
-            level_2_Button.setColor(Color.RED);
-        } else {
-            if (attainmentColorLevel_2 == 1) {
-                level_2_Button.setColor(Color.GREEN);
-            }
-        }
+        level_2_Button.addListener(
+                new EventListener() {
+                    @Override
+                    public boolean handle(Event e) {
+                        if (!(e instanceof InputEvent) ||
+                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
+                            return false;
+                        requestHandler.hideBannerAd(); // при нажатии на кнопку баннер скрывается
+                        if (attainment >= 1) {
+                            RectangleGame.setActiveScreen(new LevelScreen_2(requestHandler));
+                        }
+                        return false;
+                    }
+                }
+        );
 
-        if (attainmentColorLevel_3 == 0) {
-            level_3_Button.setColor(Color.RED);
-        } else {
-            if (attainmentColorLevel_3 == 1) {
-                level_3_Button.setColor(Color.GREEN);
-            }
-        }
+        level_3_Button.addListener(
+                new EventListener() {
+                    @Override
+                    public boolean handle(Event e) {
+                        if (!(e instanceof InputEvent) ||
+                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
+                            return false;
+                        if (attainment >= 2) {
+                            RectangleGame.setActiveScreen(new LevelScreen_3(requestHandler));
+                        }
+                        return false;
+                    }
+                }
+        );
 
-        if (attainmentColorLevel_4 == 0) {
-            level_4_Button.setColor(Color.RED);
-        } else {
-            if (attainmentColorLevel_4 == 1) {
-                level_4_Button.setColor(Color.GREEN);
-            }
-        }
+        level_4_Button.addListener(
+                new EventListener() {
+                    @Override
+                    public boolean handle(Event e) {
+                        if (!(e instanceof InputEvent) ||
+                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
+                            return false;
+                        if (attainment >= 3) {
+                            RectangleGame.setActiveScreen(new LevelScreen_4(requestHandler));
+                        }
+                        return false;
+                    }
+                }
+        );
 
-        if (attainmentColorLevel_5 == 0) {
-            level_5_Button.setColor(Color.RED);
-        } else {
-            if (attainmentColorLevel_5 == 1) {
-                level_5_Button.setColor(Color.GREEN);
-            }
-        }
+        level_5_Button.addListener(
+                new EventListener() {
+                    @Override
+                    public boolean handle(Event e) {
+                        if (!(e instanceof InputEvent) ||
+                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
+                            return false;
+                        if (attainment >= 4) {
+                            RectangleGame.setActiveScreen(new LevelScreen_5(requestHandler));
+                        }
+                        return false;
+                    }
+                }
+        );
 
-        if (attainmentColorLevel_6 == 0) {
-            level_6_Button.setColor(Color.RED);
-        } else {
-            if (attainmentColorLevel_6 == 1) {
-                level_6_Button.setColor(Color.GREEN);
-            }
-        }
+        level_6_Button.addListener(
+                new EventListener() {
+                    @Override
+                    public boolean handle(Event e) {
+                        if (!(e instanceof InputEvent) ||
+                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
+                            return false;
+                        if (attainment >= 5) {
+                            RectangleGame.setActiveScreen(new LevelScreen_6(requestHandler));
+                        }
+                        return false;
+                    }
+                }
+        );
 
-        if (attainmentColorLevel_7 == 0) {
-            level_7_Button.setColor(Color.RED);
-        } else {
-            if (attainmentColorLevel_7 == 1) {
-                level_7_Button.setColor(Color.GREEN);
-            }
-        }
+        level_7_Button.addListener(
+                new EventListener() {
+                    @Override
+                    public boolean handle(Event e) {
+                        if (!(e instanceof InputEvent) ||
+                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
+                            return false;
+                        if (attainment >= 6) {
+                            RectangleGame.setActiveScreen(new LevelScreen_7(requestHandler));
+                        }
+                        return false;
+                    }
+                }
+        );
 
-        if (attainmentColorLevel_8 == 0) {
-            level_8_Button.setColor(Color.RED);
-        } else {
-            if (attainmentColorLevel_8 == 1) {
-                level_8_Button.setColor(Color.GREEN);
-            }
-        }
+        level_8_Button.addListener(
+                new EventListener() {
+                    @Override
+                    public boolean handle(Event e) {
+                        if (!(e instanceof InputEvent) ||
+                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
+                            return false;
+                        if (attainment >= 7) {
+                            RectangleGame.setActiveScreen(new LevelScreen_8(requestHandler));
+                        }
+                        return false;
+                    }
+                }
+        );
 
-        if (attainmentColorLevel_9 == 0) {
-            level_9_Button.setColor(Color.RED);
-        } else {
-            if (attainmentColorLevel_9 == 1) {
-                level_9_Button.setColor(Color.GREEN);
-            }
-        }
+        level_9_Button.addListener(
+                new EventListener() {
+                    @Override
+                    public boolean handle(Event e) {
+                        if (!(e instanceof InputEvent) ||
+                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
+                            return false;
+                        if (attainment >= 8) {
+                            RectangleGame.setActiveScreen(new LevelScreen_9(requestHandler));
+                        }
+                        return false;
+                    }
+                }
+        );
 
-        if (attainmentColorLevel_10 == 0) {
-            level_10_Button.setColor(Color.RED);
-        } else {
-            if (attainmentColorLevel_10 == 1) {
-                level_10_Button.setColor(Color.GREEN);
-            }
-        }
+        level_10_Button.addListener(
+                new EventListener() {
+                    @Override
+                    public boolean handle(Event e) {
+                        if (!(e instanceof InputEvent) ||
+                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
+                            return false;
+                        if (attainment >= 9) {
+                            RectangleGame.setActiveScreen(new LevelScreen_10(requestHandler));
+                        }
+                        return false;
+                    }
+                }
+        );
 
-        if (attainmentColorLevel_11 == 0) {
-            level_11_Button.setColor(Color.RED);
-        } else {
-            if (attainmentColorLevel_11 == 1) {
-                level_11_Button.setColor(Color.GREEN);
-            }
-        }
+        level_11_Button.addListener(
+                new EventListener() {
+                    @Override
+                    public boolean handle(Event e) {
+                        if (!(e instanceof InputEvent) ||
+                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
+                            return false;
+                        if (attainment >= 10 && uiModalWindowTable_2.getColor().a < 0.2f) {
+                            RectangleGame.setActiveScreen(new LevelScreen_11(requestHandler));
+                        }
+                        return false;
+                    }
+                }
+        );
 
-        if (attainmentColorLevel_12 == 0) {
-            level_12_Button.setColor(Color.RED);
-        } else {
-            if (attainmentColorLevel_12 == 1) {
-                level_12_Button.setColor(Color.GREEN);
-            }
-        }
+        level_12_Button.addListener(
+                new EventListener() {
+                    @Override
+                    public boolean handle(Event e) {
+                        if (!(e instanceof InputEvent) ||
+                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
+                            return false;
+                        if (attainment >= 11 && uiModalWindowTable_2.getColor().a < 0.2f) {
+                            RectangleGame.setActiveScreen(new LevelScreen_12(requestHandler));
+                        }
+                        return false;
+                    }
+                }
+        );
 
-        if (attainmentColorLevel_13 == 0) {
-            level_13_Button.setColor(Color.RED);
-        } else {
-            if (attainmentColorLevel_13 == 1) {
-                level_13_Button.setColor(Color.GREEN);
-            }
-        }
+        level_13_Button.addListener(
+                new EventListener() {
+                    @Override
+                    public boolean handle(Event e) {
+                        if (!(e instanceof InputEvent) ||
+                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
+                            return false;
+                        if (attainment >= 12 && uiModalWindowTable_2.getColor().a < 0.2f) {
+                            RectangleGame.setActiveScreen(new LevelScreen_13(requestHandler));
+                        }
+                        return false;
+                    }
+                }
+        );
 
-        if (attainmentColorLevel_14 == 0) {
-            level_14_Button.setColor(Color.RED);
-        } else {
-            if (attainmentColorLevel_14 == 1) {
-                level_14_Button.setColor(Color.GREEN);
-            }
-        }
+        level_14_Button.addListener(
+                new EventListener() {
+                    @Override
+                    public boolean handle(Event e) {
+                        if (!(e instanceof InputEvent) ||
+                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
+                            return false;
+                        if (attainment >= 13 && uiModalWindowTable_2.getColor().a < 0.2f) {
+                            RectangleGame.setActiveScreen(new LevelScreen_14(requestHandler));
+                        }
+                        return false;
+                    }
+                }
+        );
 
-        if (attainmentColorLevel_15 == 0) {
-            level_15_Button.setColor(Color.RED);
-        } else {
-            if (attainmentColorLevel_15 == 1) {
-                level_15_Button.setColor(Color.GREEN);
-            }
-        }
+        level_15_Button.addListener(
+                new EventListener() {
+                    @Override
+                    public boolean handle(Event e) {
+                        if (!(e instanceof InputEvent) ||
+                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
+                            return false;
+                        if (attainment >= 14 && uiModalWindowTable_2.getColor().a < 0.2f) {
+                            RectangleGame.setActiveScreen(new LevelScreen_15(requestHandler));
+                        }
+                        return false;
+                    }
+                }
+        );
 
-        if (attainmentColorLevel_16 == 0) {
-            level_16_Button.setColor(Color.RED);
-        } else {
-            if (attainmentColorLevel_16 == 1) {
-                level_16_Button.setColor(Color.GREEN);
-            }
-        }
+        level_16_Button.addListener(
+                new EventListener() {
+                    @Override
+                    public boolean handle(Event e) {
+                        if (!(e instanceof InputEvent) ||
+                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
+                            return false;
+                        if (attainment >= 15 && uiModalWindowTable_2.getColor().a < 0.2f) {
+                            RectangleGame.setActiveScreen(new LevelScreen_16(requestHandler));
+                        }
+                        return false;
+                    }
+                }
+        );
 
-        if (attainmentColorLevel_17 == 0) {
-            level_17_Button.setColor(Color.RED);
-        } else {
-            if (attainmentColorLevel_17 == 1) {
-                level_17_Button.setColor(Color.GREEN);
-            }
-        }
+        level_17_Button.addListener(
+                new EventListener() {
+                    @Override
+                    public boolean handle(Event e) {
+                        if (!(e instanceof InputEvent) ||
+                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
+                            return false;
+                        if (attainment >= 16 && uiModalWindowTable_2.getColor().a < 0.2f) {
+                            RectangleGame.setActiveScreen(new LevelScreen_17(requestHandler));
+                        }
+                        return false;
+                    }
+                }
+        );
 
-        if (attainmentColorLevel_18 == 0) {
-            level_18_Button.setColor(Color.RED);
-        } else {
-            if (attainmentColorLevel_18 == 1) {
-                level_18_Button.setColor(Color.GREEN);
-            }
-        }
+        level_18_Button.addListener(
+                new EventListener() {
+                    @Override
+                    public boolean handle(Event e) {
+                        if (!(e instanceof InputEvent) ||
+                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
+                            return false;
+                        if (attainment >= 17 && uiModalWindowTable_2.getColor().a < 0.2f) {
+                            RectangleGame.setActiveScreen(new LevelScreen_18(requestHandler));
+                        }
+                        return false;
+                    }
+                }
+        );
 
-        if (attainmentColorLevel_19 == 0) {
-            level_19_Button.setColor(Color.RED);
-        } else {
-            if (attainmentColorLevel_19 == 1) {
-                level_19_Button.setColor(Color.GREEN);
-            }
-        }
+        level_19_Button.addListener(
+                new EventListener() {
+                    @Override
+                    public boolean handle(Event e) {
+                        if (!(e instanceof InputEvent) ||
+                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
+                            return false;
+                        if (attainment >= 18 && uiModalWindowTable_2.getColor().a < 0.2f) {
+                            RectangleGame.setActiveScreen(new LevelScreen_19(requestHandler));
+                        }
+                        return false;
+                    }
+                }
+        );
 
-        if (attainmentColorLevel_20 == 0) {
-            level_20_Button.setColor(Color.RED);
-        } else {
-            if (attainmentColorLevel_20 == 1) {
-                level_20_Button.setColor(Color.GREEN);
-            }
-        }
+        level_20_Button.addListener(
+                new EventListener() {
+                    @Override
+                    public boolean handle(Event e) {
+                        if (!(e instanceof InputEvent) ||
+                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
+                            return false;
+                        if (attainment >= 19 && uiModalWindowTable_2.getColor().a < 0.2f) {
+                            RectangleGame.setActiveScreen(new LevelScreen_20(requestHandler));
+                        }
+                        return false;
+                    }
+                }
+        );
 
-        if (attainmentColorLevel_21 == 0) {
-            level_21_Button.setColor(Color.RED);
-        } else {
-            if (attainmentColorLevel_21 == 1) {
-                level_21_Button.setColor(Color.GREEN);
-            }
-        }
+        level_21_Button.addListener(
+                new EventListener() {
+                    @Override
+                    public boolean handle(Event e) {
+                        if (!(e instanceof InputEvent) ||
+                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
+                            return false;
+                        if (attainment >= 20 && uiModalWindowTable_3.getColor().a < 0.2f) {
+                            RectangleGame.setActiveScreen(new LevelScreen_21(requestHandler));
+                        }
+                        return false;
+                    }
+                }
+        );
 
-        if (attainmentColorLevel_22 == 0) {
-            level_22_Button.setColor(Color.RED);
-        } else {
-            if (attainmentColorLevel_22 == 1) {
-                level_22_Button.setColor(Color.GREEN);
-            }
-        }
+        level_22_Button.addListener(
+                new EventListener() {
+                    @Override
+                    public boolean handle(Event e) {
+                        if (!(e instanceof InputEvent) ||
+                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
+                            return false;
+                        if (attainment >= 21 && uiModalWindowTable_3.getColor().a < 0.2f) {
+                            RectangleGame.setActiveScreen(new LevelScreen_22(requestHandler));
+                        }
+                        return false;
+                    }
+                }
+        );
 
-        if (attainmentColorLevel_23 == 0) {
-            level_23_Button.setColor(Color.RED);
-        } else {
-            if (attainmentColorLevel_23 == 1) {
-                level_23_Button.setColor(Color.GREEN);
-            }
-        }
+        level_23_Button.addListener(
+                new EventListener() {
+                    @Override
+                    public boolean handle(Event e) {
+                        if (!(e instanceof InputEvent) ||
+                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
+                            return false;
+                        if (attainment >= 22 && uiModalWindowTable_3.getColor().a < 0.2f) {
+                            RectangleGame.setActiveScreen(new LevelScreen_23(requestHandler));
+                        }
+                        return false;
+                    }
+                }
+        );
 
-        if (attainmentColorLevel_24 == 0) {
-            level_24_Button.setColor(Color.RED);
-        } else {
-            if (attainmentColorLevel_24 == 1) {
-                level_24_Button.setColor(Color.GREEN);
-            }
-        }
+        level_24_Button.addListener(
+                new EventListener() {
+                    @Override
+                    public boolean handle(Event e) {
+                        if (!(e instanceof InputEvent) ||
+                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
+                            return false;
+                        if (attainment >= 23 && uiModalWindowTable_3.getColor().a < 0.2f) {
+                            RectangleGame.setActiveScreen(new LevelScreen_24(requestHandler));
+                        }
+                        return false;
+                    }
+                }
+        );
 
-        if (attainmentColorLevel_25 == 0) {
-            level_25_Button.setColor(Color.RED);
-        } else {
-            if (attainmentColorLevel_25 == 1) {
-                level_25_Button.setColor(Color.GREEN);
-            }
-        }
+        level_25_Button.addListener(
+                new EventListener() {
+                    @Override
+                    public boolean handle(Event e) {
+                        if (!(e instanceof InputEvent) ||
+                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
+                            return false;
+                        if (attainment >= 24 && uiModalWindowTable_3.getColor().a < 0.2f) {
+                            RectangleGame.setActiveScreen(new LevelScreen_25(requestHandler));
+                        }
+                        return false;
+                    }
+                }
+        );
 
-        if (attainmentColorLevel_26 == 0) {
-            level_26_Button.setColor(Color.RED);
-        } else {
-            if (attainmentColorLevel_26 == 1) {
-                level_26_Button.setColor(Color.GREEN);
-            }
-        }
+        level_26_Button.addListener(
+                new EventListener() {
+                    @Override
+                    public boolean handle(Event e) {
+                        if (!(e instanceof InputEvent) ||
+                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
+                            return false;
+                        if (attainment >= 25 && uiModalWindowTable_3.getColor().a < 0.2f) {
+                            RectangleGame.setActiveScreen(new LevelScreen_26(requestHandler));
+                        }
+                        return false;
+                    }
+                }
+        );
 
-        if (attainmentColorLevel_27 == 0) {
-            level_27_Button.setColor(Color.RED);
-        } else {
-            if (attainmentColorLevel_27 == 1) {
-                level_27_Button.setColor(Color.GREEN);
-            }
-        }
+        level_27_Button.addListener(
+                new EventListener() {
+                    @Override
+                    public boolean handle(Event e) {
+                        if (!(e instanceof InputEvent) ||
+                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
+                            return false;
+                        if (attainment >= 26 && uiModalWindowTable_3.getColor().a < 0.2f) {
+                            RectangleGame.setActiveScreen(new LevelScreen_27(requestHandler));
+                        }
+                        return false;
+                    }
+                }
+        );
 
-        if (attainmentColorLevel_28 == 0) {
-            level_28_Button.setColor(Color.RED);
-        } else {
-            if (attainmentColorLevel_28 == 1) {
-                level_28_Button.setColor(Color.GREEN);
-            }
-        }
+        level_28_Button.addListener(
+                new EventListener() {
+                    @Override
+                    public boolean handle(Event e) {
+                        if (!(e instanceof InputEvent) ||
+                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
+                            return false;
+                        if (attainment >= 27 && uiModalWindowTable_3.getColor().a < 0.2f) {
+                            RectangleGame.setActiveScreen(new LevelScreen_28(requestHandler));
+                        }
+                        return false;
+                    }
+                }
+        );
 
-        if (attainmentColorLevel_29 == 0) {
-            level_29_Button.setColor(Color.RED);
-        } else {
-            if (attainmentColorLevel_29 == 1) {
-                level_29_Button.setColor(Color.GREEN);
-            }
-        }
+        level_29_Button.addListener(
+                new EventListener() {
+                    @Override
+                    public boolean handle(Event e) {
+                        if (!(e instanceof InputEvent) ||
+                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
+                            return false;
+                        if (attainment >= 28 && uiModalWindowTable_3.getColor().a < 0.2f) {
+                            RectangleGame.setActiveScreen(new LevelScreen_29(requestHandler));
+                        }
+                        return false;
+                    }
+                }
+        );
 
-        if (attainmentColorLevel_30 == 0) {
-            level_30_Button.setColor(Color.RED);
-        } else {
-            if (attainmentColorLevel_30 == 1) {
-                level_30_Button.setColor(Color.GREEN);
-            }
-        }
+        level_30_Button.addListener(
+                new EventListener() {
+                    @Override
+                    public boolean handle(Event e) {
+                        if (!(e instanceof InputEvent) ||
+                                !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
+                            return false;
+                        if (attainment >= 29 && uiModalWindowTable_3.getColor().a < 0.2f) {
+                            RectangleGame.setActiveScreen(new LevelScreen_30(requestHandler));
+                        }
+                        return false;
+                    }
+                }
+        );
 
+        Gdx.app.log("MyTag", String.valueOf(countGreen));
     }
 
     @Override

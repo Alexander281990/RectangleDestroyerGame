@@ -13,6 +13,7 @@ public class StartScreen extends BaseScreen {
     private Sound clickButton;
     private static Preferences pref;
     static int attainment = 0;
+    //int countGreenLevelScreen = 0;
     static int attainmentColorLevel_1 = 0;
     static int attainmentColorLevel_2 = 0;
     static int attainmentColorLevel_3 = 0;
@@ -86,6 +87,8 @@ public class StartScreen extends BaseScreen {
     @Override
     public void initialize() {
 
+        //countGreenLevelScreen = 0;
+
         clickButton = Gdx.audio.newSound(Gdx.files.internal("click_button.wav"));
         pref = Gdx.app.getPreferences("Preferences");// инициализация Preferences для сохранения лучшего результата в телефоне
         attainment = pref.getInteger("attainmentMemory");
@@ -128,7 +131,7 @@ public class StartScreen extends BaseScreen {
                         recordsLevel_28 = 0;
                         recordsLevel_29 = 0;
                         recordsLevel_30 = 0;
-                        attainment = 29;
+                        attainment = 0;
                         attainmentColorLevel_1 = 0;
                         attainmentColorLevel_2 = 0;
                         attainmentColorLevel_3 = 0;
@@ -255,7 +258,7 @@ public class StartScreen extends BaseScreen {
             uiTable.add(startButton);
         }
 
-        Gdx.app.log("MyTag", String.valueOf(attainment));
+        //Gdx.app.log("MyTag", String.valueOf(attainment));
 
     }
 
