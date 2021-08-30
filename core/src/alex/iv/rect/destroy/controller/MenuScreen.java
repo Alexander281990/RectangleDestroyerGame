@@ -52,7 +52,9 @@ public class MenuScreen extends StartScreen {
     public IActivityRequestHandler requestHandler;
     public LevelScreenMain levelScreenMain;
     public static Preferences pref;
-    private int countGreen;
+    private int countGreenGroup_1;
+    private int countGreenGroup_2;
+    private int countGreenGroup_3;
 
     public MenuScreen() {
 
@@ -200,7 +202,7 @@ public class MenuScreen extends StartScreen {
         } else {
             if (attainmentColorLevel_1 == 1) {
                 level_1_Button.setColor(Color.GREEN);
-                countGreen++;
+                countGreenGroup_1++;
             }
         }
 
@@ -209,7 +211,7 @@ public class MenuScreen extends StartScreen {
         } else {
             if (attainmentColorLevel_2 == 1) {
                 level_2_Button.setColor(Color.GREEN);
-                countGreen++;
+                countGreenGroup_1++;
             }
         }
 
@@ -218,7 +220,7 @@ public class MenuScreen extends StartScreen {
         } else {
             if (attainmentColorLevel_3 == 1) {
                 level_3_Button.setColor(Color.GREEN);
-                countGreen++;
+                countGreenGroup_1++;
             }
         }
 
@@ -227,7 +229,7 @@ public class MenuScreen extends StartScreen {
         } else {
             if (attainmentColorLevel_4 == 1) {
                 level_4_Button.setColor(Color.GREEN);
-                countGreen++;
+                countGreenGroup_1++;
             }
         }
 
@@ -236,7 +238,7 @@ public class MenuScreen extends StartScreen {
         } else {
             if (attainmentColorLevel_5 == 1) {
                 level_5_Button.setColor(Color.GREEN);
-                countGreen++;
+                countGreenGroup_1++;
             }
         }
 
@@ -245,7 +247,7 @@ public class MenuScreen extends StartScreen {
         } else {
             if (attainmentColorLevel_6 == 1) {
                 level_6_Button.setColor(Color.GREEN);
-                countGreen++;
+                countGreenGroup_1++;
             }
         }
 
@@ -254,7 +256,7 @@ public class MenuScreen extends StartScreen {
         } else {
             if (attainmentColorLevel_7 == 1) {
                 level_7_Button.setColor(Color.GREEN);
-                countGreen++;
+                countGreenGroup_1++;
             }
         }
 
@@ -263,7 +265,7 @@ public class MenuScreen extends StartScreen {
         } else {
             if (attainmentColorLevel_8 == 1) {
                 level_8_Button.setColor(Color.GREEN);
-                countGreen++;
+                countGreenGroup_1++;
             }
         }
 
@@ -272,7 +274,7 @@ public class MenuScreen extends StartScreen {
         } else {
             if (attainmentColorLevel_9 == 1) {
                 level_9_Button.setColor(Color.GREEN);
-                countGreen++;
+                countGreenGroup_1++;
             }
         }
 
@@ -281,7 +283,7 @@ public class MenuScreen extends StartScreen {
         } else {
             if (attainmentColorLevel_10 == 1) {
                 level_10_Button.setColor(Color.GREEN);
-                countGreen++;
+                countGreenGroup_1++;
             }
         }
 
@@ -290,6 +292,7 @@ public class MenuScreen extends StartScreen {
         } else {
             if (attainmentColorLevel_11 == 1) {
                 level_11_Button.setColor(Color.GREEN);
+                countGreenGroup_2++;
             }
         }
 
@@ -298,6 +301,7 @@ public class MenuScreen extends StartScreen {
         } else {
             if (attainmentColorLevel_12 == 1) {
                 level_12_Button.setColor(Color.GREEN);
+                countGreenGroup_2++;
             }
         }
 
@@ -306,6 +310,7 @@ public class MenuScreen extends StartScreen {
         } else {
             if (attainmentColorLevel_13 == 1) {
                 level_13_Button.setColor(Color.GREEN);
+                countGreenGroup_2++;
             }
         }
 
@@ -314,6 +319,7 @@ public class MenuScreen extends StartScreen {
         } else {
             if (attainmentColorLevel_14 == 1) {
                 level_14_Button.setColor(Color.GREEN);
+                countGreenGroup_2++;
             }
         }
 
@@ -322,6 +328,7 @@ public class MenuScreen extends StartScreen {
         } else {
             if (attainmentColorLevel_15 == 1) {
                 level_15_Button.setColor(Color.GREEN);
+                countGreenGroup_2++;
             }
         }
 
@@ -330,6 +337,7 @@ public class MenuScreen extends StartScreen {
         } else {
             if (attainmentColorLevel_16 == 1) {
                 level_16_Button.setColor(Color.GREEN);
+                countGreenGroup_2++;
             }
         }
 
@@ -338,6 +346,7 @@ public class MenuScreen extends StartScreen {
         } else {
             if (attainmentColorLevel_17 == 1) {
                 level_17_Button.setColor(Color.GREEN);
+                countGreenGroup_2++;
             }
         }
 
@@ -346,6 +355,7 @@ public class MenuScreen extends StartScreen {
         } else {
             if (attainmentColorLevel_18 == 1) {
                 level_18_Button.setColor(Color.GREEN);
+                countGreenGroup_2++;
             }
         }
 
@@ -354,6 +364,7 @@ public class MenuScreen extends StartScreen {
         } else {
             if (attainmentColorLevel_19 == 1) {
                 level_19_Button.setColor(Color.GREEN);
+                countGreenGroup_2++;
             }
         }
 
@@ -362,6 +373,7 @@ public class MenuScreen extends StartScreen {
         } else {
             if (attainmentColorLevel_20 == 1) {
                 level_20_Button.setColor(Color.GREEN);
+                countGreenGroup_2++;
             }
         }
 
@@ -445,16 +457,6 @@ public class MenuScreen extends StartScreen {
             }
         }
 
-        /////////////////////////////////////////
-//        TextButton[] group_1 = new TextButton[] {level_1_Button, level_2_Button, level_3_Button, level_4_Button, level_5_Button,
-//                level_6_Button, level_7_Button, level_8_Button, level_9_Button, level_10_Button};
-//        for (TextButton textButton : group_1) {
-//            if (textButton.getColor() == Color.GREEN) {
-//                countGreen++;
-//            }
-//
-//        }
-
         // устанавливает фоновую картинку в Table
         NinePatch patch = new NinePatch(new Texture(Gdx.files.internal("background/fon_level_4.png")),
                 3, 3, 3, 3);
@@ -514,7 +516,7 @@ public class MenuScreen extends StartScreen {
         myTable.row();
         myTable.add(uiModalWindowTable_2).width((level_16_Button.getWidth() * 5) + 130).height((level_1_Button.getHeight() * 2) + 30).padBottom(15).padTop(15);
         uiModalWindowTable_2.setBackground(textureRegionDrawableBg);
-        switch (countGreen) {
+        switch (countGreenGroup_1) {
             case 0:
                 uiModalWindowTable_2.getColor().a = 0.8f;
                 break;
@@ -549,7 +551,38 @@ public class MenuScreen extends StartScreen {
         myTable.row();
         myTable.add(uiModalWindowTable_3).width((level_16_Button.getWidth() * 5) + 130).height((level_1_Button.getHeight() * 2) + 30).padTop(15);
         uiModalWindowTable_3.setBackground(textureRegionDrawableBg);
-        uiModalWindowTable_3.getColor().a = 0.8f;
+        switch (countGreenGroup_2) {
+            case 0:
+                uiModalWindowTable_3.getColor().a = 0.8f;
+                break;
+            case 1:
+                uiModalWindowTable_3.getColor().a = 0.7f;
+                break;
+            case 2:
+                uiModalWindowTable_3.getColor().a = 0.65f;
+                break;
+            case 3:
+                uiModalWindowTable_3.getColor().a = 0.6f;
+                break;
+            case 4:
+                uiModalWindowTable_3.getColor().a = 0.5f;
+                break;
+            case 5:
+                uiModalWindowTable_3.getColor().a = 0.45f;
+                break;
+            case 6:
+                uiModalWindowTable_3.getColor().a = 0.4f;
+                break;
+            case 7:
+                uiModalWindowTable_3.getColor().a = 0.3f;
+                break;
+            case 8:
+                uiModalWindowTable_3.getColor().a = 0.2f;
+                break;
+            case 9:
+                uiModalWindowTable_3.getColor().a = 0f;
+                break;
+        }
         // устанавливает затемненный блок на вторую и третью десятки кнопок LevelScreens (конец)
 
 
@@ -1595,7 +1628,7 @@ public class MenuScreen extends StartScreen {
                 }
         );
 
-        Gdx.app.log("MyTag", String.valueOf(countGreen));
+        Gdx.app.log("MyTag", String.valueOf(countGreenGroup_1));
     }
 
     @Override

@@ -42,9 +42,9 @@ public class Item extends BaseActor {
         else if (t == Type.PADDLE_SHRINK)
             loadTexture("items/paddle-shrink.png");
         else if (t == Type.BALL_SPEED_UP)
-            loadTexture("items/ball-speed-up.png");
+            loadTexture("items/increase-time.png");
         else if (t == Type.BALL_SPEED_DOWN)
-            loadTexture("items/ball-speed-down.png");
+            loadTexture("items/decrease-time.png");
         else if (t == Type.BALL_TWO)
             loadTexture("items/ball-two.png");
         else if (t == Type.PADDLE_STOP)
