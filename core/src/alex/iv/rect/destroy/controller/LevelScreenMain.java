@@ -12,6 +12,8 @@ import com.badlogic.gdx.scenes.scene2d.Event;
 import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
@@ -243,16 +245,17 @@ public class LevelScreenMain extends MenuScreen {
         uiModalWindowTable.add(recordsLabelWindow).expandX().colspan(2);
         recordsLabelWindow.getColor().a = 10;
         uiModalWindowTable.row();
-        uiModalWindowTable.add(rulesGame).expandY().left().top().width(Gdx.graphics.getWidth()-200).colspan(2);
+        ScrollPane scroller = new ScrollPane(rulesGame);
+        uiModalWindowTable.add(scroller).expandY().left().top().width(Gdx.graphics.getWidth()-200).colspan(2);
         rulesGame.setWrap(true);
         rulesGame.getColor().a = 10;
         uiModalWindowTable.row();
-        uiModalWindowTable.add(menuButton).center().expandX().uniform();
+        uiModalWindowTable.add(menuButton).center().expandX();
         menuButton.getColor().a = 10;
-        menuButton.getLabel().setFontScale(3, 2);
-        uiModalWindowTable.add(nextButton).center().expandX().uniform();
+        //menuButton.getLabel().setFontScale(2, 2);
+        uiModalWindowTable.add(nextButton).center().expandX();
         nextButton.getColor().a = 10;
-        nextButton.getLabel().setFontScale(3, 2);
+        //nextButton.getLabel().setFontScale(2, 2);
     }
     // Метод, который создает модальное окно перед началом уровня(конец)
 
