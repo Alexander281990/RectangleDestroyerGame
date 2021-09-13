@@ -157,7 +157,7 @@ public class LevelScreen_1 extends LevelScreenMain {
         super.initialize();
 
         showTime(280); // инициализируем метод отображение игрового времени
-        background.loadTexture("background/fon_level.png");
+        //background.loadTexture("background/fon_level.png");
         quantityBricks(100, 7);
         showModalScreen(1, recordsLevel_1, "rules_level_screen/level_screen_1_ru.txt",
                 "rules_level_screen/level_screen_1.txt");

@@ -1,6 +1,7 @@
 package alex.iv.rect.destroy.controller;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Graphics;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
@@ -63,6 +64,22 @@ public class MenuScreen extends StartScreen {
     public MenuScreen(IActivityRequestHandler requestHandler) {
         this.requestHandler = requestHandler;
     }
+
+    // метод, который возвращает размер экрана использующегося устройства в дюймах
+    public static double getScreenSizeInches() {
+        // Use the primary monitor as baseline
+        // It would also be possible to get the monitor where the window is displayed
+        Graphics.Monitor primary = Gdx.graphics.getPrimaryMonitor();
+        Graphics.DisplayMode displayMode = Gdx.graphics.getDisplayMode(primary);
+
+        float dpi = 160 * Gdx.graphics.getDensity();
+        float widthInches = displayMode.width / dpi;
+        float heightInches = displayMode.height / dpi;
+
+        //Use the pythagorean theorem to get the diagonal screen size
+        return Math.sqrt(Math.pow(widthInches, 2) + Math.pow(heightInches, 2));
+    }
+    // метод, который возвращает размер экрана использующегося устройства в дюймах(конец)
 
     @Override
     public void initialize() {

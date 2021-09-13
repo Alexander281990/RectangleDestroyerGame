@@ -240,12 +240,39 @@ public class LevelScreenMain extends MenuScreen {
         uiModalWindowTable.getColor().a = 0.5f;
         //uiModalWindowTable.setDebug(true);
         uiModalWindowTable.add(numberLevel).expandX().colspan(2);
+        if (getScreenSizeInches() <= 5.7) {
+            numberLevel.setFontScale(1f, 1f);
+        } else if (getScreenSizeInches() > 5.7 && getScreenSizeInches() <= 6.1 ) {
+            numberLevel.setFontScale(0.95f, 0.95f);
+        } else if (getScreenSizeInches() > 6.1 && getScreenSizeInches() <= 7 ) {
+            numberLevel.setFontScale(0.90f, 0.90f);
+        } else if (getScreenSizeInches() > 7 && getScreenSizeInches() <= 8 ) {
+            numberLevel.setFontScale(0.85f, 0.85f);
+        }
         numberLevel.getColor().a = 10;
         uiModalWindowTable.row();
         uiModalWindowTable.add(recordsLabelWindow).expandX().colspan(2);
+        if (getScreenSizeInches() <= 5.7) {
+            recordsLabelWindow.setFontScale(1f, 1f);
+        } else if (getScreenSizeInches() > 5.7 && getScreenSizeInches() <= 6.1 ) {
+            recordsLabelWindow.setFontScale(0.95f, 0.95f);
+        } else if (getScreenSizeInches() > 6.1 && getScreenSizeInches() <= 7 ) {
+            recordsLabelWindow.setFontScale(0.90f, 0.90f);
+        } else if (getScreenSizeInches() > 7 && getScreenSizeInches() <= 8 ) {
+            recordsLabelWindow.setFontScale(0.85f, 0.85f);
+        }
         recordsLabelWindow.getColor().a = 10;
         uiModalWindowTable.row();
         ScrollPane scroller = new ScrollPane(rulesGame);
+        if (getScreenSizeInches() <= 5.7) {
+            rulesGame.setFontScale(1f, 1f);
+        } else if (getScreenSizeInches() > 5.7 && getScreenSizeInches() <= 6.1 ) {
+            rulesGame.setFontScale(0.95f, 0.95f);
+        } else if (getScreenSizeInches() > 6.1 && getScreenSizeInches() <= 7 ) {
+            rulesGame.setFontScale(0.90f, 0.90f);
+        } else if (getScreenSizeInches() > 7 && getScreenSizeInches() <= 8 ) {
+            rulesGame.setFontScale(0.85f, 0.85f);
+        }
         uiModalWindowTable.add(scroller).expandY().left().top().width(Gdx.graphics.getWidth()-200).colspan(2);
         rulesGame.setWrap(true);
         rulesGame.getColor().a = 10;
