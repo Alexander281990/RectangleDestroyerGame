@@ -83,7 +83,7 @@ public class BaseGame extends Game {
         labelStyleLevel = new Label.LabelStyle();
         labelStyleLevel.font = customFontStartScreen;
         textButtonStyleStartScreen = new TextButton.TextButtonStyle();
-        Texture buttonTexStartScreen = new Texture(Gdx.files.internal("button.png"));
+        Texture buttonTexStartScreen = new Texture(Gdx.files.internal("background/button_green.png"));
         NinePatch buttonPatchStartScreen = new NinePatch(buttonTexStartScreen, 24, 24, 24, 24);
         textButtonStyleStartScreen.up = new NinePatchDrawable(buttonPatchStartScreen);
         textButtonStyleStartScreen.font = customFontStartScreen;

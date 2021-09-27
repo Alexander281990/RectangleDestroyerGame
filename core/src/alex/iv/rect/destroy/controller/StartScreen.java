@@ -3,17 +3,25 @@ package alex.iv.rect.destroy.controller;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Event;
 import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+
+import alex.iv.rect.destroy.actors.BallsIcon;
+import alex.iv.rect.destroy.actors.Brick;
+import alex.iv.rect.destroy.actors.BrickHard;
+
+import static alex.iv.rect.destroy.controller.BaseActor.getScreenSizeInches;
 
 public class StartScreen extends BaseScreen {
 
     private Sound clickButton;
     private static Preferences pref;
     static int attainment = 0;
-    //int countGreenLevelScreen = 0;
     static int attainmentColorLevel_1 = 0;
     static int attainmentColorLevel_2 = 0;
     static int attainmentColorLevel_3 = 0;
@@ -87,7 +95,96 @@ public class StartScreen extends BaseScreen {
     @Override
     public void initialize() {
 
-        //countGreenLevelScreen = 0;
+        BaseActor.setWorldBounds(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+
+        Brick tempBrick = new Brick(0,0,mainStage);
+        tempBrick.remove();
+        int totalRows = 13;
+        int totalCols = 10;
+        float marginX = (Gdx.graphics.getWidth() - totalCols * tempBrick.getBrickWidth()) / 2;
+        float marginY = (Gdx.graphics.getHeight() - totalRows * tempBrick.getBrickHeight()) - 100;
+        for (int rowNum = 0; rowNum < totalRows; rowNum++) {
+            for (int colNum = 0; colNum < totalCols; colNum++) {
+                float x = marginX + tempBrick.getBrickWidth()	* colNum;
+                float y = marginY + tempBrick.getBrickHeight() * rowNum;
+                Brick brick = new Brick( x, y, mainStage);
+                brick.setTimeBrick(3);
+                if (rowNum == 4 || rowNum == 5 || rowNum == 6 ||  rowNum == 7 || rowNum == 8) {
+                    brick.remove();
+                }
+                if (rowNum == 0 && colNum == 0 || rowNum == 0 && colNum == 1 || rowNum == 0 && colNum == 3 || rowNum == 0 && colNum == 6 ||
+                        rowNum == 0 && colNum == 8 || rowNum == 0 && colNum == 9 || rowNum == 1 && colNum == 1 || rowNum == 1 && colNum == 3 ||
+                        rowNum == 1 && colNum == 6 || rowNum == 1 && colNum == 8 || rowNum == 11 && colNum == 1 || rowNum == 11 && colNum == 3 ||
+                        rowNum == 11 && colNum == 6 || rowNum == 11 && colNum == 8 || rowNum == 12 && colNum == 0 || rowNum == 12 && colNum == 1 ||
+                        rowNum == 12 && colNum == 3 || rowNum == 12 && colNum == 6 || rowNum == 12 && colNum == 8 || rowNum == 12 && colNum == 9 ||
+                        rowNum == 2 && colNum == 0 || rowNum == 2 && colNum == 2 || rowNum == 2 && colNum == 4 || rowNum == 2 && colNum == 5 ||
+                        rowNum == 2 && colNum == 7 || rowNum == 2 && colNum == 9 || rowNum == 10 && colNum == 0 || rowNum == 10 && colNum == 2 ||
+                        rowNum == 10 && colNum == 4 || rowNum == 10 && colNum == 5 || rowNum == 10 && colNum == 7 || rowNum == 10 && colNum == 9 ||
+                        rowNum == 3 && colNum == 1 || rowNum == 3 && colNum == 3 || rowNum == 3 && colNum == 6 || rowNum == 3 && colNum == 8 ||
+                        rowNum == 9 && colNum == 1 || rowNum == 9 && colNum == 3 || rowNum == 9 && colNum == 6 || rowNum == 9 && colNum == 8) {
+                    brick.remove();
+                }
+                if (rowNum == 0 && colNum == 2 || rowNum == 0 && colNum == 4 || rowNum == 0 && colNum == 5 || rowNum == 0 && colNum == 7 ||
+                        rowNum == 12 && colNum == 2 || rowNum == 12 && colNum == 4 || rowNum == 12 && colNum == 5 || rowNum == 12 && colNum == 7) {
+                    brick.setColor(Color.RED);
+                    brick.setBrickMoving(false);
+                }
+                if (rowNum == 2 && colNum == 1 || rowNum == 2 && colNum == 3 || rowNum == 2 && colNum == 6 || rowNum == 2 && colNum == 8) {
+                    brick.setColor(Color.BLUE);
+                }
+                if (rowNum == 10 && colNum == 1 || rowNum == 10 && colNum == 3 || rowNum == 10 && colNum == 6 || rowNum == 10 && colNum == 8) {
+                    brick.setColor(Color.GREEN);
+                }
+                if (rowNum == 1 && colNum == 0 || rowNum == 1 && colNum == 2 || rowNum == 1 && colNum == 4 || rowNum == 1 && colNum == 5 ||
+                        rowNum == 1 && colNum == 7 || rowNum == 1 && colNum == 9 || rowNum == 3 && colNum == 0 || rowNum == 3 && colNum == 2 ||
+                        rowNum == 3 && colNum == 4 || rowNum == 3 && colNum == 5 || rowNum == 3 && colNum == 7 || rowNum == 3 && colNum == 9) {
+                    brick.setColor(Color.ORANGE);
+                    brick.setBrickFlash(false, false); // инициализация метода смены цветов кирпича
+                }
+                if (rowNum == 11 && colNum == 0 || rowNum == 11 && colNum == 2 || rowNum == 11 && colNum == 4 || rowNum == 11 && colNum == 5 ||
+                        rowNum == 11 && colNum == 7 || rowNum == 11 && colNum == 9 || rowNum == 9 && colNum == 0 || rowNum == 9 && colNum == 2 ||
+                        rowNum == 9 && colNum == 4 || rowNum == 9 && colNum == 5 || rowNum == 9 && colNum == 7 || rowNum == 9 && colNum == 9) {
+                    brick.setColor(Color.YELLOW);
+                    brick.setBrickFlash(false); // инициализация метода смены цветов кирпича
+                }
+                if (rowNum == 6){
+                    Action spin_1 = Actions.rotateBy( 360, 2 ); // заставляет вращаться кирпич на 360 градусов за 2 секунды
+                    Action spinForever_1 = Actions.forever( spin_1 ); // повторяет цикл вращения бесконечно
+                    BrickHard brickHard_1 = new BrickHard(x, y, mainStage, false);
+                    brickHard_1.addAction(spinForever_1); // добавляет бесконечное вращение обькту brickHard
+                }
+
+
+            }
+        }
+
+        BallsIcon ballIconCrazy = new BallsIcon(0, 0, mainStage);
+        ballIconCrazy.loadTexture("crazy_ball_origin_size.png");
+        ballIconCrazy.setSize(ballIconCrazy.getWidth()/3.5f, ballIconCrazy.getHeight()/3.5f);
+        if (getScreenSizeInches() <= 5.7) {
+            ballIconCrazy.setSize(ballIconCrazy.getWidth()/3.5f, ballIconCrazy.getHeight()/3.5f);
+        } else if (getScreenSizeInches() > 5.7 && getScreenSizeInches() <= 6.1 ) {
+            ballIconCrazy.setSize(ballIconCrazy.getWidth()/3, ballIconCrazy.getHeight()/3);
+        } else if (getScreenSizeInches() > 6.1 && getScreenSizeInches() <= 7 ) {
+            ballIconCrazy.setSize(ballIconCrazy.getWidth()/2.5f, ballIconCrazy.getHeight()/2.5f);
+        } else if (getScreenSizeInches() > 7 && getScreenSizeInches() <= 8 ) { // планшет 1280/800
+            ballIconCrazy.setSize(ballIconCrazy.getWidth()/2, ballIconCrazy.getHeight()/2);
+        }
+        ballIconCrazy.setPosition(Gdx.graphics.getWidth() - ballIconCrazy.getWidth(), 0);
+
+        BallsIcon ballIconFunny = new BallsIcon(0, 0, mainStage);
+        ballIconFunny.loadTexture("fun_ball.png");
+        ballIconFunny.setSize(ballIconFunny.getWidth()/3.5f, ballIconFunny.getHeight()/3.5f);
+        if (getScreenSizeInches() <= 5.7) {
+            ballIconFunny.setSize(ballIconFunny.getWidth()/3.5f, ballIconFunny.getHeight()/3.5f);
+        } else if (getScreenSizeInches() > 5.7 && getScreenSizeInches() <= 6.1 ) {
+            ballIconFunny.setSize(ballIconFunny.getWidth()/3, ballIconFunny.getHeight()/3);
+        } else if (getScreenSizeInches() > 6.1 && getScreenSizeInches() <= 7 ) {
+            ballIconFunny.setSize(ballIconFunny.getWidth()/2.5f, ballIconFunny.getHeight()/2.5f);
+        } else if (getScreenSizeInches() > 7 && getScreenSizeInches() <= 8 ) { // планшет 1280/800
+            ballIconFunny.setSize(ballIconFunny.getWidth()/2, ballIconFunny.getHeight()/2);
+        }
+        ballIconFunny.setPosition(0, 0);
 
         clickButton = Gdx.audio.newSound(Gdx.files.internal("click_button.wav"));
         pref = Gdx.app.getPreferences("Preferences");// инициализация Preferences для сохранения лучшего результата в телефоне
@@ -131,7 +228,7 @@ public class StartScreen extends BaseScreen {
                         recordsLevel_28 = 0;
                         recordsLevel_29 = 0;
                         recordsLevel_30 = 0;
-                        attainment = 29;
+                        attainment = 0;
                         attainmentColorLevel_1 = 0;
                         attainmentColorLevel_2 = 0;
                         attainmentColorLevel_3 = 0;
@@ -252,7 +349,9 @@ public class StartScreen extends BaseScreen {
 
         if (attainment != 0) {
             uiTable.add(startButton);
-            uiTable.add().size(250, startButton.getHeight());
+            uiTable.row();
+            uiTable.add().size(startButton.getWidth(), startButton.getHeight()/3);
+            uiTable.row();
             uiTable.add(continueButton);
         } else {
             uiTable.add(startButton);
