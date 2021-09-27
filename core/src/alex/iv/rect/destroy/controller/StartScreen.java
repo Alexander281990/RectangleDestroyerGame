@@ -93,7 +93,7 @@ public class StartScreen extends BaseScreen {
         pref = Gdx.app.getPreferences("Preferences");// инициализация Preferences для сохранения лучшего результата в телефоне
         attainment = pref.getInteger("attainmentMemory");
         // инициализация кнопок New game и continue
-        TextButton startButton = new TextButton( "New game", BaseGame.textButtonStyle );
+        TextButton startButton = new TextButton( "New game", BaseGame.textButtonStyleStartScreen );
         startButton.addListener(
                 new EventListener() {
                     @Override
@@ -231,7 +231,7 @@ public class StartScreen extends BaseScreen {
                 }
         );
 
-        TextButton continueButton = new TextButton( "Continue", BaseGame.textButtonStyle );
+        TextButton continueButton = new TextButton( "Continue", BaseGame.textButtonStyleStartScreen );
         continueButton.addListener(
                 new EventListener() {
                     @Override

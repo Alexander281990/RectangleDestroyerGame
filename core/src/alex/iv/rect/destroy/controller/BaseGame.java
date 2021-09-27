@@ -20,6 +20,7 @@ public class BaseGame extends Game {
     public static Label.LabelStyle labelStyleLevel;
     public static Label.LabelStyle labelStylePaddleStop;
     public static TextButton.TextButtonStyle textButtonStyle;
+    public static TextButton.TextButtonStyle textButtonStyleStartScreen;
     public static TextButton.TextButtonStyle textButtonStyleLevel;
     public static TextButton.TextButtonStyle textButtonStylePaddleStop;
 
@@ -67,6 +68,27 @@ public class BaseGame extends Game {
         textButtonStyle.font = customFont;
         textButtonStyle.fontColor = Color.GRAY;
         ////////////////////////////
+        InputMultiplexer startScreen = new InputMultiplexer();
+        Gdx.input.setInputProcessor(startScreen);
+        FreeTypeFontGenerator fontGeneratorStartScreen = new FreeTypeFontGenerator(Gdx.files.internal("OpenSans.ttf"));
+        FreeTypeFontGenerator.FreeTypeFontParameter fontParametersStartScreen = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        fontParametersStartScreen.size = 36;
+        fontParametersStartScreen.color = Color.WHITE;
+        fontParametersStartScreen.borderWidth = 2.0F;
+        fontParametersStartScreen.borderColor = Color.BLACK;
+        fontParametersStartScreen.borderStraight = true;
+        fontParametersStartScreen.minFilter = Texture.TextureFilter.Linear;
+        fontParametersStartScreen.magFilter = Texture.TextureFilter.Linear;
+        BitmapFont customFontStartScreen = fontGeneratorStartScreen.generateFont(fontParametersStartScreen);
+        labelStyleLevel = new Label.LabelStyle();
+        labelStyleLevel.font = customFontStartScreen;
+        textButtonStyleStartScreen = new TextButton.TextButtonStyle();
+        Texture buttonTexStartScreen = new Texture(Gdx.files.internal("button.png"));
+        NinePatch buttonPatchStartScreen = new NinePatch(buttonTexStartScreen, 24, 24, 24, 24);
+        textButtonStyleStartScreen.up = new NinePatchDrawable(buttonPatchStartScreen);
+        textButtonStyleStartScreen.font = customFontStartScreen;
+        textButtonStyleStartScreen.fontColor = Color.GRAY;
+        ///////////////////////////////////////
         InputMultiplexer imm = new InputMultiplexer();
         Gdx.input.setInputProcessor(imm);
         FreeTypeFontGenerator fontGeneratorLevel = new FreeTypeFontGenerator(Gdx.files.internal("OpenSans.ttf"));
