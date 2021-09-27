@@ -1,5 +1,6 @@
 package alex.iv.rect.destroy.actors;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -15,8 +16,8 @@ public class BrickHard extends BaseActor {
     private float sec;
     private boolean rotateBrick = true;
 
-    private float brickWidth = LevelScreenMain.getWindowPlayWidth() /11;
-    private float brickHeight = LevelScreenMain.getWindowPlayHeight() / 60;
+    private float brickWidth = Gdx.graphics.getWidth() /11f;
+    private float brickHeight = Gdx.graphics.getHeight() / 60f;
     private boolean brickHardMoving = true;
 
     public BrickHard(float x, float y, Stage s, boolean b) {

@@ -17,6 +17,7 @@ import alex.iv.rect.destroy.actors.BrickHard;
 
 import static alex.iv.rect.destroy.controller.BaseActor.getScreenSizeInches;
 
+
 public class StartScreen extends BaseScreen {
 
     private Sound clickButton;
@@ -153,38 +154,34 @@ public class StartScreen extends BaseScreen {
                     BrickHard brickHard_1 = new BrickHard(x, y, mainStage, false);
                     brickHard_1.addAction(spinForever_1); // добавляет бесконечное вращение обькту brickHard
                 }
-
-
             }
         }
 
         BallsIcon ballIconCrazy = new BallsIcon(0, 0, mainStage);
         ballIconCrazy.loadTexture("crazy_ball_origin_size.png");
-        ballIconCrazy.setSize(ballIconCrazy.getWidth()/3.5f, ballIconCrazy.getHeight()/3.5f);
         if (getScreenSizeInches() <= 5.7) {
             ballIconCrazy.setSize(ballIconCrazy.getWidth()/3.5f, ballIconCrazy.getHeight()/3.5f);
         } else if (getScreenSizeInches() > 5.7 && getScreenSizeInches() <= 6.1 ) {
-            ballIconCrazy.setSize(ballIconCrazy.getWidth()/3, ballIconCrazy.getHeight()/3);
+            ballIconCrazy.setSize(ballIconCrazy.getWidth()/4, ballIconCrazy.getHeight()/4);
         } else if (getScreenSizeInches() > 6.1 && getScreenSizeInches() <= 7 ) {
-            ballIconCrazy.setSize(ballIconCrazy.getWidth()/2.5f, ballIconCrazy.getHeight()/2.5f);
+            ballIconCrazy.setSize(ballIconCrazy.getWidth()/4.5f, ballIconCrazy.getHeight()/4.5f);
         } else if (getScreenSizeInches() > 7 && getScreenSizeInches() <= 8 ) { // планшет 1280/800
-            ballIconCrazy.setSize(ballIconCrazy.getWidth()/2, ballIconCrazy.getHeight()/2);
+            ballIconCrazy.setSize(ballIconCrazy.getWidth()/5, ballIconCrazy.getHeight()/5);
         }
-        ballIconCrazy.setPosition(Gdx.graphics.getWidth() - ballIconCrazy.getWidth(), 0);
+        ballIconCrazy.setPosition(Gdx.graphics.getWidth() - ballIconCrazy.getWidth() - 25, 25);
 
         BallsIcon ballIconFunny = new BallsIcon(0, 0, mainStage);
         ballIconFunny.loadTexture("fun_ball.png");
-        ballIconFunny.setSize(ballIconFunny.getWidth()/3.5f, ballIconFunny.getHeight()/3.5f);
         if (getScreenSizeInches() <= 5.7) {
-            ballIconFunny.setSize(ballIconFunny.getWidth()/3.5f, ballIconFunny.getHeight()/3.5f);
+            ballIconFunny.setSize(ballIconFunny.getWidth()/4.55f, ballIconFunny.getHeight()/4.55f);
         } else if (getScreenSizeInches() > 5.7 && getScreenSizeInches() <= 6.1 ) {
-            ballIconFunny.setSize(ballIconFunny.getWidth()/3, ballIconFunny.getHeight()/3);
+            ballIconFunny.setSize(ballIconFunny.getWidth()/5.2f, ballIconFunny.getHeight()/5.2f);
         } else if (getScreenSizeInches() > 6.1 && getScreenSizeInches() <= 7 ) {
-            ballIconFunny.setSize(ballIconFunny.getWidth()/2.5f, ballIconFunny.getHeight()/2.5f);
+            ballIconFunny.setSize(ballIconFunny.getWidth()/5.85f, ballIconFunny.getHeight()/5.85f);
         } else if (getScreenSizeInches() > 7 && getScreenSizeInches() <= 8 ) { // планшет 1280/800
-            ballIconFunny.setSize(ballIconFunny.getWidth()/2, ballIconFunny.getHeight()/2);
+            ballIconFunny.setSize(ballIconFunny.getWidth()/6.5f, ballIconFunny.getHeight()/6.5f);
         }
-        ballIconFunny.setPosition(0, 0);
+        ballIconFunny.setPosition(ballIconFunny.getWidth()/3, ballIconFunny.getHeight());
 
         clickButton = Gdx.audio.newSound(Gdx.files.internal("click_button.wav"));
         pref = Gdx.app.getPreferences("Preferences");// инициализация Preferences для сохранения лучшего результата в телефоне
@@ -228,7 +225,7 @@ public class StartScreen extends BaseScreen {
                         recordsLevel_28 = 0;
                         recordsLevel_29 = 0;
                         recordsLevel_30 = 0;
-                        attainment = 0;
+                        attainment = 1;
                         attainmentColorLevel_1 = 0;
                         attainmentColorLevel_2 = 0;
                         attainmentColorLevel_3 = 0;
