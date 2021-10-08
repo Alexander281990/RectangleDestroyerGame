@@ -10,6 +10,10 @@ public class Item extends BaseActor {
     public enum Type { PADDLE_EXPAND, PADDLE_SHRINK, BALL_SPEED_UP, BALL_SPEED_DOWN, BALL_TWO, PADDLE_STOP}
     private Type type;
 
+    Item(float x, float y, Stage s, boolean t) {
+        super(x,y,s);
+    }
+
     public Item(float x, float y, Stage s) {
         super(x,y,s);
         setRandomType();

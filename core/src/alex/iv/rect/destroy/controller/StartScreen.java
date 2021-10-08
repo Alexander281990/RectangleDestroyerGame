@@ -10,12 +10,12 @@ import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.utils.Align;
 
+import alex.iv.rect.destroy.actors.Background;
 import alex.iv.rect.destroy.actors.BallsIcon;
 import alex.iv.rect.destroy.actors.Brick;
 import alex.iv.rect.destroy.actors.BrickHard;
-
-import static alex.iv.rect.destroy.controller.BaseActor.getScreenSizeInches;
 
 
 public class StartScreen extends BaseScreen {
@@ -96,6 +96,26 @@ public class StartScreen extends BaseScreen {
     @Override
     public void initialize() {
 
+        new Background(0, 0, mainStage);
+        Item item_1 = new Item(0, 0, mainStage, true);
+        item_1.loadTexture("items/live.png");
+        Item item_2 = new Item(0, 0, mainStage, true);
+        item_2.loadTexture("items/paddle-shrink.png");
+        Item item_3 = new Item(0, 0, mainStage, true);
+        item_3.loadTexture("items/paddle-stop.png");
+        Item item_4 = new Item(0, 0, mainStage, true);
+        item_4.loadTexture("items/increase-time.png");
+        Item item_5 = new Item(0, 0, mainStage, true);
+        item_5.loadTexture("items/ball-two.png");
+        BallsIcon ballIconCrazy = new BallsIcon(0, 0, mainStage);
+        ballIconCrazy.loadTexture("crazy_ball_origin_size.png");
+        BallsIcon ballIconFunny = new BallsIcon(0, 0, mainStage);
+        ballIconFunny.loadTexture("fun_ball.png");
+        BaseActor paddleTransformation = new BaseActor(0, 0, mainStage);
+        paddleTransformation.loadTexture("paddle_transformation.png");
+        BaseActor quickBall = new BaseActor(0, 0, mainStage);
+        quickBall.loadTexture("quick_ball.png");
+
         BaseActor.setWorldBounds(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
         Brick tempBrick = new Brick(0,0,mainStage);
@@ -157,37 +177,12 @@ public class StartScreen extends BaseScreen {
             }
         }
 
-        BallsIcon ballIconCrazy = new BallsIcon(0, 0, mainStage);
-        ballIconCrazy.loadTexture("crazy_ball_origin_size.png");
-        if (getScreenSizeInches() <= 5.7) {
-            ballIconCrazy.setSize(ballIconCrazy.getWidth()/3.5f, ballIconCrazy.getHeight()/3.5f);
-        } else if (getScreenSizeInches() > 5.7 && getScreenSizeInches() <= 6.1 ) {
-            ballIconCrazy.setSize(ballIconCrazy.getWidth()/4, ballIconCrazy.getHeight()/4);
-        } else if (getScreenSizeInches() > 6.1 && getScreenSizeInches() <= 7 ) {
-            ballIconCrazy.setSize(ballIconCrazy.getWidth()/4.5f, ballIconCrazy.getHeight()/4.5f);
-        } else if (getScreenSizeInches() > 7 && getScreenSizeInches() <= 8 ) { // планшет 1280/800
-            ballIconCrazy.setSize(ballIconCrazy.getWidth()/5, ballIconCrazy.getHeight()/5);
-        }
-        ballIconCrazy.setPosition(Gdx.graphics.getWidth() - ballIconCrazy.getWidth() - 25, 25);
-
-        BallsIcon ballIconFunny = new BallsIcon(0, 0, mainStage);
-        ballIconFunny.loadTexture("fun_ball.png");
-        if (getScreenSizeInches() <= 5.7) {
-            ballIconFunny.setSize(ballIconFunny.getWidth()/4.55f, ballIconFunny.getHeight()/4.55f);
-        } else if (getScreenSizeInches() > 5.7 && getScreenSizeInches() <= 6.1 ) {
-            ballIconFunny.setSize(ballIconFunny.getWidth()/5.2f, ballIconFunny.getHeight()/5.2f);
-        } else if (getScreenSizeInches() > 6.1 && getScreenSizeInches() <= 7 ) {
-            ballIconFunny.setSize(ballIconFunny.getWidth()/5.85f, ballIconFunny.getHeight()/5.85f);
-        } else if (getScreenSizeInches() > 7 && getScreenSizeInches() <= 8 ) { // планшет 1280/800
-            ballIconFunny.setSize(ballIconFunny.getWidth()/6.5f, ballIconFunny.getHeight()/6.5f);
-        }
-        ballIconFunny.setPosition(ballIconFunny.getWidth()/3, ballIconFunny.getHeight());
-
         clickButton = Gdx.audio.newSound(Gdx.files.internal("click_button.wav"));
         pref = Gdx.app.getPreferences("Preferences");// инициализация Preferences для сохранения лучшего результата в телефоне
         attainment = pref.getInteger("attainmentMemory");
         // инициализация кнопок New game и continue
         TextButton startButton = new TextButton( "New game", BaseGame.textButtonStyleStartScreen );
+        startButton.setSize(Gdx.graphics.getWidth()/2f, Gdx.graphics.getHeight()/15f);
         startButton.addListener(
                 new EventListener() {
                     @Override
@@ -326,6 +321,7 @@ public class StartScreen extends BaseScreen {
         );
 
         TextButton continueButton = new TextButton( "Continue", BaseGame.textButtonStyleStartScreen );
+        continueButton.setSize(Gdx.graphics.getWidth()/2f, Gdx.graphics.getHeight()/15f);
         continueButton.addListener(
                 new EventListener() {
                     @Override
@@ -345,13 +341,107 @@ public class StartScreen extends BaseScreen {
         // инициализация кнопок New game и continue(конец)
 
         if (attainment != 0) {
-            uiTable.add(startButton);
-            uiTable.row();
-            uiTable.add().size(startButton.getWidth(), startButton.getHeight()/3);
-            uiTable.row();
-            uiTable.add(continueButton);
+            uiStage.addActor(startButton);
+            startButton.setPosition(Gdx.graphics.getWidth()/2f-startButton.getWidth()/2f,
+                    (Gdx.graphics.getHeight() - (Gdx.graphics.getHeight()-marginY)) - startButton.getHeight()*1.5f);
+            /////
+            uiStage.addActor(continueButton);
+            continueButton.setPosition(Gdx.graphics.getWidth()/2f-startButton.getWidth()/2f,
+                    startButton.getY() - continueButton.getHeight()*1.2f);
+            /////
+            uiStage.addActor(item_1);
+            item_1.setSize(startButton.getHeight(), startButton.getHeight());
+            item_1.setRotation(15f);
+            item_1.setPosition(startButton.getX()/4f, startButton.getY()+20f);
+            /////
+            uiStage.addActor(item_2);
+            item_2.setSize(startButton.getHeight()/1.2f, startButton.getHeight()/1.2f);
+            item_2.setPosition(Gdx.graphics.getWidth()-startButton.getX()/2f - item_2.getWidth()/2f,
+                    continueButton.getY()+continueButton.getHeight());
+            /////
+            uiStage.addActor(ballIconCrazy);
+            ballIconCrazy.setSize(continueButton.getHeight()*3, continueButton.getHeight()*3);
+            ballIconCrazy.setPosition(Gdx.graphics.getWidth() - ballIconCrazy.getWidth() - 25, 25);
+            /////
+            uiStage.addActor(ballIconFunny);
+            ballIconFunny.setSize(continueButton.getHeight()*2, continueButton.getHeight()*2);
+            ballIconFunny.setPosition(ballIconFunny.getWidth()/3, ballIconCrazy.getY()+ballIconCrazy.getHeight());
+            /////
+            uiStage.addActor(item_3);
+            item_3.setSize(startButton.getHeight()/1.5f, startButton.getHeight()/1.5f);
+            item_3.setPosition(continueButton.getX() - item_3.getWidth(),
+                    continueButton.getY() - item_3.getHeight() - item_3.getHeight()/2);
+            uiStage.addActor(item_4);
+            item_4.setSize(startButton.getHeight(), startButton.getHeight());
+            item_4.setRotation(-5f);
+            item_4.setPosition(continueButton.getX() + (item_4.getWidth()/2), continueButton.getY() - item_4.getHeight()*2);
+            /////
+            uiStage.addActor(item_5);
+            item_5.setSize(startButton.getHeight()/1.3f, startButton.getHeight()/1.3f);
+            item_5.setPosition(Gdx.graphics.getWidth() - continueButton.getX(), item_4.getY()+item_4.getHeight()-item_5.getHeight());
+            /////
+            uiStage.addActor(paddleTransformation);
+            paddleTransformation.setSize(startButton.getWidth(), startButton.getHeight());
+            paddleTransformation.setOrigin(Align.center);
+            paddleTransformation.setRotation(5);
+            paddleTransformation.setPosition(Gdx.graphics.getWidth()- paddleTransformation.getWidth() - item_3.getWidth(),
+                    ballIconFunny.getY() + paddleTransformation.getHeight());
+            /////
+            uiStage.addActor(quickBall);
+            quickBall.setSize(item_1.getWidth()*1.2f, item_1.getHeight()*1.2f);
+            quickBall.setOrigin(Align.center);
+            quickBall.setRotation(68);
+            quickBall.setPosition(paddleTransformation.getX() + paddleTransformation.getWidth()/2 - quickBall.getWidth(),
+                    paddleTransformation.getY() + paddleTransformation.getHeight());
         } else {
-            uiTable.add(startButton);
+            uiStage.addActor(startButton);
+            startButton.setPosition(Gdx.graphics.getWidth()/2f-startButton.getWidth()/2f,
+                    (Gdx.graphics.getHeight() - (Gdx.graphics.getHeight()-marginY)) - startButton.getHeight()*2f);
+            /////
+            uiStage.addActor(item_1);
+            item_1.setSize(startButton.getHeight(), startButton.getHeight());
+            item_1.setRotation(15f);
+            item_1.setPosition(startButton.getX()/4f, startButton.getY()+20f);
+            /////
+            uiStage.addActor(item_2);
+            item_2.setSize(startButton.getHeight()/1.2f, startButton.getHeight()/1.2f);
+            item_2.setPosition(Gdx.graphics.getWidth()-startButton.getX()/2f - item_2.getWidth()/2f,
+                    startButton.getY()-startButton.getHeight()/1.5f);
+            /////
+            uiStage.addActor(ballIconCrazy);
+            ballIconCrazy.setSize(startButton.getHeight()*3, startButton.getHeight()*3);
+            ballIconCrazy.setPosition(Gdx.graphics.getWidth() - ballIconCrazy.getWidth() - 25, 25);
+            /////
+            uiStage.addActor(ballIconFunny);
+            ballIconFunny.setSize(startButton.getHeight()*2, startButton.getHeight()*2);
+            ballIconFunny.setPosition(ballIconFunny.getWidth()/3, ballIconCrazy.getY()+ballIconCrazy.getHeight());
+            /////
+            uiStage.addActor(item_3);
+            item_3.setSize(startButton.getHeight()/1.5f, startButton.getHeight()/1.5f);
+            item_3.setPosition(startButton.getX() - item_3.getWidth(),
+                    startButton.getY() - item_3.getHeight() - item_3.getHeight()*2);
+            uiStage.addActor(item_4);
+            item_4.setSize(startButton.getHeight(), startButton.getHeight());
+            item_4.setRotation(-5f);
+            item_4.setPosition(startButton.getX() + (item_4.getWidth()/2), item_3.getY() - item_4.getHeight());
+            /////
+            uiStage.addActor(item_5);
+            item_5.setSize(startButton.getHeight()/1.3f, startButton.getHeight()/1.3f);
+            item_5.setPosition(Gdx.graphics.getWidth() - startButton.getX(), item_4.getY()+item_4.getHeight()-item_5.getHeight());
+            /////
+            uiStage.addActor(paddleTransformation);
+            paddleTransformation.setSize(startButton.getWidth(), startButton.getHeight());
+            paddleTransformation.setOrigin(Align.center);
+            paddleTransformation.setRotation(5);
+            paddleTransformation.setPosition(Gdx.graphics.getWidth()- paddleTransformation.getWidth() - item_3.getWidth(),
+                    ballIconFunny.getY() + paddleTransformation.getHeight());
+            /////
+            uiStage.addActor(quickBall);
+            quickBall.setSize(item_1.getWidth()*1.2f, item_1.getHeight()*1.2f);
+            quickBall.setOrigin(Align.center);
+            quickBall.setRotation(68);
+            quickBall.setPosition(paddleTransformation.getX() + paddleTransformation.getWidth()/2 - quickBall.getWidth(),
+                    paddleTransformation.getY() + paddleTransformation.getHeight());
         }
 
         //Gdx.app.log("MyTag", String.valueOf(attainment));
