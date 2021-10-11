@@ -27,9 +27,9 @@ public class Ball extends BaseActor {
         } else if (getScreenSizeInches() > 6.1 && getScreenSizeInches() <= 7 ) {
             setSpeed(480);
         } else if (getScreenSizeInches() > 7 && getScreenSizeInches() <= 8 ) {
-            setSpeed(350);
+            setSpeed(400);
         }
-        //setMaxSpeed(1500);
+        setMaxSpeed(1300);
         setMotionAngle(90);
         setBoundaryPolygon(12);
         setPaused(true);
@@ -50,7 +50,7 @@ public class Ball extends BaseActor {
         } else if (getScreenSizeInches() > 6.1 && getScreenSizeInches() <= 7 ) {
             setSpeed(480);
         } else if (getScreenSizeInches() > 7 && getScreenSizeInches() <= 8 ) {
-            setSpeed(350);
+            setSpeed(400);
         }
         setMotionAngle(90);
         setBoundaryPolygon(12);

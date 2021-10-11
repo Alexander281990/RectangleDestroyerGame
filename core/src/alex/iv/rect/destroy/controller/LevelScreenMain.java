@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Event;
 import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -27,7 +28,8 @@ public class LevelScreenMain extends MenuScreen {
     protected IActivityRequestHandler requestHandler; // переменная для ссылки на метод из AndroidLauncher(showOrLoadInterstitial()) - для вызова метода, который показывает рекламу
     protected static float windowPlayWidth;
     protected static float windowPlayHeight;
-    private Wall wallHeight;
+    private Wall wallHeightLeft;
+    private Wall wallHeightRight;
     protected Wall wallWight;
     protected BaseActor background;
     protected int score; // переменная набранных очков
@@ -63,6 +65,8 @@ public class LevelScreenMain extends MenuScreen {
     private Sound itemCollectSound;
 //    private Sound itemAppearSound;
 
+    private Vector2 velocityVecBall; // Переменные для скорости
+
     // конструктор, который создает саму ссылку на метод showOrLoadInterstitial из AndroidLauncher
     public LevelScreenMain(IActivityRequestHandler requestHandler) {
         this.requestHandler = requestHandler;
@@ -82,8 +86,8 @@ public class LevelScreenMain extends MenuScreen {
         //background.setSize(windowPlayWidth, windowPlayHeight + 200);
         background.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         BaseActor.setWorldBounds(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        wallHeight = new Wall( 0,0, 20,Gdx.graphics.getHeight(), mainStage); // left wall
-        wallHeight = new Wall(Gdx.graphics.getWidth() - 20,0, 20,Gdx.graphics.getHeight(), mainStage); // right wall
+        wallHeightLeft = new Wall( 0,0, 20,Gdx.graphics.getHeight(), mainStage); // left wall
+        wallHeightRight = new Wall(Gdx.graphics.getWidth() - 20,0, 20,Gdx.graphics.getHeight(), mainStage); // right wall
         wallWight = new Wall(0,Gdx.graphics.getHeight() - 50, Gdx.graphics.getWidth(),50, mainStage); // top wall
         timerPaddleStop = 6;
         startGame = false;
@@ -300,7 +304,7 @@ public class LevelScreenMain extends MenuScreen {
         starTimer = time;
         Time = new Label("", BaseGame.labelStyleLevel);
         Time.setColor( Color.WHITE );
-        Time.setPosition(wallHeight.getWidth(), Gdx.graphics.getHeight() - wallWight.getHeight() - 30);
+        Time.setPosition(wallHeightLeft.getWidth(), Gdx.graphics.getHeight() - wallWight.getHeight() - 30);
         uiStage.addActor(Time);
         Time.setText((int)starTimer);
     }
@@ -391,6 +395,21 @@ public class LevelScreenMain extends MenuScreen {
     // когда на поле появляется несколько мячей
     protected void ballsOverlaps() {
         for (BaseActor bal : BaseActor.getList(mainStage, "alex.iv.rect.destroy.actors.Ball")) {
+            if (bal.getX() < 0) {
+                bal.setPosition(wallHeightLeft.getX()+wallHeightLeft.getWidth()+10, bal.getY());
+                bal.setMotionAngle(-bal.getMotionAngle());
+                wallBumpSound.play();
+            }
+            if (bal.getX() > Gdx.graphics.getWidth()) {
+                bal.setPosition(wallHeightRight.getX()-bal.getWidth()+10, bal.getY());
+                bal.setMotionAngle(-bal.getMotionAngle());
+                wallBumpSound.play();
+            }
+            if (bal.getY() > Gdx.graphics.getHeight()) {
+                bal.setPosition(bal.getX(), (wallWight.getY() - 5) - (bal.getHeight() + 5));
+                bal.setMotionAngle(-bal.getMotionAngle());
+                wallBumpSound.play();
+            }
             for (BaseActor wall : BaseActor.getList(mainStage, "alex.iv.rect.destroy.actors.Wall")) {
                 if (bal.overlaps(wall)) {
                     bal.bounceOff(wall); // отскакивание под углом
@@ -525,9 +544,11 @@ public class LevelScreenMain extends MenuScreen {
                     }
                 }
             }
+
+            //bal.getY() > Gdx.graphics.getHeight() && BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick") > 0
+
             // если ball вылетает за верхнюю или нижнюю границу экрана
-            if (bal.getY() < -50 && BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick") > 0 ||
-                    bal.getY() > Gdx.graphics.getHeight() && BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick") > 0) {
+            if (bal.getY() < -50 && BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick") > 0) {
                 bal.remove();
                 if (Color.rgb888(bal.getColor()) == Color.rgb888(Color.WHITE)) {
                     ball = new Ball(0,0,mainStage);
@@ -583,6 +604,13 @@ public class LevelScreenMain extends MenuScreen {
                     } else {
                         increasePaddleWight = 10;
                         paddle.setBoundaryRectangle();
+                    }
+                } else if (realItem.getType() == Item.Type.SPEED_UP) {
+                    ball.setSpeed(ball.getSpeed() + 100);
+                } else if (realItem.getType() == Item.Type.SPEED_DOWN) {
+                    ball.setSpeed(ball.getSpeed() - 100);
+                    if (ball.getSpeed() < 100) {
+                        ball.setSpeed(100);
                     }
                 } else if (realItem.getType() == Item.Type.PADDLE_SHRINK) {
                     increasePaddleWight--;

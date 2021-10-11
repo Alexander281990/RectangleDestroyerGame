@@ -7,7 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 public class Item extends BaseActor {
 
     public enum Live {LIVE}
-    public enum Type { PADDLE_EXPAND, PADDLE_SHRINK, BALL_SPEED_UP, BALL_SPEED_DOWN, BALL_TWO, PADDLE_STOP}
+    public enum Type { PADDLE_EXPAND, PADDLE_SHRINK, BALL_SPEED_UP, BALL_SPEED_DOWN, BALL_TWO, PADDLE_STOP, SPEED_UP, SPEED_DOWN}
     private Type type;
 
     Item(float x, float y, Stage s, boolean t) {
@@ -53,6 +53,10 @@ public class Item extends BaseActor {
             loadTexture("items/ball-two.png");
         else if (t == Type.PADDLE_STOP)
             loadTexture("items/paddle-stop.png");
+        else if (t == Type.SPEED_UP)
+            loadTexture("items/ball-speed-up.png");
+        else if (t == Type.SPEED_DOWN)
+            loadTexture("items/ball-speed-down.png");
 //        else if (t == Type.PADDLE_ADS)
 //            loadTexture("items/ball-large.png");
         else

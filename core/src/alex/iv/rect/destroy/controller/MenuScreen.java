@@ -66,7 +66,7 @@ public class MenuScreen extends StartScreen {
     }
 
     // метод, который возвращает размер экрана использующегося устройства в дюймах
-    public static double getScreenSizeInches() {
+    static double getScreenSizeInches() {
         // Use the primary monitor as baseline
         // It would also be possible to get the monitor where the window is displayed
         Graphics.Monitor primary = Gdx.graphics.getPrimaryMonitor();
@@ -475,7 +475,7 @@ public class MenuScreen extends StartScreen {
         }
 
         // устанавливает фоновую картинку в Table
-        NinePatch patch = new NinePatch(new Texture(Gdx.files.internal("background/fon_level_4.png")),
+        NinePatch patch = new NinePatch(new Texture(Gdx.files.internal("background/start_screen.png")),
                 3, 3, 3, 3);
         NinePatchDrawable background = new NinePatchDrawable(patch);
         // устанавливает фоновую картинку в Table(конец)

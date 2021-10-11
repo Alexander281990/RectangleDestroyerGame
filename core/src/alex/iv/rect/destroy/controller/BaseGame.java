@@ -2,6 +2,7 @@ package alex.iv.rect.destroy.controller;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Graphics;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -16,17 +17,32 @@ public class BaseGame extends Game {
 
     private static BaseGame game;
     public static Label.LabelStyle labelStyle;
-    public static Label.LabelStyle labelStyleRU;
+    static Label.LabelStyle labelStyleRU;
     public static Label.LabelStyle labelStyleLevel;
-    public static Label.LabelStyle labelStylePaddleStop;
+    static Label.LabelStyle labelStylePaddleStop;
     public static TextButton.TextButtonStyle textButtonStyle;
-    public static TextButton.TextButtonStyle textButtonStyleStartScreen;
-    public static TextButton.TextButtonStyle textButtonStyleLevel;
-    public static TextButton.TextButtonStyle textButtonStylePaddleStop;
+    static TextButton.TextButtonStyle textButtonStyleStartScreen;
+    static TextButton.TextButtonStyle textButtonStyleLevel;
 
     public BaseGame() {
         game = this;
     }
+
+    // метод, который возвращает размер экрана использующегося устройства в дюймах
+    private static double getScreenSizeInches() {
+        // Use the primary monitor as baseline
+        // It would also be possible to get the monitor where the window is displayed
+        Graphics.Monitor primary = Gdx.graphics.getPrimaryMonitor();
+        Graphics.DisplayMode displayMode = Gdx.graphics.getDisplayMode(primary);
+
+        float dpi = 160 * Gdx.graphics.getDensity();
+        float widthInches = displayMode.width / dpi;
+        float heightInches = displayMode.height / dpi;
+
+        //Use the pythagorean theorem to get the diagonal screen size
+        return Math.sqrt(Math.pow(widthInches, 2) + Math.pow(heightInches, 2));
+    }
+    // метод, который возвращает размер экрана использующегося устройства в дюймах(конец)
 
     public void create() {
 
@@ -93,7 +109,16 @@ public class BaseGame extends Game {
         Gdx.input.setInputProcessor(imm);
         FreeTypeFontGenerator fontGeneratorLevel = new FreeTypeFontGenerator(Gdx.files.internal("OpenSans.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter fontParametersLevel = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        fontParametersLevel.size = 72;
+        //fontParametersLevel.size = 72;
+        if (getScreenSizeInches() <= 5.7) {
+            fontParametersLevel.size = 72;
+        } else if (getScreenSizeInches() > 5.7 && getScreenSizeInches() <= 6.1 ) {
+            fontParametersLevel.size = 72;
+        } else if (getScreenSizeInches() > 6.1 && getScreenSizeInches() <= 7 ) {
+            fontParametersLevel.size = 72;
+        } else if (getScreenSizeInches() > 7 && getScreenSizeInches() <= 8 ) {
+            fontParametersLevel.size = 36;
+        }
         fontParametersLevel.color = Color.WHITE;
         fontParametersLevel.borderWidth = 2.0F;
         fontParametersLevel.borderColor = Color.BLACK;
@@ -124,7 +149,7 @@ public class BaseGame extends Game {
         BitmapFont customFontPaddleStop = fontGeneratorPaddleStop.generateFont(fontParametersPaddleStop);
         labelStylePaddleStop = new Label.LabelStyle();
         labelStylePaddleStop.font = customFontPaddleStop;
-        textButtonStylePaddleStop = new TextButton.TextButtonStyle();
+        TextButton.TextButtonStyle textButtonStylePaddleStop = new TextButton.TextButtonStyle();
         Texture buttonTexPaddleStop = new Texture(Gdx.files.internal("button.png"));
         NinePatch buttonPatchPaddleStop = new NinePatch(buttonTexPaddleStop, 24, 24, 24, 24);
         textButtonStylePaddleStop.up = new NinePatchDrawable(buttonPatchPaddleStop);
