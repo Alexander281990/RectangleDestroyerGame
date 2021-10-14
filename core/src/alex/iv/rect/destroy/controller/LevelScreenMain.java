@@ -28,8 +28,8 @@ public class LevelScreenMain extends MenuScreen {
     protected IActivityRequestHandler requestHandler; // переменная для ссылки на метод из AndroidLauncher(showOrLoadInterstitial()) - для вызова метода, который показывает рекламу
     protected static float windowPlayWidth;
     protected static float windowPlayHeight;
-    private Wall wallHeightLeft;
-    private Wall wallHeightRight;
+    protected Wall wallHeightLeft;
+    protected Wall wallHeightRight;
     protected Wall wallWight;
     protected BaseActor background;
     protected int score; // переменная набранных очков
@@ -59,9 +59,9 @@ public class LevelScreenMain extends MenuScreen {
     protected float bounceAngle;
     protected float hindranceAngle;
     protected float brickHardAngle;
-    private Sound bounceSound;
-    private Sound brickBumpSound;
-    private Sound wallBumpSound;
+    protected Sound bounceSound;
+    protected Sound brickBumpSound;
+    protected Sound wallBumpSound;
     private Sound itemCollectSound;
 //    private Sound itemAppearSound;
 

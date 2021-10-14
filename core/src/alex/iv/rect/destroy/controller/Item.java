@@ -26,7 +26,7 @@ public class Item extends BaseActor {
         addAction( Actions.scaleTo(1,1, 0.25f) );
     }
 
-    Item(float x, float y, Stage s, String l) {
+    public Item(float x, float y, Stage s, String l) {
         super(x,y,s);
         setSpeed(100);
         setLive();

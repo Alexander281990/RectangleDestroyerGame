@@ -104,6 +104,21 @@ public class LevelScreen_23 extends LevelScreenMain {
     @Override
     protected void ballsOverlaps() {
         for (BaseActor bal : BaseActor.getList(mainStage, "alex.iv.rect.destroy.actors.Ball")) {
+            if (bal.getX() < 0) {
+                bal.setPosition(wallHeightLeft.getX()+wallHeightLeft.getWidth()+10, bal.getY());
+                bal.setMotionAngle(-bal.getMotionAngle());
+                wallBumpSound.play();
+            }
+            if (bal.getX() > Gdx.graphics.getWidth()) {
+                bal.setPosition(wallHeightRight.getX()-bal.getWidth()+10, bal.getY());
+                bal.setMotionAngle(-bal.getMotionAngle());
+                wallBumpSound.play();
+            }
+            if (bal.getY() > Gdx.graphics.getHeight()) {
+                bal.setPosition(bal.getX(), (wallWight.getY() - 5) - (bal.getHeight() + 5));
+                bal.setMotionAngle(-bal.getMotionAngle());
+                wallBumpSound.play();
+            }
             for (BaseActor wall : BaseActor.getList(mainStage, "alex.iv.rect.destroy.actors.Wall")) {
                 if (bal.overlaps(wall)) {
                     bal.bounceOff(wall); // отскакивание под углом
@@ -232,8 +247,7 @@ public class LevelScreen_23 extends LevelScreenMain {
                 }
             }
             // если ball вылетает за верхнюю или нижнюю границу экрана
-            if (bal.getY() < -50 && BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick") > 0 ||
-                    bal.getY() > Gdx.graphics.getHeight() && BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick") > 0) {
+            if (bal.getY() < -50 && BaseActor.count(mainStage, "alex.iv.rect.destroy.actors.Brick") > 0) {
                 bal.remove();
                 if (Color.rgb888(bal.getColor()) == Color.rgb888(Color.WHITE)) {
                     ball = new Ball(0,0,mainStage);
