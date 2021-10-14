@@ -46,6 +46,7 @@ import alex.iv.rect.destroy.LevelScreen_6;
 import alex.iv.rect.destroy.LevelScreen_7;
 import alex.iv.rect.destroy.LevelScreen_8;
 import alex.iv.rect.destroy.LevelScreen_9;
+import alex.iv.rect.destroy.actors.BallsIcon;
 import alex.iv.rect.destroy.actors.Lock;
 
 public class MenuScreen extends StartScreen {
@@ -85,6 +86,19 @@ public class MenuScreen extends StartScreen {
     public void initialize() {
 
         pref = Gdx.app.getPreferences("Preferences");// инициализация Preferences для сохранения лучшего результата в телефоне
+
+        BallsIcon ballIconCrazy = new BallsIcon(0, 0, mainStage);
+        ballIconCrazy.loadTexture("crazy_ball_origin_size.png");
+        BallsIcon ballIconFunny = new BallsIcon(0, 0, mainStage);
+        ballIconFunny.loadTexture("fun_ball.png");
+        BaseActor justPaddle = new BaseActor(0, 0, mainStage);
+        justPaddle.loadTexture("paddle.png");
+        BaseActor quickBallRed = new BaseActor(0, 0, mainStage);
+        quickBallRed.loadTexture("quick_ball.png");
+        BaseActor quickBallGrren = new BaseActor(0, 0, mainStage);
+        quickBallGrren.loadTexture("quiqly_ball_green.png");
+        BaseActor justBall = new BaseActor(0, 0, mainStage);
+        justBall.loadTexture("ball.png");
 
         attainmentColorLevel_1 = pref.getInteger("attainmentColorLevelMemory_1");
         attainmentColorLevel_2 = pref.getInteger("attainmentColorLevelMemory_2");
@@ -182,6 +196,7 @@ public class MenuScreen extends StartScreen {
         Lock lock30 = new Lock(0, 0, mainStage);
 
         levelScreenMain = new LevelScreenMain(requestHandler);
+
 // инициализация кнопок Level
         TextButton level_1_Button = new TextButton("01", BaseGame.textButtonStyleLevel);
         TextButton level_2_Button = new TextButton("02", BaseGame.textButtonStyleLevel);
@@ -1645,7 +1660,32 @@ public class MenuScreen extends StartScreen {
                 }
         );
 
-        Gdx.app.log("MyTag", String.valueOf(countGreenGroup_1));
+        uiTable.pack(); // этот метод считает размеры таблицы(нужно для того, что-бы выяснить координаты актеров, которые находятся внутри таблицы)
+
+        uiStage.addActor(ballIconCrazy);
+        ballIconCrazy.setSize(level_2_Button.getHeight()*2, level_2_Button.getHeight()*2);
+        ballIconCrazy.setPosition( level_1_Button.getX() / 2, level_1_Button.getY() + level_1_Button.getHeight() * 1.7f);
+        uiStage.addActor(justPaddle);
+        justPaddle.setSize(level_2_Button.getHeight() * 3, level_2_Button.getHeight() / 2.5f);
+        justPaddle.setPosition(ballIconCrazy.getX(), justPaddle.getHeight());
+        uiStage.addActor(justBall);
+        justBall.setSize(justPaddle.getHeight() / 1.2f, justPaddle.getHeight() / 1.2f);
+        justBall.setPosition((justPaddle.getX() + justPaddle.getWidth()) / 2 + justBall.getWidth() / 2 ,
+                justPaddle.getY() + justPaddle.getHeight() + justBall.getHeight() / 6);
+        uiStage.addActor(quickBallRed);
+        quickBallRed.setSize(level_2_Button.getHeight() * 1.2f, level_2_Button.getHeight() * 1.2f);
+        quickBallRed.setOrigin(Align.center);
+        quickBallRed.setRotation(78);
+        quickBallRed.setPosition(justPaddle.getX(), level_26_Button.getY() - quickBallRed.getHeight() - level_26_Button.getHeight() / 2);
+        uiStage.addActor(quickBallGrren);
+        quickBallGrren.setSize(level_2_Button.getHeight(), level_2_Button.getHeight());
+        quickBallGrren.setPosition(justPaddle.getX() + justPaddle.getWidth() - quickBallGrren.getWidth(),
+                justPaddle.getY() + justPaddle.getHeight());
+        uiStage.addActor(ballIconFunny);
+        ballIconFunny.setSize(level_2_Button.getHeight()*2, level_2_Button.getHeight()*2);
+        ballIconFunny.setPosition(level_30_Button.getX() - level_30_Button.getWidth(), justPaddle.getY() * 2);
+
+        //Gdx.app.log("MyTag", String.valueOf(level_1_Button.getX()));
     }
 
     @Override
