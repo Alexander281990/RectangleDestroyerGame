@@ -15,7 +15,7 @@ public class Clouds extends BaseActor {
         setPosition(0, Gdx.graphics.getHeight());
         setMaxSpeed(400);
         setDeceleration(0); // замедление
-        //setMotionAngle(- 90); // заставляет двигаться обьект сверху в низ
+        setMotionAngle(- 90); // заставляет двигаться обьект сверху в низ
     }
 
     //////////////////////////////////
@@ -24,7 +24,7 @@ public class Clouds extends BaseActor {
         super.act(dt);
         applyPhysics(dt);
 
-     //    если вражеский звездолет достиг нижней части, то он удаляется
+     //    если облака достигли нижней части, то перемещаем их в новую позицию
         if (getY() + Gdx.graphics.getHeight() < 0) {
             //remove();
             setPosition(0, Gdx.graphics.getHeight());

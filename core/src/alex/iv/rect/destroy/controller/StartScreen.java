@@ -17,7 +17,6 @@ import alex.iv.rect.destroy.actors.BallsIcon;
 import alex.iv.rect.destroy.actors.Brick;
 import alex.iv.rect.destroy.actors.BrickHard;
 
-
 public class StartScreen extends BaseScreen {
 
     private Sound clickButton;

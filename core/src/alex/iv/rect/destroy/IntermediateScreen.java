@@ -15,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 
+import alex.iv.rect.destroy.actors.Background;
 import alex.iv.rect.destroy.controller.BaseGame;
 import alex.iv.rect.destroy.controller.IActivityRequestHandler;
 import alex.iv.rect.destroy.controller.LevelScreenMain;
@@ -166,6 +167,7 @@ public class IntermediateScreen extends LevelScreenMain {
     public void initialize() {
         windowPlayWidth = Gdx.graphics.getWidth();
         windowPlayHeight = Gdx.graphics.getHeight() / 2f - 100;
+        new Background(0, 0, mainStage);
 
         recordsLevel_1 = pref.getInteger("records_1");
         recordsLevel_2 = pref.getInteger("records_2");
@@ -366,14 +368,14 @@ public class IntermediateScreen extends LevelScreenMain {
         TextureRegionDrawable textureRegionDrawableBg = new TextureRegionDrawable(new TextureRegion(new Texture(bgPixmap)));
         // устанавливает фоновый цвет в Table(конец)
 
-        // устанавливает фоновую картинку в Table
-        NinePatch patch = new NinePatch(new Texture(Gdx.files.internal("background/fon_intermediate_screen.png")),
-                3, 3, 3, 3);
-        NinePatchDrawable background = new NinePatchDrawable(patch);
-        // устанавливает фоновую картинку в Table(конец)
+//        // устанавливает фоновую картинку в Table
+//        NinePatch patch = new NinePatch(new Texture(Gdx.files.internal("background/fon_intermediate_screen.png")),
+//                3, 3, 3, 3);
+//        NinePatchDrawable background = new NinePatchDrawable(patch);
+//        // устанавливает фоновую картинку в Table(конец)
 
-        //uiTable.setDebug(true); // рисует границы ячеек и виджетов для Table(удобно для отладки)
-        uiTable.setBackground(background);
+//        //uiTable.setDebug(true); // рисует границы ячеек и виджетов для Table(удобно для отладки)
+//        uiTable.setBackground(background);
         uiTable.align(Align.center|Align.top);
         uiTable.add(exitButton).expandX().left().padTop(20).padLeft(20);
         uiTable.add(Live).expandX().right().top().padTop(20).padRight(20);

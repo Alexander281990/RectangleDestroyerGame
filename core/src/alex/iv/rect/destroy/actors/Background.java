@@ -11,6 +11,9 @@ public class Background extends BaseActor {
         super(x, y, s);
         loadTexture("background/start_screen.png");
         setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        // следующие 2 строчки отвечают за движение облаков
+        Clouds cloud = new Clouds(0, Gdx.graphics.getHeight(), s);
+        s.addActor(cloud);
     }
 
 }
