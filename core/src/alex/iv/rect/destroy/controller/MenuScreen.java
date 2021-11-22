@@ -46,6 +46,7 @@ import alex.iv.rect.destroy.LevelScreen_6;
 import alex.iv.rect.destroy.LevelScreen_7;
 import alex.iv.rect.destroy.LevelScreen_8;
 import alex.iv.rect.destroy.LevelScreen_9;
+import alex.iv.rect.destroy.VictoryScreen;
 import alex.iv.rect.destroy.actors.BallsIcon;
 import alex.iv.rect.destroy.actors.Lock;
 
@@ -1217,7 +1218,8 @@ public class MenuScreen extends StartScreen {
                             return false;
                         requestHandler.hideBannerAd(); // при нажатии на кнопку баннер скрывается
                         if (attainment >= 0) {
-                            RectangleGame.setActiveScreen(new LevelScreen_1(requestHandler));
+                            //RectangleGame.setActiveScreen(new LevelScreen_1(requestHandler));
+                            RectangleGame.setActiveScreen(new VictoryScreen(requestHandler, "attainmentColorLevelMemory_1"));
                         }
                         return false;
                     }
