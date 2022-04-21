@@ -4,12 +4,16 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Event;
 import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 
 import alex.iv.rect.destroy.actors.Background;
@@ -82,6 +86,10 @@ public class StartScreen extends BaseScreen {
     protected static int recordsLevel_28;
     protected static int recordsLevel_29;
     protected static int recordsLevel_30;
+
+    private Texture newGameButtonTexture, continueButtonTexture;
+    private TextureRegion newGameButtonTextureRegion, continueButtonTextureRegion;
+    private TextureRegionDrawable newGameButtonTexRegionDrawable, continueButtonTexRegionDrawable;
 
     public IActivityRequestHandler requestHandler;
 
@@ -180,7 +188,11 @@ public class StartScreen extends BaseScreen {
         pref = Gdx.app.getPreferences("Preferences");// инициализация Preferences для сохранения лучшего результата в телефоне
         attainment = pref.getInteger("attainmentMemory");
         // инициализация кнопок New game и continue
-        TextButton startButton = new TextButton( "New game", BaseGame.textButtonStyleStartScreen );
+        newGameButtonTexture = new Texture(Gdx.files.internal("new_game_button.png"));
+        newGameButtonTextureRegion = new TextureRegion(newGameButtonTexture);
+        newGameButtonTexRegionDrawable = new TextureRegionDrawable(newGameButtonTextureRegion);
+        Button startButton = new Button(newGameButtonTexRegionDrawable);
+        //TextButton startButton = new TextButton( "New game", BaseGame.textButtonStyleStartScreen );
         startButton.setSize(Gdx.graphics.getWidth()/2f, Gdx.graphics.getHeight()/15f);
         startButton.addListener(
                 new EventListener() {
@@ -319,7 +331,11 @@ public class StartScreen extends BaseScreen {
                 }
         );
 
-        TextButton continueButton = new TextButton( "Continue", BaseGame.textButtonStyleStartScreen );
+        continueButtonTexture = new Texture(Gdx.files.internal("continue_button.png"));
+        continueButtonTextureRegion = new TextureRegion(continueButtonTexture);
+        continueButtonTexRegionDrawable = new TextureRegionDrawable(continueButtonTextureRegion);
+        Button continueButton = new Button(continueButtonTexRegionDrawable);
+        //TextButton continueButton = new TextButton( "Continue", BaseGame.textButtonStyleStartScreen );
         continueButton.setSize(Gdx.graphics.getWidth()/2f, Gdx.graphics.getHeight()/15f);
         continueButton.addListener(
                 new EventListener() {

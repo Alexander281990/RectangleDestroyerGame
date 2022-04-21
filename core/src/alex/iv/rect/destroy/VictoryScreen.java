@@ -104,6 +104,12 @@ public class VictoryScreen extends LevelScreenMain {
                 }
         );
 
+        BallsIcon lockAnim = new BallsIcon(0, 0, mainStage);
+        lockAnim.loadAnimationFromSheet("lock_anim.png", 7, 6, 0.06f, true);
+        lockAnim.setSize(ballIconFunny.getWidth(), ballIconFunny.getWidth());
+        lockAnim.setPosition(Gdx.graphics.getWidth() / 2f - lockAnim.getWidth() / 2f
+                , menuButton.getY() - lockAnim.getHeight());
+
     }
 
     public void update(float dt) {
